@@ -1,0 +1,76 @@
+sources:
+  # HTTP GET parameters
+  - id: php_get_param
+    description: "HTTP GET parameter"
+    source_type: get_param
+    patterns:
+      - "$_GET"
+      - "filter_input(INPUT_GET"
+
+  # HTTP POST parameters
+  - id: php_post_param
+    description: "HTTP POST parameter"
+    source_type: post_param
+    patterns:
+      - "$_POST"
+      - "filter_input(INPUT_POST"
+
+  # Cookies
+  - id: php_cookie
+    description: "HTTP cookie value"
+    source_type: cookie
+    patterns:
+      - "$_COOKIE"
+      - "filter_input(INPUT_COOKIE"
+
+  # HTTP request headers (only HTTP_* keys are user-controlled)
+  - id: php_server_header
+    description: "HTTP request header via $_SERVER"
+    source_type: header
+    # We detect $_SERVER['HTTP_...'] via AST key prefix check, not plain string match
+    patterns:
+      - "$_SERVER"
+    http_prefix_only: true
+
+  # File uploads
+  - id: php_files_upload
+    description: "File upload metadata"
+    source_type: file_upload
+    patterns:
+      - "$_FILES"
+
+  # Catch-all $_REQUEST (treated conservatively as user input)
+  - id: php_request_catchall
+    description: "HTTP request parameter via $_REQUEST"
+    source_type: get_param
+    patterns:
+      - "$_REQUEST"
+      - "filter_input(INPUT_REQUEST"
+
+  # Database reads (secondary taint - only when query itself was tainted)
+  - id: php_db_read_pdo
+    description: "PDO fetch result"
+    source_type: db_read
+    patterns:
+      - "->fetch("
+      - "->fetchAll("
+      - "->fetchColumn("
+
+  - id: php_db_read_mysqli
+    description: "mysqli fetch result"
+    source_type: db_read
+    patterns:
+      - "mysqli_fetch_assoc("
+      - "mysqli_fetch_array("
+      - "mysqli_fetch_row("
+      - "->fetch_assoc("
+      - "->fetch_array("
+      - "->fetch_row("
+
+  # getallheaders() returns all HTTP request headers
+  - id: php_getallheaders
+    description: "All HTTP request headers"
+    source_type: header
+    patterns:
+      - "getallheaders("
+      - "apache_request_headers("

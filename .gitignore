@@ -1,0 +1,47 @@
+# Credentials — never commit
+CREDENTIALS.md
+
+# Tool binaries (11GB+)
+tools/
+workspace/
+
+# Large CPG binary
+joern_cpg/*.bin
+
+# Large logs
+results/joern_run.log
+results/psalm_progress.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Benchmark results (large, generated)
+benchmarks/results/

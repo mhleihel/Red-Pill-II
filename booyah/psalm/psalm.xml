@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<psalm
+  errorLevel="1"
+  resolveFromConfigFile="true"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="https://getpsalm.org/schema/config"
+  xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+  findUnusedVariablesAndParams="false"
+  runTaintAnalysis="true"
+>
+  <projectFiles>
+    <directory name="app"/>
+    <directory name="lib"/>
+    <directory name="setup/src"/>
+    <ignoreFiles>
+      <directory name="dev"/>
+      <directory name="vendor"/>
+      <directory name="generated"/>
+    </ignoreFiles>
+  </projectFiles>
+
+  <!--
+    Taint sources: anything Psalm cannot resolve that is user-controlled.
+    We annotate the Magento request interface methods as taint sources.
+    In code Psalm can analyze, taint flows automatically. For framework
+    methods it cannot see into, we use stub annotations below.
+  -->
+  <stubs>
+    <file name="booyah/psalm/stubs/MagentoRequestStub.phpstub"/>
+  </stubs>
+
+  <!--
+    Taint sinks: Psalm's built-in sinks cover echo/print/header.
+    We add Magento-specific sinks via annotations on stub classes.
+  -->
+
+  <!--
+    Sanitizers: Psalm recognizes htmlspecialchars, htmlentities, etc. built-in.
+    We add Magento escaper methods via stub annotations.
+  -->
+
+  <issueHandlers>
+    <!-- Suppress non-security issues during taint run to keep output clean -->
+    <TaintedInput>
+      <errorLevel type="error">
+        <directory name="app"/>
+        <directory name="lib"/>
+      </errorLevel>
+    </TaintedInput>
+  </issueHandlers>
+</psalm>

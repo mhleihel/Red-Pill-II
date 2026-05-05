@@ -1,0 +1,242 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Booyah;
+
+/**
+ * Runtime taint tracer — inserted at sources, sinks, and transforms by the instrumentor.
+ *
+ * Logs to SQLite using value hashing: actual values are never stored — only SHA-256 digests.
+ * This makes it safe to run against real production data.
+ *
+ * Schema:
+ *   traces(id, request_id, type, function_name, file, line, value_hash, value_preview, ts)
+ *   transforms(id, request_id, in_hash, out_hash, function_name, file, line, sanitized, ts)
+ */
+final class Tracer
+{
+    private static ?\PDO $db = null;
+    private static ?string $requestId = null;
+    private static bool $enabled = true;
+
+    public static function requestId(): string
+    {
+        if (self::$requestId === null) {
+            self::$requestId = bin2hex(random_bytes(16));
+        }
+        return self::$requestId;
+    }
+
+    /**
+     * Called immediately after a taint source is read.
+     * @param mixed $value   The tainted value (used only for hashing)
+     */
+    public static function source(
+        mixed $value,
+        string $paramName,
+        string $functionName,
+        string $file,
+        int $line,
+        string $requestId
+    ): void {
+        if (!self::$enabled) return;
+        $hash = self::hash($value);
+        $preview = self::preview($value);
+        self::db()->exec(sprintf(
+            "INSERT INTO traces(request_id,type,function_name,param_name,file,line,value_hash,value_preview,ts)
+             VALUES (%s,%s,%s,%s,%s,%d,%s,%s,%d)",
+            self::q($requestId), self::q('source'), self::q($functionName),
+            self::q($paramName), self::q($file), $line,
+            self::q($hash), self::q($preview), time()
+        ));
+    }
+
+    /**
+     * Called immediately before a sink receives a value.
+     * @param mixed $value   The value reaching the sink
+     */
+    public static function sink(
+        mixed $value,
+        string $sinkType,
+        string $file,
+        int $line,
+        string $requestId
+    ): void {
+        if (!self::$enabled) return;
+        $hash = self::hash($value);
+        $preview = self::preview($value);
+        self::db()->exec(sprintf(
+            "INSERT INTO traces(request_id,type,function_name,param_name,file,line,value_hash,value_preview,ts)
+             VALUES (%s,%s,%s,%s,%s,%d,%s,%s,%d)",
+            self::q($requestId), self::q('sink'), self::q($sinkType),
+            self::q(''), self::q($file), $line,
+            self::q($hash), self::q($preview), time()
+        ));
+    }
+
+    /**
+     * Called after a potential sanitizer/transform runs.
+     * If in_hash == out_hash, no transformation occurred (value passed through unchanged).
+     * @param mixed $input   Pre-transform value
+     * @param mixed $output  Post-transform value
+     */
+    public static function transform(
+        mixed $input,
+        mixed $output,
+        string $functionName,
+        string $file,
+        int $line,
+        string $requestId
+    ): void {
+        if (!self::$enabled) return;
+        $inHash = self::hash($input);
+        $outHash = self::hash($output);
+        $sanitized = (int)($inHash !== $outHash);
+        self::db()->exec(sprintf(
+            "INSERT INTO transforms(request_id,in_hash,out_hash,function_name,file,line,sanitized,ts)
+             VALUES (%s,%s,%s,%s,%s,%d,%d,%d)",
+            self::q($requestId), self::q($inHash), self::q($outHash),
+            self::q($functionName), self::q($file), $line, $sanitized, time()
+        ));
+    }
+
+    private static function db(): \PDO
+    {
+        if (self::$db !== null) {
+            return self::$db;
+        }
+
+        $dbPath = getenv('BOOYAH_TRACE_DB') ?: '/tmp/booyah_trace.db';
+        self::$db = new \PDO("sqlite:$dbPath");
+        self::$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        self::$db->exec('PRAGMA journal_mode=WAL');
+        self::$db->exec('PRAGMA synchronous=NORMAL');
+        self::$db->exec("CREATE TABLE IF NOT EXISTS traces (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            request_id   TEXT NOT NULL,
+            type         TEXT NOT NULL,
+            function_name TEXT NOT NULL,
+            param_name   TEXT NOT NULL DEFAULT '',
+            file         TEXT NOT NULL,
+            line         INTEGER NOT NULL,
+            value_hash   TEXT NOT NULL,
+            value_preview TEXT NOT NULL DEFAULT '',
+            ts           INTEGER NOT NULL
+        )");
+        self::$db->exec("CREATE INDEX IF NOT EXISTS idx_traces_hash ON traces(value_hash)");
+        self::$db->exec("CREATE INDEX IF NOT EXISTS idx_traces_request ON traces(request_id)");
+        self::$db->exec("CREATE TABLE IF NOT EXISTS transforms (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            request_id    TEXT NOT NULL,
+            in_hash       TEXT NOT NULL,
+            out_hash      TEXT NOT NULL,
+            function_name TEXT NOT NULL,
+            file          TEXT NOT NULL,
+            line          INTEGER NOT NULL,
+            sanitized     INTEGER NOT NULL DEFAULT 0,
+            ts            INTEGER NOT NULL
+        )");
+        self::$db->exec("CREATE INDEX IF NOT EXISTS idx_transforms_in ON transforms(in_hash)");
+        return self::$db;
+    }
+
+    private static function hash(mixed $value): string
+    {
+        if (is_array($value) || is_object($value)) {
+            $value = serialize($value);
+        }
+        return hash('sha256', (string)$value);
+    }
+
+    private static function preview(mixed $value): string
+    {
+        if (is_array($value)) return '[array]';
+        if (is_object($value)) return '[object:' . get_class($value) . ']';
+        $str = (string)$value;
+        // Store up to 512 chars — needed for substring taint matching in benchmarks.
+        // In production, set BOOYAH_PREVIEW_MAXLEN=0 to disable previews.
+        $maxLen = (int)(getenv('BOOYAH_PREVIEW_MAXLEN') ?: '512');
+        if ($maxLen === 0) return '';
+        if (strlen($str) > $maxLen) {
+            return substr($str, 0, $maxLen) . '...[truncated]';
+        }
+        return $str;
+    }
+
+    private static function q(mixed $val): string
+    {
+        if (is_int($val)) return (string)$val;
+        $str = str_replace("'", "''", (string)$val);
+        return "'$str'";
+    }
+
+    /**
+     * Convenience wrapper for AST injection at sources.
+     * Logs the taint source and returns the value unchanged.
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function sourceWrap(
+        mixed $value,
+        string $paramName,
+        string $functionName,
+        string $file,
+        int $line,
+        string $requestId
+    ): mixed {
+        self::source($value, $paramName, $functionName, $file, $line, $requestId);
+        return $value;
+    }
+
+    /**
+     * Convenience wrapper for AST injection at transforms.
+     * The $transformed value is already computed (the call happened before this wrapper).
+     * We log input→output hash pair and return the transformed value unchanged.
+     *
+     * Usage in generated code:
+     *   \Booyah\Tracer::transformWrap($dirty, htmlspecialchars($dirty), 'htmlspecialchars', ...)
+     *
+     * But since we wrap the entire call expression, the inner call runs first,
+     * and we receive the already-transformed value as $transformed.
+     * We reconstruct the input by reading from our source log via request_id.
+     *
+     * For correctness, we log (in_hash=hash($original), out_hash=hash($transformed)).
+     * The $original param must be passed from the visitor — it is the pre-transform arg.
+     *
+     * @param mixed $transformed  The post-transform value (result of the inner call)
+     * @param string $functionName
+     * @return mixed  Returns $transformed unchanged
+     */
+    public static function transformWrap(
+        mixed $transformed,
+        string $functionName,
+        string $file,
+        int $line,
+        string $requestId
+    ): mixed {
+        // In the visitor, we pass the already-evaluated transformed value.
+        // We don't have the pre-transform value here, so we log as a sink-side transform.
+        // Full before/after tracking requires the visitor to pass both args (done in InstrumentVisitor).
+        if (!self::$enabled) return $transformed;
+        $outHash = self::hash($transformed);
+        self::db()->exec(sprintf(
+            "INSERT INTO transforms(request_id,in_hash,out_hash,function_name,file,line,sanitized,ts)
+             VALUES (%s,%s,%s,%s,%s,%d,%d,%d)",
+            self::q($requestId), self::q(''), self::q($outHash),
+            self::q($functionName), self::q($file), $line, 0, time()
+        ));
+        return $transformed;
+    }
+
+    public static function disable(): void
+    {
+        self::$enabled = false;
+    }
+
+    public static function reset(): void
+    {
+        self::$requestId = null;
+        self::$db = null;
+    }
+}

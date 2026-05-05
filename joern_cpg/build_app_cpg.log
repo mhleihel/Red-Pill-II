@@ -1,0 +1,57 @@
+2026-05-04 14:41:40.726 ERROR DependencyPass            Unable to deserialize `/tmp/magento_joern_src/lib/internal/Magento/Framework/App/Test/Unit/_files/test.composer.json`
+ujson.ParseException: expected json value got "]" at index 946
+	at ujson.ParseException$.apply(Exceptions.scala:6) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.die(ByteParser.scala:98) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.dieWithFailureMessage(ByteParser.scala:502) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseNested(ByteParser.scala:472) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseTopLevel0(ByteParser.scala:339) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseTopLevel(ByteParser.scala:323) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parse(ByteParser.scala:72) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteArrayParser$.transform(ByteArrayParser.scala:33) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteArrayParser$.transform(ByteArrayParser.scala:33) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.Readable$fromTransformer.transform(Readable.scala:19) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at upickle.Api.read$$anonfun$1(Api.scala:42) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.core.TraceVisitor$.withTrace(TraceVisitor.scala:18) ~[com.lihaoyi.upickle-core_3-4.1.0.jar:4.1.0]
+	at upickle.Api.read(Api.scala:42) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.Api.read$(Api.scala:16) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.default$.read(Api.scala:179) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at io.joern.php2cpg.passes.DependencyPass.$anonfun$1$$anonfun$1(DependencyPass.scala:27) ~[io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at scala.util.Try$.apply(Try.scala:217) ~[org.scala-lang.scala-library-2.13.16.jar:?]
+	at io.joern.php2cpg.passes.DependencyPass.$anonfun$1(DependencyPass.scala:27) ~[io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at scala.util.Using$.resource(Using.scala:296) ~[org.scala-lang.scala-library-2.13.16.jar:?]
+	at io.joern.php2cpg.passes.DependencyPass.runOnPart(DependencyPass.scala:28) [io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at io.joern.php2cpg.passes.DependencyPass.runOnPart(DependencyPass.scala:24) [io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at io.shiftleft.passes.ForkJoinParallelCpgPass.runOnPart(CpgPass.scala:88) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPass.runOnPart(CpgPass.scala:88) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPassWithAccumulator$$anon$2.accept(CpgPass.scala:214) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPassWithAccumulator$$anon$2.accept(CpgPass.scala:212) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at java.util.stream.ReduceOps$4ReducingSink.accept(ReduceOps.java:220) [?:?]
+	at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) [?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) [?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) [?:?]
+	at java.util.stream.ReduceOps$ReduceTask.doLeaf(ReduceOps.java:960) [?:?]
+	at java.util.stream.ReduceOps$ReduceTask.doLeaf(ReduceOps.java:934) [?:?]
+	at java.util.stream.AbstractTask.compute(AbstractTask.java:327) [?:?]
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:754) [?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+2026-05-04 14:42:03.851 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:04.694 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:07.455 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:08.107 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:09.140 WARN  AstCreator$               Unable to find local variable for closure ref: resources
+2026-05-04 14:42:09.740 WARN  AstCreator$               Unable to find local variable for closure ref: loaded
+2026-05-04 14:42:11.391 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:12.375 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:12.377 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:12.675 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:13.690 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:13.878 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:14.289 WARN  AstCreator$               Unable to find local variable for closure ref: path
+2026-05-04 14:42:14.568 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:15.020 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:17.152 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:42:18.630 WARN  AstCreator$               Unable to find local variable for closure ref: callCount

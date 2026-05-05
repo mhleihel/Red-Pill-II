@@ -1,0 +1,594 @@
+2026-05-04 14:36:43.480 ERROR DependencyPass            Unable to deserialize `/Users/mhleihel/Desktop/magento2-2.4.8-p4/lib/internal/Magento/Framework/App/Test/Unit/_files/test.composer.json`
+ujson.ParseException: expected json value got "]" at index 946
+	at ujson.ParseException$.apply(Exceptions.scala:6) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.die(ByteParser.scala:98) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.dieWithFailureMessage(ByteParser.scala:502) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseNested(ByteParser.scala:472) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseTopLevel0(ByteParser.scala:339) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parseTopLevel(ByteParser.scala:323) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteParser.parse(ByteParser.scala:72) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteArrayParser$.transform(ByteArrayParser.scala:33) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.ByteArrayParser$.transform(ByteArrayParser.scala:33) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at ujson.Readable$fromTransformer.transform(Readable.scala:19) ~[com.lihaoyi.ujson_3-4.1.0.jar:4.1.0]
+	at upickle.Api.read$$anonfun$1(Api.scala:42) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.core.TraceVisitor$.withTrace(TraceVisitor.scala:18) ~[com.lihaoyi.upickle-core_3-4.1.0.jar:4.1.0]
+	at upickle.Api.read(Api.scala:42) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.Api.read$(Api.scala:16) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at upickle.default$.read(Api.scala:179) ~[com.lihaoyi.upickle_3-4.0.2.jar:4.0.2]
+	at io.joern.php2cpg.passes.DependencyPass.$anonfun$1$$anonfun$1(DependencyPass.scala:27) ~[io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at scala.util.Try$.apply(Try.scala:217) ~[org.scala-lang.scala-library-2.13.16.jar:?]
+	at io.joern.php2cpg.passes.DependencyPass.$anonfun$1(DependencyPass.scala:27) ~[io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at scala.util.Using$.resource(Using.scala:296) ~[org.scala-lang.scala-library-2.13.16.jar:?]
+	at io.joern.php2cpg.passes.DependencyPass.runOnPart(DependencyPass.scala:28) [io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at io.joern.php2cpg.passes.DependencyPass.runOnPart(DependencyPass.scala:24) [io.joern.php2cpg-4.0.532.jar:4.0.532]
+	at io.shiftleft.passes.ForkJoinParallelCpgPass.runOnPart(CpgPass.scala:88) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPass.runOnPart(CpgPass.scala:88) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPassWithAccumulator$$anon$2.accept(CpgPass.scala:214) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at io.shiftleft.passes.ForkJoinParallelCpgPassWithAccumulator$$anon$2.accept(CpgPass.scala:212) [io.shiftleft.codepropertygraph_3-1.7.64.jar:1.7.64]
+	at java.util.stream.ReduceOps$4ReducingSink.accept(ReduceOps.java:220) [?:?]
+	at java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024) [?:?]
+	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) [?:?]
+	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) [?:?]
+	at java.util.stream.ReduceOps$ReduceTask.doLeaf(ReduceOps.java:960) [?:?]
+	at java.util.stream.ReduceOps$ReduceTask.doLeaf(ReduceOps.java:934) [?:?]
+	at java.util.stream.AbstractTask.compute(AbstractTask.java:327) [?:?]
+	at java.util.concurrent.CountedCompleter.exec(CountedCompleter.java:754) [?:?]
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387) [?:?]
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312) [?:?]
+	at java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843) [?:?]
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808) [?:?]
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188) [?:?]
+2026-05-04 14:37:13.672 WARN  PhpParser                 Found warning in PHP-Parser JSON output:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Cn.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Com.php:
+2026-05-04 14:37:13.674 WARN  PhpParser                 Found warning in PHP-Parser JSON output:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Cn.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Com.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Iban.php:
+2026-05-04 14:37:54.926 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/ContainerBuilder.php
+2026-05-04 14:37:54.969 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Dumper/GraphvizDumper.php
+2026-05-04 14:37:54.989 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Dumper/PhpDumper.php
+2026-05-04 14:37:54.991 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Dumper/PhpDumper.php
+2026-05-04 14:37:55.011 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Dumper/XmlDumper.php
+2026-05-04 14:37:55.020 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Dumper/YamlDumper.php
+2026-05-04 14:37:56.759 WARN  AstCreator$               Unable to find local variable for closure ref: loaded
+2026-05-04 14:37:56.902 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/ServiceLocator.php
+2026-05-04 14:37:57.524 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/AbstractExpression.php
+2026-05-04 14:37:57.528 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/Combine.php
+2026-05-04 14:37:57.820 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php
+2026-05-04 14:37:57.824 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/event-dispatcher/Debug/WrappedListener.php
+2026-05-04 14:37:57.824 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/event-dispatcher/Debug/WrappedListener.php
+2026-05-04 14:37:57.830 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/event-dispatcher/EventDispatcher.php
+2026-05-04 14:37:57.850 WARN  AstCreator$               ArrayDimFetchExpr without dimensions should be handled in assignment: $this->optimized[$eventName]:239:vendor/symfony/event-dispatcher/EventDispatcher.php
+2026-05-04 14:37:58.715 WARN  AstCreator$               Unable to find local variable for closure ref: error
+2026-05-04 14:37:58.813 WARN  AstCreator$               Unable to find local variable for closure ref: startingResponse
+2026-05-04 14:37:58.825 WARN  AstCreator$               Unable to find local variable for closure ref: http_response_header
+2026-05-04 14:37:58.856 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:37:59.043 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/Select.php
+2026-05-04 14:37:59.044 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/Select.php
+2026-05-04 14:37:59.050 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/TableIdentifier.php
+2026-05-04 14:37:59.050 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/magento/magento-zf-db/src/Sql/TableIdentifier.php
+2026-05-04 14:37:59.146 WARN  AstCreator$               Unable to find local variable for closure ref: steps
+2026-05-04 14:37:59.149 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-client-contracts/Test/HttpClientTestCase.php
+2026-05-04 14:37:59.149 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-client-contracts/Test/HttpClientTestCase.php
+2026-05-04 14:37:59.529 WARN  AstCreator$               Unable to find local variable for closure ref: reachedInternalErrorsCountLimit
+2026-05-04 14:38:00.456 WARN  AstCreator$               Unable to find local variable for closure ref: location
+2026-05-04 14:38:00.493 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-client/RetryableHttpClient.php
+2026-05-04 14:38:00.494 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-client/RetryableHttpClient.php
+2026-05-04 14:38:01.297 WARN  AstCreator$               Unable to find local variable for closure ref: error
+2026-05-04 14:38:01.333 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-foundation/JsonResponse.php
+2026-05-04 14:38:01.433 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:02.422 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-code/src/Generator/ValueGenerator.php
+2026-05-04 14:38:02.423 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-foundation/Session/Storage/NativeSessionStorage.php
+2026-05-04 14:38:02.614 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:02.615 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:03.168 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/Factory.php
+2026-05-04 14:38:03.168 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/Factory.php
+2026-05-04 14:38:03.180 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/Reader/JavaProperties.php
+2026-05-04 14:38:03.206 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/ReaderPluginManager.php
+2026-05-04 14:38:03.206 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/CacheWarmer/CacheWarmerAggregate.php
+2026-05-04 14:38:03.206 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/CacheWarmer/CacheWarmerAggregate.php
+2026-05-04 14:38:03.209 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Controller/ArgumentResolver.php
+2026-05-04 14:38:03.210 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/Writer/JavaProperties.php
+2026-05-04 14:38:03.210 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/Writer/JavaProperties.php
+2026-05-04 14:38:03.524 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Controller/ArgumentResolver/TraceableValueResolver.php
+2026-05-04 14:38:03.529 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Controller/ControllerResolver.php
+2026-05-04 14:38:03.529 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Controller/ControllerResolver.php
+2026-05-04 14:38:03.533 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/ControllerMetadata/ArgumentMetadata.php
+2026-05-04 14:38:03.667 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-config/src/WriterPluginManager.php
+2026-05-04 14:38:03.955 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-di/src/DefaultContainer.php
+2026-05-04 14:38:04.035 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/DataCollector/ConfigDataCollector.php
+2026-05-04 14:38:04.286 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-di/src/Exception/UnsupportedReflectionTypeException.php
+2026-05-04 14:38:04.483 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:04.818 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/EventListener/ErrorListener.php
+2026-05-04 14:38:04.819 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/EventListener/ErrorListener.php
+2026-05-04 14:38:05.127 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-codeception/src/Internal/ArgumentAsString.php
+2026-05-04 14:38:05.130 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-codeception/src/Internal/CestInfoBuilder.php
+2026-05-04 14:38:05.130 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-codeception/src/Internal/CestProvider.php
+2026-05-04 14:38:05.534 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-codeception/src/Internal/UnitProvider.php
+2026-05-04 14:38:05.535 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-codeception/src/Internal/UnknownInfoBuilder.php
+2026-05-04 14:38:05.672 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/HttpKernel.php
+2026-05-04 14:38:06.030 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Kernel.php
+2026-05-04 14:38:06.030 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Kernel.php
+2026-05-04 14:38:06.030 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Kernel.php
+2026-05-04 14:38:06.039 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Log/Logger.php
+2026-05-04 14:38:06.046 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/http-kernel/Profiler/Profiler.php
+2026-05-04 14:38:06.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/src/Exception/InvalidExecutionContextException.php
+2026-05-04 14:38:06.509 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/src/Exception/InvalidMethodNameException.php
+2026-05-04 14:38:06.710 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/intl/Resources/bin/common.php
+2026-05-04 14:38:07.049 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Reader/ExtensionPluginManager.php
+2026-05-04 14:38:07.049 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Reader/ExtensionPluginManager.php
+2026-05-04 14:38:07.193 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/src/Internal/HooksNotifier.php
+2026-05-04 14:38:07.264 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:07.645 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Reader/Http/LaminasHttpClientDecorator.php
+2026-05-04 14:38:07.646 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Reader/Http/LaminasHttpClientDecorator.php
+2026-05-04 14:38:07.651 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Reader/Reader.php
+2026-05-04 14:38:08.196 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/src/Setup/DefaultStatusDetector.php
+2026-05-04 14:38:08.418 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Writer/ExtensionPluginManager.php
+2026-05-04 14:38:08.418 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Writer/ExtensionPluginManager.php
+2026-05-04 14:38:08.418 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Writer/ExtensionPluginManager.php
+2026-05-04 14:38:08.419 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-feed/src/Writer/ExtensionPluginManager.php
+2026-05-04 14:38:08.547 WARN  AstCreator$               ArrayDimFetchExpr without dimensions should be handled in assignment: $x:279:vendor/rector/rector/vendor/nette/utils/src/Utils/Arrays.php
+2026-05-04 14:38:08.840 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/test/Attribute/AnnotationTestTrait.php
+2026-05-04 14:38:08.841 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/test/Attribute/AnnotationTestTrait.php
+2026-05-04 14:38:08.857 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/test/Attribute/AttributeReaderTest.php
+2026-05-04 14:38:09.194 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-php-commons/test/Attribute/LegacyAttributeReaderTest.php
+2026-05-04 14:38:09.690 WARN  AstCreator$               Unable to find local variable for closure ref: output
+2026-05-04 14:38:10.707 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/open-telemetry/api/Instrumentation/AutoInstrumentation/ConfigurationRegistry.php
+2026-05-04 14:38:10.773 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/allure-framework/allure-phpunit/test/unit/Event/EventTestTrait.php
+2026-05-04 14:38:10.800 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-session/src/Config/SessionConfig.php
+2026-05-04 14:38:10.800 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-session/src/Config/SessionConfig.php
+2026-05-04 14:38:11.342 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-session/src/Service/SessionConfigFactory.php
+2026-05-04 14:38:11.448 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/amp/src/Future/UnhandledFutureError.php
+2026-05-04 14:38:11.486 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/amp/src/functions.php
+2026-05-04 14:38:11.486 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/amp/src/functions.php
+2026-05-04 14:38:11.486 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/amp/src/functions.php
+2026-05-04 14:38:11.875 WARN  AstCreator$               Unable to find local variable for closure ref: index
+2026-05-04 14:38:11.943 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-http/src/Header/ContentType.php
+2026-05-04 14:38:12.474 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.474 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.474 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.476 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.477 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.481 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.482 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleAssertionReconciler.php
+2026-05-04 14:38:12.726 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:12.870 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-http/src/Headers.php
+2026-05-04 14:38:12.967 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:13.034 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.034 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.034 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.035 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.036 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.036 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.037 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.037 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.037 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.037 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/SimpleNegatedAssertionReconciler.php
+2026-05-04 14:38:13.072 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-stdlib/src/PriorityQueue.php
+2026-05-04 14:38:13.073 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.074 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.074 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.076 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.076 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.076 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.076 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.077 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.078 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.078 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeCombiner.php
+2026-05-04 14:38:13.084 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeExpander.php
+2026-05-04 14:38:13.088 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeParser.php
+2026-05-04 14:38:13.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeParser.php
+2026-05-04 14:38:13.093 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/TypeParser.php
+2026-05-04 14:38:13.256 WARN  AstCreator$               Unable to find local variable for closure ref: argv
+2026-05-04 14:38:13.256 WARN  AstCreator$               Unable to find local variable for closure ref: argc
+2026-05-04 14:38:13.783 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-i18n/src/Translator/LoaderPluginManager.php
+2026-05-04 14:38:13.784 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-i18n/src/Translator/LoaderPluginManager.php
+2026-05-04 14:38:13.882 WARN  AstCreator$               Unable to find local variable for closure ref: argc
+2026-05-04 14:38:13.882 WARN  AstCreator$               Unable to find local variable for closure ref: argv
+2026-05-04 14:38:14.091 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/Uri.php
+2026-05-04 14:38:14.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/Uri.php
+2026-05-04 14:38:14.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/Uri.php
+2026-05-04 14:38:14.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/Uri.php
+2026-05-04 14:38:14.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/Uri.php
+2026-05-04 14:38:14.098 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-uri/src/UriFactory.php
+2026-05-04 14:38:14.100 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-validator/bin/update_hostname_validator.php
+2026-05-04 14:38:14.103 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-validator/src/AbstractValidator.php
+2026-05-04 14:38:15.119 WARN  AstCreator$               Unable to find local variable for closure ref: callbackId
+2026-05-04 14:38:15.151 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/socket/src/ResourceUdpSocket.php
+2026-05-04 14:38:15.151 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/amphp/socket/src/ResourceUdpSocket.php
+2026-05-04 14:38:15.956 WARN  PhpParser                 Found warning in PHP-Parser JSON output:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Cn.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Com.php:
+2026-05-04 14:38:15.958 WARN  PhpParser                 Found warning in PHP-Parser JSON output:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Cn.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Hostname/Com.php:
+
+====> File /Users/mhleihel/Desktop/magento2-2.4.8-p4/vendor/laminas/laminas-validator/src/Iban.php:
+2026-05-04 14:38:16.573 WARN  AstCreator$               Unable to find local variable for closure ref: resources
+2026-05-04 14:38:16.978 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Helper/FlashMessenger.php
+2026-05-04 14:38:17.843 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Helper/Navigation/AbstractHelper.php
+2026-05-04 14:38:17.843 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Helper/Navigation/AbstractHelper.php
+2026-05-04 14:38:17.844 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Helper/Navigation/AbstractHelper.php
+2026-05-04 14:38:17.855 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Helper/PartialLoop.php
+2026-05-04 14:38:18.219 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-json/src/Encoder.php
+2026-05-04 14:38:18.220 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-json/src/Encoder.php
+2026-05-04 14:38:18.220 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-json/src/Encoder.php
+2026-05-04 14:38:18.232 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/HelperPluginManager.php
+2026-05-04 14:38:18.241 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Model/ViewModel.php
+2026-05-04 14:38:18.590 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/doctrine/lexer/src/AbstractLexer.php
+2026-05-04 14:38:18.706 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-view/src/Renderer/PhpRenderer.php
+2026-05-04 14:38:19.106 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/flysystem/src/MountManager.php
+2026-05-04 14:38:19.106 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/flysystem/src/MountManager.php
+2026-05-04 14:38:19.106 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/flysystem/src/MountManager.php
+2026-05-04 14:38:19.131 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/IssueBuffer.php
+2026-05-04 14:38:19.131 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/IssueBuffer.php
+2026-05-04 14:38:19.178 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/Listener/LocatorRegistrationListener.php
+2026-05-04 14:38:19.178 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/Listener/LocatorRegistrationListener.php
+2026-05-04 14:38:19.195 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:19.566 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/Listener/ServiceListener.php
+2026-05-04 14:38:19.567 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/Listener/ServiceListener.php
+2026-05-04 14:38:19.567 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/Listener/ServiceListener.php
+2026-05-04 14:38:19.573 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-modulemanager/src/ModuleManager.php
+2026-05-04 14:38:19.660 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-mvc/src/Controller/MiddlewareController.php
+2026-05-04 14:38:20.039 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-mvc/src/DispatchListener.php
+2026-05-04 14:38:20.052 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-mvc/src/MiddlewareListener.php
+2026-05-04 14:38:20.428 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:20.916 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:21.075 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/uri-interfaces/QueryString.php
+2026-05-04 14:38:21.076 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/uri-interfaces/QueryString.php
+2026-05-04 14:38:21.108 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/league/uri/Uri.php
+2026-05-04 14:38:21.141 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-mvc/src/View/Http/InjectTemplateListener.php
+2026-05-04 14:38:21.152 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-permissions-acl/src/Assertion/AssertionManager.php
+2026-05-04 14:38:22.223 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-router/src/RoutePluginManager.php
+2026-05-04 14:38:22.604 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-server/src/Method/Callback.php
+2026-05-04 14:38:23.274 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-servicemanager/src/AbstractPluginManager.php
+2026-05-04 14:38:23.275 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-servicemanager/src/AbstractPluginManager.php
+2026-05-04 14:38:23.553 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-servicemanager/src/Exception/InvalidArgumentException.php
+2026-05-04 14:38:23.554 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-servicemanager/src/Exception/InvalidArgumentException.php
+2026-05-04 14:38:23.569 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/laminas/laminas-servicemanager/src/ServiceManager.php
+2026-05-04 14:38:23.609 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/spomky-labs/pki-framework/src/ASN1/Element.php
+2026-05-04 14:38:23.753 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailAddressContains.php
+2026-05-04 14:38:23.754 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailAttachmentCount.php
+2026-05-04 14:38:23.754 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailAttachmentCount.php
+2026-05-04 14:38:23.755 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailHasHeader.php
+2026-05-04 14:38:23.756 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailHeaderSame.php
+2026-05-04 14:38:23.756 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailHtmlBodyContains.php
+2026-05-04 14:38:23.756 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailHtmlBodyContains.php
+2026-05-04 14:38:23.757 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailTextBodyContains.php
+2026-05-04 14:38:23.757 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mime/Test/Constraint/EmailTextBodyContains.php
+2026-05-04 14:38:23.923 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/Atomic/TKeyedArray.php
+2026-05-04 14:38:24.169 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ExtensionException.php
+2026-05-04 14:38:24.245 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/options-resolver/OptionsResolver.php
+2026-05-04 14:38:24.506 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ModuleConfigException.php
+2026-05-04 14:38:24.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ModuleConflictException.php
+2026-05-04 14:38:24.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ModuleConflictException.php
+2026-05-04 14:38:24.510 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ModuleException.php
+2026-05-04 14:38:24.512 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ModuleRequireException.php
+2026-05-04 14:38:24.517 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Exception/ThrowableWrapper.php
+2026-05-04 14:38:24.880 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/Console/Output.php
+2026-05-04 14:38:24.884 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/Di.php
+2026-05-04 14:38:24.888 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/Generator/Actions.php
+2026-05-04 14:38:24.889 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/Generator/Actions.php
+2026-05-04 14:38:24.908 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/MutableUnion.php
+2026-05-04 14:38:24.908 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/MutableUnion.php
+2026-05-04 14:38:24.931 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/UnionTrait.php
+2026-05-04 14:38:24.931 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/UnionTrait.php
+2026-05-04 14:38:24.933 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/UnionTrait.php
+2026-05-04 14:38:24.934 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Dispatcher/DirectDispatcher.php
+2026-05-04 14:38:24.934 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Dispatcher/DirectDispatcher.php
+2026-05-04 14:38:25.157 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type.php
+2026-05-04 14:38:25.158 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type.php
+2026-05-04 14:38:25.158 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type.php
+2026-05-04 14:38:25.158 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type.php
+2026-05-04 14:38:25.165 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/Atomic.php
+2026-05-04 14:38:25.259 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/ModuleContainer.php
+2026-05-04 14:38:25.260 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Lib/ModuleContainer.php
+2026-05-04 14:38:25.430 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/Atomic/TArray.php
+2026-05-04 14:38:25.448 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Type/Atomic/TClassStringMap.php
+2026-05-04 14:38:25.574 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Reporter/JUnitReporter.php
+2026-05-04 14:38:25.580 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Reporter/PhpUnitReporter.php
+2026-05-04 14:38:25.607 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Step.php
+2026-05-04 14:38:25.607 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Step.php
+2026-05-04 14:38:25.608 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Step.php
+2026-05-04 14:38:25.951 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Subscriber/Console.php
+2026-05-04 14:38:25.958 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Subscriber/ExtensionLoader.php
+2026-05-04 14:38:25.958 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Subscriber/ExtensionLoader.php
+2026-05-04 14:38:26.108 WARN  AstCreator$               Unable to find local variable for closure ref: path
+2026-05-04 14:38:26.275 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/Cest.php
+2026-05-04 14:38:26.631 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.631 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.631 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.631 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.631 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.632 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Test/TestCaseWrapper.php
+2026-05-04 14:38:26.634 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Util/ActionSequence.php
+2026-05-04 14:38:26.635 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Util/Annotation.php
+2026-05-04 14:38:26.648 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/codeception/codeception/src/Codeception/Util/ReflectionHelper.php
+2026-05-04 14:38:26.996 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Application.php
+2026-05-04 14:38:26.996 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Application.php
+2026-05-04 14:38:27.010 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Command/Commands/ListTestsAsTextCommand.php
+2026-05-04 14:38:27.011 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Command/Commands/ListTestsAsXmlCommand.php
+2026-05-04 14:38:27.011 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Command/Commands/ListTestsAsXmlCommand.php
+2026-05-04 14:38:27.011 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/TextUI/Command/Commands/ListTestsAsXmlCommand.php
+2026-05-04 14:38:27.106 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Baseline/BaselineValidator.php
+2026-05-04 14:38:27.422 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Cache/Model/ResultCacheState.php
+2026-05-04 14:38:27.422 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Cache/Model/ResultCacheState.php
+2026-05-04 14:38:27.441 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Cache/ResultCacheKeyFactory.php
+2026-05-04 14:38:27.891 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Node/MethodNode.php
+2026-05-04 14:38:27.899 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/Renderer/BaselineRenderer.php
+2026-05-04 14:38:28.089 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/string/LazyString.php
+2026-05-04 14:38:28.169 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/TypeMap.php
+2026-05-04 14:38:28.169 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/TypeMap.php
+2026-05-04 14:38:28.414 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Metrics/Analyzer/CodeRankAnalyzer/InheritanceStrategy.php
+2026-05-04 14:38:28.416 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Metrics/Analyzer/CodeRankAnalyzer/MethodStrategy.php
+2026-05-04 14:38:28.417 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Metrics/Analyzer/CodeRankAnalyzer/PropertyStrategy.php
+2026-05-04 14:38:28.422 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Metrics/Analyzer/CyclomaticComplexityAnalyzer.php
+2026-05-04 14:38:28.432 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Metrics/Analyzer/NPathComplexityAnalyzer.php
+2026-05-04 14:38:28.618 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Caster/FFICaster.php
+2026-05-04 14:38:28.887 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Report/NoLogOutputException.php
+2026-05-04 14:38:28.898 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Value/Test/TestDoxBuilder.php
+2026-05-04 14:38:28.901 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Value/Test/TestMethodBuilder.php
+2026-05-04 14:38:28.901 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Value/Test/TestMethodBuilder.php
+2026-05-04 14:38:28.901 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Value/Test/TestMethodBuilder.php
+2026-05-04 14:38:28.907 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Event/Value/ThrowableBuilder.php
+2026-05-04 14:38:29.058 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Caster/SplCaster.php
+2026-05-04 14:38:29.067 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Caster/SymfonyCaster.php
+2026-05-04 14:38:29.401 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/spomky-labs/pki-framework/src/X509/GeneralName/GeneralNames.php
+2026-05-04 14:38:29.401 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/spomky-labs/pki-framework/src/X509/GeneralName/GeneralNames.php
+2026-05-04 14:38:29.401 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/spomky-labs/pki-framework/src/X509/GeneralName/GeneralNames.php
+2026-05-04 14:38:29.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Cloner/VarCloner.php
+2026-05-04 14:38:29.533 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Dumper/ContextualizedDumper.php
+2026-05-04 14:38:29.539 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-dumper/Exception/ThrowingCasterException.php
+2026-05-04 14:38:29.638 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Source/AST/ASTCompilationUnitNotFoundException.php
+2026-05-04 14:38:30.044 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/Hydrator.php
+2026-05-04 14:38:30.046 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/Internal/Exporter.php
+2026-05-04 14:38:30.049 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/Internal/Exporter.php
+2026-05-04 14:38:30.061 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/Internal/LazyObjectState.php
+2026-05-04 14:38:30.061 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/Internal/LazyObjectState.php
+2026-05-04 14:38:30.069 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.069 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.069 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.069 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.069 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.070 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyGhostTrait.php
+2026-05-04 14:38:30.100 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpmd/phpmd/src/RuleSet.php
+2026-05-04 14:38:30.452 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Source/AST/ASTNamespace.php
+2026-05-04 14:38:30.453 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Exception/Exception.php
+2026-05-04 14:38:30.455 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/IsIdentical.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.458 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectEquals.php
+2026-05-04 14:38:30.459 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/Constraint/Object/ObjectHasProperty.php
+2026-05-04 14:38:30.586 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.587 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.588 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.588 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.589 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/var-exporter/LazyProxyTrait.php
+2026-05-04 14:38:30.607 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/yaml/Inline.php
+2026-05-04 14:38:31.024 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Util/ThrowableToStringMapper.php
+2026-05-04 14:38:31.655 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Source/ASTVisitor/AbstractASTVisitor.php
+2026-05-04 14:38:32.163 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/TextUI/Command.php
+2026-05-04 14:38:32.164 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/TextUI/ResultPrinter.php
+2026-05-04 14:38:32.531 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Builder/ConfigBuilderGenerator.php
+2026-05-04 14:38:32.572 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/pdepend/pdepend/src/Util/IdBuilder.php
+2026-05-04 14:38:33.330 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/MockObject/Runtime/Invocation.php
+2026-05-04 14:38:33.371 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/MockObject/Runtime/Rule/Parameters.php
+2026-05-04 14:38:33.389 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Definition/Dumper/XmlReferenceDumper.php
+2026-05-04 14:38:33.646 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Definition/EnumNode.php
+2026-05-04 14:38:33.646 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Definition/EnumNode.php
+2026-05-04 14:38:33.646 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Definition/EnumNode.php
+2026-05-04 14:38:33.730 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestCase.php
+2026-05-04 14:38:33.732 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestCase.php
+2026-05-04 14:38:33.733 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestCase.php
+2026-05-04 14:38:33.741 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestRunner.php
+2026-05-04 14:38:33.742 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestRunner.php
+2026-05-04 14:38:33.742 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestRunner.php
+2026-05-04 14:38:33.742 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestRunner.php
+2026-05-04 14:38:33.743 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestRunner.php
+2026-05-04 14:38:34.014 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Exception/LoaderLoadException.php
+2026-05-04 14:38:34.092 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Framework/TestSuite.php
+2026-05-04 14:38:34.628 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/config/Resource/SkippingResourceChecker.php
+2026-05-04 14:38:34.656 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/console/Command/CompleteCommand.php
+2026-05-04 14:38:34.656 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/console/Command/CompleteCommand.php
+2026-05-04 14:38:35.039 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Logging/TestDox/NamePrettifier.php
+2026-05-04 14:38:35.040 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Logging/TestDox/NamePrettifier.php
+2026-05-04 14:38:35.040 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Logging/TestDox/NamePrettifier.php
+2026-05-04 14:38:35.051 WARN  AstCreator$               Unable to find local variable for closure ref: error
+2026-05-04 14:38:35.470 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:35.724 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Metadata/Api/CodeCoverage.php
+2026-05-04 14:38:35.762 WARN  AstCreator$               Unable to find local variable for closure ref: promise
+2026-05-04 14:38:35.762 WARN  AstCreator$               Unable to find local variable for closure ref: errorback
+2026-05-04 14:38:35.791 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:38:36.474 WARN  AstCreator$               Unable to find local variable for closure ref: i
+2026-05-04 14:38:36.639 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/console/Logger/ConsoleLogger.php
+2026-05-04 14:38:37.177 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/revolt/event-loop/src/EventLoop/Internal/AbstractDriver.php
+2026-05-04 14:38:37.411 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/ramsey/collection/src/Tool/ValueExtractorTrait.php
+2026-05-04 14:38:37.412 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/ramsey/collection/src/Tool/ValueToStringTrait.php
+2026-05-04 14:38:37.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Runner/Filter/NameFilterIterator.php
+2026-05-04 14:38:37.508 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/phpunit/phpunit/src/Runner/Filter/NameFilterIterator.php
+2026-05-04 14:38:38.965 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/comparator/src/ObjectComparator.php
+2026-05-04 14:38:38.965 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/comparator/src/ObjectComparator.php
+2026-05-04 14:38:38.965 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/comparator/src/ObjectComparator.php
+2026-05-04 14:38:38.965 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/comparator/src/ObjectComparator.php
+2026-05-04 14:38:38.965 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/comparator/src/ObjectComparator.php
+2026-05-04 14:38:39.147 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Compiler/CheckTypeDeclarationsPass.php
+2026-05-04 14:38:39.148 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Compiler/Compiler.php
+2026-05-04 14:38:39.148 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Compiler/Compiler.php
+2026-05-04 14:38:39.196 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Compiler/MergeExtensionConfigurationPass.php
+2026-05-04 14:38:39.239 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/complexity/src/Visitor/CyclomaticComplexityCalculatingVisitor.php
+2026-05-04 14:38:39.251 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/diff/src/Exception/ConfigurationException.php
+2026-05-04 14:38:39.580 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/dependency-injection/Compiler/ResolveInstanceofConditionalsPass.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.594 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/exporter/src/Exporter.php
+2026-05-04 14:38:39.612 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/object-reflector/src/ObjectReflector.php
+2026-05-04 14:38:39.648 WARN  AstCreator$               Unable to find local variable for closure ref: promise
+2026-05-04 14:38:39.648 WARN  AstCreator$               Unable to find local variable for closure ref: errorback
+2026-05-04 14:38:40.109 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/sebastian/type/src/type/Type.php
+2026-05-04 14:38:41.050 WARN  AstCreator$               Unable to find local variable for closure ref: i
+2026-05-04 14:38:41.748 WARN  AstCreator$               Unable to find local variable for closure ref: callCount
+2026-05-04 14:39:00.469 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mailer/Envelope.php
+2026-05-04 14:39:01.346 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/symfony/mailer/Transport/Transports.php
+2026-05-04 14:39:48.254 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Config.php
+2026-05-04 14:39:51.212 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/Statements/Expression/BinaryOp/ArithmeticOpAnalyzer.php
+2026-05-04 14:39:51.212 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/Statements/Expression/BinaryOp/ArithmeticOpAnalyzer.php
+2026-05-04 14:39:51.713 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/Statements/Expression/Call/Method/AtomicMethodCallAnalyzer.php
+2026-05-04 14:39:52.220 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/Statements/Expression/CastAnalyzer.php
+2026-05-04 14:39:52.590 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/Statements/ExpressionAnalyzer.php
+2026-05-04 14:39:52.994 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Analyzer/StatementsAnalyzer.php
+2026-05-04 14:39:53.364 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Codebase/ConstantTypeResolver.php
+2026-05-04 14:39:53.382 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Codebase/Reflection.php
+2026-05-04 14:39:53.676 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/ClassStatementsDiffer.php
+2026-05-04 14:39:53.676 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/ClassStatementsDiffer.php
+2026-05-04 14:39:53.680 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/FileStatementsDiffer.php
+2026-05-04 14:39:53.680 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/FileStatementsDiffer.php
+2026-05-04 14:39:53.681 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/NamespaceStatementsDiffer.php
+2026-05-04 14:39:53.681 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Diff/NamespaceStatementsDiffer.php
+2026-05-04 14:39:54.532 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/PhpVisitor/Reflector/ClassLikeNodeScanner.php
+2026-05-04 14:39:54.559 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/PhpVisitor/Reflector/FunctionLikeNodeScanner.php
+2026-05-04 14:39:54.565 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/PhpVisitor/ReflectorVisitor.php
+2026-05-04 14:39:55.443 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Provider/ReturnTypeProvider/MinMaxReturnTypeProvider.php
+2026-05-04 14:39:55.999 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/AssertionReconciler.php
+2026-05-04 14:39:56.000 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/AssertionReconciler.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.005 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.006 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.006 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/AtomicTypeComparator.php
+2026-05-04 14:39:56.010 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ClassLikeStringComparator.php
+2026-05-04 14:39:56.011 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/IntegerRangeComparator.php
+2026-05-04 14:39:56.012 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/IntegerRangeComparator.php
+2026-05-04 14:39:56.015 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.016 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.017 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.017 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/Comparator/ScalarTypeComparator.php
+2026-05-04 14:39:56.019 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/NegatedAssertionReconciler.php
+2026-05-04 14:39:56.020 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/NegatedAssertionReconciler.php
+2026-05-04 14:39:56.020 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/NegatedAssertionReconciler.php
+2026-05-04 14:39:56.020 WARN  AstCreator$               Unexpected expression as class name in <class>::class expression: vendor/vimeo/psalm/src/Psalm/Internal/Type/NegatedAssertionReconciler.php
+java.lang.OutOfMemoryError: Java heap space
+	at scala.Option$.apply(Option.scala:29)
+	at flatgraph.DiffGraphApplier.flatgraph$DiffGraphApplier$$getGNode(DiffGraphApplier.scala:122)
+	at flatgraph.DiffGraphApplier.splitUpdate$$anonfun$2(DiffGraphApplier.scala:146)
+	at flatgraph.DiffGraphApplier$$Lambda/0x00000078012f0000.applyVoid(Unknown Source)
+	at scala.runtime.function.JProcedure1.apply(JProcedure1.java:15)
+	at scala.runtime.function.JProcedure1.apply(JProcedure1.java:10)
+	at scala.collection.IterableOnceOps.foreach(IterableOnce.scala:619)
+	at scala.collection.IterableOnceOps.foreach$(IterableOnce.scala:617)
+	at scala.collection.AbstractIterable.foreach(Iterable.scala:935)
+	at flatgraph.DiffGraphApplier.splitUpdate(DiffGraphApplier.scala:143)
+	at flatgraph.DiffGraphApplier.applyUpdate(DiffGraphApplier.scala:246)
+	at flatgraph.DiffGraphApplier$.applyDiff(DiffGraphApplier.scala:28)
+	at flatgraph.DiffGraphApplier$.applyDiff(DiffGraphApplier.scala:33)
+	at io.shiftleft.passes.ForkJoinParallelCpgPassWithAccumulator.createAndApply(CpgPass.scala:173)
+	at io.joern.php2cpg.Php2Cpg.createCpg$$anonfun$1$$anonfun$1(Php2Cpg.scala:71)
+	at io.joern.php2cpg.Php2Cpg$$Lambda/0x0000007801254360.applyVoid(Unknown Source)
+	at scala.runtime.function.JProcedure2.apply(JProcedure2.java:15)
+	at scala.runtime.function.JProcedure2.apply(JProcedure2.java:10)
+	at io.joern.x2cpg.X2Cpg$.withNewEmptyCpg$$anonfun$1$$anonfun$1(X2Cpg.scala:361)
+	at io.joern.x2cpg.X2Cpg$.$anonfun$adapted$1(X2Cpg.scala:362)
+	at io.joern.x2cpg.X2Cpg$$$Lambda/0x00000078012de748.apply(Unknown Source)
+	at scala.util.Try$.apply(Try.scala:217)
+	at io.joern.x2cpg.X2Cpg$.withNewEmptyCpg$$anonfun$1(X2Cpg.scala:362)
+	at io.joern.x2cpg.X2Cpg$$$Lambda/0x0000007801254948.apply(Unknown Source)
+	at scala.util.Try$.apply(Try.scala:217)
+	at io.joern.x2cpg.X2Cpg$.withNewEmptyCpg(X2Cpg.scala:368)
+	at io.joern.php2cpg.Php2Cpg.createCpg$$anonfun$1(Php2Cpg.scala:55)
+	at io.joern.php2cpg.Php2Cpg$$Lambda/0x0000007801250208.apply(Unknown Source)
+	at io.joern.php2cpg.parser.PhpParser$.withParser$$anonfun$1(PhpParser.scala:227)
+	at io.joern.php2cpg.parser.PhpParser$$$Lambda/0x00000078012507e0.apply(Unknown Source)
+	at io.shiftleft.semanticcpg.utils.FileUtil$.usingTemporaryFile(FileUtil.scala:26)
+	at io.joern.php2cpg.parser.PhpParser$.withParser(PhpParser.scala:221)

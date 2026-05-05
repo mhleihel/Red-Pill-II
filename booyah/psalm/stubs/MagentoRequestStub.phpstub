@@ -1,0 +1,114 @@
+<?php
+
+namespace Magento\Framework\App;
+
+/**
+ * Stub for Psalm taint analysis.
+ * Annotates RequestInterface methods as taint sources.
+ * Any class implementing this interface inherits these annotations.
+ */
+interface RequestInterface
+{
+    /**
+     * @psalm-taint-source input
+     * @return mixed
+     */
+    public function getParam(string $key, $default = null);
+
+    /**
+     * @psalm-taint-source input
+     * @return array
+     */
+    public function getParams(): array;
+
+    /**
+     * @psalm-taint-source input
+     * @return mixed
+     */
+    public function getPost(string $key = null, $default = null);
+
+    /**
+     * @psalm-taint-source input
+     * @return mixed
+     */
+    public function getQuery(string $key = null, $default = null);
+
+    /**
+     * @psalm-taint-source input
+     * @return string
+     */
+    public function getContent(): string;
+
+    /**
+     * @psalm-taint-source input
+     * @return string|null
+     */
+    public function getHeader(string $name): ?string;
+
+    /**
+     * @psalm-taint-source input
+     * @return string
+     */
+    public function getRequestUri(): string;
+
+    /**
+     * @psalm-taint-source input
+     * @return string
+     */
+    public function getPathInfo(): string;
+}
+
+namespace Magento\Framework\View\Element;
+
+/**
+ * Stub for block output sinks.
+ */
+abstract class AbstractBlock
+{
+    /**
+     * @psalm-taint-sink html
+     * @param string $string
+     * @return string
+     */
+    abstract public function escapeHtml(string $string): string;
+
+    /**
+     * @psalm-taint-sink html
+     */
+    abstract protected function _toHtml(): string;
+}
+
+namespace Magento\Framework\Escaper;
+
+class Escaper
+{
+    /**
+     * Safe for html_body — sanitizes output.
+     * @psalm-taint-escape html
+     */
+    public function escapeHtml(string $string, array $allowedTags = null): string {}
+
+    /**
+     * Safe for html_attribute — full ENT_QUOTES equivalent.
+     * @psalm-taint-escape html
+     */
+    public function escapeHtmlAttr(string $string, bool $addSlashes = false): string {}
+
+    /**
+     * Safe for url context.
+     * @psalm-taint-escape has_quotes
+     */
+    public function escapeUrl(string $string): string {}
+
+    /**
+     * Safe for js_string context.
+     * @psalm-taint-escape html
+     */
+    public function escapeJs(string $string): string {}
+
+    /**
+     * Safe for css context.
+     * @psalm-taint-escape html
+     */
+    public function escapeCss(string $string): string {}
+}
