@@ -249,8 +249,8 @@ class RoleSession:
 # ---------------------------------------------------------------------------
 
 class TaintMapChecker:
-    def __init__(self, host: str, user: str, password: str, database: str):
-        self.conn_args = {"host": host, "user": user, "password": password, "database": database}
+    def __init__(self, host: str, port: int, user: str, password: str, database: str):
+        self.conn_args = {"host": host, "port": port, "user": user, "password": password, "database": database}
         self._conn: pymysql.Connection | None = None
 
     def _conn_get(self) -> pymysql.Connection:
@@ -548,6 +548,7 @@ def main() -> None:
         try:
             taint_checker = TaintMapChecker(
                 host=args.magento_db_host,
+                port=args.magento_db_port,
                 user=args.magento_db_user,
                 password=args.magento_db_pass,
                 database=args.magento_db_name,
