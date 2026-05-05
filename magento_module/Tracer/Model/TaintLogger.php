@@ -7,16 +7,21 @@ use Magento\Framework\App\ResourceConnection;
 
 /**
  * Persists taint events to booyah_taint_map (MySQL).
- * Also looks up whether a value hash was previously seen in a write event.
  *
- * Only stores event metadata — never stores the actual value.
+ * Uses ResourceConnection\Proxy (lazy proxy) to break the circular dependency:
+ *   DbAdapterPlugin -> TaintLogger -> ResourceConnection -> Pdo\Mysql
+ *                                                             ^-- intercepted by DbAdapterPlugin
+ * Without the Proxy, the DI compiler enters infinite recursion resolving the plugin chain.
  */
 class TaintLogger
 {
     private ResourceConnection $resource;
     private static bool $schemaReady = false;
 
-    public function __construct(ResourceConnection $resource)
+    /**
+     * @param ResourceConnection\Proxy $resource Lazy proxy breaks circular DI dependency
+     */
+    public function __construct(ResourceConnection\Proxy $resource)
     {
         $this->resource = $resource;
     }
@@ -107,6 +112,8 @@ class TaintLogger
     private function ensureReady(): bool
     {
         if (self::$schemaReady) return true;
+        // Only active when explicitly enabled — avoids DB check overhead on every request
+        if (getenv('BOOYAH_TAINT_ENABLED') !== '1') return false;
         try {
             $conn = $this->resource->getConnection();
             if ($conn->isTableExists('booyah_taint_map')) {

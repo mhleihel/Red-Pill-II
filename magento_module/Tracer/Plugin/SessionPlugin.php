@@ -9,10 +9,14 @@ use Magento\Framework\Session\SessionManager;
 
 /**
  * Intercepts session reads/writes to track tainted values through session storage.
- * Session is a key second-order channel for customer-facing flows (cart, checkout, forms).
+ *
+ * Recursion guard: $inPlugin prevents re-entry via lookupPersistedTaint's DB calls.
+ * Activation: only active when BOOYAH_TAINT_ENABLED=1.
  */
 class SessionPlugin
 {
+    private static bool $inPlugin = false;
+
     private TaintLogger $logger;
 
     public function __construct(TaintLogger $logger)
@@ -20,32 +24,38 @@ class SessionPlugin
         $this->logger = $logger;
     }
 
-    // ---- WRITE side: setData ----
-
     public function beforeSetData(SessionManager $subject, $key, $value = null): array
     {
-        if (!$this->isEnabled()) return [$key, $value];
-        $this->scanForTaint($value, (string)$key);
+        if (self::$inPlugin || !$this->isEnabled() || empty(TaintRegistry::allTaintIds())) {
+            return [$key, $value];
+        }
+        self::$inPlugin = true;
+        try {
+            $this->scanForTaint($value, (string)$key);
+        } finally {
+            self::$inPlugin = false;
+        }
         return [$key, $value];
     }
 
-    // ---- READ side: getData ----
-
     public function afterGetData(SessionManager $subject, $result, $key = ''): mixed
     {
-        if (!$this->isEnabled()) return $result;
-        $this->propagateFromPersistence($result, (string)$key);
+        if (self::$inPlugin || !$this->isEnabled()) return $result;
+        if (!TaintRegistry::hasCrossRequestTaints()) return $result;
+        self::$inPlugin = true;
+        try {
+            $this->propagateFromPersistence($result, (string)$key);
+        } finally {
+            self::$inPlugin = false;
+        }
         return $result;
     }
-
-    // ---- Internal helpers ----
 
     private function scanForTaint(mixed $value, string $key): void
     {
         foreach ($this->flatten($value) as $scalar) {
             if (!is_string($scalar) || $scalar === '') continue;
-            $hash = hash('sha256', $scalar);
-            $taintId = TaintRegistry::lookup($hash);
+            $taintId = TaintRegistry::lookup(hash('sha256', $scalar));
             if ($taintId !== null) {
                 $this->logger->logWrite($taintId, 'session', 'session', $key, $key, '', 0);
             }
@@ -76,6 +86,6 @@ class SessionPlugin
 
     private function isEnabled(): bool
     {
-        return (bool)(getenv('BOOYAH_TAINT_ENABLED') ?: true);
+        return getenv('BOOYAH_TAINT_ENABLED') === '1';
     }
 }

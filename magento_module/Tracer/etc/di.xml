@@ -3,11 +3,14 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <!-- Intercept all DB adapter reads and writes -->
+    <!-- disabled: intercepting Pdo\Mysql directly creates a circular DI dependency:
+         DbAdapterPlugin -> TaintLogger -> ResourceConnection -> Pdo\Mysql -> DbAdapterPlugin.
+         DB taint tracking is handled by booyah_model_taint observers instead. -->
     <type name="Magento\Framework\DB\Adapter\Pdo\Mysql">
         <plugin name="booyah_db_taint"
                 type="Booyah\Tracer\Plugin\DbAdapterPlugin"
                 sortOrder="1"
-                disabled="false"/>
+                disabled="true"/>
     </type>
 
     <!-- Intercept Magento cache layer -->

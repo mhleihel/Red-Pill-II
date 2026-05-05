@@ -113,6 +113,15 @@ class TaintRegistry
         return array_values(array_unique(array_values(self::$hashToTaintId)));
     }
 
+    /**
+     * True if any cross-request taints have been propagated into this request.
+     * Used by DB/cache/session read plugins as a cheap early-exit guard.
+     */
+    public static function hasCrossRequestTaints(): bool
+    {
+        return !empty(self::$crossRequestTaints);
+    }
+
     public static function reset(): void
     {
         self::$requestId       = '';
