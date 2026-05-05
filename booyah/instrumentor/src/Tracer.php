@@ -191,40 +191,35 @@ final class Tracer
 
     /**
      * Convenience wrapper for AST injection at transforms.
-     * The $transformed value is already computed (the call happened before this wrapper).
-     * We log input→output hash pair and return the transformed value unchanged.
      *
-     * Usage in generated code:
-     *   \Booyah\Tracer::transformWrap($dirty, htmlspecialchars($dirty), 'htmlspecialchars', ...)
+     * Generated code looks like:
+     *   \Booyah\Tracer::transformWrap($dirty, escapeHtml($dirty), 'escapeHtml', ...)
      *
-     * But since we wrap the entire call expression, the inner call runs first,
-     * and we receive the already-transformed value as $transformed.
-     * We reconstruct the input by reading from our source log via request_id.
+     * PHP evaluates arguments left-to-right, so $input is evaluated first (producing the
+     * pre-transform value), then escapeHtml($dirty) runs and produces $transformed.
+     * Both arrive here with correct before/after state.
      *
-     * For correctness, we log (in_hash=hash($original), out_hash=hash($transformed)).
-     * The $original param must be passed from the visitor — it is the pre-transform arg.
-     *
-     * @param mixed $transformed  The post-transform value (result of the inner call)
-     * @param string $functionName
-     * @return mixed  Returns $transformed unchanged
+     * @param mixed $input       Pre-transform value
+     * @param mixed $transformed Post-transform value (result of the inner sanitizer call)
+     * @return mixed Returns $transformed unchanged
      */
     public static function transformWrap(
+        mixed $input,
         mixed $transformed,
         string $functionName,
         string $file,
         int $line,
         string $requestId
     ): mixed {
-        // In the visitor, we pass the already-evaluated transformed value.
-        // We don't have the pre-transform value here, so we log as a sink-side transform.
-        // Full before/after tracking requires the visitor to pass both args (done in InstrumentVisitor).
         if (!self::$enabled) return $transformed;
+        $inHash = self::hash($input);
         $outHash = self::hash($transformed);
+        $sanitized = (int)($inHash !== $outHash);
         self::db()->exec(sprintf(
             "INSERT INTO transforms(request_id,in_hash,out_hash,function_name,file,line,sanitized,ts)
              VALUES (%s,%s,%s,%s,%s,%d,%d,%d)",
-            self::q($requestId), self::q(''), self::q($outHash),
-            self::q($functionName), self::q($file), $line, 0, time()
+            self::q($requestId), self::q($inHash), self::q($outHash),
+            self::q($functionName), self::q($file), $line, $sanitized, time()
         ));
         return $transformed;
     }

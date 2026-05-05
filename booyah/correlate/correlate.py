@@ -98,20 +98,30 @@ def load_psalm_json(json_path: str) -> list[dict]:
     with open(json_path) as f:
         data = json.load(f)
 
+    # Psalm --output-format=json writes a plain array; older versions wrap in {"issues": [...]}
+    issues = data if isinstance(data, list) else data.get("issues", [])
     findings = []
-    for issue in data.get("issues", []):
+    for issue in issues:
         if "Tainted" not in issue.get("type", ""):
             continue
+        # Extract source from taint_trace if available
+        trace = issue.get("taint_trace", [])
+        source_file = trace[0].get("file_name", "") if trace else ""
+        source_line = trace[0].get("line_from", 0) if trace else 0
+        path_steps = [
+            {"file": t.get("file_name", ""), "line": t.get("line_from", 0), "code": t.get("snippet", "").strip()}
+            for t in trace if t.get("file_name")
+        ]
         findings.append({
             "tool": "psalm",
             "rule_id": issue.get("type", ""),
             "message": issue.get("message", ""),
-            "source_file": "",
-            "source_line": 0,
-            "sink_file": issue.get("file_name", ""),
+            "source_file": source_file,
+            "source_line": source_line,
+            "sink_file": issue.get("file_path", issue.get("file_name", "")),
             "sink_line": issue.get("line_from", 0),
-            "path_steps": [],
-            "path_length": 0,
+            "path_steps": path_steps,
+            "path_length": len(path_steps),
         })
     return findings
 
@@ -316,6 +326,7 @@ CLASSIFICATION_ORDER = [
 def classify(
     finding: dict,
     joern_findings: list[dict],
+    psalm_findings: list[dict],
     hash_index: dict,
     transform_chains: dict,
     zap_alerts: list[dict],
@@ -342,8 +353,14 @@ def classify(
                 cross_validated = True
                 break
     elif tool == "joern":
-        # Already correlated from psalm side; mark as-is
-        cross_validated = True
+        # Cross-validate: does any Psalm finding share a sink or source location?
+        for pf in psalm_findings:
+            if (
+                _loc_match(pf["sink_file"], pf["sink_line"], sink_file, sink_line, line_tolerance)
+                or _loc_match(pf["source_file"], pf["source_line"], source_file, source_line, line_tolerance)
+            ):
+                cross_validated = True
+                break
 
     # --- Runtime trace confirmation ---
     runtime_confirmed = False
@@ -498,7 +515,7 @@ def main() -> None:
 
     for finding in all_static:
         result = classify(
-            finding, joern_findings, hash_index, transform_chains,
+            finding, joern_findings, psalm_findings, hash_index, transform_chains,
             zap_alerts, routes, args.base_url, args.line_tolerance
         )
         correlated.append(result)

@@ -182,19 +182,29 @@ class InstrumentVisitor extends NodeVisitorAbstract
 
     /**
      * Wrap a transform expression:
-     *   $clean = transform($dirty)  ->  \Booyah\Tracer::transformWrap($dirty, transform($dirty), ...)
-     * We replace the call with a transformWrap() that runs the transform internally.
+     *   $clean = transform($dirty)
+     * →  \Booyah\Tracer::transformWrap($dirty, transform($dirty), 'transform', __FILE__, __LINE__, requestId())
+     *
+     * PHP evaluates arguments left-to-right, so:
+     *   arg0 ($dirty)         — input value, evaluated first
+     *   arg1 (transform($dirty)) — PHP calls the transform, result is post-transform value
+     * Both values arrive in transformWrap() with no double-evaluation side-effects on $dirty
+     * because $dirty is a variable reference, not a method call.
      */
     private function wrapTransform(Expr $expr, string $funcName): Expr\StaticCall
     {
         $line = $expr->getStartLine();
         $this->recordInjection('transform', $funcName, $line);
 
+        // Extract the pre-transform input: first argument of the method/function call
+        $inputExpr = $this->extractFirstArg($expr);
+
         return new Expr\StaticCall(
             new Node\Name\FullyQualified('Booyah\Tracer'),
             'transformWrap',
             [
-                new Node\Arg($expr),
+                new Node\Arg($inputExpr),  // pre-transform value (evaluated first by PHP)
+                new Node\Arg($expr),        // post-transform value (transform runs here)
                 new Node\Arg(new Scalar\String_($funcName)),
                 new Node\Arg(new Scalar\String_($this->currentFile)),
                 new Node\Arg(new Scalar\LNumber($line)),
@@ -205,6 +215,20 @@ class InstrumentVisitor extends NodeVisitorAbstract
                 )),
             ]
         );
+    }
+
+    private function extractFirstArg(Expr $expr): Expr
+    {
+        $args = null;
+        if ($expr instanceof Expr\MethodCall) {
+            $args = $expr->args;
+        } elseif ($expr instanceof Expr\FuncCall) {
+            $args = $expr->args;
+        }
+        if ($args !== null && !empty($args) && $args[0] instanceof Node\Arg) {
+            return $args[0]->value;
+        }
+        return new Scalar\String_('');
     }
 
     /**
