@@ -140,7 +140,7 @@ ROLES = [
 ]
 
 REQUESTS_PER_ROUTE = 10
-TIMEOUT_S = 10
+TIMEOUT_S = 300  # VirtioFS + developer-mode codegen makes cold requests take minutes
 PROBE_PREFIX = "bSRC"  # short: keeps form field budgets intact
 
 

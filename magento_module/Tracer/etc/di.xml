@@ -13,10 +13,10 @@
                 disabled="true"/>
     </type>
 
-    <!-- Intercept Magento cache layer -->
-    <type name="Magento\Framework\Cache\Frontend\Adapter\Zend">
-        <plugin name="booyah_cache_taint"
-                type="Booyah\Tracer\Plugin\CachePlugin"
+    <!-- Register HTTP probe values (bSRC_*) as taint sources at request entry point -->
+    <type name="Magento\Framework\App\FrontController">
+        <plugin name="booyah_request_taint"
+                type="Booyah\Tracer\Plugin\RequestTaintPlugin"
                 sortOrder="1"
                 disabled="false"/>
     </type>
