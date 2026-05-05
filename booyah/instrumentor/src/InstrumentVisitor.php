@@ -17,12 +17,16 @@ use PhpParser\NodeTraverser;
  *   - Source reads: method calls on request-like objects, superglobal reads
  *   - Sink writes: echo, print, <?=, function call sinks
  *   - Transforms: method/function calls that take and return a string (potential sanitizers)
+ *   - Universal: method/function entry tracing (when $universalMode = true)
  */
 class InstrumentVisitor extends NodeVisitorAbstract
 {
     private BuilderFactory $factory;
     private string $currentFile;
     private array $injectionPoints = [];
+    private bool $universalMode;
+    private ?string $currentClass = null;
+    private ?string $currentMethod = null;
 
     /** Method names that produce tainted values (HTTP input sources) */
     private const SOURCE_METHODS = [
@@ -49,10 +53,11 @@ class InstrumentVisitor extends NodeVisitorAbstract
         'purify',
     ];
 
-    public function __construct(string $currentFile)
+    public function __construct(string $currentFile, bool $universalMode = false)
     {
         $this->factory = new BuilderFactory();
         $this->currentFile = $currentFile;
+        $this->universalMode = $universalMode;
     }
 
     public function getInjectionPoints(): array
@@ -61,10 +66,29 @@ class InstrumentVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * Post-order: we rewrite nodes after their children are processed.
+     * Pre-order: track current class/method context for universal tracing.
      */
+    public function enterNode(Node $node): null
+    {
+        if ($node instanceof Stmt\Class_ && $node->name !== null) {
+            $this->currentClass = $node->name->toString();
+        } elseif ($node instanceof Stmt\ClassMethod && $node->name !== null) {
+            $this->currentMethod = $node->name->toString();
+        }
+        return null;
+    }
+
     public function leaveNode(Node $node): Node|null|int|array
     {
+        // Track class/method context resets
+        if ($node instanceof Stmt\Class_) {
+            $this->currentClass = null;
+        }
+
+        // --- UNIVERSAL: instrument every class method body ---
+        if ($this->universalMode && $node instanceof Stmt\ClassMethod && $node->stmts !== null) {
+            return $this->instrumentMethodEntry($node);
+        }
         // --- SOURCES: superglobal reads like $_GET['key'] or $_GET (whole array) ---
         if ($node instanceof Expr\ArrayDimFetch) {
             $var = $node->var;
@@ -148,6 +172,55 @@ class InstrumentVisitor extends NodeVisitorAbstract
         }
 
         return null;
+    }
+
+    /**
+     * Prepend a Tracer::enter() call to every class method when in universal mode.
+     * This captures (class::method, file, line, argument hashes) on every call.
+     * The Tracer uses this to reconstruct the full call graph offline.
+     */
+    private function instrumentMethodEntry(Stmt\ClassMethod $method): Stmt\ClassMethod
+    {
+        $line = $method->getStartLine();
+        $fqn  = ($this->currentClass ?? '?') . '::' . ($this->currentMethod ?? '?');
+        $this->recordInjection('enter', $fqn, $line);
+
+        // Build array of argument hashes: [\Booyah\Tracer::h($arg1), ...]
+        $argHashes = [];
+        foreach ($method->params as $param) {
+            if ($param->var instanceof Expr\Variable && is_string($param->var->name)) {
+                $argHashes[] = new Node\Arg(
+                    new Expr\StaticCall(
+                        new Node\Name\FullyQualified('Booyah\Tracer'),
+                        'h',
+                        [new Node\Arg(new Expr\Variable($param->var->name))]
+                    )
+                );
+            }
+        }
+
+        $enterCall = new Stmt\Expression(
+            new Expr\StaticCall(
+                new Node\Name\FullyQualified('Booyah\Tracer'),
+                'enter',
+                [
+                    new Node\Arg(new Scalar\String_($fqn)),
+                    new Node\Arg(new Scalar\String_($this->currentFile)),
+                    new Node\Arg(new Scalar\LNumber($line)),
+                    new Node\Arg(new Expr\Array_(
+                        array_map(fn($a) => new Node\ArrayItem($a->value), $argHashes)
+                    )),
+                    new Node\Arg(new Expr\StaticCall(
+                        new Node\Name\FullyQualified('Booyah\Tracer'),
+                        'requestId',
+                        []
+                    )),
+                ]
+            )
+        );
+
+        $method->stmts = array_merge([$enterCall], $method->stmts);
+        return $method;
     }
 
     /**

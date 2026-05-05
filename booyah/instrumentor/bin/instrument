@@ -40,14 +40,16 @@ use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 use Booyah\InstrumentVisitor;
 
 // --- CLI args ---
-$opts = getopt('', ['source-root:', 'output-root:', 'manifest:', 'skip-dir:']);
+$opts = getopt('', ['source-root:', 'output-root:', 'manifest:', 'skip-dir:', 'universal']);
 
-$sourceRoot = realpath($opts['source-root'] ?? '') ?: null;
-$outputRoot = $opts['output-root'] ?? null;
+$sourceRoot   = realpath($opts['source-root'] ?? '') ?: null;
+$outputRoot   = $opts['output-root'] ?? null;
 $manifestPath = $opts['manifest'] ?? ($outputRoot !== null ? ($outputRoot . '/manifest.json') : null);
+$universalMode = isset($opts['universal']);
 
 if (!$sourceRoot || !$outputRoot) {
-    fwrite(STDERR, "Usage: instrument --source-root <dir> --output-root <dir> [--manifest <file>]\n");
+    fwrite(STDERR, "Usage: instrument --source-root <dir> --output-root <dir> [--manifest <file>] [--universal]\n");
+    fwrite(STDERR, "  --universal  Instrument every class method entry (for full call graph tracing)\n");
     exit(1);
 }
 
@@ -56,9 +58,9 @@ if (!is_dir($sourceRoot)) {
     exit(1);
 }
 
-// Skip dirs (tests, vendor, generated — these don't run in prod)
+// Skip dirs — always skip Booyah/ to prevent Tracer instrumenting itself
 $skipDirs = array_merge(
-    ['vendor', 'generated', 'dev', '.git', 'node_modules'],
+    ['vendor', 'generated', 'dev', '.git', 'node_modules', 'Booyah'],
     (array)($opts['skip-dir'] ?? [])
 );
 
@@ -105,16 +107,17 @@ foreach ($iterator as $file) {
 
     $source = file_get_contents($absolutePath);
 
-    // Quick content check: skip if no request input methods and no echo/print
-    $hasInterestingContent = preg_match(
-        '/getParam|getPost|getQuery|getContent|\$_GET|\$_POST|\$_REQUEST|\$_COOKIE|echo\s|print\s/i',
-        $source
-    );
-    if (!$hasInterestingContent) {
-        // Copy unchanged
-        copy($absolutePath, $outputPath);
-        $skippedFiles++;
-        continue;
+    // In universal mode: instrument everything. Otherwise use content filter.
+    if (!$universalMode) {
+        $hasInterestingContent = preg_match(
+            '/getParam|getPost|getQuery|getContent|\$_GET|\$_POST|\$_REQUEST|\$_COOKIE|echo\s|print\s/i',
+            $source
+        );
+        if (!$hasInterestingContent) {
+            copy($absolutePath, $outputPath);
+            $skippedFiles++;
+            continue;
+        }
     }
 
     try {
@@ -137,7 +140,7 @@ foreach ($iterator as $file) {
     $modifiedAst = $traverser->traverse($ast);
 
     // Instrument
-    $visitor = new InstrumentVisitor($relativePath);
+    $visitor = new InstrumentVisitor($relativePath, $universalMode);
     $traverser2 = new NodeTraverser();
     $traverser2->addVisitor($visitor);
     $instrumentedAst = $traverser2->traverse($modifiedAst);

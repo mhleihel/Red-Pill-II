@@ -111,6 +111,50 @@ CREATE TABLE IF NOT EXISTS lineage_routes (
     PRIMARY KEY (lineage_id, route_url)
 );
 
+CREATE TABLE IF NOT EXISTS taint_runs (
+    run_id       TEXT PRIMARY KEY,
+    role         TEXT NOT NULL,
+    started_at   INTEGER NOT NULL,
+    completed_at INTEGER,
+    routes_attempted INTEGER DEFAULT 0,
+    paths_confirmed  INTEGER DEFAULT 0,
+    paths_unconfirmed INTEGER DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS confirmed_paths (
+    id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id               TEXT NOT NULL,
+    taint_id             TEXT NOT NULL,
+    flow_order           INTEGER NOT NULL DEFAULT 1,
+    source_type          TEXT,
+    source_file          TEXT,
+    source_line          INTEGER,
+    source_param         TEXT,
+    persistence_hops     TEXT DEFAULT '[]',
+    sink_type            TEXT,
+    sink_file            TEXT,
+    sink_line            INTEGER,
+    sanitization_applied TEXT DEFAULT '[]',
+    role                 TEXT,
+    confirmed_count      INTEGER DEFAULT 1,
+    first_seen_at        INTEGER NOT NULL,
+    last_seen_at         INTEGER NOT NULL,
+    FOREIGN KEY (run_id) REFERENCES taint_runs(run_id)
+);
+
+CREATE TABLE IF NOT EXISTS unconfirmed_paths (
+    id               INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id           TEXT NOT NULL,
+    route_url        TEXT NOT NULL,
+    role             TEXT,
+    taint_ids_sent   TEXT DEFAULT '[]',
+    parameters_used  TEXT DEFAULT '{}',
+    requests_sent    INTEGER DEFAULT 0,
+    reproducer_curl  TEXT,
+    attempted_at     INTEGER NOT NULL,
+    FOREIGN KEY (run_id) REFERENCES taint_runs(run_id)
+);
+
 CREATE INDEX IF NOT EXISTS idx_hops_lineage ON hops(lineage_id);
 CREATE INDEX IF NOT EXISTS idx_lineages_source ON lineages(source_id);
 CREATE INDEX IF NOT EXISTS idx_lineages_sink ON lineages(sink_id);
@@ -120,6 +164,9 @@ CREATE INDEX IF NOT EXISTS idx_sinks_type ON sinks(type);
 CREATE INDEX IF NOT EXISTS idx_sources_route ON sources(route_url);
 CREATE INDEX IF NOT EXISTS idx_sources_file ON sources(file);
 CREATE INDEX IF NOT EXISTS idx_sinks_file ON sinks(file);
+CREATE INDEX IF NOT EXISTS idx_confirmed_run ON confirmed_paths(run_id);
+CREATE INDEX IF NOT EXISTS idx_confirmed_taint ON confirmed_paths(taint_id);
+CREATE INDEX IF NOT EXISTS idx_unconfirmed_run ON unconfirmed_paths(run_id);
 """
 
 # ---------------------------------------------------------------------------

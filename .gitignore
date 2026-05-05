@@ -50,3 +50,10 @@ benchmarks/results/
 node_modules/
 booyah/crawl/node_modules/
 booyah/crawl/package-lock.json
+
+# SQLite WAL journal files (transient)
+results/booyah.db-shm
+results/booyah.db-wal
+
+# Claude session memory (local only)
+.claude/

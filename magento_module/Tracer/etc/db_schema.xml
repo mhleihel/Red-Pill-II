@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <!-- Taint map: persists write events across requests so reads can be linked -->
+    <table name="booyah_taint_map" resource="default" engine="innodb" comment="Booyah cross-request taint tracking">
+        <column xsi:type="int"      name="id"           unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar"  name="taint_id"     length="64"     nullable="false" comment="SHA-256 of value at source"/>
+        <column xsi:type="varchar"  name="event_type"   length="16"     nullable="false" comment="write|read|sink"/>
+        <column xsi:type="varchar"  name="persistence"  length="16"     nullable="true"  comment="db|cache|session"/>
+        <column xsi:type="varchar"  name="db_table"     length="128"    nullable="true"/>
+        <column xsi:type="varchar"  name="db_column"    length="128"    nullable="true"/>
+        <column xsi:type="varchar"  name="row_key"      length="256"    nullable="true"  comment="PK/cache key identifying the row"/>
+        <column xsi:type="varchar"  name="request_id"   length="64"     nullable="false"/>
+        <column xsi:type="varchar"  name="role"         length="64"     nullable="true"  comment="anonymous|customer|admin_*"/>
+        <column xsi:type="varchar"  name="file"         length="512"    nullable="true"/>
+        <column xsi:type="int"      name="line"         unsigned="true" nullable="true"/>
+        <column xsi:type="varchar"  name="run_id"       length="64"     nullable="true"  comment="Crawl run identifier"/>
+        <column xsi:type="int"      name="ts"           unsigned="true" nullable="false"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BOOYAH_TAINT_MAP_TAINT_ID" indexType="btree">
+            <column name="taint_id"/>
+        </index>
+        <index referenceId="BOOYAH_TAINT_MAP_REQUEST_ID" indexType="btree">
+            <column name="request_id"/>
+        </index>
+        <index referenceId="BOOYAH_TAINT_MAP_RUN_ID" indexType="btree">
+            <column name="run_id"/>
+        </index>
+    </table>
+
+    <!-- Confirmed paths: one record per confirmed source→sink path -->
+    <table name="booyah_confirmed_paths" resource="default" engine="innodb" comment="Confirmed runtime taint paths">
+        <column xsi:type="int"      name="id"                   unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar"  name="run_id"               length="64"     nullable="false"/>
+        <column xsi:type="varchar"  name="taint_id"             length="64"     nullable="false"/>
+        <column xsi:type="int"      name="flow_order"           unsigned="true" nullable="false" default="1"/>
+        <column xsi:type="varchar"  name="source_type"          length="32"     nullable="false"/>
+        <column xsi:type="varchar"  name="source_file"          length="512"    nullable="true"/>
+        <column xsi:type="int"      name="source_line"          nullable="true"/>
+        <column xsi:type="varchar"  name="source_param"         length="256"    nullable="true"/>
+        <column xsi:type="text"     name="persistence_hops"     nullable="true" comment="JSON: [{table,column,write_req,read_req}]"/>
+        <column xsi:type="varchar"  name="sink_type"            length="64"     nullable="true"/>
+        <column xsi:type="varchar"  name="sink_file"            length="512"    nullable="true"/>
+        <column xsi:type="int"      name="sink_line"            nullable="true"/>
+        <column xsi:type="text"     name="sanitization_applied" nullable="true" comment="JSON array of applied sanitizers"/>
+        <column xsi:type="varchar"  name="role"                 length="64"     nullable="true"/>
+        <column xsi:type="int"      name="confirmed_count"      unsigned="true" nullable="false" default="1" comment="Seen in N of 10 requests"/>
+        <column xsi:type="int"      name="first_seen_at"        unsigned="true" nullable="false"/>
+        <column xsi:type="int"      name="last_seen_at"         unsigned="true" nullable="false"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BOOYAH_CONFIRMED_TAINT_ID" indexType="btree">
+            <column name="taint_id"/>
+        </index>
+        <index referenceId="BOOYAH_CONFIRMED_RUN_ID" indexType="btree">
+            <column name="run_id"/>
+        </index>
+    </table>
+
+    <!-- Unconfirmed paths: routes probed but taint not seen at any sink -->
+    <table name="booyah_unconfirmed_paths" resource="default" engine="innodb" comment="Attempted but unconfirmed paths">
+        <column xsi:type="int"      name="id"               unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar"  name="run_id"           length="64"     nullable="false"/>
+        <column xsi:type="varchar"  name="route_url"        length="512"    nullable="false"/>
+        <column xsi:type="varchar"  name="role"             length="64"     nullable="true"/>
+        <column xsi:type="text"     name="taint_ids_sent"   nullable="true" comment="JSON array of taint IDs sent"/>
+        <column xsi:type="text"     name="parameters_used"  nullable="true" comment="JSON: {param: value}"/>
+        <column xsi:type="int"      name="requests_sent"    unsigned="true" nullable="false" default="0"/>
+        <column xsi:type="text"     name="reproducer_curl"  nullable="true" comment="curl command to reproduce"/>
+        <column xsi:type="int"      name="attempted_at"     unsigned="true" nullable="false"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BOOYAH_UNCONFIRMED_RUN_ID" indexType="btree">
+            <column name="run_id"/>
+        </index>
+    </table>
+
+</schema>

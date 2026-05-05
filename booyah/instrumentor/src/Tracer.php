@@ -19,6 +19,8 @@ final class Tracer
     private static ?\PDO $db = null;
     private static ?string $requestId = null;
     private static bool $enabled = true;
+    /** Set of value hashes currently tracked as tainted in this request */
+    private static array $taintedHashes = [];
 
     public static function requestId(): string
     {
@@ -186,6 +188,8 @@ final class Tracer
         string $requestId
     ): mixed {
         self::source($value, $paramName, $functionName, $file, $line, $requestId);
+        // Register the hash so enter() can detect tainted arguments downstream
+        self::$taintedHashes[self::hash($value)] = true;
         return $value;
     }
 
@@ -224,6 +228,55 @@ final class Tracer
         return $transformed;
     }
 
+    /**
+     * Universal method entry trace — called at the top of every instrumented method.
+     * Logs the function name and argument hashes (not values) to keep storage small.
+     * Only stored if at least one arg hash matches a known taint_id.
+     *
+     * @param array<string> $argHashes  SHA-256 hashes of each argument
+     */
+    public static function enter(
+        string $functionName,
+        string $file,
+        int    $line,
+        array  $argHashes,
+        string $requestId
+    ): void {
+        if (!self::$enabled) return;
+
+        // Only log if any argument is tainted — avoids storing millions of clean calls
+        $taintedArgs = array_filter($argHashes, fn($h) => self::isTainted($h));
+        if (empty($taintedArgs)) return;
+
+        foreach ($taintedArgs as $argHash) {
+            self::db()->exec(sprintf(
+                "INSERT INTO traces(request_id,type,function_name,param_name,file,line,value_hash,value_preview,ts)
+                 VALUES (%s,%s,%s,%s,%s,%d,%s,%s,%d)",
+                self::q($requestId), self::q('enter'), self::q($functionName),
+                self::q(''), self::q($file), $line,
+                self::q($argHash), self::q(''), time()
+            ));
+        }
+    }
+
+    /**
+     * Hash helper for use in instrumented code — same algorithm as internal hash().
+     * @param mixed $value
+     */
+    public static function h(mixed $value): string
+    {
+        return self::hash($value);
+    }
+
+    /**
+     * Check if a hash is currently tracked as tainted in this request.
+     */
+    private static function isTainted(string $hash): bool
+    {
+        // Quick lookup — we store tainted hashes in a static set populated by sourceWrap()
+        return isset(self::$taintedHashes[$hash]);
+    }
+
     public static function disable(): void
     {
         self::$enabled = false;
@@ -233,5 +286,6 @@ final class Tracer
     {
         self::$requestId = null;
         self::$db = null;
+        self::$taintedHashes = [];
     }
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Intercept all DB adapter reads and writes -->
+    <type name="Magento\Framework\DB\Adapter\Pdo\Mysql">
+        <plugin name="booyah_db_taint"
+                type="Booyah\Tracer\Plugin\DbAdapterPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Intercept Magento cache layer -->
+    <type name="Magento\Framework\Cache\Frontend\Adapter\Zend">
+        <plugin name="booyah_cache_taint"
+                type="Booyah\Tracer\Plugin\CachePlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Intercept session reads/writes -->
+    <type name="Magento\Framework\Session\SessionManager">
+        <plugin name="booyah_session_taint"
+                type="Booyah\Tracer\Plugin\SessionPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+</config>
