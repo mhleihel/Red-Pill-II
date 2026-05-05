@@ -45,3 +45,8 @@ htmlcov/
 
 # Benchmark results (large, generated)
 benchmarks/results/
+
+# Node
+node_modules/
+booyah/crawl/node_modules/
+booyah/crawl/package-lock.json

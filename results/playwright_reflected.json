@@ -1,0 +1,2189 @@
+{
+  "summary": {
+    "total_findings": 394,
+    "reflections": 0,
+    "probe_reflections": 0,
+    "form_reflections": 0,
+    "console_errors": 186
+  },
+  "findings": [
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/captcha/adminhtml/refresh/refresh",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/captcha/adminhtml/refresh/refresh",
+      "message": "Refused to apply style from 'http://localhost:8082/static/version1777922538/frontend/Magento/luma/en_US/css/styles-m.css' because its MIME type ('text/plain') is not a supported stylesheet MIME type, "
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/captcha/adminhtml/refresh/refresh",
+      "probe": "booyahP0_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/captcha/refresh/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/captcha/refresh/index",
+      "probe": "booyahP1_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/add",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/add",
+      "probe": "booyahP2_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/categoriesjson",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/categoriesjson",
+      "probe": "booyahP3_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/delete",
+      "probe": "booyahP4_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/edit",
+      "probe": "booyahP5_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/grid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/grid",
+      "probe": "booyahP6_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/image/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/image/upload",
+      "probe": "booyahP7_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/index",
+      "probe": "booyahP8_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/move",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/move",
+      "probe": "booyahP9_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/refreshpath",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/refreshpath",
+      "probe": "booyahP10_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/save",
+      "probe": "booyahP11_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/suggestcategories",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/suggestcategories",
+      "probe": "booyahP12_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/tree",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/tree",
+      "probe": "booyahP13_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/validate",
+      "probe": "booyahP14_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/widget/categoriesjson",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/widget/categoriesjson",
+      "probe": "booyahP15_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/category/widget/chooser",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/category/widget/chooser",
+      "probe": "booyahP16_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/edit",
+      "probe": "booyahP17_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/save",
+      "probe": "booyahP18_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/action/attribute/validate",
+      "probe": "booyahP19_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/addattributetotemplate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/addattributetotemplate",
+      "probe": "booyahP20_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/addattributetotemplate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/alertspricegrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/alertspricegrid",
+      "probe": "booyahP21_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/alertspricegrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/alertsstockgrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/alertsstockgrid",
+      "probe": "booyahP22_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/delete",
+      "probe": "booyahP23_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/edit",
+      "probe": "booyahP24_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/index",
+      "probe": "booyahP25_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/newaction",
+      "probe": "booyahP26_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/save",
+      "probe": "booyahP27_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/attribute/validate",
+      "probe": "booyahP28_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/categories",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/categories",
+      "probe": "booyahP29_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/crosssell",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/crosssell",
+      "probe": "booyahP30_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/crosssellgrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/crosssellgrid",
+      "probe": "booyahP31_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/customoptions",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/customoptions",
+      "probe": "booyahP32_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/datafeeds/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/datafeeds/index",
+      "probe": "booyahP33_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/duplicate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/duplicate",
+      "probe": "booyahP34_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/edit",
+      "probe": "booyahP35_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gallery/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gallery/upload",
+      "probe": "booyahP36_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gallery/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/getselected",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/getselected",
+      "probe": "booyahP37_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/grid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/grid",
+      "probe": "booyahP38_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gridonly",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gridonly",
+      "probe": "booyahP39_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/gridonly",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/group/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/group/save",
+      "probe": "booyahP40_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/index",
+      "probe": "booyahP41_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/massdelete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/massdelete",
+      "probe": "booyahP42_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/massstatus",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/massstatus",
+      "probe": "booyahP43_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/massstatus",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/newaction",
+      "probe": "booyahP44_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/options",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/options",
+      "probe": "booyahP45_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/optionsimportgrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/optionsimportgrid",
+      "probe": "booyahP46_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/related",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/related",
+      "probe": "booyahP47_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/related",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/reload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/reload",
+      "probe": "booyahP48_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/reload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/save",
+      "probe": "booyahP49_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/search",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/search",
+      "probe": "booyahP50_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/add",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/add",
+      "probe": "booyahP51_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/delete",
+      "probe": "booyahP52_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/edit",
+      "probe": "booyahP53_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/index",
+      "probe": "booyahP54_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/save",
+      "probe": "booyahP55_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/setgrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/set/setgrid",
+      "probe": "booyahP56_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/showupdateresult",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/showupdateresult",
+      "probe": "booyahP57_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/suggestattributes",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/suggestattributes",
+      "probe": "booyahP58_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/suggestattributesets",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/suggestattributesets",
+      "probe": "booyahP59_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/upsell",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/upsell",
+      "probe": "booyahP60_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/upsellgrid",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/upsellgrid",
+      "probe": "booyahP61_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/validate",
+      "probe": "booyahP62_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/widget/chooser",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/widget/chooser",
+      "probe": "booyahP63_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/widget/chooser",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/adminhtml/product/wysiwyg",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/adminhtml/product/wysiwyg",
+      "probe": "booyahP64_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/category/view",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/category/view",
+      "probe": "booyahP65_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/index/index",
+      "probe": "booyahP66_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/compare",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/compare",
+      "probe": "booyahP67_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/compare/add",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/compare/add",
+      "probe": "booyahP68_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/compare/clear",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/compare/clear",
+      "probe": "booyahP69_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/compare/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/compare/index",
+      "probe": "booyahP70_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/compare/remove",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/compare/remove",
+      "probe": "booyahP71_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/frontend/action/synchronize",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/frontend/action/synchronize",
+      "probe": "booyahP72_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/gallery",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/gallery",
+      "probe": "booyahP73_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/catalog/product/view",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalog/product/view",
+      "probe": "booyahP74_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/index",
+      "probe": "booyahP75_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/index",
+      "probe": "booyahP75_name",
+      "param": "name"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/index",
+      "probe": "booyahP75_sku",
+      "param": "sku"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/index",
+      "probe": "booyahP75_descript",
+      "param": "description"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/index",
+      "probe": "booyahP75_short_de",
+      "param": "short_description"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/result",
+      "probe": "booyahP76_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/result",
+      "probe": "booyahP76_name",
+      "param": "name"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/result",
+      "probe": "booyahP76_sku",
+      "param": "sku"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/result",
+      "probe": "booyahP76_descript",
+      "param": "description"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/advanced/result",
+      "probe": "booyahP76_short_de",
+      "param": "short_description"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/catalogsearch/result/index",
+      "probe": "booyahP77_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/delete",
+      "probe": "booyahP79_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/edit",
+      "probe": "booyahP80_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/index",
+      "probe": "booyahP81_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/inlineedit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/inlineedit",
+      "probe": "booyahP82_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/massdelete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/massdelete",
+      "probe": "booyahP83_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/newaction",
+      "probe": "booyahP84_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/save",
+      "probe": "booyahP85_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/block/widget/chooser",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/block/widget/chooser",
+      "probe": "booyahP86_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/delete",
+      "probe": "booyahP87_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/edit",
+      "probe": "booyahP88_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/index",
+      "probe": "booyahP89_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/inlineedit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/inlineedit",
+      "probe": "booyahP90_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/massdelete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/massdelete",
+      "probe": "booyahP91_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/massdisable",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/massdisable",
+      "probe": "booyahP92_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/massdisable",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/massenable",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/massenable",
+      "probe": "booyahP93_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/newaction",
+      "probe": "booyahP94_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/save",
+      "probe": "booyahP95_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/page/widget/chooser",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/page/widget/chooser",
+      "probe": "booyahP96_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/directive",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/directive",
+      "probe": "booyahP97_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/contents",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/contents",
+      "probe": "booyahP98_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/deletefiles",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/deletefiles",
+      "probe": "booyahP99_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/deletefolder",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/deletefolder",
+      "probe": "booyahP100_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/index",
+      "probe": "booyahP101_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/newfolder",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/newfolder",
+      "probe": "booyahP102_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/oninsert",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/oninsert",
+      "probe": "booyahP103_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/thumbnail",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/thumbnail",
+      "probe": "booyahP104_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/treejson",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/treejson",
+      "probe": "booyahP105_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/adminhtml/wysiwyg/images/upload",
+      "probe": "booyahP106_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/index/defaultnoroute",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/index/defaultnoroute",
+      "probe": "booyahP107_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/index/index",
+      "probe": "booyahP108_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/noroute/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/noroute/index",
+      "probe": "booyahP109_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/cms/page/view",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cms/page/view",
+      "probe": "booyahP110_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/contact/index/index",
+      "probe": "booyahP111_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/contact/index/index",
+      "probe": "booyahP111_name",
+      "param": "name"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/contact/index/index",
+      "probe": "booyahP111_comment",
+      "param": "comment"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/contact/index/post",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/contact/index/post",
+      "probe": "booyahP112_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/cookie/index/nocookies",
+      "probe": "booyahP113_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/confirm",
+      "probe": "booyahP114_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/confirmation",
+      "probe": "booyahP115_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/create",
+      "probe": "booyahP116_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/create",
+      "probe": "booyahP116_firstnam",
+      "param": "firstname"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/create",
+      "probe": "booyahP116_lastname",
+      "param": "lastname"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/createpassword",
+      "probe": "booyahP117_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/createpassword",
+      "probe": "booyahP117_captcha[",
+      "param": "captcha[user_forgotpassword]"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/createpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/createpost",
+      "probe": "booyahP118_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/createpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/edit",
+      "probe": "booyahP119_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/editpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/editpost",
+      "probe": "booyahP120_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/forgotpassword",
+      "probe": "booyahP121_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/forgotpassword",
+      "probe": "booyahP121_captcha[",
+      "param": "captcha[user_forgotpassword]"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/forgotpasswordpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/forgotpasswordpost",
+      "probe": "booyahP122_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/index",
+      "probe": "booyahP123_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/login",
+      "probe": "booyahP124_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/loginpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/loginpost",
+      "probe": "booyahP125_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/logout",
+      "probe": "booyahP126_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/logoutsuccess",
+      "probe": "booyahP127_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/account/resetpasswordpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/account/resetpasswordpost",
+      "probe": "booyahP128_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/delete",
+      "probe": "booyahP129_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/edit",
+      "probe": "booyahP130_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/address/file/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/file/upload",
+      "probe": "booyahP131_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/form",
+      "probe": "booyahP132_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/address/formpost",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/formpost",
+      "probe": "booyahP133_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/index",
+      "probe": "booyahP134_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/address/newaction",
+      "probe": "booyahP135_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/defaultbillingaddress",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/defaultbillingaddress",
+      "probe": "booyahP136_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/defaultshippingaddress",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/defaultshippingaddress",
+      "probe": "booyahP137_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/delete",
+      "probe": "booyahP138_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/massdelete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/massdelete",
+      "probe": "booyahP139_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/save",
+      "probe": "booyahP140_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/validate",
+      "probe": "booyahP141_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/address/viewfile",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/address/viewfile",
+      "probe": "booyahP142_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/cart/product/composite/cart/configure",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/cart/product/composite/cart/configure",
+      "probe": "booyahP143_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/cart/product/composite/cart/update",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/cart/product/composite/cart/update",
+      "probe": "booyahP144_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/customer/invalidatetoken",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/customer/invalidatetoken",
+      "probe": "booyahP145_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/file/address/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/file/address/upload",
+      "probe": "booyahP146_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/file/customer/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/file/customer/upload",
+      "probe": "booyahP147_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/group/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/group/delete",
+      "probe": "booyahP148_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/group/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/group/edit",
+      "probe": "booyahP149_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/group/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/group/index",
+      "probe": "booyahP150_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/group/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/group/newaction",
+      "probe": "booyahP151_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/group/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/group/save",
+      "probe": "booyahP152_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/abstractmassaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/abstractmassaction",
+      "probe": "booyahP153_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/cart",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/cart",
+      "probe": "booyahP154_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/carts",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/carts",
+      "probe": "booyahP155_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/delete",
+      "probe": "booyahP156_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/edit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/edit",
+      "probe": "booyahP157_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/index",
+      "probe": "booyahP158_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/inlineedit",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/inlineedit",
+      "probe": "booyahP159_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/lastorders",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/lastorders",
+      "probe": "booyahP160_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/newaction",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/newaction",
+      "probe": "booyahP161_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/newsletter",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/newsletter",
+      "probe": "booyahP162_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/orders",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/orders",
+      "probe": "booyahP163_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/resetpassword",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/resetpassword",
+      "probe": "booyahP164_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/save",
+      "probe": "booyahP165_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/validate",
+      "probe": "booyahP166_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewcart",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewcart",
+      "probe": "booyahP167_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewfile",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewfile",
+      "probe": "booyahP168_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewwishlist",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/viewwishlist",
+      "probe": "booyahP169_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/index/wishlist",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/index/wishlist",
+      "probe": "booyahP170_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/locks/unlock",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/locks/unlock",
+      "probe": "booyahP171_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/online/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/online/index",
+      "probe": "booyahP172_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/online/index",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/system/config/validatevat/validate",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/system/config/validatevat/validate",
+      "probe": "booyahP173_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/system/config/validatevat/validateadvanced",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/system/config/validatevat/validateadvanced",
+      "probe": "booyahP174_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/system/config/validatevat/validateadvanced",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/wishlist/product/composite/wishlist/configure",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/wishlist/product/composite/wishlist/configure",
+      "probe": "booyahP175_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/adminhtml/wishlist/product/composite/wishlist/update",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/adminhtml/wishlist/product/composite/wishlist/update",
+      "probe": "booyahP176_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/ajax/login",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/customer/ajax/login",
+      "probe": "booyahP177_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/customer/ajax/login",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/directory/adminhtml/json/countryregion",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/directory/adminhtml/json/countryregion",
+      "probe": "booyahP180_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/directory/currency/switchaction",
+      "probe": "booyahP181_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/file/upload",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/file/upload",
+      "probe": "booyahP182_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/form",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/form",
+      "probe": "booyahP183_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/link",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/link",
+      "probe": "booyahP184_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/sample",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/adminhtml/downloadable/product/edit/sample",
+      "probe": "booyahP185_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/customer/products",
+      "probe": "booyahP186_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/download/link",
+      "probe": "booyahP187_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/download/linksample",
+      "probe": "booyahP188_q",
+      "param": "q"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/downloadable/download/sample",
+      "probe": "booyahP189_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/loginascustomer/login/index",
+      "message": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/bookmark/delete",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/bookmark/delete",
+      "probe": "booyahP193_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/bookmark/save",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/bookmark/save",
+      "probe": "booyahP194_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/export/gridtocsv",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/export/gridtocsv",
+      "probe": "booyahP195_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/export/gridtocsv",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/export/gridtoxml",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/export/gridtoxml",
+      "probe": "booyahP196_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/index/render",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/index/render",
+      "probe": "booyahP197_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/mui/adminhtml/index/render/handle",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/adminhtml/index/render/handle",
+      "probe": "booyahP198_q",
+      "param": "q"
+    },
+    {
+      "type": "console_error",
+      "url": "http://localhost:8082/noroute/",
+      "message": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "type": "probe_sent",
+      "url": "http://localhost:8082/mui/index/render",
+      "probe": "booyahP199_q",
+      "param": "q"
+    }
+  ]
+}
