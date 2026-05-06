@@ -78,30 +78,66 @@ These don't write new stores. Mapping them adds route count but no new stores.
 
 ## Recommended Next Three Scripts
 
-### 1. `populate_email_comments.py`
+Ordered for fastest impact: fastest/lowest-risk first, highest-ambiguity last.
+
+### 1. `populate_sendfriend.py`
+`/sendfriend/product/sendmail` — user-controlled name/email/message go directly into
+an outgoing email body via `TransportBuilder`. No intermediate DB write — pure L1
+`SK_EMAIL_RENDER`. Contained, no reentry complexity, immediate new-sink evidence.
+Same pattern as the contact form chain.
+
+### 2. `populate_email_comments.py`
 Admin creditmemo / invoice / shipment comment fields. Maps 3 new stores:
 - `creditmemo_comment.comment`
 - `invoice_comment.comment`
 - `shipment_comment.comment`
 
-L2 read-backs appear in the order history view in both admin and customer account.
-These follow the exact same pattern as `sales_order_status_history.comment` which is
-already fully mapped (including the partial-escape `[b,br,strong,i,u,a]` question).
-
-### 2. `populate_sendfriend.py`
-`/sendfriend/product/sendmail` — user-controlled name/email/message go directly into
-an outgoing email body via `TransportBuilder`. No intermediate DB write — pure L1
-`SK_EMAIL_RENDER`. Quick map, same pattern as the contact form chain.
+L2 read-backs appear in order history views in both admin and customer account.
+Direct pattern reuse from `sales_order_status_history.comment` — low implementation
+risk, likely high signal.
 
 ### 3. `populate_admin_writes.py`
-Four higher-complexity admin stores:
-- `email_template.template_text` — rendered into every Magento transactional email,
-  via `Magento\Email\Model\Template::processTemplate()`. Admin-trusted but high impact.
+Highest payoff but highest ambiguity — map last with the guardrails below applied.
+Four stores in scope:
+- `email_template.template_text` — rendered into every Magento transactional email via
+  `Magento\Email\Model\Template::processTemplate()`. Sink context is `SK_EMAIL_RENDER`,
+  not `SK_HTTP_RESPONSE`. The Magento template engine supports `{{var}}` and
+  `{{customVar}}` directives — same engine as `variable.html_value`. File:line evidence
+  required: `app/code/Magento/Email/Model/Template.php::processTemplate()`.
 - `sales_order_address.*` via `/sales/adminhtml/order/addresssave` — admin edits
-  an order's billing/shipping address; read-back at order view and customer order history.
-- `core_config_data.value` (selective) — only values that render on the storefront
-  (store name, copyright notice, meta description). Others are config flags, skip.
+  an order's billing/shipping address; read-back at order view and customer history.
+- `core_config_data.value` — whitelisted keys only (see below).
 - `salesrule.name` / `catalogrule.name` — promo names visible in cart and checkout.
+
+---
+
+## Guardrails
+
+**1. Require file:line for every sink before calling a store mapped.**
+No store is marked mapped without a concrete template or method path (verified to exist
+on disk) showing where the value reaches output. Guessed paths are not accepted.
+
+**2. core_config_data.value whitelist — proven frontend sinks only.**
+
+Enumerated from source (`grep scopeConfig->getValue` across frontend templates and
+Block classes, then verified rendering context):
+
+| Config key | Renders at | Escaping | Sink kind |
+|---|---|---|---|
+| `design/header/welcome` | `header.phtml:23` via `getWelcome()` | `escapeHtml()` | SK_HTTP_RESPONSE — SAFE |
+| `design/footer/copyright` | `footer.phtml:14` via `getCopyright()` | `escapeHtml()` | SK_HTTP_RESPONSE — SAFE |
+| `general/store_information/name` | email templates via `{{var store.getFrontendName()}}` | Magento template engine | SK_EMAIL_RENDER |
+| `general/store_information/phone` | email templates via `{{var store_phone}}` | Magento template engine | SK_EMAIL_RENDER |
+| `general/store_information/hours` | email templates via `{{var store_hours}}` | Magento template engine | SK_EMAIL_RENDER |
+| `trans_email/ident_support/email` | email templates via `{{var store_email}}` | Magento template engine | SK_EMAIL_RENDER |
+
+All other `core_config_data` keys are config flags, numeric values, or internal paths
+that never reach an HTML or email output surface. Do not map them.
+
+**3. "Already-mapped store via new route" is secondary priority.**
+A new route that writes to an already-mapped store (e.g., multishipping writing
+`quote_address.*`) does not get a new lineage unless it adds a new sink context
+(different render path, different escaping, different audience).
 
 ---
 
