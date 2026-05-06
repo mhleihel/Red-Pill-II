@@ -54,6 +54,11 @@ booyah/crawl/package-lock.json
 # SQLite WAL journal files (transient)
 results/booyah.db-shm
 results/booyah.db-wal
+results/appmap.db-shm
+results/appmap.db-wal
+
+# Abandoned crawl tools (policy: no browser extensions, no ZAP active scan)
+booyah/crawl/burp_mcp.py
 
 # Claude session memory (local only)
 .claude/

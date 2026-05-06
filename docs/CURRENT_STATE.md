@@ -1,4 +1,4 @@
-# Current State — 2026-05-04
+# Current State — 2026-05-05
 
 ## Completed
 
@@ -30,6 +30,22 @@
 - Admin: http://localhost:8082/admin/
 - 1 admin + 2 customers + 8 restricted admin accounts created
 - DI compilation complete (generated/ has 3,647 files)
+
+## Appmap Database (Primary Artifact)
+
+**`results/appmap.db`** — 88 lineages across 32 persistence stores
+
+| Order | Count | Description |
+|---|---|---|
+| L1 | 45 | HTTP input → first DB write (same request) |
+| L2 | 41 | DB read-back → HTTP response |
+| L3 | 2 | Two persistence boundaries (registration → checkout → success) |
+| Deferred | 1,013 | Non-string stores (no_string_taint) |
+
+Key findings: 9 stores render with raw or partial HTML escaping. See `docs/LINEAGE_MAP.md`
+for the complete table.
+
+Scripts: `booyah/appmap/populate_*.py` — run sequentially to rebuild the database.
 
 ## Pending
 

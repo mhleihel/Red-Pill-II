@@ -170,10 +170,17 @@ def build_route_map(root: Path) -> list[dict]:
         # e.g. Magento\Catalog -> Magento_Catalog
         module_name = "_".join(ns_parts[:2])
 
+        # Determine if this is an admin controller by namespace
+        ns = ctrl["namespace"]
+        is_admin_ctrl = "\\Adminhtml\\" in ns or ns.endswith("\\Adminhtml")
+
         matched_fronts = []
         for (fn, area), modules in front_name_map.items():
             if module_name in modules:
-                matched_fronts.append((fn, area))
+                if is_admin_ctrl and area == "adminhtml":
+                    matched_fronts.append((fn, area))
+                elif not is_admin_ctrl and area == "frontend":
+                    matched_fronts.append((fn, area))
 
         if matched_fronts:
             for front_name, area in matched_fronts:
