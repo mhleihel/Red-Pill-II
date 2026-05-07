@@ -1,0 +1,53 @@
+{
+  "_comment": "Bubble Analysis 2026-05-07 — patterns that reliably produce false positives",
+
+  "hash_terminators": {
+    "_comment": "Cryptographic/one-way functions that destroy value identity. Any path passing through these cannot carry the original taint value to a sink.",
+    "functions": ["sha1", "sha256", "sha512", "md5", "hash", "crc32", "password_hash"],
+    "files": [
+      "Framework/App/PageCache/Identifier.php"
+    ],
+    "classification_override": "DISMISSED_HASH_TERMINATOR"
+  },
+
+  "phantom_junction_sinks": {
+    "_comment": "DataObject::setData is called from many unrelated sites. Psalm merges them via positional parameter tracking, creating phantom paths. Any finding whose full hop chain passes through AbstractResource::setData -> DataObject::setData is likely a phantom junction.",
+    "sink_file_patterns": [
+      "Framework/DataObject.php",
+      "Model/ResourceModel/AbstractResource.php"
+    ],
+    "classification_override": "DISMISSED_PHANTOM_JUNCTION"
+  },
+
+  "non_rendering_sinks": {
+    "_comment": "These sinks write to log files, profiler output (dev mode only), or error responses — not to browser-rendered HTML. Not actionable XSS sinks.",
+    "sink_file_patterns": [
+      "Framework/Logger",
+      "Framework/Profiler",
+      "Framework/Debug.php",
+      "Framework/Webapi/ErrorProcessor.php",
+      "Framework/Webapi/RequestAwareErrorProcessor.php",
+      "Model/Method/Logger.php",
+      "Model/AbstractIpn.php",
+      "AbstractCarrier.php"
+    ],
+    "sink_code_patterns": [
+      "->debug(",
+      "->error(",
+      "->warning(",
+      "var_export($",
+      "$this->logger->"
+    ],
+    "classification_override": "DISMISSED_NON_RENDERING_SINK"
+  },
+
+  "admin_write_sources": {
+    "_comment": "Sources that require admin CMS/config write access. Anyone who can inject here has higher privilege already.",
+    "source_method_patterns": [
+      "Conditions::decode",
+      "Widget::decode",
+      "Widget::encode"
+    ],
+    "classification_override": "DISMISSED_ADMIN_WRITE_SOURCE"
+  }
+}

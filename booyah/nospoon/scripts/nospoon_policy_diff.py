@@ -77,6 +77,65 @@ def _classify_role_escalation_severity(route: dict[str, Any], role_name: str) ->
     return "medium"
 
 
+def _acl_covered(required: set[str], granted: set[str]) -> bool:
+    """Return True if every resource in `required` is covered by `granted`.
+
+    Magento ACL is a tree: a granted parent covers all its children. We
+    approximate this with prefix matching on the `::` namespace separator.
+    e.g. Magento_Catalog::catalog covers Magento_Catalog::catalog_attributes
+    and Magento_Catalog::products but NOT Magento_Sales::sales.
+    Magento_Backend::all covers everything.
+    """
+    if "Magento_Backend::all" in granted:
+        return True
+    for req in required:
+        covered = any(
+            req == g or req.startswith(g + "_") or req.startswith(g + "::")
+            for g in granted
+        )
+        if not covered:
+            return False
+    return True
+
+
+def _role_has_any_coverage(required: set[str], granted: set[str]) -> bool:
+    """Return True if the role plausibly covers at least one required resource.
+
+    Magento's ACL IDs are flat (Magento_Catalog::catalog vs Magento_Catalog::products),
+    not hierarchically encoded in their string names. True hierarchy lives in acl.xml.
+    We approximate: a role covers a required resource if it holds ANY grant in the
+    same module namespace (same prefix before `::`). This avoids false positives from
+    intra-module hierarchy (CatalogRole holding ::catalog covers ::products) while
+    still flagging cross-module leaks (CatalogRole reaching Sales:: routes).
+    """
+    if "Magento_Backend::all" in granted:
+        return True
+    granted_modules = {g.split("::")[0] for g in granted}
+    for req in required:
+        req_module = req.split("::")[0]
+        # Exact match or same module namespace → consider covered
+        if req in granted or req_module in granted_modules:
+            return True
+    return False
+
+
+def _concrete_restricted_roles(concrete_policy: dict[str, Any]) -> dict[str, set[str]]:
+    """Extract group roles from concrete_policy that are scoped restricted admins.
+
+    Returns {role_name: set(granted_resources)} for every role_type=G entry that
+    does NOT hold Magento_Backend::all (that would be super_admin equivalent).
+    """
+    result: dict[str, set[str]] = {}
+    for role_name, role_data in concrete_policy.get("roles", {}).items():
+        if role_data.get("role_type", "") != "G":
+            continue
+        granted = set(role_data.get("granted_resources", []))
+        if "Magento_Backend::all" in granted:
+            continue  # super_admin equivalent — skip
+        result[role_name] = granted
+    return result
+
+
 def _classify_missing_ownership_severity(route: dict[str, Any]) -> str:
     """Severity of a route missing ownership verification."""
     method = str(route.get("method", "")).upper()
@@ -178,6 +237,13 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
             if granted:
                 effective_role_resources[role_name] = granted
 
+    # When concrete_policy provides group roles, use them as restricted_admin
+    # variants with real grants instead of the static restricted_admin empty set.
+    concrete_restricted: dict[str, set[str]] = {}
+    if concrete_policy:
+        concrete_restricted = _concrete_restricted_roles(concrete_policy)
+
+    # --- Static role_groups pass (customer + super_admin checks) ---
     for role_name, role_cfg in role_groups.items():
         role_resources = effective_role_resources.get(role_name, set())
         role_desc = role_cfg.get("description", "")
@@ -186,26 +252,26 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
         if role_name == "super_admin":
             continue
 
+        # Skip static restricted_admin when concrete policy provides real group
+        # roles — the concrete pass below produces accurate per-scope gaps instead.
+        if role_name == "restricted_admin" and concrete_restricted:
+            continue
+
         for route_id, guard_ids in route_guards_map.items():
             route = route_map.get(route_id)
             if route is None:
                 continue
 
-            # Check if this route's expected auth is higher than this role
             area = route.get("area", "")
             expected = expected_auth.get(area, {})
             expected_type = expected.get("default", "")
-
-            # Determine what this route actually requires
             route_acl = set(route.get("acl_resources", []))
 
             # For customer role: they should only access self-service routes
             if role_name == "customer":
                 if expected_type in ("admin_token", "session") and route_acl:
-                    # Customer can't hold admin ACL resources
                     if route_acl & role_resources:
                         continue  # Customer has explicit grant
-                    # Check if any guard allows customer access
                     customer_allowed = False
                     for gid in guard_ids:
                         guard_resources = guard_acl_map.get(gid, set())
@@ -217,25 +283,52 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
                                                         expected_type, "customer_token")
                         gaps.append(gap)
 
-            # For restricted_admin: a leak occurs when the route requires an ACL
-            # resource that the restricted role does NOT hold, yet no guard blocks
-            # them.  With concrete_policy, role_resources is the actual DB grant set.
+            # For restricted_admin (static, no concrete policy): flag routes
+            # where the role has none of the required resources.
             elif role_name == "restricted_admin":
                 if expected_type == "session" and route_acl:
-                    # The route declares required resources (back-populated by
-                    # map_guards_to_routes from php_acl_body guards or webapi.xml).
-                    # If the restricted role does not hold all required resources,
-                    # Magento should deny — but only if the _isAllowed check is
-                    # implemented. If route_acl was empty before back-population,
-                    # the check was absent → flag as no_guard instead (handled
-                    # by detect_no_guard_gaps).
-                    # Flag: restricted role has none of the required resources
-                    # (i.e. no intersection), meaning if they reach this route
-                    # there is no resource-level gate we can confirm.
                     if not (route_acl & role_resources):
                         gap = _make_role_escalation_gap(route, role_name, role_desc,
                                                         expected_type, "restricted_admin_token")
                         gaps.append(gap)
+
+    # --- Concrete policy restricted_admin pass ---
+    # Each DB group role (CatalogRole, SalesRole, etc.) is checked independently.
+    # A gap fires when the route's guards require ACL resources outside the role's
+    # grants. ACL resources live on guards (applies_to_resources), not on route
+    # records directly — so we derive the required resource set from the guards.
+    for role_name, role_resources in concrete_restricted.items():
+        role_desc = f"restricted admin (DB role: {role_name})"
+        for route_id, guard_ids in route_guards_map.items():
+            route = route_map.get(route_id)
+            if route is None:
+                continue
+
+            area = route.get("area", "")
+            expected = expected_auth.get(area, {})
+            expected_type = expected.get("default", "")
+            if expected_type != "session":
+                continue
+
+            # Collect all ACL resources required by guards on this route.
+            guard_required: set[str] = set()
+            for gid in guard_ids:
+                guard_required |= guard_acl_map.get(gid, set())
+
+            # Skip Magento_Backend::admin — that's the top-level admin login gate,
+            # present on every adminhtml guard. All restricted admins hold it.
+            guard_required.discard("Magento_Backend::admin")
+
+            if not guard_required:
+                continue  # no scope-specific ACL gates on this route
+
+            # Gap: role holds none of the scope-specific ACL resources this
+            # route's guards require (prefix-aware hierarchy match) →
+            # no resource-level gate confirmed for this role.
+            if not _role_has_any_coverage(guard_required, role_resources):
+                gap = _make_role_escalation_gap(route, role_name, role_desc,
+                                                expected_type, "restricted_admin_token")
+                gaps.append(gap)
 
     return gaps
 
@@ -457,7 +550,11 @@ def run_diff(routes: list[dict[str, Any]],
     all_gaps.extend(no_guard_gaps)
 
     if role_groups and expected_auth:
-        policy_note = " (concrete policy loaded)" if concrete_policy else ""
+        if concrete_policy:
+            n_concrete = len(_concrete_restricted_roles(concrete_policy))
+            policy_note = f" (concrete policy: {n_concrete} restricted group roles)"
+        else:
+            policy_note = ""
         print(f"[stage_03] Detecting role_escalation gaps across {len(role_groups)} role groups{policy_note}...")
         role_gaps = detect_role_escalation_gaps(
             routes, guards, role_groups, expected_auth,

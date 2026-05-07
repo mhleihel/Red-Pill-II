@@ -377,6 +377,45 @@ CLASSIFICATION_ORDER = [
 ]
 
 
+_FP_FILTERS: dict | None = None
+
+def _load_fp_filters() -> dict:
+    global _FP_FILTERS
+    if _FP_FILTERS is None:
+        cfg = Path(__file__).parent / "config" / "false_positive_filters.json"
+        _FP_FILTERS = json.loads(cfg.read_text()) if cfg.exists() else {}
+    return _FP_FILTERS
+
+
+def _check_fp_filters(finding: dict) -> str | None:
+    """Return a DISMISSED_* classification if the finding matches a known false-positive pattern, else None."""
+    fp = _load_fp_filters()
+    sink_file   = finding.get("sink_file", "") or ""
+    sink_code   = finding.get("sink_code", "") or ""
+    source_name = finding.get("source_name", "") or finding.get("source_method", "") or ""
+
+    for pat in fp.get("non_rendering_sinks", {}).get("sink_file_patterns", []):
+        if pat in sink_file:
+            return fp["non_rendering_sinks"]["classification_override"]
+    for pat in fp.get("non_rendering_sinks", {}).get("sink_code_patterns", []):
+        if pat in sink_code:
+            return fp["non_rendering_sinks"]["classification_override"]
+
+    for pat in fp.get("hash_terminators", {}).get("files", []):
+        if pat in sink_file:
+            return fp["hash_terminators"]["classification_override"]
+
+    for pat in fp.get("phantom_junction_sinks", {}).get("sink_file_patterns", []):
+        if pat in sink_file:
+            return fp["phantom_junction_sinks"]["classification_override"]
+
+    for pat in fp.get("admin_write_sources", {}).get("source_method_patterns", []):
+        if pat in source_name:
+            return fp["admin_write_sources"]["classification_override"]
+
+    return None
+
+
 def classify(
     finding: dict,
     joern_findings: list[dict],
@@ -395,6 +434,13 @@ def classify(
     source_line = finding["source_line"]
     sink_file = finding["sink_file"]
     sink_line = finding["sink_line"]
+
+    # --- False-positive pre-filter (Bubble Analysis conclusions) ---
+    dismissed = _check_fp_filters(finding)
+    if dismissed:
+        return {**finding, "classification": dismissed, "confidence": 0.0,
+                "cross_validated": False, "runtime_confirmed": False,
+                "zap_confirmed": False, "controller_routes": []}
 
     # --- Cross-validate with the other static tool ---
     cross_validated = False
