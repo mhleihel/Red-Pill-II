@@ -24,7 +24,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
-from .nospoon_util import load_json, load_yaml, stable_id, utc_now, write_json
+from .nospoon_util import file_mtime, load_json, load_yaml, stable_id, utc_now, write_json
 
 
 def _el_ns(tag: str) -> str:
@@ -557,11 +557,48 @@ PARSER_MAP = {
 }
 
 
-def extract_guards(target: Path, config: dict[str, Any]) -> list[dict[str, Any]]:
-    """Walk target tree, match files against config sources, parse with dispatch."""
+def load_file_cache(cache_path: Path,
+                    target: Path | None = None) -> dict[str, Any]:
+    """Load a previous run's stage_02_guards.json as a file-keyed cache.
+
+    Cache structure:
+      { "rel/path/to/file.xml": {"mtime": 1234567.8, "records": [...]} }
+
+    When a record has no _mtime (legacy output), the current mtime of the file
+    on disk is used — so any existing stage_02_guards.json can seed the cache
+    on the first run after this feature was added.
+    """
+    if not cache_path.is_file():
+        return {}
+    previous = load_json(cache_path)
+    if not isinstance(previous, list):
+        return {}
+    cache: dict[str, Any] = {}
+    for record in previous:
+        sf = record.get("source_file", "")
+        if not sf:
+            continue
+        stored_mtime = record.get("_mtime")
+        if stored_mtime is None and target is not None:
+            stored_mtime = file_mtime(target / sf)
+        cache.setdefault(sf, {"mtime": stored_mtime or 0.0, "records": []})
+        cache[sf]["records"].append(record)
+    return cache
+
+
+def extract_guards(target: Path, config: dict[str, Any],
+                   file_cache: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    """Walk target tree, match files against config sources, parse with dispatch.
+
+    file_cache: optional dict produced by load_file_cache() from a previous run.
+      When a source file's mtime is unchanged, its records are reused verbatim and
+      the parser is not called. Pass None (default) to force a full re-parse.
+    """
     all_guards: list[dict[str, Any]] = []
     seen_ids: set[str] = set()
     sources = config.get("sources", [])
+    cache_hits = 0
+    cache_misses = 0
 
     for source_cfg in sources:
         pattern = source_cfg.get("pattern", "")
@@ -577,12 +614,26 @@ def extract_guards(target: Path, config: dict[str, Any]) -> list[dict[str, Any]]
             if any(p in ("vendor", "test", "tests", "Test", "Tests") for p in file_path.parts):
                 continue
 
-            # Compute path relative to target root (schema contract).
             try:
                 rel_source = str(file_path.resolve().relative_to(target.resolve()))
             except ValueError:
                 rel_source = str(file_path)
 
+            current_mtime = file_mtime(file_path)
+
+            # Cache hit: file unchanged since last run — reuse records directly.
+            if file_cache is not None:
+                cached = file_cache.get(rel_source)
+                if cached and abs(cached.get("mtime", 0.0) - current_mtime) < 0.01:
+                    for guard in cached["records"]:
+                        gid = guard.get("guard_id", "")
+                        if gid and gid not in seen_ids:
+                            seen_ids.add(gid)
+                            all_guards.append(guard)
+                    cache_hits += 1
+                    continue
+
+            cache_misses += 1
             try:
                 guards = parser_fn(file_path, source_cfg)
             except Exception as exc:
@@ -590,13 +641,15 @@ def extract_guards(target: Path, config: dict[str, Any]) -> list[dict[str, Any]]
                 continue
 
             for guard in guards:
-                # Overwrite source_file with target-relative path.
                 guard["source_file"] = rel_source
+                guard["_mtime"] = current_mtime
                 gid = guard.get("guard_id", "")
                 if gid and gid not in seen_ids:
                     seen_ids.add(gid)
                     all_guards.append(guard)
 
+    if file_cache is not None:
+        print(f"[stage_02] Cache: {cache_hits} files reused, {cache_misses} files re-parsed")
     return all_guards
 
 
@@ -697,6 +750,12 @@ def main() -> None:
              "Route records are enriched with acl_resources discovered by php_acl_body "
              "guards. Pass this file to Stage 3 instead of the original routes.",
     )
+    parser.add_argument(
+        "--cache", type=str, default=None,
+        help="Path to a previous run's stage_02_guards.json. Files whose mtime is "
+             "unchanged are reused verbatim; only changed or new files are re-parsed. "
+             "Output is written to --output as normal — existing data is never modified.",
+    )
     parser.add_argument("--framework", type=str, default="magento", help="Framework to use (config/<framework>_guard_sources.yaml)")
     args = parser.parse_args()
 
@@ -715,7 +774,13 @@ def main() -> None:
     print(f"[stage_02] Extracting guards from {target}")
     print(f"[stage_02] Framework: {args.framework} (config: {config_path})")
 
-    guards = extract_guards(target, config)
+    file_cache: dict[str, Any] | None = None
+    if args.cache:
+        cache_path = Path(args.cache).expanduser().resolve()
+        file_cache = load_file_cache(cache_path, target=target)
+        print(f"[stage_02] Cache loaded: {len(file_cache)} files from {cache_path}")
+
+    guards = extract_guards(target, config, file_cache=file_cache)
 
     routes: list[dict[str, Any]] = []
     # If routes JSON provided, perform guard-to-route mapping
