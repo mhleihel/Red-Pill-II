@@ -1,0 +1,10 @@
+{
+  "framework": "magento",
+  "guard_count": 1551,
+  "guards_with_routes": 850,
+  "guards_without_routes": 701,
+  "stage": "stage_02_guards",
+  "status": "completed",
+  "target": "/Users/mhleihel/Desktop/magento2-2.4.8-p4",
+  "timestamp": "2026-05-07T18:18:41.483504+00:00"
+}

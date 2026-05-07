@@ -38,10 +38,18 @@ def write_json(path: Path, data: Any, *, indent: int = 2, sort_keys: bool = True
 
 
 def load_yaml(path: Path) -> Any:
-    import yaml
-
-    with path.open(encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
+    try:
+        import yaml
+        with path.open(encoding="utf-8") as fh:
+            return yaml.safe_load(fh)
+    except ImportError:
+        json_path = path.with_suffix(".json")
+        if json_path.is_file():
+            return load_json(json_path)
+        raise RuntimeError(
+            f"pyyaml is not installed and no JSON fallback found at {json_path}. "
+            "Run: pip install pyyaml"
+        )
 
 
 def iter_source_files(target: Path, *, skip_dirs: set[str] | None = None, supported_suffixes: set[str] | None = None) -> list[Path]:

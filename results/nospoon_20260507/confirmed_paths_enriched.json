@@ -1,0 +1,4722 @@
+[
+  {
+    "class": "Magento\\AdminNotification\\Controller\\Adminhtml\\Notification\\MassMarkAsRead",
+    "rule": "magento-stored-xss-write-path",
+    "line": 53,
+    "route_id": "nsr-26c22f08c1bd",
+    "method": "GET",
+    "url": "/mass-mark-as-read/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mass-mark-as-read/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-15b86e073235",
+        "gap_type": "no_guard",
+        "module": "Notification",
+        "route_id": "nsr-26c22f08c1bd",
+        "route_method": "GET",
+        "route_url": "/mass-mark-as-read/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/AdminNotification/Controller/Adminhtml/Notification/MassMarkAsRead.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\AdminNotification\\Controller\\Adminhtml\\Notification\\MassRemove",
+    "rule": "magento-stored-xss-write-path",
+    "line": 53,
+    "route_id": "nsr-70c91f26577b",
+    "method": "GET",
+    "url": "/mass-remove/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mass-remove/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-6cf9c03c5061",
+        "gap_type": "no_guard",
+        "module": "Notification",
+        "route_id": "nsr-70c91f26577b",
+        "route_method": "GET",
+        "route_url": "/mass-remove/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/AdminNotification/Controller/Adminhtml/Notification/MassRemove.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\AdminNotification\\Controller\\Adminhtml\\Notification\\Remove",
+    "rule": "magento-stored-xss-write-path",
+    "line": 53,
+    "route_id": "nsr-e24a3186dfd7",
+    "method": "GET",
+    "url": "/remove/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /remove/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e38afd6cb7db",
+        "gap_type": "no_guard",
+        "module": "Notification",
+        "route_id": "nsr-e24a3186dfd7",
+        "route_method": "GET",
+        "route_url": "/remove/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/AdminNotification/Controller/Adminhtml/Notification/Remove.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\AdvancedPricingImportExport\\Controller\\Adminhtml\\Export\\GetFilter",
+    "rule": "magento-reflected-xss",
+    "line": 36,
+    "route_id": "nsr-cab2d76ede1e",
+    "method": "GET",
+    "url": "/get-filter/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /get-filter/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-77146720db3d",
+        "gap_type": "no_guard",
+        "module": "Export",
+        "route_id": "nsr-cab2d76ede1e",
+        "route_method": "GET",
+        "route_url": "/get-filter/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/AdvancedPricingImportExport/Controller/Adminhtml/Export/GetFilter.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\AdvancedSearch\\Controller\\Adminhtml\\Search\\System\\Config\\TestConnection",
+    "rule": "magento-stored-xss-read-path",
+    "line": 94,
+    "route_id": "nsr-452b1dc8f9b4",
+    "method": "GET",
+    "url": "/test-connection/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /test-connection/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-db47e49ed9bb",
+        "gap_type": "no_guard",
+        "module": "Config",
+        "route_id": "nsr-452b1dc8f9b4",
+        "route_method": "GET",
+        "route_url": "/test-connection/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/AdvancedSearch/Controller/Adminhtml/Search/System/Config/TestConnection.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Backend\\Controller\\Adminhtml\\Ajax\\Translate",
+    "rule": "magento-reflected-xss",
+    "line": 62,
+    "route_id": "nsr-85674054e2c0",
+    "method": "GET",
+    "url": "/translate/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /translate/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-4b85dadc158c",
+        "gap_type": "no_guard",
+        "module": "Ajax",
+        "route_id": "nsr-85674054e2c0",
+        "route_method": "GET",
+        "route_url": "/translate/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Backend/Controller/Adminhtml/Ajax/Translate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Backend\\Controller\\Adminhtml\\Ajax\\Translate",
+    "rule": "magento-stored-xss-read-path",
+    "line": 62,
+    "route_id": "nsr-85674054e2c0",
+    "method": "GET",
+    "url": "/translate/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /translate/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-4b85dadc158c",
+        "gap_type": "no_guard",
+        "module": "Ajax",
+        "route_id": "nsr-85674054e2c0",
+        "route_method": "GET",
+        "route_url": "/translate/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Backend/Controller/Adminhtml/Ajax/Translate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Backend\\Controller\\Adminhtml\\Dashboard\\Chart\\Amounts",
+    "rule": "magento-reflected-xss",
+    "line": 67,
+    "route_id": "nsr-39713ee24d83",
+    "method": "GET",
+    "url": "/amounts/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /amounts/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-d0e042560539",
+        "gap_type": "no_guard",
+        "module": "Chart",
+        "route_id": "nsr-39713ee24d83",
+        "route_method": "GET",
+        "route_url": "/amounts/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Backend/Controller/Adminhtml/Dashboard/Chart/Amounts.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Backend\\Controller\\Adminhtml\\Dashboard\\Chart\\Orders",
+    "rule": "magento-reflected-xss",
+    "line": 67,
+    "route_id": "nsr-26ef1ee91382",
+    "method": "GET",
+    "url": "/orders/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /orders/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7313061d3153",
+        "gap_type": "no_guard",
+        "module": "Chart",
+        "route_id": "nsr-26ef1ee91382",
+        "route_method": "GET",
+        "route_url": "/orders/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Backend/Controller/Adminhtml/Dashboard/Chart/Orders.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Backend\\Controller\\Adminhtml\\Index\\GlobalSearch",
+    "rule": "magento-reflected-xss",
+    "line": 100,
+    "route_id": "nsr-618b0c461f4e",
+    "method": "GET",
+    "url": "/global-search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /global-search/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-22937dcc7762",
+        "gap_type": "no_guard",
+        "module": "Index",
+        "route_id": "nsr-618b0c461f4e",
+        "route_method": "GET",
+        "route_url": "/global-search/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Backend/Controller/Adminhtml/Index/GlobalSearch.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Block\\Navigation",
+    "rule": "magento-stored-xss-read-path",
+    "line": 224,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Block\\Product\\View\\Gallery",
+    "rule": "magento-stored-xss-read-path",
+    "line": 95,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Block\\Product\\View\\Gallery",
+    "rule": "magento-stored-xss-read-path",
+    "line": 149,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Category",
+    "rule": "magento-stored-xss-read-path",
+    "line": 195,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Category\\Image\\Upload",
+    "rule": "magento-reflected-xss",
+    "line": 61,
+    "route_id": "nsr-3c9e8ec5ddeb",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-81bcf1417818",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-3c9e8ec5ddeb",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Category/Image/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Category\\Image\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 61,
+    "route_id": "nsr-3c9e8ec5ddeb",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-81bcf1417818",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-3c9e8ec5ddeb",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Category/Image/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Action\\Attribute\\Validate",
+    "rule": "magento-reflected-xss",
+    "line": 71,
+    "route_id": "nsr-757d04dfb778",
+    "method": "GET",
+    "url": "/validate/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /validate/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-f67c5a5041b2",
+        "gap_type": "no_guard",
+        "module": "Attribute",
+        "route_id": "nsr-757d04dfb778",
+        "route_method": "GET",
+        "route_url": "/validate/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/Action/Attribute/Validate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\AddAttributeToTemplate",
+    "rule": "magento-stored-xss-write-path",
+    "line": 195,
+    "route_id": "nsr-9d93eb6fcbc8",
+    "method": "GET",
+    "url": "/add-attribute-to-template/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-attribute-to-template/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-f9d059131c50",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-9d93eb6fcbc8",
+        "route_method": "GET",
+        "route_url": "/add-attribute-to-template/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/AddAttributeToTemplate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Attribute\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 300,
+    "route_id": "nsr-052e8816eb74",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Attribute\\Validate",
+    "rule": "magento-reflected-xss",
+    "line": 239,
+    "route_id": "nsr-a71bd34cd42d",
+    "method": "GET",
+    "url": "/validate/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /validate/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-ff35e4fcc9fc",
+        "gap_type": "no_guard",
+        "module": "Attribute",
+        "route_id": "nsr-a71bd34cd42d",
+        "route_method": "GET",
+        "route_url": "/validate/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/Attribute/Validate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\GetSelected",
+    "rule": "magento-reflected-xss",
+    "line": 72,
+    "route_id": "nsr-ed6d1fb5ca4c",
+    "method": "GET",
+    "url": "/get-selected/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /get-selected/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-2a30e2436274",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-ed6d1fb5ca4c",
+        "route_method": "GET",
+        "route_url": "/get-selected/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/GetSelected.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\GetSelected",
+    "rule": "magento-stored-xss-read-path",
+    "line": 72,
+    "route_id": "nsr-ed6d1fb5ca4c",
+    "method": "GET",
+    "url": "/get-selected/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /get-selected/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-2a30e2436274",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-ed6d1fb5ca4c",
+        "route_method": "GET",
+        "route_url": "/get-selected/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/GetSelected.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Search",
+    "rule": "magento-reflected-xss",
+    "line": 79,
+    "route_id": "nsr-dd99dc8d0310",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Search",
+    "rule": "magento-stored-xss-read-path",
+    "line": 79,
+    "route_id": "nsr-dd99dc8d0310",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\Search",
+    "rule": "magento-stored-xss-write-path",
+    "line": 79,
+    "route_id": "nsr-dd99dc8d0310",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\SuggestAttributeSets",
+    "rule": "magento-reflected-xss",
+    "line": 51,
+    "route_id": "nsr-e696a17bf8dc",
+    "method": "GET",
+    "url": "/suggest-attribute-sets/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /suggest-attribute-sets/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-1af4c7e73cf1",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-e696a17bf8dc",
+        "route_method": "GET",
+        "route_url": "/suggest-attribute-sets/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/SuggestAttributeSets.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Controller\\Adminhtml\\Product\\SuggestAttributes",
+    "rule": "magento-reflected-xss",
+    "line": 51,
+    "route_id": "nsr-f81afb22f0d7",
+    "method": "GET",
+    "url": "/suggest-attributes/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /suggest-attributes/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e5c4f2378f1a",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-f81afb22f0d7",
+        "route_method": "GET",
+        "route_url": "/suggest-attributes/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Catalog/Controller/Adminhtml/Product/SuggestAttributes.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Catalog\\Helper\\Category",
+    "rule": "magento-stored-xss-read-path",
+    "line": 150,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Attribute\\Backend\\Customlayoutupdate",
+    "rule": "magento-stored-xss-read-path",
+    "line": 112,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Attribute\\Backend\\Startdate",
+    "rule": "magento-stored-xss-read-path",
+    "line": 68,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Image",
+    "rule": "magento-stored-xss-read-path",
+    "line": 165,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Image",
+    "rule": "magento-stored-xss-read-path",
+    "line": 166,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Image",
+    "rule": "magento-stored-xss-read-path",
+    "line": 168,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby",
+    "rule": "magento-stored-xss-read-path",
+    "line": 103,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby",
+    "rule": "magento-stored-xss-read-path",
+    "line": 108,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby",
+    "rule": "magento-stored-xss-read-path",
+    "line": 111,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby",
+    "rule": "magento-stored-xss-read-path",
+    "line": 129,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Category\\Attribute\\Backend\\Sortby",
+    "rule": "magento-stored-xss-read-path",
+    "line": 131,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\CategoryRepository\\PopulateWithValues",
+    "rule": "magento-stored-xss-read-path",
+    "line": 113,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product",
+    "rule": "magento-stored-xss-read-path",
+    "line": 1566,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product",
+    "rule": "magento-stored-xss-read-path",
+    "line": 1866,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product",
+    "rule": "magento-stored-xss-read-path",
+    "line": 2000,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Boolean",
+    "rule": "magento-stored-xss-read-path",
+    "line": 29,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\GroupPrice\\AbstractGroupPrice",
+    "rule": "magento-stored-xss-read-path",
+    "line": 359,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\GroupPrice\\AbstractGroupPrice",
+    "rule": "magento-stored-xss-read-path",
+    "line": 364,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Sku",
+    "rule": "magento-stored-xss-read-path",
+    "line": 94,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\Sku",
+    "rule": "magento-stored-xss-read-path",
+    "line": 150,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\TierPrice\\SaveHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 101,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\TierPrice\\SaveHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 107,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Attribute\\Backend\\TierPrice\\UpdateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 114,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Copier",
+    "rule": "magento-stored-xss-read-path",
+    "line": 110,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CopyHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 111,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 252,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 266,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 621,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 660,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\CreateHandler",
+    "rule": "magento-stored-xss-read-path",
+    "line": 664,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\Processor",
+    "rule": "magento-stored-xss-read-path",
+    "line": 233,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\Processor",
+    "rule": "magento-stored-xss-read-path",
+    "line": 279,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Gallery\\Processor",
+    "rule": "magento-stored-xss-read-path",
+    "line": 307,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Hydrator",
+    "rule": "magento-stored-xss-read-path",
+    "line": 32,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Option\\Repository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 158,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\Option\\Repository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 185,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\PriceModifier",
+    "rule": "magento-stored-xss-read-path",
+    "line": 73,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\Product\\TierPriceManagement",
+    "rule": "magento-stored-xss-read-path",
+    "line": 139,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRender\\FormattedPriceInfoBuilder",
+    "rule": "magento-stored-xss-read-path",
+    "line": 68,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 541,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 588,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 624,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 642,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 647,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ProductRepository\\MediaGalleryProcessor",
+    "rule": "magento-stored-xss-read-path",
+    "line": 253,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Category\\Flat",
+    "rule": "magento-stored-xss-read-path",
+    "line": 294,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Category\\Flat",
+    "rule": "magento-stored-xss-read-path",
+    "line": 355,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Category\\Flat",
+    "rule": "magento-stored-xss-read-path",
+    "line": 527,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Product\\Attribute\\Backend\\Image",
+    "rule": "magento-stored-xss-read-path",
+    "line": 55,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Product\\Attribute\\Backend\\Image",
+    "rule": "magento-stored-xss-read-path",
+    "line": 78,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Product\\Compare\\Item",
+    "rule": "magento-stored-xss-read-path",
+    "line": 96,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Url",
+    "rule": "magento-stored-xss-read-path",
+    "line": 490,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Catalog\\Model\\ResourceModel\\Url",
+    "rule": "magento-stored-xss-read-path",
+    "line": 607,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\CatalogRule\\Controller\\Adminhtml\\Promo\\Catalog\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 119,
+    "route_id": "nsr-9ea523839510",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Block\\InlineEdit",
+    "rule": "magento-reflected-xss",
+    "line": 68,
+    "route_id": "nsr-494354c192c5",
+    "method": "GET",
+    "url": "/inline-edit/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7e5f5eed90d9",
+        "gap_type": "no_guard",
+        "module": "Block",
+        "route_id": "nsr-494354c192c5",
+        "route_method": "GET",
+        "route_url": "/inline-edit/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Block/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Block\\InlineEdit",
+    "rule": "magento-stored-xss-read-path",
+    "line": 68,
+    "route_id": "nsr-494354c192c5",
+    "method": "GET",
+    "url": "/inline-edit/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7e5f5eed90d9",
+        "gap_type": "no_guard",
+        "module": "Block",
+        "route_id": "nsr-494354c192c5",
+        "route_method": "GET",
+        "route_url": "/inline-edit/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Block/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Block\\InlineEdit",
+    "rule": "magento-stored-xss-write-path",
+    "line": 69,
+    "route_id": "nsr-494354c192c5",
+    "method": "GET",
+    "url": "/inline-edit/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7e5f5eed90d9",
+        "gap_type": "no_guard",
+        "module": "Block",
+        "route_id": "nsr-494354c192c5",
+        "route_method": "GET",
+        "route_url": "/inline-edit/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Block/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Block\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 91,
+    "route_id": "nsr-a8cee1f01eb9",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Block\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 94,
+    "route_id": "nsr-a8cee1f01eb9",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\InlineEdit",
+    "rule": "magento-stored-xss-write-path",
+    "line": 90,
+    "route_id": "nsr-92594f426c25",
+    "method": "GET",
+    "url": "/inline-edit/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-a6cf17791ec7",
+        "gap_type": "no_guard",
+        "module": "Page",
+        "route_id": "nsr-92594f426c25",
+        "route_method": "GET",
+        "route_url": "/inline-edit/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Page/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\InlineEdit",
+    "rule": "magento-stored-xss-write-path",
+    "line": 90,
+    "route_id": "nsr-4e4025cd889f",
+    "method": "GET",
+    "url": "/inline-edit/setCmsPageData",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/setCmsPageData has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-9550f9a1e4b4",
+        "gap_type": "no_guard",
+        "module": "Page",
+        "route_id": "nsr-4e4025cd889f",
+        "route_method": "GET",
+        "route_url": "/inline-edit/setCmsPageData",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Page/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\InlineEdit",
+    "rule": "magento-stored-xss-read-path",
+    "line": 199,
+    "route_id": "nsr-92594f426c25",
+    "method": "GET",
+    "url": "/inline-edit/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-a6cf17791ec7",
+        "gap_type": "no_guard",
+        "module": "Page",
+        "route_id": "nsr-92594f426c25",
+        "route_method": "GET",
+        "route_url": "/inline-edit/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Page/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\InlineEdit",
+    "rule": "magento-stored-xss-read-path",
+    "line": 199,
+    "route_id": "nsr-4e4025cd889f",
+    "method": "GET",
+    "url": "/inline-edit/setCmsPageData",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /inline-edit/setCmsPageData has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-9550f9a1e4b4",
+        "gap_type": "no_guard",
+        "module": "Page",
+        "route_id": "nsr-4e4025cd889f",
+        "route_method": "GET",
+        "route_url": "/inline-edit/setCmsPageData",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Page/InlineEdit.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 112,
+    "route_id": "nsr-f5a211fddf2c",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Page\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 120,
+    "route_id": "nsr-f5a211fddf2c",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\Contents",
+    "rule": "magento-stored-xss-read-path",
+    "line": 67,
+    "route_id": "nsr-35c4a7a3954b",
+    "method": "GET",
+    "url": "/contents/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /contents/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-9292a3edb7d0",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-35c4a7a3954b",
+        "route_method": "GET",
+        "route_url": "/contents/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/Contents.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\DeleteFiles",
+    "rule": "magento-stored-xss-read-path",
+    "line": 98,
+    "route_id": "nsr-4d325e62c785",
+    "method": "GET",
+    "url": "/delete-files/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /delete-files/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-daa06f97eee9",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-4d325e62c785",
+        "route_method": "GET",
+        "route_url": "/delete-files/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/DeleteFiles.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\DeleteFolder",
+    "rule": "magento-stored-xss-read-path",
+    "line": 73,
+    "route_id": "nsr-14f11e0b6e51",
+    "method": "GET",
+    "url": "/delete-folder/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /delete-folder/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-8818b2af66c8",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-14f11e0b6e51",
+        "route_method": "GET",
+        "route_url": "/delete-folder/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/DeleteFolder.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\NewFolder",
+    "rule": "magento-reflected-xss",
+    "line": 69,
+    "route_id": "nsr-3164c66cff75",
+    "method": "GET",
+    "url": "/new-folder/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /new-folder/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b3515733b240",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-3164c66cff75",
+        "route_method": "GET",
+        "route_url": "/new-folder/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/NewFolder.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\NewFolder",
+    "rule": "magento-stored-xss-read-path",
+    "line": 69,
+    "route_id": "nsr-3164c66cff75",
+    "method": "GET",
+    "url": "/new-folder/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /new-folder/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b3515733b240",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-3164c66cff75",
+        "route_method": "GET",
+        "route_url": "/new-folder/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/NewFolder.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\TreeJson",
+    "rule": "magento-stored-xss-read-path",
+    "line": 58,
+    "route_id": "nsr-6fafd02d7179",
+    "method": "GET",
+    "url": "/tree-json/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /tree-json/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-2bedd73ee045",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-6fafd02d7179",
+        "route_method": "GET",
+        "route_url": "/tree-json/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/TreeJson.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\Upload",
+    "rule": "magento-reflected-xss",
+    "line": 78,
+    "route_id": "nsr-d6cd39162b9a",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-0ac82beb6f93",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-d6cd39162b9a",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Controller\\Adminhtml\\Wysiwyg\\Images\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 78,
+    "route_id": "nsr-d6cd39162b9a",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-0ac82beb6f93",
+        "gap_type": "no_guard",
+        "module": "Images",
+        "route_id": "nsr-d6cd39162b9a",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Cms/Controller/Adminhtml/Wysiwyg/Images/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Cms\\Model\\Page",
+    "rule": "magento-stored-xss-read-path",
+    "line": 643,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\ResourceModel\\AbstractCollection",
+    "rule": "magento-stored-xss-read-path",
+    "line": 87,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\ResourceModel\\AbstractCollection",
+    "rule": "magento-stored-xss-read-path",
+    "line": 88,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\ResourceModel\\AbstractCollection",
+    "rule": "magento-stored-xss-read-path",
+    "line": 89,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\ResourceModel\\Page",
+    "rule": "magento-stored-xss-read-path",
+    "line": 113,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\Wysiwyg\\CompositeConfigProvider",
+    "rule": "magento-stored-xss-read-path",
+    "line": 142,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Cms\\Model\\Wysiwyg\\Config",
+    "rule": "magento-stored-xss-read-path",
+    "line": 200,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\ConfigurableProduct\\Controller\\Adminhtml\\Product\\Initialization\\Helper\\Plugin\\UpdateConfigurations",
+    "rule": "magento-stored-xss-write-path",
+    "line": 86,
+    "route_id": "nsr-30c0437f52a3",
+    "method": "GET",
+    "url": "/update-configurations/afterInitialize",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /update-configurations/afterInitialize has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-5a57187fb38f",
+        "gap_type": "no_guard",
+        "module": "Plugin",
+        "route_id": "nsr-30c0437f52a3",
+        "route_method": "GET",
+        "route_url": "/update-configurations/afterInitialize",
+        "severity": "medium",
+        "source_file": "app/code/Magento/ConfigurableProduct/Controller/Adminhtml/Product/Initialization/Helper/Plugin/UpdateConfigurations.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Block\\Address\\Edit",
+    "rule": "magento-stored-xss-read-path",
+    "line": 187,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Block\\Adminhtml\\Form\\Element\\Newsletter\\Subscriptions",
+    "rule": "magento-stored-xss-read-path",
+    "line": 107,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Block\\Adminhtml\\Form\\Element\\Newsletter\\Subscriptions",
+    "rule": "magento-stored-xss-read-path",
+    "line": 140,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Block\\Widget\\Dob",
+    "rule": "magento-stored-xss-read-path",
+    "line": 247,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Address\\File\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 106,
+    "route_id": "nsr-13532a8356a3",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "global",
+    "auth_type": "none",
+    "is_authed": false,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\DefaultBillingAddress",
+    "rule": "magento-stored-xss-write-path",
+    "line": 79,
+    "route_id": "nsr-fd971880b7ac",
+    "method": "GET",
+    "url": "/default-billing-address/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /default-billing-address/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-6101edd94a24",
+        "gap_type": "no_guard",
+        "module": "Address",
+        "route_id": "nsr-fd971880b7ac",
+        "route_method": "GET",
+        "route_url": "/default-billing-address/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/Address/DefaultBillingAddress.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\DefaultShippingAddress",
+    "rule": "magento-stored-xss-write-path",
+    "line": 79,
+    "route_id": "nsr-19b4c7daecbd",
+    "method": "GET",
+    "url": "/default-shipping-address/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /default-shipping-address/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-3303df643e3b",
+        "gap_type": "no_guard",
+        "module": "Address",
+        "route_id": "nsr-19b4c7daecbd",
+        "route_method": "GET",
+        "route_url": "/default-shipping-address/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/Address/DefaultShippingAddress.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\MassDelete",
+    "rule": "magento-stored-xss-read-path",
+    "line": 122,
+    "route_id": "nsr-8037b95d2dde",
+    "method": "GET",
+    "url": "/mass-delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mass-delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e98f5142342b",
+        "gap_type": "no_guard",
+        "module": "Address",
+        "route_id": "nsr-8037b95d2dde",
+        "route_method": "GET",
+        "route_url": "/mass-delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/Address/MassDelete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 188,
+    "route_id": "nsr-687f2e21e4d3",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\Save",
+    "rule": "magento-stored-xss-read-path",
+    "line": 188,
+    "route_id": "nsr-687f2e21e4d3",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Address\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 188,
+    "route_id": "nsr-687f2e21e4d3",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\File\\Address\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 117,
+    "route_id": "nsr-c0ba21c99c84",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-265c93bdc1eb",
+        "gap_type": "no_guard",
+        "module": "Address",
+        "route_id": "nsr-c0ba21c99c84",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/File/Address/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\File\\Customer\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 109,
+    "route_id": "nsr-ad9535cd836a",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-701a945a4817",
+        "gap_type": "no_guard",
+        "module": "Customer",
+        "route_id": "nsr-ad9535cd836a",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/File/Customer/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Index\\Cart",
+    "rule": "magento-stored-xss-write-path",
+    "line": 188,
+    "route_id": "nsr-f5e172859acb",
+    "method": "GET",
+    "url": "/cart/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\System\\Config\\Validatevat\\ValidateAdvanced",
+    "rule": "magento-reflected-xss",
+    "line": 54,
+    "route_id": "nsr-c9d89efe9282",
+    "method": "GET",
+    "url": "/validate-advanced/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /validate-advanced/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-42968dd0e916",
+        "gap_type": "no_guard",
+        "module": "Validatevat",
+        "route_id": "nsr-c9d89efe9282",
+        "route_method": "GET",
+        "route_url": "/validate-advanced/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/System/Config/Validatevat/ValidateAdvanced.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\System\\Config\\Validatevat\\ValidateAdvanced",
+    "rule": "magento-stored-xss-write-path",
+    "line": 54,
+    "route_id": "nsr-c9d89efe9282",
+    "method": "GET",
+    "url": "/validate-advanced/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /validate-advanced/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-42968dd0e916",
+        "gap_type": "no_guard",
+        "module": "Validatevat",
+        "route_id": "nsr-c9d89efe9282",
+        "route_method": "GET",
+        "route_url": "/validate-advanced/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/System/Config/Validatevat/ValidateAdvanced.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Controller\\Adminhtml\\Wishlist\\Product\\Composite\\Wishlist\\Update",
+    "rule": "magento-stored-xss-write-path",
+    "line": 27,
+    "route_id": "nsr-c72287b2663b",
+    "method": "GET",
+    "url": "/update/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /update/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-94491ed3fe92",
+        "gap_type": "no_guard",
+        "module": "Wishlist",
+        "route_id": "nsr-c72287b2663b",
+        "route_method": "GET",
+        "route_url": "/update/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Customer/Controller/Adminhtml/Wishlist/Product/Composite/Wishlist/Update.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address",
+    "rule": "magento-stored-xss-read-path",
+    "line": 174,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 408,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 409,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 413,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 416,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 418,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 440,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 442,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 446,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 449,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 473,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 476,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Address\\AbstractAddress",
+    "rule": "magento-stored-xss-read-path",
+    "line": 486,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Attribute\\Backend\\Data\\Boolean",
+    "rule": "magento-stored-xss-read-path",
+    "line": 25,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Config\\Backend\\Address\\Street",
+    "rule": "magento-stored-xss-read-path",
+    "line": 69,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Config\\Backend\\Address\\Street",
+    "rule": "magento-stored-xss-read-path",
+    "line": 74,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Config\\Backend\\CreateAccount\\DisableAutoGroupAssignDefault",
+    "rule": "magento-stored-xss-read-path",
+    "line": 49,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Config\\Backend\\Show\\Customer",
+    "rule": "magento-stored-xss-read-path",
+    "line": 129,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Config\\Backend\\Show\\Customer",
+    "rule": "magento-stored-xss-read-path",
+    "line": 130,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Customer",
+    "rule": "magento-stored-xss-read-path",
+    "line": 391,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Customer\\Attribute\\Backend\\Store",
+    "rule": "magento-stored-xss-read-path",
+    "line": 43,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Customer\\Model\\Plugin\\CustomerNotification",
+    "rule": "magento-stored-xss-read-path",
+    "line": 126,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Downloadable\\Controller\\Adminhtml\\Downloadable\\File\\Upload",
+    "rule": "magento-reflected-xss",
+    "line": 114,
+    "route_id": "nsr-84c7867bcf89",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-2617be36252b",
+        "gap_type": "no_guard",
+        "module": "File",
+        "route_id": "nsr-84c7867bcf89",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Downloadable/Controller/Adminhtml/Downloadable/File/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Downloadable\\Controller\\Adminhtml\\Downloadable\\File\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 114,
+    "route_id": "nsr-84c7867bcf89",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-2617be36252b",
+        "gap_type": "no_guard",
+        "module": "File",
+        "route_id": "nsr-84c7867bcf89",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Downloadable/Controller/Adminhtml/Downloadable/File/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Downloadable\\Controller\\Adminhtml\\Product\\Initialization\\Helper\\Plugin\\Downloadable",
+    "rule": "magento-reflected-xss",
+    "line": 95,
+    "route_id": "nsr-2c617a983e6c",
+    "method": "GET",
+    "url": "/downloadable/afterInitialize",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /downloadable/afterInitialize has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7dc6d395ba4e",
+        "gap_type": "no_guard",
+        "module": "Plugin",
+        "route_id": "nsr-2c617a983e6c",
+        "route_method": "GET",
+        "route_url": "/downloadable/afterInitialize",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Downloadable/Controller/Adminhtml/Product/Initialization/Helper/Plugin/Downloadable.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Downloadable\\Controller\\Adminhtml\\Product\\Initialization\\Helper\\Plugin\\Downloadable",
+    "rule": "magento-reflected-xss",
+    "line": 113,
+    "route_id": "nsr-2c617a983e6c",
+    "method": "GET",
+    "url": "/downloadable/afterInitialize",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /downloadable/afterInitialize has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7dc6d395ba4e",
+        "gap_type": "no_guard",
+        "module": "Plugin",
+        "route_id": "nsr-2c617a983e6c",
+        "route_method": "GET",
+        "route_url": "/downloadable/afterInitialize",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Downloadable/Controller/Adminhtml/Product/Initialization/Helper/Plugin/Downloadable.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Email\\Controller\\Adminhtml\\Email\\Template\\DefaultTemplate",
+    "rule": "magento-reflected-xss",
+    "line": 69,
+    "route_id": "nsr-bfc4b4a41f69",
+    "method": "GET",
+    "url": "/default-template/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /default-template/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-8dcf4134a6b4",
+        "gap_type": "no_guard",
+        "module": "Template",
+        "route_id": "nsr-bfc4b4a41f69",
+        "route_method": "GET",
+        "route_url": "/default-template/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Email/Controller/Adminhtml/Email/Template/DefaultTemplate.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Email\\Controller\\Adminhtml\\Email\\Template\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 110,
+    "route_id": "nsr-1c7521c13938",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\ImportExport\\Controller\\Adminhtml\\Export\\GetFilter",
+    "rule": "magento-reflected-xss",
+    "line": 31,
+    "route_id": "nsr-b9a702ac2478",
+    "method": "GET",
+    "url": "/get-filter/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /get-filter/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-7637f6cecb5f",
+        "gap_type": "no_guard",
+        "module": "Export",
+        "route_id": "nsr-b9a702ac2478",
+        "route_method": "GET",
+        "route_url": "/get-filter/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/ImportExport/Controller/Adminhtml/Export/GetFilter.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Integration\\Controller\\Adminhtml\\Integration\\TokensDialog",
+    "rule": "magento-stored-xss-write-path",
+    "line": 46,
+    "route_id": "nsr-dd4427fc4cfc",
+    "method": "GET",
+    "url": "/tokens-dialog/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /tokens-dialog/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-fabee52a3098",
+        "gap_type": "no_guard",
+        "module": "Integration",
+        "route_id": "nsr-dd4427fc4cfc",
+        "route_method": "GET",
+        "route_url": "/tokens-dialog/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Integration/Controller/Adminhtml/Integration/TokensDialog.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Integration\\Controller\\Adminhtml\\Integration\\TokensExchange",
+    "rule": "magento-stored-xss-write-path",
+    "line": 56,
+    "route_id": "nsr-e14e07a48012",
+    "method": "GET",
+    "url": "/tokens-exchange/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /tokens-exchange/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b9973bd37ed1",
+        "gap_type": "no_guard",
+        "module": "Integration",
+        "route_id": "nsr-e14e07a48012",
+        "route_method": "GET",
+        "route_url": "/tokens-exchange/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Integration/Controller/Adminhtml/Integration/TokensExchange.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Block\\Search",
+    "rule": "magento-reflected-xss",
+    "line": 92,
+    "route_id": "nsr-cc0e9a80ee14",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Block\\Search",
+    "rule": "magento-stored-xss-read-path",
+    "line": 92,
+    "route_id": "nsr-cc0e9a80ee14",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Block\\Search",
+    "rule": "magento-stored-xss-write-path",
+    "line": 92,
+    "route_id": "nsr-cc0e9a80ee14",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Page\\Search",
+    "rule": "magento-reflected-xss",
+    "line": 92,
+    "route_id": "nsr-af31e6067848",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Page\\Search",
+    "rule": "magento-stored-xss-read-path",
+    "line": 92,
+    "route_id": "nsr-af31e6067848",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryCmsUi\\Controller\\Adminhtml\\Page\\Search",
+    "rule": "magento-stored-xss-write-path",
+    "line": 92,
+    "route_id": "nsr-af31e6067848",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Asset\\Search",
+    "rule": "magento-stored-xss-read-path",
+    "line": 165,
+    "route_id": "nsr-134caeae912f",
+    "method": "GET",
+    "url": "/search/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Directories\\Create",
+    "rule": "magento-stored-xss-read-path",
+    "line": 104,
+    "route_id": "nsr-9ac6f5696006",
+    "method": "GET",
+    "url": "/create/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /create/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-5dd20bb29767",
+        "gap_type": "no_guard",
+        "module": "Directories",
+        "route_id": "nsr-9ac6f5696006",
+        "route_method": "GET",
+        "route_url": "/create/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Directories/Create.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Directories\\Delete",
+    "rule": "magento-stored-xss-read-path",
+    "line": 114,
+    "route_id": "nsr-4c5350487030",
+    "method": "GET",
+    "url": "/delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-3a3ed30d8c20",
+        "gap_type": "no_guard",
+        "module": "Directories",
+        "route_id": "nsr-4c5350487030",
+        "route_method": "GET",
+        "route_url": "/delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Directories/Delete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\Delete",
+    "rule": "magento-reflected-xss",
+    "line": 139,
+    "route_id": "nsr-db922f6579db",
+    "method": "GET",
+    "url": "/delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-82a5c1479aa8",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-db922f6579db",
+        "route_method": "GET",
+        "route_url": "/delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/Delete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\Delete",
+    "rule": "magento-stored-xss-read-path",
+    "line": 139,
+    "route_id": "nsr-db922f6579db",
+    "method": "GET",
+    "url": "/delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-82a5c1479aa8",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-db922f6579db",
+        "route_method": "GET",
+        "route_url": "/delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/Delete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\Details",
+    "rule": "magento-reflected-xss",
+    "line": 106,
+    "route_id": "nsr-82750b9ba428",
+    "method": "GET",
+    "url": "/details/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /details/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-86a67ec78b2a",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-82750b9ba428",
+        "route_method": "GET",
+        "route_url": "/details/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/Details.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\Details",
+    "rule": "magento-stored-xss-read-path",
+    "line": 106,
+    "route_id": "nsr-82750b9ba428",
+    "method": "GET",
+    "url": "/details/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /details/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-86a67ec78b2a",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-82750b9ba428",
+        "route_method": "GET",
+        "route_url": "/details/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/Details.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\OnInsert",
+    "rule": "magento-reflected-xss",
+    "line": 68,
+    "route_id": "nsr-1575103fa7b5",
+    "method": "GET",
+    "url": "/on-insert/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /on-insert/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e4bef0e0689d",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-1575103fa7b5",
+        "route_method": "GET",
+        "route_url": "/on-insert/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/OnInsert.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\OnInsert",
+    "rule": "magento-stored-xss-read-path",
+    "line": 68,
+    "route_id": "nsr-1575103fa7b5",
+    "method": "GET",
+    "url": "/on-insert/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /on-insert/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e4bef0e0689d",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-1575103fa7b5",
+        "route_method": "GET",
+        "route_url": "/on-insert/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/OnInsert.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\OnInsert",
+    "rule": "magento-stored-xss-write-path",
+    "line": 68,
+    "route_id": "nsr-1575103fa7b5",
+    "method": "GET",
+    "url": "/on-insert/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /on-insert/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e4bef0e0689d",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-1575103fa7b5",
+        "route_method": "GET",
+        "route_url": "/on-insert/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/OnInsert.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\SaveDetails",
+    "rule": "magento-reflected-xss",
+    "line": 124,
+    "route_id": "nsr-576566dc432c",
+    "method": "GET",
+    "url": "/save-details/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /save-details/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-3fb461da5666",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-576566dc432c",
+        "route_method": "GET",
+        "route_url": "/save-details/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/SaveDetails.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\SaveDetails",
+    "rule": "magento-stored-xss-read-path",
+    "line": 124,
+    "route_id": "nsr-576566dc432c",
+    "method": "GET",
+    "url": "/save-details/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /save-details/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-3fb461da5666",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-576566dc432c",
+        "route_method": "GET",
+        "route_url": "/save-details/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/SaveDetails.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\MediaGalleryUi\\Controller\\Adminhtml\\Image\\Upload",
+    "rule": "magento-stored-xss-read-path",
+    "line": 101,
+    "route_id": "nsr-1cce8ddcf51a",
+    "method": "GET",
+    "url": "/upload/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /upload/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e37fdf60fb91",
+        "gap_type": "no_guard",
+        "module": "Image",
+        "route_id": "nsr-1cce8ddcf51a",
+        "route_method": "GET",
+        "route_url": "/upload/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/MediaGalleryUi/Controller/Adminhtml/Image/Upload.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Queue\\Cancel",
+    "rule": "magento-stored-xss-write-path",
+    "line": 30,
+    "route_id": "nsr-6fbb48bc57dd",
+    "method": "GET",
+    "url": "/cancel/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /cancel/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-14c35d33860f",
+        "gap_type": "no_guard",
+        "module": "Queue",
+        "route_id": "nsr-6fbb48bc57dd",
+        "route_method": "GET",
+        "route_url": "/cancel/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Newsletter/Controller/Adminhtml/Queue/Cancel.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Queue\\Pause",
+    "rule": "magento-stored-xss-write-path",
+    "line": 30,
+    "route_id": "nsr-2c6c3a7d8afe",
+    "method": "GET",
+    "url": "/pause/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /pause/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-5864e0d78f3d",
+        "gap_type": "no_guard",
+        "module": "Queue",
+        "route_id": "nsr-2c6c3a7d8afe",
+        "route_method": "GET",
+        "route_url": "/pause/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Newsletter/Controller/Adminhtml/Queue/Pause.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Queue\\Resume",
+    "rule": "magento-stored-xss-write-path",
+    "line": 30,
+    "route_id": "nsr-730205718b95",
+    "method": "GET",
+    "url": "/resume/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /resume/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-a762a2ec9e34",
+        "gap_type": "no_guard",
+        "module": "Queue",
+        "route_id": "nsr-730205718b95",
+        "route_method": "GET",
+        "route_url": "/resume/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Newsletter/Controller/Adminhtml/Queue/Resume.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Queue\\Start",
+    "rule": "magento-stored-xss-write-path",
+    "line": 33,
+    "route_id": "nsr-296086260674",
+    "method": "GET",
+    "url": "/start/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /start/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e07d806a67ac",
+        "gap_type": "no_guard",
+        "module": "Queue",
+        "route_id": "nsr-296086260674",
+        "route_method": "GET",
+        "route_url": "/start/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Newsletter/Controller/Adminhtml/Queue/Start.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Template\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 73,
+    "route_id": "nsr-ea6618cc59c2",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Newsletter\\Controller\\Adminhtml\\Template\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 76,
+    "route_id": "nsr-ea6618cc59c2",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Quote\\Model\\Cart\\TotalsConverter",
+    "rule": "magento-stored-xss-read-path",
+    "line": 50,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\Quote",
+    "rule": "magento-stored-xss-read-path",
+    "line": 1325,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\Quote",
+    "rule": "magento-stored-xss-read-path",
+    "line": 2263,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\Quote\\Item",
+    "rule": "magento-stored-xss-read-path",
+    "line": 641,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\QuoteRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 264,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\ResourceModel\\LoadQuoteByIdMutex",
+    "rule": "magento-stored-xss-read-path",
+    "line": 45,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\ResourceModel\\Quote",
+    "rule": "magento-stored-xss-read-path",
+    "line": 108,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\ResourceModel\\Quote",
+    "rule": "magento-stored-xss-read-path",
+    "line": 131,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Quote\\Model\\ResourceModel\\Quote",
+    "rule": "magento-stored-xss-read-path",
+    "line": 156,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\ReleaseNotification\\Controller\\Adminhtml\\Notification\\MarkUserNotified",
+    "rule": "magento-stored-xss-read-path",
+    "line": 88,
+    "route_id": "nsr-2fdd03b8281c",
+    "method": "GET",
+    "url": "/mark-user-notified/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mark-user-notified/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b05e24f66ea1",
+        "gap_type": "no_guard",
+        "module": "Notification",
+        "route_id": "nsr-2fdd03b8281c",
+        "route_method": "GET",
+        "route_url": "/mark-user-notified/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/ReleaseNotification/Controller/Adminhtml/Notification/MarkUserNotified.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Reports\\Controller\\Adminhtml\\Report\\AbstractReport",
+    "rule": "magento-reflected-xss",
+    "line": 198,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Review\\Controller\\Adminhtml\\Product\\MassUpdateStatus",
+    "rule": "magento-stored-xss-write-path",
+    "line": 67,
+    "route_id": "nsr-15beb298ce6d",
+    "method": "GET",
+    "url": "/mass-update-status/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mass-update-status/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-e72927901e9e",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-15beb298ce6d",
+        "route_method": "GET",
+        "route_url": "/mass-update-status/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Review/Controller/Adminhtml/Product/MassUpdateStatus.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Review\\Controller\\Adminhtml\\Product\\MassVisibleIn",
+    "rule": "magento-stored-xss-write-path",
+    "line": 35,
+    "route_id": "nsr-b870d6e5eff7",
+    "method": "GET",
+    "url": "/mass-visible-in/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /mass-visible-in/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b5da91cb0cd9",
+        "gap_type": "no_guard",
+        "module": "Product",
+        "route_id": "nsr-b870d6e5eff7",
+        "route_method": "GET",
+        "route_url": "/mass-visible-in/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Review/Controller/Adminhtml/Product/MassVisibleIn.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Review\\Controller\\Adminhtml\\Product\\Post",
+    "rule": "magento-stored-xss-write-path",
+    "line": 42,
+    "route_id": "nsr-6b2cf2d7ec2d",
+    "method": "GET",
+    "url": "/post/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Review\\Controller\\Adminhtml\\Rating\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 36,
+    "route_id": "nsr-ffb90af4cf88",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Review\\Controller\\Adminhtml\\Rating\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 55,
+    "route_id": "nsr-ffb90af4cf88",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Review\\Model\\Review",
+    "rule": "magento-stored-xss-read-path",
+    "line": 233,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Sales\\Block\\Items\\AbstractItems",
+    "rule": "magento-stored-xss-read-path",
+    "line": 94,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\AddComment",
+    "rule": "magento-stored-xss-write-path",
+    "line": 61,
+    "route_id": "nsr-240b4ad12e7d",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-59f854c89a23",
+        "gap_type": "no_guard",
+        "module": "Order",
+        "route_id": "nsr-240b4ad12e7d",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\AddComment",
+    "rule": "magento-stored-xss-read-path",
+    "line": 78,
+    "route_id": "nsr-240b4ad12e7d",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-59f854c89a23",
+        "gap_type": "no_guard",
+        "module": "Order",
+        "route_id": "nsr-240b4ad12e7d",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\AddressSave",
+    "rule": "magento-stored-xss-write-path",
+    "line": 133,
+    "route_id": "nsr-1ddb1a96c1d9",
+    "method": "GET",
+    "url": "/address-save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /address-save/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-952c6274fb88",
+        "gap_type": "no_guard",
+        "module": "Order",
+        "route_id": "nsr-1ddb1a96c1d9",
+        "route_method": "GET",
+        "route_url": "/address-save/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/AddressSave.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Creditmemo\\AddComment",
+    "rule": "magento-stored-xss-write-path",
+    "line": 132,
+    "route_id": "nsr-1ac4c2716ef6",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-8d171b8a7a37",
+        "gap_type": "no_guard",
+        "module": "Creditmemo",
+        "route_id": "nsr-1ac4c2716ef6",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Creditmemo/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Creditmemo\\AddComment",
+    "rule": "magento-stored-xss-write-path",
+    "line": 136,
+    "route_id": "nsr-1ac4c2716ef6",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-8d171b8a7a37",
+        "gap_type": "no_guard",
+        "module": "Creditmemo",
+        "route_id": "nsr-1ac4c2716ef6",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Creditmemo/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Creditmemo\\AddComment",
+    "rule": "magento-stored-xss-read-path",
+    "line": 148,
+    "route_id": "nsr-1ac4c2716ef6",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-8d171b8a7a37",
+        "gap_type": "no_guard",
+        "module": "Creditmemo",
+        "route_id": "nsr-1ac4c2716ef6",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Creditmemo/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Creditmemo\\UpdateQty",
+    "rule": "magento-stored-xss-read-path",
+    "line": 83,
+    "route_id": "nsr-b6fcff8bb7b0",
+    "method": "GET",
+    "url": "/update-qty/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /update-qty/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-f48f9d7f39c8",
+        "gap_type": "no_guard",
+        "module": "Creditmemo",
+        "route_id": "nsr-b6fcff8bb7b0",
+        "route_method": "GET",
+        "route_url": "/update-qty/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Creditmemo/UpdateQty.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Invoice\\AddComment",
+    "rule": "magento-stored-xss-write-path",
+    "line": 139,
+    "route_id": "nsr-3272795526f7",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-fd466a4d9a7a",
+        "gap_type": "no_guard",
+        "module": "Invoice",
+        "route_id": "nsr-3272795526f7",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Invoice/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Invoice\\AddComment",
+    "rule": "magento-stored-xss-read-path",
+    "line": 154,
+    "route_id": "nsr-3272795526f7",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-fd466a4d9a7a",
+        "gap_type": "no_guard",
+        "module": "Invoice",
+        "route_id": "nsr-3272795526f7",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Invoice/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Invoice\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 210,
+    "route_id": "nsr-2f4e54c39d4e",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Invoice\\UpdateQty",
+    "rule": "magento-stored-xss-read-path",
+    "line": 126,
+    "route_id": "nsr-6c66e9029760",
+    "method": "GET",
+    "url": "/update-qty/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /update-qty/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-a1e766851980",
+        "gap_type": "no_guard",
+        "module": "Invoice",
+        "route_id": "nsr-6c66e9029760",
+        "route_method": "GET",
+        "route_url": "/update-qty/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Sales/Controller/Adminhtml/Order/Invoice/UpdateQty.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Status\\Save",
+    "rule": "magento-reflected-xss",
+    "line": 56,
+    "route_id": "nsr-633824ff96db",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Sales\\Controller\\Adminhtml\\Order\\Status\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 59,
+    "route_id": "nsr-633824ff96db",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Sales\\Model\\Order\\AddressRepository",
+    "rule": "magento-stored-xss-read-path",
+    "line": 99,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Sales\\Model\\Order\\Payment\\Info",
+    "rule": "magento-stored-xss-read-path",
+    "line": 88,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Sales\\Model\\Order\\Payment\\Info",
+    "rule": "magento-stored-xss-read-path",
+    "line": 95,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Search\\Controller\\Adminhtml\\Synonyms\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 88,
+    "route_id": "nsr-44b137a7e9cc",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Search\\Controller\\Adminhtml\\Synonyms\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 92,
+    "route_id": "nsr-44b137a7e9cc",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Search\\Model\\ResourceModel\\Query",
+    "rule": "magento-stored-xss-read-path",
+    "line": 73,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Shipping\\Controller\\Adminhtml\\Order\\Shipment\\AddComment",
+    "rule": "magento-stored-xss-write-path",
+    "line": 118,
+    "route_id": "nsr-d24ed0820598",
+    "method": "GET",
+    "url": "/add-comment/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /add-comment/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-6850ec8f3cfd",
+        "gap_type": "no_guard",
+        "module": "Shipment",
+        "route_id": "nsr-d24ed0820598",
+        "route_method": "GET",
+        "route_url": "/add-comment/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Shipping/Controller/Adminhtml/Order/Shipment/AddComment.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Rate\\AjaxDelete",
+    "rule": "magento-stored-xss-read-path",
+    "line": 35,
+    "route_id": "nsr-ff6780940f63",
+    "method": "GET",
+    "url": "/ajax-delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-1b759f46d033",
+        "gap_type": "no_guard",
+        "module": "Rate",
+        "route_id": "nsr-ff6780940f63",
+        "route_method": "GET",
+        "route_url": "/ajax-delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Rate/AjaxDelete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Rate\\AjaxLoad",
+    "rule": "magento-stored-xss-read-path",
+    "line": 49,
+    "route_id": "nsr-b17b661c787f",
+    "method": "GET",
+    "url": "/ajax-load/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-load/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-a047df18d443",
+        "gap_type": "no_guard",
+        "module": "Rate",
+        "route_id": "nsr-b17b661c787f",
+        "route_method": "GET",
+        "route_url": "/ajax-load/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Rate/AjaxLoad.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Rate\\AjaxSave",
+    "rule": "magento-stored-xss-read-path",
+    "line": 82,
+    "route_id": "nsr-a90575f586fa",
+    "method": "GET",
+    "url": "/ajax-save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-save/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-b13bd9368719",
+        "gap_type": "no_guard",
+        "module": "Rate",
+        "route_id": "nsr-a90575f586fa",
+        "route_method": "GET",
+        "route_url": "/ajax-save/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Rate/AjaxSave.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Rule\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 25,
+    "route_id": "nsr-398280511e42",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Tax\\AjaxDelete",
+    "rule": "magento-stored-xss-read-path",
+    "line": 36,
+    "route_id": "nsr-80181e1137df",
+    "method": "GET",
+    "url": "/ajax-delete/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-delete/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-be489e837636",
+        "gap_type": "no_guard",
+        "module": "Tax",
+        "route_id": "nsr-80181e1137df",
+        "route_method": "GET",
+        "route_url": "/ajax-delete/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Tax/AjaxDelete.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Tax\\AjaxSave",
+    "rule": "magento-stored-xss-write-path",
+    "line": 28,
+    "route_id": "nsr-7d9ec520094f",
+    "method": "GET",
+    "url": "/ajax-save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-save/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-d36d3f507e07",
+        "gap_type": "no_guard",
+        "module": "Tax",
+        "route_id": "nsr-7d9ec520094f",
+        "route_method": "GET",
+        "route_url": "/ajax-save/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Tax/AjaxSave.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Tax\\AjaxSave",
+    "rule": "magento-reflected-xss",
+    "line": 54,
+    "route_id": "nsr-7d9ec520094f",
+    "method": "GET",
+    "url": "/ajax-save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-save/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-d36d3f507e07",
+        "gap_type": "no_guard",
+        "module": "Tax",
+        "route_id": "nsr-7d9ec520094f",
+        "route_method": "GET",
+        "route_url": "/ajax-save/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Tax/AjaxSave.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Tax\\Controller\\Adminhtml\\Tax\\AjaxSave",
+    "rule": "magento-stored-xss-read-path",
+    "line": 54,
+    "route_id": "nsr-7d9ec520094f",
+    "method": "GET",
+    "url": "/ajax-save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /ajax-save/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-d36d3f507e07",
+        "gap_type": "no_guard",
+        "module": "Tax",
+        "route_id": "nsr-7d9ec520094f",
+        "route_method": "GET",
+        "route_url": "/ajax-save/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/Tax/Controller/Adminhtml/Tax/AjaxSave.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Theme\\Controller\\Adminhtml\\Design\\Config\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 82,
+    "route_id": "nsr-fb120fc5fe0f",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Theme\\Controller\\Adminhtml\\System\\Design\\Theme\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 63,
+    "route_id": "nsr-a182d7543295",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Ui\\Controller\\Adminhtml\\Bookmark\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 200,
+    "route_id": "nsr-644e8565cb81",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Ui\\Controller\\Adminhtml\\Bookmark\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 208,
+    "route_id": "nsr-644e8565cb81",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\Ui\\Controller\\Adminhtml\\Bookmark\\Save",
+    "rule": "magento-stored-xss-write-path",
+    "line": 254,
+    "route_id": "nsr-644e8565cb81",
+    "method": "GET",
+    "url": "/save/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 0,
+    "gaps": []
+  },
+  {
+    "class": "Magento\\User\\Controller\\Adminhtml\\Auth\\ResetPassword",
+    "rule": "magento-reflected-xss",
+    "line": 39,
+    "route_id": "nsr-31396f57ea80",
+    "method": "GET",
+    "url": "/reset-password/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /reset-password/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-4f189f7bc4d8",
+        "gap_type": "no_guard",
+        "module": "Auth",
+        "route_id": "nsr-31396f57ea80",
+        "route_method": "GET",
+        "route_url": "/reset-password/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/User/Controller/Adminhtml/Auth/ResetPassword.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\User\\Controller\\Adminhtml\\User\\Role\\SaveRole",
+    "rule": "magento-reflected-xss",
+    "line": 118,
+    "route_id": "nsr-f70b6f1e0df4",
+    "method": "GET",
+    "url": "/save-role/execute",
+    "area": "adminhtml",
+    "auth_type": "session",
+    "is_authed": true,
+    "gap_count": 1,
+    "gaps": [
+      {
+        "affected_roles": [
+          "*"
+        ],
+        "description": "Route /save-role/execute has no guards. Auth: True, ACL: []",
+        "expected_guard": "ACL resource requirement + admin session check",
+        "gap_id": "nsgap-f5c8806325bf",
+        "gap_type": "no_guard",
+        "module": "Role",
+        "route_id": "nsr-f70b6f1e0df4",
+        "route_method": "GET",
+        "route_url": "/save-role/execute",
+        "severity": "medium",
+        "source_file": "app/code/Magento/User/Controller/Adminhtml/User/Role/SaveRole.php",
+        "source_line": null
+      }
+    ]
+  },
+  {
+    "class": "Magento\\Wishlist\\Model\\Item",
+    "rule": "magento-stored-xss-read-path",
+    "line": 528,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Wishlist\\Model\\Item",
+    "rule": "magento-stored-xss-read-path",
+    "line": 665,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  },
+  {
+    "class": "Magento\\Wishlist\\Model\\ResourceModel\\Item",
+    "rule": "magento-stored-xss-read-path",
+    "line": 48,
+    "route_id": null,
+    "method": null,
+    "url": null,
+    "area": null,
+    "auth_type": null,
+    "is_authed": null,
+    "gap_count": 0,
+    "gaps": [],
+    "_no_route": true
+  }
+]

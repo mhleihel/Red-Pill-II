@@ -1,0 +1,18 @@
+{
+  "gap_count": 2876,
+  "severity_counts": {
+    "critical": 564,
+    "high": 125,
+    "low": 53,
+    "medium": 2134
+  },
+  "stage": "stage_03_gaps",
+  "status": "completed",
+  "target": "/Users/mhleihel/Desktop/Booyah/results/nospoon_20260507",
+  "timestamp": "2026-05-07T18:18:48.176909+00:00",
+  "type_counts": {
+    "missing_ownership": 194,
+    "no_guard": 1901,
+    "role_escalation": 781
+  }
+}

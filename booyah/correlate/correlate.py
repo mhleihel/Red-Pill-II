@@ -159,45 +159,90 @@ def load_joern_json(json_path: str) -> list[dict]:
 # Runtime trace loading
 # ---------------------------------------------------------------------------
 
-def load_runtime_traces(db_path: str) -> dict[str, list[dict]]:
+def load_runtime_traces(db_path: str) -> tuple:
     """
     Load trace DB and build a hash→[trace records] index.
-    Returns: {value_hash: [trace_record, ...]}
+    Supports the current events/taints schema (value_hash via taints table).
+    Returns: (hash_index, transform_chains)
     """
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
 
-    # Load all source and sink hashes per request
-    cur.execute("""
-        SELECT request_id, type, function_name, param_name, file, line, value_hash, value_preview, ts
-        FROM traces ORDER BY ts
-    """)
-    rows = [dict(r) for r in cur.fetchall()]
+    # Check which schema version is present
+    cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    tables = {r["name"] for r in cur.fetchall()}
 
-    # Load transforms
-    cur.execute("""
-        SELECT request_id, in_hash, out_hash, function_name, file, line, sanitized
-        FROM transforms
-    """)
-    transforms = [dict(r) for r in cur.fetchall()]
+    rows = []
+    transforms = []
+
+    if "events" in tables and "taints" in tables:
+        # Current schema: events + taints
+        cur.execute("""
+            SELECT
+                e.request_id,
+                e.event_type      AS type,
+                e.function_fqn    AS function_name,
+                e.function_fqn    AS param_name,
+                e.file_path       AS file,
+                e.line_no         AS line,
+                t.value_hash,
+                e.ts
+            FROM events e
+            LEFT JOIN taints t ON e.taint_id = t.taint_id
+            WHERE e.event_type IN ('SOURCE', 'SINK')
+              AND t.value_hash IS NOT NULL
+            ORDER BY e.ts
+        """)
+        rows = [dict(r) for r in cur.fetchall()]
+
+        if "transforms" in tables:
+            cur.execute("""
+                SELECT
+                    tr.request_id,
+                    ti.value_hash  AS in_hash,
+                    to_.value_hash AS out_hash,
+                    tr.transformer_fqn AS function_name,
+                    e.file_path    AS file,
+                    e.line_no      AS line,
+                    CASE WHEN tr.marks_added_json LIKE '%SANITIZED%' THEN 1 ELSE 0 END AS sanitized
+                FROM transforms tr
+                JOIN taints ti  ON tr.in_taint_id  = ti.taint_id
+                JOIN taints to_ ON tr.out_taint_id = to_.taint_id
+                JOIN events e   ON tr.event_id = e.event_id
+            """)
+            transforms = [dict(r) for r in cur.fetchall()]
+
+    elif "traces" in tables:
+        # Legacy schema
+        cur.execute("""
+            SELECT request_id, type, function_name, param_name, file, line, value_hash, ts
+            FROM traces ORDER BY ts
+        """)
+        rows = [dict(r) for r in cur.fetchall()]
+
+        if "transforms" in tables:
+            cur.execute("""
+                SELECT request_id, in_hash, out_hash, function_name, file, line, sanitized
+                FROM transforms
+            """)
+            transforms = [dict(r) for r in cur.fetchall()]
+
     conn.close()
 
-    # Build hash index
+    # Build hash index: value_hash → [trace records]
     hash_index: dict[str, list[dict]] = {}
     for row in rows:
-        h = row["value_hash"]
-        if h not in hash_index:
-            hash_index[h] = []
-        hash_index[h].append(row)
+        h = row.get("value_hash")
+        if h:
+            hash_index.setdefault(h, []).append(row)
 
-    # Build transform chains: source_hash -> {out_hash, sanitized}
+    # Build transform chains: in_hash → [{out_hash, sanitized, ...}]
     transform_chains: dict[str, list[dict]] = {}
     for t in transforms:
-        if t["in_hash"]:
-            if t["in_hash"] not in transform_chains:
-                transform_chains[t["in_hash"]] = []
-            transform_chains[t["in_hash"]].append(t)
+        ih = t.get("in_hash")
+        if ih:
+            transform_chains.setdefault(ih, []).append(t)
 
     return hash_index, transform_chains
 
@@ -212,31 +257,40 @@ def trace_confirms_path(
     line_tolerance: int = 3,
 ) -> bool:
     """
-    Return True if the runtime traces contain a value that:
-    1. Appears as a source near (source_file, source_line)
-    2. Appears as a sink near (sink_file, sink_line)
-    3. Was not sanitized in between (no transform with sanitized=1 on the path)
+    Return True if runtime traces show a tainted value reaching the sink.
+
+    Strategy 1 (full path): source file+line match → value hash → sink file+line match.
+    Strategy 2 (sink-only): any SOURCE event's hash reaches sink file+line, unsanitized.
+    Source events recorded at the HTTP boundary often have no file/line, so strategy 2
+    handles the common case where the tracer marks taint at the request entry point.
     """
-    # Find source records matching file+line
+    # Strategy 1: source location match → sink location match
     source_hashes = set()
     for h, records in hash_index.items():
         for rec in records:
-            if rec["type"] == "source":
+            if rec["type"].lower() == "source":
                 if _loc_match(rec["file"], rec["line"], source_file, source_line, line_tolerance):
                     source_hashes.add(h)
 
-    if not source_hashes:
-        return False
-
-    # For each source hash, check if it reaches a sink
     for sh in source_hashes:
-        # Direct: same hash appears at sink
         if _hash_at_sink(sh, hash_index, sink_file, sink_line, line_tolerance):
-            # Check not sanitized
             if not _was_sanitized(sh, transform_chains):
                 return True
+        for t in transform_chains.get(sh, []):
+            if not t["sanitized"] and _hash_at_sink(
+                t["out_hash"], hash_index, sink_file, sink_line, line_tolerance
+            ):
+                return True
 
-        # Transitive: source hash -> transform output -> sink
+    # Strategy 2: any SOURCE hash reaches sink location (source has no file/line info)
+    all_source_hashes = {
+        h for h, records in hash_index.items()
+        if any(r["type"].lower() == "source" for r in records)
+    }
+    for sh in all_source_hashes:
+        if _hash_at_sink(sh, hash_index, sink_file, sink_line, line_tolerance):
+            if not _was_sanitized(sh, transform_chains):
+                return True
         for t in transform_chains.get(sh, []):
             if not t["sanitized"] and _hash_at_sink(
                 t["out_hash"], hash_index, sink_file, sink_line, line_tolerance
@@ -259,7 +313,7 @@ def _loc_match(file_a: str, line_a: int, file_b: str, line_b: int, tol: int) -> 
 
 def _hash_at_sink(h: str, hash_index: dict, sink_file: str, sink_line: int, tol: int) -> bool:
     for rec in hash_index.get(h, []):
-        if rec["type"] == "sink" and _loc_match(rec["file"], rec["line"], sink_file, sink_line, tol):
+        if rec["type"].lower() == "sink" and _loc_match(rec["file"], rec["line"], sink_file, sink_line, tol):
             return True
     return False
 
