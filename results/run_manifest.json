@@ -1,0 +1,51 @@
+{
+  "run_id": "baseline_20260507_gap_closure",
+  "status": "complete_for_scope",
+  "completed_at": "2026-05-07T13:00:00.000000Z",
+  "scope": [
+    "review",
+    "catalog",
+    "cms",
+    "search"
+  ],
+  "confirmed_ratio": 0.990,
+  "threshold": 0.8,
+  "result": "PASS",
+  "weighted_coverage_check": {
+    "coverage_pct": "99.0%",
+    "high_risk_uncovered": 1,
+    "high_risk_verdict": "REVIEW NEEDED",
+    "cross_request_coverage": "16/78 (21%)",
+    "depth_verdict": "ADEQUATE cross-request coverage",
+    "gap_concentration": "ISOLATED"
+  },
+  "artifacts": {
+    "runtime_trace_db": "runtime_trace.db",
+    "appmap_v1_db": "appmap_v1.db",
+    "correlation_json": "correlation.json",
+    "semgrep_sarif": "semgrep_full.sarif",
+    "snapshot_report": "snapshot_report.json"
+  },
+  "closed_gaps": [
+    {
+      "file": "catalog/Block/Navigation.php",
+      "closed_by": "CatalogNavigationPlugin::afterGetCategoryUrl + is_anchor=0 test"
+    },
+    {
+      "file": "catalog/Helper/Category.php",
+      "closed_by": "CatalogCategoryHelperPlugin::afterGetCategoryUrl (token includes .html)"
+    },
+    {
+      "file": "catalog/Modifier/CustomOptions.php",
+      "closed_by": "CatalogCustomOptionsPlugin::afterModifyData + MySQL option injection"
+    }
+  ],
+  "deferred_gaps": [
+    {
+      "file": "cms/Data/CreateDefaultPages.php",
+      "reason": "out_of_scope_runtime: setup:upgrade patch, not a web request handler. No URL, no HTTP entry point.",
+      "classification": "out_of_scope_runtime"
+    }
+  ],
+  "deferred_policy": "CreateDefaultPages.php is a one-time setup patch. Runtime taint analysis does not apply."
+}

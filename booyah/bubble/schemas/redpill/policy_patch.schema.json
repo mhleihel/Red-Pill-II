@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/policy_patch.schema.json",
+  "title": "Red-Pill Policy Patch Schema",
+  "description": "A single policy change within a policy pack. Each patch maps to a specific reason code and targets a narrow knob in the pipeline.",
+  "type": "object",
+  "required": ["patch_id", "change_type", "target", "changes"],
+  "properties": {
+    "patch_id": {
+      "type": "string",
+      "description": "Unique ID within the pack, e.g. 'add-react-createElement-signal'"
+    },
+    "reason": {
+      "type": "string",
+      "enum": [
+        "SINK_NOT_REAL",
+        "CONTEXT_WRONG",
+        "AUTOESCAPE_MISMODELED",
+        "BYPASS_MARKER_MISSED",
+        "SANITIZER_PLACEBO",
+        "REENTRY_UNMODELED",
+        "TOOL_DUPLICATE",
+        "CONFIDENCE_MISWEIGHTED",
+        "MISSING_PATTERN",
+        "SUPPRESS_FALSE_POSITIVE",
+        "ADJUST_SCORING",
+        "ADD_PROTECTION",
+        "UPDATE_DETECTION"
+      ],
+      "description": "Controlled reason code from the audit taxonomy."
+    },
+    "change_type": {
+      "type": "string",
+      "enum": [
+        "add_pattern",
+        "suppress_pattern",
+        "adjust_weight",
+        "add_bypass_marker",
+        "update_autoescape",
+        "update_detection_signals",
+        "add_safe_context",
+        "remove_safe_context",
+        "adjust_confidence_baseline",
+        "adjust_tool_weight",
+        "add_dedup_key",
+        "add_protection_flag",
+        "suppress_sink",
+        "reclassify_sink",
+        "update_library_version_range",
+        "add_library"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "required": ["config_section"],
+      "properties": {
+        "config_section": {
+          "type": "string",
+          "enum": [
+            "frameworks",
+            "framework_specific_patterns",
+            "template_render_patterns",
+            "route_patterns",
+            "library_security",
+            "language_protections",
+            "scoring_params",
+            "builtin_patterns",
+            "suppressed_sinks",
+            "dedup_equivalence_keys",
+            "tool_weights"
+          ],
+          "description": "Which section of the merged config this patch modifies."
+        },
+        "framework_key": {
+          "type": "string",
+          "description": "When config_section is 'frameworks', which framework entry to modify."
+        },
+        "library_name": {
+          "type": "string",
+          "description": "When config_section is 'library_security', which library entry to modify."
+        },
+        "language": {
+          "type": "string",
+          "description": "When config_section is 'language_protections', which language to modify."
+        },
+        "pattern_id": {
+          "type": "string",
+          "description": "When modifying a specific pattern entry, its stable id."
+        },
+        "tool_name": {
+          "type": "string",
+          "enum": ["semgrep", "codeql", "tree-sitter", "builtin"],
+          "description": "When config_section is 'tool_weights', which tool."
+        }
+      },
+      "additionalProperties": false
+    },
+    "changes": {
+      "type": "object",
+      "description": "The actual changes to apply. Structure depends on change_type.",
+      "properties": {
+        "add": {
+          "type": "array",
+          "items": {"type": "object"},
+          "description": "Entries to add (e.g., new detection signals, bypass markers, patterns)."
+        },
+        "remove": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Keys, pattern ids, or values to remove."
+        },
+        "update": {
+          "type": "object",
+          "description": "Key-value pairs to merge/overwrite in the target entry."
+        },
+        "set": {
+          "description": "Exact value to set (for scalar fields like confidence, weight)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "justification": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Human-readable explanation of why this change is correct."
+    }
+  },
+  "additionalProperties": false
+}

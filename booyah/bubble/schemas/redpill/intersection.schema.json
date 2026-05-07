@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/intersection.schema.json",
+  "title": "Red-Pill Bubble Intersection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intersection_id",
+    "family",
+    "forward_bubble_id",
+    "backward_bubble_id",
+    "meeting_node_ids",
+    "meeting_lineage_ids",
+    "intersection_type",
+    "required_flags",
+    "satisfied_flags",
+    "missing_flags",
+    "contradicted_flags",
+    "invalidated_after_satisfaction",
+    "fault_line_hop_id",
+    "score",
+    "tier"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "intersection_id": {
+      "type": "string",
+      "pattern": "^rpx-[A-Za-z0-9._:-]+$"
+    },
+    "family": {
+      "type": "string"
+    },
+    "forward_bubble_id": {
+      "type": "string",
+      "pattern": "^rpb-[A-Za-z0-9._:-]+$"
+    },
+    "backward_bubble_id": {
+      "type": "string",
+      "pattern": "^rpb-[A-Za-z0-9._:-]+$"
+    },
+    "meeting_node_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "meeting_lineage_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rpl-[A-Za-z0-9._:-]+$"
+      },
+      "uniqueItems": true
+    },
+    "function_scope_sequence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "call_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "intersection_type": {
+      "type": "string",
+      "enum": ["exact", "lineage", "structural", "heuristic", "failed_near"]
+    },
+    "required_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "satisfied_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "missing_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "contradicted_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "invalidated_after_satisfaction": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "fault_line_hop_id": {
+      "type": ["string", "null"],
+      "pattern": "^rph-[A-Za-z0-9._:-]+$"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "framework_auto_satisfied": {
+      "$ref": "#/$defs/flagArray"
+    }
+  },
+  "$defs": {
+    "flagName": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}_[A-Z0-9_]+$"
+    },
+    "flagArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/flagName"
+      },
+      "uniqueItems": true
+    }
+  }
+}

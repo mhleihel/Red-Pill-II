@@ -1,0 +1,72 @@
+# NoSpoon — Magento Route Extraction Sources
+#
+# Each entry defines a file pattern and a parser strategy.
+# The route extractor walks the target tree, matches files against
+# these patterns, and dispatches to the named parser.
+#
+# Parser strategies:
+#   xml_routes     — routes.xml (adminhtml / frontend controller routes)
+#   xml_webapi     — webapi.xml (REST / SOAP endpoint definitions)
+#   graphql_schema — schema.graphqls (GraphQL query / mutation definitions)
+#   php_controller — controller class annotations / docblocks
+
+sources:
+  - pattern: "**/etc/adminhtml/routes.xml"
+    parser: xml_routes
+    area: adminhtml
+    module_from: path
+    description: "Admin controller route definitions"
+
+  - pattern: "**/etc/frontend/routes.xml"
+    parser: xml_routes
+    area: frontend
+    module_from: path
+    description: "Frontend controller route definitions"
+
+  - pattern: "**/etc/webapi.xml"
+    parser: xml_webapi
+    area: webapi_rest
+    module_from: path
+    description: "REST / SOAP web API endpoint definitions"
+
+  - pattern: "**/etc/graphql/schema.graphqls"
+    parser: graphql_schema
+    area: graphql
+    module_from: path
+    description: "GraphQL schema definitions (queries / mutations)"
+
+  - pattern: "**/etc/**/schema.graphqls"
+    parser: graphql_schema
+    area: graphql
+    module_from: path
+    description: "GraphQL schema in subdirectories"
+
+  - pattern: "**/Controller/**/*.php"
+    parser: php_controller
+    area: controller
+    module_from: namespace
+    description: "Controller class files (annotation-based route discovery)"
+
+# URL normalisation rules applied after extraction
+normalisation:
+  # Strip leading base path segments that are not part of the route
+  strip_prefixes:
+    - "/V1/"
+    - "/V2/"
+    - "/V3/"
+    - "/graphql"
+    - "/rest/"
+    - "/soap/"
+  # Normalise path parameters to {placeholder} form
+  param_style: "{param}"
+  # Merge consecutive slashes
+  merge_slashes: true
+  # Trim trailing slash
+  trim_trailing_slash: true
+
+# Module name extraction from path
+# e.g. vendor/magento/module-catalog/... → Magento_Catalog
+module_mapping:
+  path_pattern: "**/module-{name}/**"
+  vendor_prefix:
+    magento: "Magento"

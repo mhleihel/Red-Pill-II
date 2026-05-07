@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/library_security.schema.json",
+  "title": "Red-Pill Library Security Schema",
+  "description": "Schema for third-party security library definitions.",
+  "type": "object",
+  "required": ["schema_version", "libraries"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0"]},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generated_by": {"type": "string"},
+    "libraries": {
+      "type": "object",
+      "propertyNames": {"type": "string"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["ecosystems", "purpose", "protection_category", "emits_flags"],
+        "properties": {
+          "ecosystems": {
+            "type": "array",
+            "items": {"type": "string", "enum": ["npm", "pypi", "cargo", "gomod", "composer", "rubygems"]}
+          },
+          "purpose": {"type": "string"},
+          "protection_category": {"type": "string"},
+          "emits_flags": {
+            "type": "array",
+            "items": {"type": "string", "pattern": "^[A-Z]{2}_"}
+          },
+          "detection_signals": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "known_issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["version_range", "severity", "description"],
+              "properties": {
+                "version_range": {"type": "string"},
+                "cve": {"type": ["string", "null"]},
+                "severity": {"type": "string", "enum": ["HIGH", "MEDIUM", "LOW"]},
+                "description": {"type": "string"}
+              }
+            }
+          },
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

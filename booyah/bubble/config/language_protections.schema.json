@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/language_protections.schema.json",
+  "title": "Red-Pill Language Protections Schema",
+  "description": "Schema for language-level security property definitions.",
+  "type": "object",
+  "required": ["schema_version", "languages"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0"]},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generated_by": {"type": "string"},
+    "languages": {
+      "type": "object",
+      "propertyNames": {"type": "string"},
+      "additionalProperties": {
+        "type": "object",
+        "required": ["properties"],
+        "properties": {
+          "properties": {
+            "type": "object",
+            "propertyNames": {"type": "string"},
+            "additionalProperties": {
+              "type": "object",
+              "required": ["description", "emits_flags", "requires_flags"],
+              "properties": {
+                "description": {"type": "string"},
+                "emits_flags": {
+                  "type": "array",
+                  "items": {"type": "string", "pattern": "^[A-Z]{2}_"}
+                },
+                "requires_flags": {
+                  "type": "array",
+                  "items": {"type": "string", "pattern": "^[A-Z]{2}_"}
+                },
+                "notes": {"type": "string"}
+              },
+              "additionalProperties": false
+            }
+          },
+          "notes": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -9,6 +9,13 @@ import typer
 from rich.console import Console
 
 app = typer.Typer(name="booyah", help="XSS data-flow analysis pipeline")
+
+# ── Sub-app: bubble (Red-Pill semantic bubble analysis) ────────────────────
+bubble_app = typer.Typer(name="bubble", help="Bubble Analysis — semantic XSS hop/lineage/intersection engine (Red-Pill)")
+app.add_typer(bubble_app, name="bubble")
+
+# ── Sub-app: nospoon (authorization gap detection) ────────────────────────
+nospoon_app = typer.Typer(name="nospoon", help="NoSpoon — authorization and authentication gap detection")
 console = Console()
 
 
@@ -259,6 +266,165 @@ def coverage(
             table.add_row(m.metric_key, val, str(m.numerator), str(m.denominator))
 
         console.print(table)
+
+
+# ── Bubble commands ────────────────────────────────────────────────────────
+
+@bubble_app.command("run")
+def bubble_run(
+    target: str = typer.Argument(..., help="Path to the PHP application to analyse"),
+    target_id: str = typer.Option("target-app", "--target-id", help="Short identifier for this target"),
+    out_root: str = typer.Option("", "--out-root", help="Output root dir (default: <target>/Red-Pill-<date>/)"),
+    no_codeql: bool = typer.Option(False, "--no-codeql", help="Skip CodeQL dataflow pass"),
+    no_semgrep: bool = typer.Option(False, "--no-semgrep", help="Skip Semgrep pass"),
+    verify_top: str = typer.Option("200", "--verify-top", help="Number of top jobs to verify"),
+    hang_seconds: int = typer.Option(900, "--hang-seconds", help="Hung-stage timeout in seconds"),
+    retries: int = typer.Option(1, "--retries", help="Auto-retry count on hang"),
+    no_stay_open: bool = typer.Option(False, "--no-stay-open", help="Exit dashboard on completion"),
+):
+    """Run the full Red-Pill bubble analysis pipeline on a PHP codebase."""
+    import sys as _sys
+    from pathlib import Path as _Path
+    _bubble_scripts = _Path(__file__).resolve().parent / "bubble" / "scripts"
+    _sys.path.insert(0, str(_bubble_scripts.parent.parent))
+    from booyah.bubble.scripts.red_pill_run import main as _bubble_main
+    _argv = [
+        "bubble",
+        "--target", target,
+        "--target-id", target_id,
+        "--verify-top", verify_top,
+        "--hang-seconds", str(hang_seconds),
+        "--retries", str(retries),
+    ]
+    if out_root:
+        _argv += ["--out-root", out_root]
+    if no_codeql:
+        _argv.append("--no-codeql")
+    if no_semgrep:
+        _argv.append("--no-semgrep")
+    if no_stay_open:
+        _argv.append("--no-stay-open")
+    import sys as _sys2
+    _orig = _sys2.argv
+    _sys2.argv = _argv
+    try:
+        raise SystemExit(_bubble_main())
+    finally:
+        _sys2.argv = _orig
+
+
+@bubble_app.command("db")
+def bubble_db(
+    command: str = typer.Argument(..., help="DB sub-command: init | ingest-mapper | export-model1 | summary"),
+    db: str = typer.Option("", "--db", help="Path to SQLite DB (default: <out-root>/red_pill.db)"),
+    mapper_output: str = typer.Option("", "--mapper-output", help="Path to mapper output JSON (for ingest-mapper)"),
+):
+    """Manage the Red-Pill SQLite database (init, ingest, export, summary)."""
+    import sys as _sys
+    from booyah.bubble.scripts.red_pill_db import main as _db_main
+    _argv = ["bubble-db", command]
+    if db:
+        _argv += ["--db", db]
+    if mapper_output:
+        _argv += ["--mapper-output", mapper_output]
+    _orig = _sys.argv
+    _sys.argv = _argv
+    try:
+        _db_main()
+    finally:
+        _sys.argv = _orig
+
+
+# ── NoSpoon commands ────────────────────────────────────────────────────────
+
+app.add_typer(nospoon_app, name="nospoon")
+
+
+@nospoon_app.command("run")
+def nospoon_run(
+    target: str = typer.Argument(..., help="Path to the Magento (or other PHP) codebase"),
+    framework: str = typer.Option("magento", "--framework", help="Guard extraction config (default: magento)"),
+    out_root: str = typer.Option("", "--out-root", help="Output root dir (default: <target>/NoSpoon-<date>/)"),
+    hang_seconds: int = typer.Option(900, "--hang-seconds", help="Hung-stage timeout in seconds"),
+    retries: int = typer.Option(1, "--retries", help="Auto-retry count on hang"),
+    no_stay_open: bool = typer.Option(False, "--no-stay-open", help="Exit dashboard on completion"),
+    skip_reports: bool = typer.Option(False, "--skip-reports", help="Skip CSV report generation"),
+    nice: int = typer.Option(0, "--nice", help="CPU niceness (0=default, 10=light, 19=max)"),
+):
+    """Run the full NoSpoon authorization gap detection pipeline."""
+    import sys as _sys
+    from booyah.nospoon.scripts.nospoon_run import main as _ns_main
+    _argv = [
+        "nospoon",
+        "--target", target,
+        "--framework", framework,
+        "--hang-seconds", str(hang_seconds),
+        "--retries", str(retries),
+        "--nice", str(nice),
+    ]
+    if out_root:
+        _argv += ["--out-root", out_root]
+    if no_stay_open:
+        _argv.append("--no-stay-open")
+    if skip_reports:
+        _argv.append("--skip-reports")
+    _orig = _sys.argv
+    _sys.argv = _argv
+    try:
+        raise SystemExit(_ns_main())
+    finally:
+        _sys.argv = _orig
+
+
+@nospoon_app.command("gaps")
+def nospoon_gaps(
+    gaps_json: str = typer.Argument(..., help="Path to stage_03_gaps.json from a NoSpoon run"),
+    severity: Optional[str] = typer.Option(None, "--severity", "-s", help="Filter: critical|high|medium|low"),
+    gap_type: Optional[str] = typer.Option(None, "--type", "-t", help="Filter: no_guard|role_escalation|missing_ownership"),
+    limit: int = typer.Option(50, "--limit", "-n"),
+):
+    """Print a summary table of NoSpoon gaps from a completed run."""
+    import json as _json
+    from rich.table import Table
+    from rich import box as _box
+
+    gaps_path = Path(gaps_json)
+    if not gaps_path.exists():
+        console.print(f"[red]Not found: {gaps_path}[/red]")
+        raise typer.Exit(1)
+
+    data = _json.loads(gaps_path.read_text())
+    gaps = data if isinstance(data, list) else data.get("gaps", [])
+
+    if severity:
+        gaps = [g for g in gaps if g.get("severity") == severity]
+    if gap_type:
+        gaps = [g for g in gaps if g.get("gap_type") == gap_type]
+    gaps = gaps[:limit]
+
+    sev_color = {"critical": "red", "high": "yellow", "medium": "cyan", "low": "dim"}
+    table = Table(box=_box.SIMPLE, show_header=True, title=f"NoSpoon Gaps — {gaps_path.name}")
+    table.add_column("ID", style="dim", width=16)
+    table.add_column("Severity", width=10)
+    table.add_column("Type", width=20)
+    table.add_column("Method", width=8)
+    table.add_column("URL")
+    table.add_column("Description")
+
+    for g in gaps:
+        sev = g.get("severity", "?")
+        col = sev_color.get(sev, "white")
+        table.add_row(
+            g.get("gap_id", "?")[-16:],
+            f"[{col}]{sev}[/{col}]",
+            g.get("gap_type", "?"),
+            g.get("route_method", "?"),
+            g.get("route_url", "?"),
+            (g.get("description") or "")[:80],
+        )
+
+    console.print(table)
+    console.print(f"[dim]{len(gaps)} gaps shown[/dim]")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,72 @@
+{
+  "$schema": "family_contract.schema.json",
+  "family": "xss",
+  "version": "v1",
+  "sink_kinds": [
+    "dom_html_sink",
+    "framework_raw_html_sink",
+    "server_raw_template_sink",
+    "url_attribute_sink",
+    "static_file_serving_or_upload_publication",
+    "email_or_report_render",
+    "script_context_sink"
+  ],
+  "required_flag_rules": [
+    {
+      "when_context": "CTX_HTML_BODY",
+      "requires_any": ["PR_ENC_HTML", "PR_SAN_HTML"]
+    },
+    {
+      "when_context": "CTX_HTML_ATTR",
+      "requires_any": ["PR_ENC_ATTR", "PR_SAN_HTML"]
+    },
+    {
+      "when_context": "CTX_URL",
+      "requires_any": ["PR_ENC_URL", "PR_TARGET_ALLOWLIST"]
+    },
+    {
+      "when_context": "CTX_JS",
+      "requires_any": ["PR_ENC_JS"]
+    },
+    {
+      "when_context": "CTX_DOM_HTML",
+      "requires_any": ["PR_SAN_HTML"]
+    }
+  ],
+  "boundary_escalations": [
+    {
+      "when_boundary": "BD_DB_READ",
+      "adds_required": ["PR_REVALIDATE_REENTRY"]
+    },
+    {
+      "when_boundary": "BD_CACHE_READ",
+      "adds_required": ["PR_REVALIDATE_REENTRY"]
+    },
+    {
+      "when_boundary": "BD_FILE_READ",
+      "adds_required": ["PR_REVALIDATE_REENTRY"]
+    },
+    {
+      "when_boundary": "BD_QUEUE_CONSUME",
+      "adds_required": ["PR_REVALIDATE_REENTRY"]
+    }
+  ],
+  "contradiction_rules": [
+    {
+      "required": "PR_ENC_HTML",
+      "contradicted_by": ["DG_DECODE_AFTER_PROTECT", "DG_TRUST_BYPASS", "DG_CONTEXT_SHIFT"]
+    },
+    {
+      "required": "PR_ENC_ATTR",
+      "contradicted_by": ["DG_DECODE_AFTER_PROTECT", "DG_TRUST_BYPASS", "DG_CONTEXT_SHIFT"]
+    },
+    {
+      "required": "PR_ENC_URL",
+      "contradicted_by": ["DG_TRUST_BYPASS", "DG_CONTEXT_SHIFT"]
+    },
+    {
+      "required": "PR_REVALIDATE_REENTRY",
+      "contradicted_by": ["DG_UNSAFE_REENTRY", "DG_REPLAYED_REFERENCE"]
+    }
+  ]
+}

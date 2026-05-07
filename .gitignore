@@ -51,11 +51,16 @@ node_modules/
 booyah/crawl/node_modules/
 booyah/crawl/package-lock.json
 
-# SQLite WAL journal files (transient)
-results/booyah.db-shm
-results/booyah.db-wal
-results/appmap.db-shm
-results/appmap.db-wal
+# SQLite databases and WAL journal files (runtime data, not source)
+results/*.db
+results/*.db-shm
+results/*.db-wal
+
+# Runtime snapshots and archives (large, ephemeral)
+results/archive_*/
+results/baseline_*/
+results/gift_*/
+results/golden_gift_*/
 
 # Abandoned crawl tools (policy: no browser extensions, no ZAP active scan)
 booyah/crawl/burp_mcp.py

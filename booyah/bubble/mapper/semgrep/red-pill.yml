@@ -1,0 +1,2040 @@
+rules:
+- id: red-pill-js-express-request-source
+  message: Express request input source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: $REQ.query[$KEY]
+    - pattern: $REQ.query.$KEY
+    - pattern: $REQ.params[$KEY]
+    - pattern: $REQ.params.$KEY
+    - pattern: $REQ.body[$KEY]
+    - pattern: $REQ.body.$KEY
+    - pattern: $REQ.headers[$KEY]
+    - pattern: $REQ.headers.$KEY
+    - pattern: $REQ.cookies[$KEY]
+    - pattern: $REQ.cookies.$KEY
+    - pattern: $REQ.get($KEY)
+    - pattern: $REQ.header($KEY)
+    - pattern: req.query
+    - pattern: req.params
+    - pattern: req.body
+    - pattern: req.headers
+  - metavariable-regex:
+      metavariable: $REQ
+      regex: ^(req|request)$
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie
+    category: request_input
+    confidence: '0.65'
+- id: red-pill-js-fetch-api-source
+  message: Fetch / XHR response or URL param input source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: 'fetch($URL).then($RES => $RES.json())
+
+        '
+    - pattern: 'fetch($URL).then($RES => $RES.text())
+
+        '
+    - pattern: 'fetch($URL).then($RES => $RES.blob())
+
+        '
+    - pattern: 'await fetch($URL)
+
+        '
+    - pattern: $XHR.responseText
+    - pattern: $XHR.responseXML
+    - pattern: new URLSearchParams($LOC.search)
+    - pattern: new URL($LOC.href)
+    - pattern: new URL($LOC)
+  - metavariable-regex:
+      metavariable: $LOC
+      regex: (^|\W)(location|window\.location)($|\W)
+  metadata:
+    red_pill_kind: source
+    source_kind: async_fetch|url_parse
+    category: third_party_or_async_input
+    confidence: '0.50'
+- id: red-pill-js-browser-local-source
+  message: Browser-local storage or message input source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: localStorage.getItem($KEY)
+  - pattern: sessionStorage.getItem($KEY)
+  - pattern: $X.postMessage($DATA, $ORIGIN)
+  - pattern: 'window.addEventListener(''message'', $FN)
+
+      '
+  - pattern: 'addEventListener(''message'', $FN)
+
+      '
+  - pattern: document.cookie
+  - pattern: location.hash
+  - pattern: location.search
+  - pattern: location.href
+  - pattern: $E.clipboardData.getData($TYPE)
+  - pattern: IndexedDB
+  metadata:
+    red_pill_kind: source
+    source_kind: local_storage|post_message|cookie|clipboard
+    category: browser_local_input
+    confidence: '0.55'
+- id: red-pill-js-file-upload-source
+  message: File upload or form data input source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: \b(multer|formidable|busboy|multiparty|connect-multiparty)\b
+  metadata:
+    red_pill_kind: source
+    source_kind: file_upload|multipart_form
+    category: uploaded_file_input
+    confidence: '0.55'
+- id: red-pill-js-websocket-source
+  message: WebSocket, SSE, or realtime message input source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $WS.on('message', $FN)
+  - pattern: $WS.onmessage = $FN
+  - pattern: $IO.on($EVENT, $FN)
+  - pattern: $SOCKET.on($EVENT, $FN)
+  - pattern: new EventSource($URL)
+  - pattern: $SSE.onmessage = $FN
+  - pattern: $SSE.addEventListener($EVENT, $FN)
+  - pattern: $CHANNEL.on($EVENT, $FN)
+  - pattern: $CHANNEL.bind($EVENT, $FN)
+  metadata:
+    red_pill_kind: source
+    source_kind: websocket|sse|realtime
+    category: third_party_or_async_input
+    confidence: '0.55'
+- id: red-pill-js-graphql-source
+  message: GraphQL resolver argument source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: \b(parent|root)\s*\[\s*['"][\w]+['"]\s*\]
+  metadata:
+    red_pill_kind: source
+    source_kind: graphql_argument
+    category: graphql_input
+    confidence: '0.52'
+- id: red-pill-js-nextjs-source
+  message: Next.js server-side request source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $REQ.cookies.get($NAME)
+  - pattern: $REQ.headers.get($NAME)
+  - pattern: $REQ.nextUrl.searchParams.get($NAME)
+  - pattern: $REQ.nextUrl.searchParams
+  - pattern: 'export async function $FN($REQ, ...) { ... }
+
+      '
+  - pattern: 'export async function $METHOD($REQ, ...) { ... }
+
+      '
+  - pattern: 'async function $FN($REQ: NextRequest, ...) { ... }
+
+      '
+  - pattern: params.$PARAM
+  - pattern: searchParams.$PARAM
+  - pattern: cookies().get($NAME)
+  - pattern: headers().get($NAME)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|path_param
+    category: request_input
+    confidence: '0.60'
+    frameworks:
+    - nextjs
+- id: red-pill-js-nestjs-source
+  message: NestJS decorated request source.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: '@(Query|Body|Param|Headers|Req|Request)\s*\(\s*\)'
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|path_param
+    category: request_input
+    confidence: '0.55'
+    frameworks:
+    - nestjs
+- id: red-pill-js-dom-html-sink
+  message: DOM sink that interprets HTML content.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $EL.innerHTML = $VALUE
+  - pattern: $EL.outerHTML = $VALUE
+  - pattern: $EL.insertAdjacentHTML($POS, $VALUE)
+  - pattern: $EL.insertAdjacentText($POS, $VALUE)
+  - pattern: document.write($VALUE)
+  - pattern: document.writeln($VALUE)
+  - pattern: $EL.replaceChildren(...)
+  - pattern: $EL.replaceWith(...)
+  - pattern: $EL.setHTMLUnsafe($VALUE)
+  - pattern: $EL.setHTML($VALUE)
+  - pattern: 'document.open(...)
+
+      '
+  - pattern: $RANGE.createContextualFragment($VALUE)
+  - pattern: $PARSER.parseFromString($VALUE, $TYPE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_dom
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.90'
+    category: dom_html_sink
+- id: red-pill-js-script-exec-sink
+  message: Dynamic script execution sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: eval($VALUE)
+  - pattern: 'new Function($VALUE)
+
+      '
+  - pattern: 'new Function($ARG1, $VALUE)
+
+      '
+  - pattern: 'new Function($ARG1, $ARG2, $VALUE)
+
+      '
+  - pattern: $EL.setAttribute('src', $VALUE)
+  - pattern: $EL.setAttribute('srcdoc', $VALUE)
+  - pattern: '$EL.setAttribute(''onerror'', $VALUE)
+
+      '
+  - pattern: '$EL.setAttribute(''onload'', $VALUE)
+
+      '
+  - pattern: '$EL.setAttribute(''onclick'', $VALUE)
+
+      '
+  - pattern: $SCRIPT.src = $VALUE
+  - pattern: $SCRIPT.textContent = $VALUE
+  - pattern: $SCRIPT.text = $VALUE
+  - pattern: import($VALUE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_dom
+    render_context: inline_script
+    execution_context: user_browser
+    confidence: '0.88'
+    category: dom_html_sink
+- id: red-pill-js-timer-string-sink
+  message: setTimeout/setInterval with string argument (eval-like).
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: 'setTimeout(''...'')
+
+      '
+  - pattern: 'setInterval(''...'')
+
+      '
+  - pattern: 'setTimeout(`...`)
+
+      '
+  - pattern: 'setInterval(`...`)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_dom
+    render_context: inline_script
+    execution_context: user_browser
+    confidence: '0.85'
+    category: dom_html_sink
+- id: red-pill-js-css-injection-sink
+  message: CSS injection via style manipulation.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $EL.style.cssText = $VALUE
+  - pattern: $EL.style[$PROP] = $VALUE
+  - pattern: '$EL.setAttribute(''style'', $VALUE)
+
+      '
+  - pattern: $SHEET.insertRule($VALUE, ...)
+  - pattern: $SHEET.addRule($VALUE, ...)
+  - pattern: 'new CSSStyleSheet(...)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: css_injection
+    render_context: css
+    execution_context: user_browser
+    confidence: '0.55'
+    category: css_injection_sink
+- id: red-pill-js-url-navigation-sink
+  message: URL-based navigation or redirect sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: location.href = $VALUE
+  - pattern: location.assign($VALUE)
+  - pattern: location.replace($VALUE)
+  - pattern: window.open($VALUE)
+  - pattern: '$EL.setAttribute(''href'', $VALUE)
+
+      '
+  - pattern: '$EL.setAttribute(''action'', $VALUE)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: url_navigation
+    render_context: url_attribute
+    execution_context: user_browser
+    confidence: '0.48'
+    category: url_attribute_sink
+- id: red-pill-react-raw-html-sink
+  message: React dangerouslySetInnerHTML sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: 'dangerouslySetInnerHTML: {__html: $VALUE}
+
+        '
+    - pattern: '{__html: $VALUE}
+
+        '
+    - pattern: $X.dangerouslySetInnerHTML
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.92'
+    frameworks:
+    - react
+    - nextjs
+    category: framework_raw_html_sink
+- id: red-pill-react-raw-html-jsx-sink
+  message: React dangerouslySetInnerHTML in JSX (regex match for curly-brace patterns).
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: 'dangerouslySetInnerHTML\s*=\s*\{\s*\{\s*__html\s*:'
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.92'
+    frameworks:
+    - react
+    - nextjs
+    category: framework_raw_html_sink
+- id: red-pill-react-createelement-sink
+  message: React.createElement or JSX with user-controlled children.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: 'React.createElement($TAG, $PROPS, ...)
+
+      '
+  - pattern: 'createElement($TAG, $PROPS, ...)
+
+      '
+  - pattern: 'React.cloneElement($EL, $PROPS, ...)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.30'
+    frameworks:
+    - react
+    category: framework_raw_html_sink
+- id: red-pill-vue-vhtml-sink
+  message: Vue v-html directive sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: '<$EL v-html=$VALUE ... />
+
+        '
+    - pattern: '<$EL v-html="$VALUE" ... />
+
+        '
+    - pattern: '<$EL v-html=''$VALUE'' ... />
+
+        '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.90'
+    frameworks:
+    - vue
+    category: framework_raw_html_sink
+- id: red-pill-angular-bypass-sink
+  message: Angular bypassSecurityTrust* API sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $SANITIZER.bypassSecurityTrustHtml($VALUE)
+  - pattern: $SANITIZER.bypassSecurityTrustUrl($VALUE)
+  - pattern: $SANITIZER.bypassSecurityTrustScript($VALUE)
+  - pattern: $SANITIZER.bypassSecurityTrustStyle($VALUE)
+  - pattern: $SANITIZER.bypassSecurityTrustResourceUrl($VALUE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.88'
+    frameworks:
+    - angular
+    category: framework_raw_html_sink
+- id: red-pill-angular-innerhtml-binding-sink
+  message: Angular [innerHTML] property binding sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: \[innerHTML\]\s*=\s*['"]?\S
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.85'
+    frameworks:
+    - angular
+    category: framework_raw_html_sink
+- id: red-pill-svelte-rawhtml-sink
+  message: Svelte {@html } raw HTML sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-regex: \{@html\s+
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.90'
+    frameworks:
+    - svelte
+    category: framework_raw_html_sink
+- id: red-pill-alpine-xhtml-sink
+  message: Alpine.js x-html directive sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: '<$EL x-html=$VALUE ... />
+
+        '
+    - pattern: '<$EL x-html="$VALUE" ... />
+
+        '
+    - pattern: '<$EL x-html=''$VALUE'' ... />
+
+        '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: client_framework
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.85'
+    frameworks:
+    - alpinejs
+    category: framework_raw_html_sink
+- id: red-pill-htmx-swap-sink
+  message: HTMX hx-swap innerHTML/outerHTML sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  patterns:
+  - pattern-either:
+    - pattern: '<$EL hx-swap="innerHTML" ... />
+
+        '
+    - pattern: '<$EL hx-swap="outerHTML" ... />
+
+        '
+    - pattern: '<$EL hx-swap=''innerHTML'' ... />
+
+        '
+    - pattern: '<$EL hx-swap=''outerHTML'' ... />
+
+        '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: htmx_swap
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.65'
+    frameworks:
+    - htmx
+    category: htmx_sink
+- id: red-pill-js-server-response-sink
+  message: Express/NestJS raw response sink.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: $RES.send($VALUE)
+  - pattern: $RES.write($VALUE)
+  - pattern: $RES.json($VALUE)
+  - pattern: $RES.jsonp($VALUE)
+  - pattern: $RES.end($VALUE)
+  - pattern: $RES.render($TEMPLATE, $DATA)
+  - pattern: $RES.redirect($VALUE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_response
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.40'
+    category: server_raw_template_sink
+- id: red-pill-js-dompurify-protection
+  message: DOMPurify sanitization call.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: DOMPurify.sanitize($VALUE)
+  - pattern: DOMPurify.sanitize($VALUE, $CONFIG)
+  - pattern: DOMPurify.sanitize($VALUE, $CONFIG, ...)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_sanitizer
+    control_family: sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.90'
+    category: sanitizer
+- id: red-pill-js-sanitizehtml-protection
+  message: sanitize-html library call.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: sanitizeHtml($VALUE)
+  - pattern: sanitizeHtml($VALUE, $OPTS)
+  - pattern: sanitizeHtml($VALUE, $OPTS, ...)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_sanitizer
+    control_family: sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.88'
+    category: sanitizer
+- id: red-pill-js-encode-protection
+  message: HTML/URL encoding protection.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: he.encode($VALUE)
+  - pattern: he.escape($VALUE)
+  - pattern: entities.encodeXML($VALUE)
+  - pattern: entities.escapeHTML($VALUE)
+  - pattern: encodeURIComponent($VALUE)
+  - pattern: escape($VALUE)
+  - pattern: $EL.textContent = $VALUE
+  - pattern: $EL.innerText = $VALUE
+  - pattern: $EL.createTextNode($VALUE)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|url_encode
+    control_family: output_encoding
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.78'
+    category: html_escape_or_encode
+- id: red-pill-js-csp-protection
+  message: Content-Security-Policy or Trusted Types protection.
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: '$RES.setHeader(''Content-Security-Policy'', $VALUE)
+
+      '
+  - pattern: '$RES.setHeader(''Content-Security-Policy-Report-Only'', $VALUE)
+
+      '
+  - pattern: 'helmet.contentSecurityPolicy($OPTS)
+
+      '
+  - pattern: 'helmet($OPTS)
+
+      '
+  - pattern: 'trustedTypes.createPolicy($NAME, $RULES)
+
+      '
+  - pattern: 'new TrustedTypesPolicyFactory(...)
+
+      '
+  metadata:
+    red_pill_kind: protection
+    protection_kind: csp|trusted_types
+    control_family: content_security_policy
+    control_scope: html_body
+    control_strength: partial
+    confidence: '0.62'
+    category: csp_header
+- id: red-pill-js-decode-dangerous
+  message: Decode or unescape after potential protection.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  pattern-either:
+  - pattern: decodeURIComponent($VALUE)
+  - pattern: decodeURI($VALUE)
+  - pattern: atob($VALUE)
+  - pattern: unescape($VALUE)
+  - pattern: he.decode($VALUE)
+  - pattern: entities.decodeXML($VALUE)
+  - pattern: $EL.innerHTML
+  metadata:
+    red_pill_kind: dangerous
+    dangerous_kind: decode_after_protection
+    confidence: '0.56'
+    category: decode_or_unescape
+- id: red-pill-python-django-source
+  message: Django request input source.
+  severity: INFO
+  languages:
+  - python
+  pattern-either:
+  - pattern: request.GET[$KEY]
+  - pattern: request.GET.get($KEY)
+  - pattern: request.POST[$KEY]
+  - pattern: request.POST.get($KEY)
+  - pattern: request.FILES[$KEY]
+  - pattern: request.FILES.get($KEY)
+  - pattern: request.META[$KEY]
+  - pattern: request.META.get($KEY)
+  - pattern: request.COOKIES[$KEY]
+  - pattern: request.COOKIES.get($KEY)
+  - pattern: request.body
+  - pattern: self.request.GET
+  - pattern: self.request.POST
+  - pattern: self.kwargs[$KEY]
+  - pattern: self.kwargs.get($KEY)
+  - pattern: self.args[$KEY]
+  - pattern: self.args.get($KEY)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|file|path_param
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - django
+- id: red-pill-python-flask-source
+  message: Flask request input source.
+  severity: INFO
+  languages:
+  - python
+  pattern-either:
+  - pattern: request.args[$KEY]
+  - pattern: request.args.get($KEY)
+  - pattern: request.form[$KEY]
+  - pattern: request.form.get($KEY)
+  - pattern: request.files[$KEY]
+  - pattern: request.files.get($KEY)
+  - pattern: request.headers[$KEY]
+  - pattern: request.headers.get($KEY)
+  - pattern: request.cookies[$KEY]
+  - pattern: request.cookies.get($KEY)
+  - pattern: request.json[$KEY]
+  - pattern: request.json.get($KEY)
+  - pattern: request.data
+  - pattern: request.get_json()
+  - pattern: request.get_data()
+  - pattern: request.values[$KEY]
+  - pattern: request.values.get($KEY)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|file|json
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - flask
+- id: red-pill-python-fastapi-source
+  message: FastAPI route parameter and request input source.
+  severity: INFO
+  languages:
+  - python
+  pattern-either:
+  - pattern: "@$APP.get($ROUTE)\nasync def $FN($PARAM, ...):\n  ...\n"
+  - pattern: "@$APP.post($ROUTE)\nasync def $FN($PARAM, ...):\n  ...\n"
+  - pattern: $REQ.query_params[$KEY]
+  - pattern: $REQ.query_params.get($KEY)
+  - pattern: $REQ.path_params[$KEY]
+  - pattern: $REQ.path_params.get($KEY)
+  - pattern: $REQ.headers[$KEY]
+  - pattern: $REQ.headers.get($KEY)
+  - pattern: $REQ.cookies[$KEY]
+  - pattern: $REQ.cookies.get($KEY)
+  - pattern: $REQ.form()
+  - pattern: $REQ.body()
+  - pattern: $REQ.json()
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|path_param
+    category: request_input
+    confidence: '0.60'
+    frameworks:
+    - fastapi
+- id: red-pill-python-django-raw-sink
+  message: Django/Jinja2 raw template output sink (|safe, mark_safe, autoescape off).
+  severity: WARNING
+  languages:
+  - python
+  pattern-either:
+  - pattern: mark_safe($VALUE)
+  - pattern: django.utils.safestring.mark_safe($VALUE)
+  - pattern: django.utils.html.format_html($VALUE, ...)
+  - pattern: django.utils.html.format_html_join($VALUE, ...)
+  - pattern: SafeString($VALUE)
+  - pattern: SafeText($VALUE)
+  - pattern: 'HttpResponse($VALUE)
+
+      '
+  - pattern: 'JsonResponse($VALUE, safe=False, ...)
+
+      '
+  - pattern: 'JsonResponse($VALUE, safe=False)
+
+      '
+  - pattern: $RESP.write($VALUE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.75'
+    frameworks:
+    - django
+    - django_jinja
+    category: server_raw_template_sink
+- id: red-pill-python-flask-ssti-sink
+  message: Flask/Jinja2 render_template_string SSTI sink.
+  severity: WARNING
+  languages:
+  - python
+  pattern-either:
+  - pattern: render_template_string($TEMPLATE, ...)
+  - pattern: flask.render_template_string($TEMPLATE, ...)
+  - pattern: 'jinja2.Template($TEMPLATE)
+
+      '
+  - pattern: 'jinja2.Environment(...).from_string($TEMPLATE)
+
+      '
+  - pattern: 'Markup($VALUE)
+
+      '
+  - pattern: 'flask.Markup($VALUE)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template_injection
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.80'
+    frameworks:
+    - flask
+    category: ssti_sink
+- id: red-pill-python-file-response-sink
+  message: File response or static file serving sink.
+  severity: WARNING
+  languages:
+  - python
+  pattern-either:
+  - pattern: 'send_file($PATH, ...)
+
+      '
+  - pattern: 'send_from_directory($DIR, $PATH, ...)
+
+      '
+  - pattern: 'FileResponse($PATH, ...)
+
+      '
+  - pattern: 'StaticFiles(directory=$DIR, ...)
+
+      '
+  - pattern: 'StreamingResponse($ITER, ...)
+
+      '
+  - pattern: 'HTMLResponse($CONTENT, ...)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: static_file_serving|streaming_response
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.50'
+    category: static_file_serving_or_upload_publication
+- id: red-pill-python-escape-protection
+  message: Python HTML escaping or sanitization.
+  severity: INFO
+  languages:
+  - python
+  pattern-either:
+  - pattern: html.escape($VALUE)
+  - pattern: escape($VALUE)
+  - pattern: django.utils.html.escape($VALUE)
+  - pattern: django.utils.html.conditional_escape($VALUE)
+  - pattern: bleach.clean($VALUE)
+  - pattern: bleach.linkify($VALUE)
+  - pattern: nh3.clean($VALUE)
+  - pattern: markupsafe.escape($VALUE)
+  - pattern: jinja2.escape($VALUE)
+  - pattern: cgi.escape($VALUE)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|html_sanitizer
+    control_family: output_encoding|sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: sanitizer
+- id: red-pill-ruby-rails-source
+  message: Rails params / request input source.
+  severity: INFO
+  languages:
+  - ruby
+  pattern-either:
+  - pattern: params[$KEY]
+  - pattern: 'params[$KEY]
+
+      '
+  - pattern: params[$KEY][$SUB]
+  - pattern: params.dig($KEY, ...)
+  - pattern: request.params[$KEY]
+  - pattern: request.query_parameters[$KEY]
+  - pattern: request.body[$KEY]
+  - pattern: request.headers[$KEY]
+  - pattern: request.cookies[$KEY]
+  - pattern: request.env[$KEY]
+  - pattern: request.raw_post
+  - pattern: cookies[$KEY]
+  - pattern: session[$KEY]
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|session
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - rails_erb
+- id: red-pill-ruby-raw-sink
+  message: Rails ERB raw / html_safe bypass sink.
+  severity: WARNING
+  languages:
+  - ruby
+  pattern-either:
+  - pattern: $VALUE.html_safe
+  - pattern: raw($VALUE)
+  - pattern: 'render inline: $TEMPLATE
+
+      '
+  - pattern: 'render inline: $TEMPLATE, ...
+
+      '
+  - pattern: 'render_to_string inline: $TEMPLATE
+
+      '
+  - pattern: ERB.new($TEMPLATE)
+  - pattern: 'sanitize($VALUE, ...)
+
+      '
+  - pattern: 'sanitize($VALUE)
+
+      '
+  - pattern: '$VALUE.html_safe?
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.78'
+    frameworks:
+    - rails_erb
+    category: server_raw_template_sink
+- id: red-pill-ruby-escape-protection
+  message: Ruby/Rails HTML escaping protection.
+  severity: INFO
+  languages:
+  - ruby
+  pattern-either:
+  - pattern: h($VALUE)
+  - pattern: ERB::Util.h($VALUE)
+  - pattern: ERB::Util.html_escape($VALUE)
+  - pattern: '$VALUE.html_escape
+
+      '
+  - pattern: 'sanitize($VALUE, tags: [...])
+
+      '
+  - pattern: 'sanitize($VALUE, attributes: [...])
+
+      '
+  - pattern: 'Sanitize.fragment($VALUE, ...)
+
+      '
+  - pattern: 'Sanitize.fragment($VALUE)
+
+      '
+  - pattern: loofah.scrub_fragment($VALUE, ...)
+  - pattern: loofah.fragment($VALUE).scrub!(...)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|html_sanitizer
+    control_family: output_encoding|sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: sanitizer
+- id: red-pill-php-laravel-source
+  message: Laravel/Symfony request input source.
+  severity: INFO
+  languages:
+  - php
+  pattern-either:
+  - pattern: '$REQUEST->input($KEY)
+
+      '
+  - pattern: '$REQUEST->get($KEY)
+
+      '
+  - pattern: '$REQUEST->post($KEY)
+
+      '
+  - pattern: '$REQUEST->query($KEY)
+
+      '
+  - pattern: '$REQUEST->header($KEY)
+
+      '
+  - pattern: '$REQUEST->cookie($KEY)
+
+      '
+  - pattern: '$REQUEST->file($KEY)
+
+      '
+  - pattern: '$REQUEST->all(...)
+
+      '
+  - pattern: '$REQUEST->json($KEY)
+
+      '
+  - pattern: request($KEY)
+  - pattern: request()->input($KEY)
+  - pattern: request()->get($KEY)
+  - pattern: $_GET[$KEY]
+  - pattern: $_POST[$KEY]
+  - pattern: $_REQUEST[$KEY]
+  - pattern: $_FILES[$KEY]
+  - pattern: $_COOKIE[$KEY]
+  - pattern: $_SERVER[$KEY]
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|file
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - laravel
+    - symfony
+- id: red-pill-php-raw-sink
+  message: PHP raw output sink (echo, print, printf, die, exit).
+  severity: WARNING
+  languages:
+  - php
+  pattern-regex: \b(echo|print|printf|die|exit)\s*[\($]
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_response
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.35'
+    category: server_raw_template_sink
+- id: red-pill-php-ssti-sink
+  message: PHP server-side template rendering sink.
+  severity: WARNING
+  languages:
+  - php
+  pattern-either:
+  - pattern: 'Blade::render($TEMPLATE, $DATA)
+
+      '
+  - pattern: 'View::make($VIEW, $DATA)
+
+      '
+  - pattern: 'view($VIEW, $DATA)
+
+      '
+  - pattern: 'Twig\Environment::create(...)
+
+      '
+  - pattern: '$TWIG->render($TEMPLATE, $DATA)
+
+      '
+  - pattern: '$TWIG->display($TEMPLATE, $DATA)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template_injection
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.68'
+    frameworks:
+    - laravel_blade
+    - twig
+    - symfony
+    category: ssti_sink
+- id: red-pill-php-escape-protection
+  message: PHP HTML escaping or encoding.
+  severity: INFO
+  languages:
+  - php
+  pattern-either:
+  - pattern: htmlspecialchars($VALUE, ...)
+  - pattern: htmlspecialchars($VALUE)
+  - pattern: htmlentities($VALUE, ...)
+  - pattern: htmlentities($VALUE)
+  - pattern: 'strip_tags($VALUE, ...)
+
+      '
+  - pattern: urlencode($VALUE)
+  - pattern: rawurlencode($VALUE)
+  - pattern: filter_var($VALUE, FILTER_SANITIZE_FULL_SPECIAL_CHARS, ...)
+  - pattern: filter_var($VALUE, FILTER_SANITIZE_STRING, ...)
+  - pattern: filter_var($VALUE, FILTER_SANITIZE_URL, ...)
+  - pattern: filter_var($VALUE, FILTER_VALIDATE_URL, ...)
+  - pattern: '$PURIFIER->purify($VALUE)
+
+      '
+  - pattern: 'HTMLPurifier->purify($VALUE)
+
+      '
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|html_sanitizer|url_validation
+    control_family: output_encoding|sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: sanitizer
+- id: red-pill-java-spring-source
+  message: Spring Boot annotated request input source.
+  severity: INFO
+  languages:
+  - java
+  pattern-either:
+  - pattern: '@RequestParam(...) $TYPE $PARAM
+
+      '
+  - pattern: '@PathVariable(...) $TYPE $PARAM
+
+      '
+  - pattern: '@RequestBody $TYPE $PARAM
+
+      '
+  - pattern: '@RequestHeader(...) $TYPE $PARAM
+
+      '
+  - pattern: '@CookieValue(...) $TYPE $PARAM
+
+      '
+  - pattern: '@ModelAttribute $TYPE $PARAM
+
+      '
+  - pattern: $REQ.getParameter($KEY)
+  - pattern: $REQ.getHeader($KEY)
+  - pattern: $REQ.getCookie($KEY)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|path_param
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - spring_boot
+- id: red-pill-java-ssti-sink
+  message: Java template rendering or response output sink.
+  severity: WARNING
+  languages:
+  - java
+  pattern-either:
+  - pattern: '$RESP.getWriter().write($VALUE)
+
+      '
+  - pattern: '$RESP.getWriter().print($VALUE)
+
+      '
+  - pattern: '$RESP.getOutputStream().write(...)
+
+      '
+  - pattern: 'new ModelAndView($VIEW, $MODEL)
+
+      '
+  - pattern: 'new ModelAndView($VIEW, $KEY, $VALUE)
+
+      '
+  - pattern: '$TEMPLATE_ENGINE.process($TEMPLATE, $CTX)
+
+      '
+  - pattern: '$TEMPLATE_ENGINE.process($TEMPLATE, $CTX, $WRITER)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template|server_response
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.55'
+    frameworks:
+    - spring_boot
+    category: ssti_sink
+- id: red-pill-java-encode-protection
+  message: Java HTML/URL encoding protection.
+  severity: INFO
+  languages:
+  - java
+  pattern-either:
+  - pattern: Encode.forHtml($VALUE)
+  - pattern: Encode.forHtmlAttribute($VALUE)
+  - pattern: Encode.forJavaScript($VALUE)
+  - pattern: Encode.forUrl($VALUE)
+  - pattern: Encode.forCssString($VALUE)
+  - pattern: HtmlEncoder.Default.Encode($VALUE)
+  - pattern: 'StringEscapeUtils.escapeHtml4($VALUE)
+
+      '
+  - pattern: 'StringEscapeUtils.escapeHtml3($VALUE)
+
+      '
+  - pattern: 'StringEscapeUtils.escapeXml($VALUE)
+
+      '
+  - pattern: 'StringEscapeUtils.escapeEcmaScript($VALUE)
+
+      '
+  - pattern: 'URLEncoder.encode($VALUE, $ENC)
+
+      '
+  - pattern: 'Jsoup.clean($VALUE, $POLICY)
+
+      '
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|url_encode|html_sanitizer
+    control_family: output_encoding|sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: sanitizer
+- id: red-pill-csharp-aspnet-source
+  message: ASP.NET attribute-bound request input source.
+  severity: INFO
+  languages:
+  - csharp
+  patterns:
+  - pattern-either:
+    - pattern: $REQ.Query[$KEY]
+    - pattern: $REQ.Form[$KEY]
+    - pattern: $REQ.Headers[$KEY]
+    - pattern: $REQ.Cookies[$KEY]
+    - pattern: $REQ.RouteValues[$KEY]
+    - pattern-regex: \[(FromQuery|FromBody|FromRoute|FromHeader|FromForm)\]
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|path_param
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - aspnet_razor
+- id: red-pill-csharp-raw-sink
+  message: ASP.NET Razor raw HTML output sink.
+  severity: WARNING
+  languages:
+  - csharp
+  pattern-either:
+  - pattern: Html.Raw($VALUE)
+  - pattern: 'new HtmlString($VALUE)
+
+      '
+  - pattern: 'new MvcHtmlString($VALUE)
+
+      '
+  - pattern: '$RESP.WriteAsync($VALUE)
+
+      '
+  - pattern: '$RESP.Write($VALUE)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.78'
+    frameworks:
+    - aspnet_razor
+    category: server_raw_template_sink
+- id: red-pill-csharp-encode-protection
+  message: ASP.NET HTML/URL/JS encoding protection.
+  severity: INFO
+  languages:
+  - csharp
+  pattern-either:
+  - pattern: HtmlEncoder.Default.Encode($VALUE)
+  - pattern: JavaScriptEncoder.Default.Encode($VALUE)
+  - pattern: UrlEncoder.Default.Encode($VALUE)
+  - pattern: System.Net.WebUtility.HtmlEncode($VALUE)
+  - pattern: System.Net.WebUtility.HtmlDecode($VALUE)
+  - pattern: System.Net.WebUtility.UrlEncode($VALUE)
+  - pattern: HttpUtility.HtmlEncode($VALUE)
+  - pattern: HttpUtility.JavaScriptStringEncode($VALUE)
+  - pattern: HttpUtility.UrlEncode($VALUE)
+  - pattern: AntiXssEncoder.HtmlEncode($VALUE, ...)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|url_encode|js_encode
+    control_family: output_encoding
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: html_escape_or_encode
+- id: red-pill-go-nethttp-source
+  message: Go net/http request input source.
+  severity: INFO
+  languages:
+  - go
+  pattern-either:
+  - pattern: $R.URL.Query().Get($KEY)
+  - pattern: $R.URL.Query()[$KEY]
+  - pattern: $R.FormValue($KEY)
+  - pattern: $R.PostFormValue($KEY)
+  - pattern: $R.Header.Get($KEY)
+  - pattern: $R.Header[$KEY]
+  - pattern: $R.Cookie($KEY)
+  - pattern: $R.FormFile($KEY)
+  - pattern: $R.MultipartReader(...)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|cookie|file
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - go_nethttp
+    - gin
+- id: red-pill-go-gin-source
+  message: Gin framework request input source.
+  severity: INFO
+  languages:
+  - go
+  pattern-either:
+  - pattern: $C.Query($KEY)
+  - pattern: $C.Param($KEY)
+  - pattern: $C.PostForm($KEY)
+  - pattern: $C.GetHeader($KEY)
+  - pattern: $C.GetRawData(...)
+  - pattern: $C.ShouldBind($OBJ)
+  - pattern: $C.ShouldBindJSON($OBJ)
+  - pattern: $C.ShouldBindQuery($OBJ)
+  - pattern: $C.ShouldBindUri($OBJ)
+  - pattern: $C.ShouldBindHeader($OBJ)
+  - pattern: $C.FormFile($KEY)
+  metadata:
+    red_pill_kind: source
+    source_kind: query|body|header|path_param|file
+    category: request_input
+    confidence: '0.65'
+    frameworks:
+    - gin
+- id: red-pill-go-raw-sink
+  message: Go raw template or response output sink.
+  severity: WARNING
+  languages:
+  - go
+  pattern-either:
+  - pattern: 'template.HTML($VALUE)
+
+      '
+  - pattern: 'template.JS($VALUE)
+
+      '
+  - pattern: 'template.URL($VALUE)
+
+      '
+  - pattern: 'template.CSS($VALUE)
+
+      '
+  - pattern: 'template.HTMLAttr($VALUE)
+
+      '
+  - pattern: $W.Write($VALUE)
+  - pattern: 'fmt.Fprintf($W, $FMT, ...)
+
+      '
+  - pattern: '$TEMPLATE.Execute($W, $DATA)
+
+      '
+  - pattern: '$TEMPLATE.ExecuteTemplate($W, $NAME, $DATA)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.72'
+    frameworks:
+    - go_nethttp
+    - gin
+    category: server_raw_template_sink
+- id: red-pill-go-unsafe-template-sink
+  message: Go text/template (no auto-escape) vs html/template (auto-escapes).
+  severity: WARNING
+  languages:
+  - go
+  pattern-either:
+  - pattern: 'import "text/template"
+
+      '
+  - pattern: 'text/template.New($NAME)
+
+      '
+  - pattern: 'text/template.Must(...)
+
+      '
+  - pattern: 'text/template.ParseFiles(...)
+
+      '
+  - pattern: 'text/template.ParseGlob(...)
+
+      '
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.78'
+    frameworks:
+    - go_nethttp
+    - gin
+    category: server_raw_template_sink
+- id: red-pill-go-escape-protection
+  message: Go HTML/template contextual escaping (protection evidence).
+  severity: INFO
+  languages:
+  - go
+  pattern-either:
+  - pattern: 'html/template.HTMLEscapeString($VALUE)
+
+      '
+  - pattern: 'html/template.JSEscapeString($VALUE)
+
+      '
+  - pattern: 'html/template.URLQueryEscaper($VALUE)
+
+      '
+  - pattern: 'bluemonday.UGCPolicy(...)
+
+      '
+  - pattern: 'bluemonday.StrictPolicy(...)
+
+      '
+  - pattern: '$POLICY.Sanitize($VALUE)
+
+      '
+  - pattern: 'html.EscapeString($VALUE)
+
+      '
+  - pattern: 'url.QueryEscape($VALUE)
+
+      '
+  - pattern: 'url.PathEscape($VALUE)
+
+      '
+  metadata:
+    red_pill_kind: protection
+    protection_kind: html_escape|html_sanitizer|url_encode
+    control_family: output_encoding|sanitization
+    control_scope: html_body
+    control_strength: strong
+    confidence: '0.82'
+    category: sanitizer
+- id: red-pill-template-raw-output-sink
+  message: Raw template output syntax (bypasses auto-escaping).
+  severity: WARNING
+  languages:
+  - generic
+  paths:
+    include:
+    - '*.html'
+    - '*.hbs'
+    - '*.handlebars'
+    - '*.ejs'
+    - '*.erb'
+    - '*.twig'
+    - '*.jinja'
+    - '*.jinja2'
+    - '*.j2'
+    - '*.cshtml'
+    - '*.razor'
+    - '*.vue'
+    - '*.svelte'
+    - '*.astro'
+    - '*.heex'
+    - '*.leex'
+    - '*.slim'
+    - '*.haml'
+    - '*.pug'
+    - '*.jade'
+    - '*.edge'
+    - '*.blade.php'
+  pattern-regex: '(?xi)
+
+    \{\{\{\s*[^}]+\s*\}\}\}                   # Handlebars raw {{{ }}}
+
+    |<%-?\s*[^%]*%>                            # EJS <%- %> raw output
+
+    |\{\!\![^!]*\!\!\}                         # Laravel Blade {!! !!} raw output
+
+    |\{\%\s*autoescape\s+off\s*\%\}            # Django/Twig autoescape off
+
+    |\{\%\s*autoescape\s+false\s*\%\}          # Twig autoescape false
+
+    |\{\%\s*raw\s*\%\}                         # Twig raw block
+
+    |\{\%\s*endraw\s*\%\}
+
+    |\{\{\s*[^}]+\|\s*safe\s*\}\}              # Django/Jinja2/Twig |safe filter
+
+    |\{\%\s*endautoescape\s*\%\}
+
+    |<\?=\s*[^?]+\?>                           # PHP raw echo <?= ?>
+
+    |\{\{&\s*[^}]+\}\}                         # Go template raw HTML
+
+    |<%=+\s*[^%]*%>                            # ERB <%== %> raw output
+
+    |\!\{\s*[^}]+\}                            # Pug unescaped !{ }
+
+    |\|\s*raw\b                                # Twig/Slim |raw filter
+
+    |th:utext\s*=\s*[''\"][^''\"]*[''\"]         # Thymeleaf unescaped text'
+  metadata:
+    red_pill_kind: sink
+    sink_kind: server_template
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.70'
+    category: server_raw_template_sink
+- id: red-pill-template-interpolation-sink
+  message: Template interpolation (potentially auto-escaped, context-dependent).
+  severity: INFO
+  languages:
+  - generic
+  paths:
+    include:
+    - '*.html'
+    - '*.hbs'
+    - '*.handlebars'
+    - '*.ejs'
+    - '*.erb'
+    - '*.twig'
+    - '*.jinja'
+    - '*.jinja2'
+    - '*.j2'
+    - '*.cshtml'
+    - '*.razor'
+    - '*.vue'
+    - '*.svelte'
+    - '*.astro'
+    - '*.heex'
+    - '*.leex'
+    - '*.slim'
+    - '*.haml'
+    - '*.pug'
+    - '*.jade'
+    - '*.edge'
+    - '*.blade.php'
+  pattern-regex: '(?xi)
+
+    \{\{\s*[^{].*?\}\}                         # Handlebars/Vue/Mustache {{ }}
+
+    |<%=\s*[^%]*%>                             # EJS/ERB <%= %> auto-escaped
+
+    |\{\#\s*[^}]+\}                            # Handlebars block expression
+
+    |\{\{\s*\/?\w+.*?\}\}                      # Vue directive shorthand
+
+    |@Model\.\w+                               # ASP.NET Razor
+
+    |@Html\.\w+\(                              # ASP.NET HtmlHelper
+
+    |\$\{[^}]+\}                               # JS template literal in template files
+
+    |#\{[^}]+\}                                # Ruby string interpolation
+
+    |{%\s*block\s+\w+\s*%}                     # Template block tags
+
+    |{%\s*extends\s+[''\"]\S+[''\"]\s*%}         # Template inheritance
+
+    |{%\s*include\s+[''\"]\S+[''\"]\s*%}         # Template includes'
+  metadata:
+    red_pill_kind: sink
+    sink_kind: template_interpolation
+    render_context: html_body
+    execution_context: user_browser
+    confidence: '0.25'
+    category: template_interpolation_sink
+- id: red-pill-hx-swap-template-sink
+  message: HTMX swap attributes in templates (innerHTML sink).
+  severity: WARNING
+  languages:
+  - generic
+  paths:
+    include:
+    - '*.html'
+    - '*.hbs'
+    - '*.twig'
+    - '*.jinja'
+    - '*.jinja2'
+    - '*.cshtml'
+    - '*.vue'
+    - '*.blade.php'
+  pattern-regex: '(?xi)
+
+    hx-swap\s*=\s*[''\"]innerHTML
+
+    |hx-swap\s*=\s*[''\"]outerHTML
+
+    |hx-target\s*=
+
+    |hx-get\s*=
+
+    |hx-post\s*=
+
+    |hx-put\s*=
+
+    |hx-delete\s*=
+
+    |hx-patch\s*='
+  metadata:
+    red_pill_kind: sink
+    sink_kind: htmx_swap
+    render_context: dom_html
+    execution_context: user_browser
+    confidence: '0.50'
+    frameworks:
+    - htmx
+    category: htmx_sink
+- id: red-pill-db-write-transport
+  message: Database write/persist operation (transport boundary).
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  - python
+  - ruby
+  - php
+  - java
+  - go
+  - csharp
+  pattern-regex: \.(save|create|update|insert|upsert|set|put|hset|execute|query|insertOne|insertMany|updateOne|updateMany)\s*\(
+  metadata:
+    red_pill_kind: transport
+    transport_kind: database|cache|session
+    confidence: '0.60'
+    category: persistence_write_or_read
+- id: red-pill-file-write-transport
+  message: File write or upload storage (transport boundary).
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  - python
+  - ruby
+  - php
+  - java
+  - go
+  - csharp
+  pattern-regex: (writeFile|writeFileSync|createWriteStream|file_put_contents|Storage::put|transferTo|storeAs|WriteAllBytes|WriteAllText|WriteFile|Files\.write|Files\.copy|ioutil\.WriteFile|os\.WriteFile|shutil\.copy|\.write\(|\.save\(|\.move\()
+  metadata:
+    red_pill_kind: transport
+    transport_kind: filesystem
+    confidence: '0.55'
+    category: persistence_write_or_read
+- id: red-pill-queue-publish-transport
+  message: Message queue publish (transport boundary).
+  severity: INFO
+  languages:
+  - javascript
+  - typescript
+  - python
+  - ruby
+  - php
+  - java
+  - go
+  - csharp
+  pattern-regex: \.(publish|send|push|enqueue|emit|trigger|sendToQueue)\s*\(
+  metadata:
+    red_pill_kind: transport
+    transport_kind: queue|websocket|event
+    confidence: '0.55'
+    category: persistence_write_or_read
+- id: red-pill-crosslang-trust-bypass
+  message: Trust marking or raw output that may bypass contextual escaping.
+  severity: WARNING
+  languages:
+  - javascript
+  - typescript
+  - python
+  - ruby
+  - php
+  - java
+  - csharp
+  - go
+  pattern-either:
+  - pattern: mark_safe($VALUE)
+  - pattern: $VALUE.html_safe
+  - pattern: 'new Handlebars.SafeString($VALUE)
+
+      '
+  - pattern: Html.Raw($VALUE)
+  - pattern: raw($VALUE)
+  - pattern: 'SafeString($VALUE)
+
+      '
+  - pattern: 'Markup($VALUE)
+
+      '
+  - pattern: 'django.utils.safestring.mark_safe($VALUE)
+
+      '
+  metadata:
+    red_pill_kind: dangerous
+    dangerous_kind: trust_marking
+    confidence: '0.88'
+    category: trust_marking
+
+# ---------------------------------------------------------------------------
+# Additional families (cmdi / ldap / nosqli / xxe / header)
+# These are intentionally conservative: they mark sinks and contexts so that the
+# mapper+semantic layer can build candidate jobs; exploitability is verified
+# dynamically.
+# ---------------------------------------------------------------------------
+- id: red-pill-js-child-process-sink
+  message: Process execution sink (Node.js child_process).
+  severity: WARNING
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: require('child_process').exec($CMD, ...)
+    - pattern: require("child_process").exec($CMD, ...)
+    - pattern: require('child_process').execSync($CMD, ...)
+    - pattern: require("child_process").execSync($CMD, ...)
+    - pattern: $CP.exec($CMD, ...)
+    - pattern: $CP.execSync($CMD, ...)
+    - pattern: $CP.spawn($BIN, $ARGS, ...)
+    - pattern: $CP.spawnSync($BIN, $ARGS, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: process_spawn
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.80'
+    category: process_execution_sink
+
+- id: red-pill-python-subprocess-sink
+  message: Process execution sink (Python subprocess/os).
+  severity: WARNING
+  languages: [python]
+  pattern-either:
+    - pattern: subprocess.call($CMD, ...)
+    - pattern: subprocess.run($CMD, ...)
+    - pattern: subprocess.Popen($CMD, ...)
+    - pattern: os.system($CMD)
+    - pattern: os.popen($CMD)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: process_spawn
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.80'
+    category: process_execution_sink
+
+- id: red-pill-php-command-exec-sink
+  message: Process execution sink (PHP exec/system/shell_exec).
+  severity: WARNING
+  languages: [php]
+  pattern-either:
+    - pattern: exec($CMD, ...)
+    - pattern: shell_exec($CMD)
+    - pattern: system($CMD, ...)
+    - pattern: passthru($CMD)
+    - pattern: popen($CMD, ...)
+    - pattern: proc_open($CMD, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: shell_exec
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.80'
+    category: process_execution_sink
+
+- id: red-pill-java-runtime-exec-sink
+  message: Process execution sink (Java Runtime.exec / ProcessBuilder).
+  severity: WARNING
+  languages: [java]
+  pattern-either:
+    - pattern: Runtime.getRuntime().exec($CMD, ...)
+    - pattern: new ProcessBuilder($ARGS, ...).start()
+    - pattern: $PB.start()
+  metadata:
+    red_pill_kind: sink
+    sink_kind: process_spawn
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.75'
+    category: process_execution_sink
+
+- id: red-pill-ruby-command-exec-sink
+  message: Process execution sink (Ruby system/exec/Open3/backticks).
+  severity: WARNING
+  languages: [ruby]
+  pattern-either:
+    - pattern: system($CMD, ...)
+    - pattern: exec($CMD, ...)
+    - pattern: Open3.capture2($CMD, ...)
+    - pattern: Open3.capture3($CMD, ...)
+    - pattern: Open3.popen2($CMD, ...)
+    - pattern: Open3.popen3($CMD, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: shell_exec
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.70'
+    category: process_execution_sink
+
+- id: red-pill-csharp-process-start-sink
+  message: Process execution sink (C# Process.Start).
+  severity: WARNING
+  languages: [csharp]
+  pattern-either:
+    - pattern: System.Diagnostics.Process.Start($ARG, ...)
+    - pattern: Process.Start($ARG, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: process_spawn
+    render_context: cmd_exec
+    execution_context: server
+    confidence: '0.70'
+    category: process_execution_sink
+
+- id: red-pill-js-ldap-search-sink
+  message: LDAP search/filter sink (ldapjs-style).
+  severity: WARNING
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: $CLIENT.search($BASE, $OPTS, ...)
+    - pattern: $LDAP.search($BASE, $OPTS, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: ldap_query
+    render_context: ldap_filter
+    execution_context: server
+    confidence: '0.55'
+    category: ldap_query_sink
+
+- id: red-pill-java-jndi-ldap-search-sink
+  message: LDAP search sink (Java JNDI DirContext.search).
+  severity: WARNING
+  languages: [java]
+  pattern-either:
+    - pattern: $CTX.search($BASE, $FILTER, ...)
+    - pattern: $CTX.search($BASE, $FILTER, $CONTROLS)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: ldap_search_filter
+    render_context: ldap_filter
+    execution_context: server
+    confidence: '0.55'
+    category: ldap_query_sink
+
+- id: red-pill-python-ldap3-search-sink
+  message: LDAP search sink (python-ldap3).
+  severity: WARNING
+  languages: [python]
+  pattern-either:
+    - pattern: $CONN.search($BASE, $FILTER, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: ldap_search_filter
+    render_context: ldap_filter
+    execution_context: server
+    confidence: '0.55'
+    category: ldap_query_sink
+
+- id: red-pill-js-nosql-query-sink
+  message: NoSQL query sink (MongoDB/Mongoose-style find).
+  severity: WARNING
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: $COL.find($Q, ...)
+    - pattern: $COL.findOne($Q, ...)
+    - pattern: $COL.updateOne($Q, $U, ...)
+    - pattern: $COL.updateMany($Q, $U, ...)
+    - pattern: $COL.deleteOne($Q, ...)
+    - pattern: $COL.deleteMany($Q, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: nosql_query_object
+    render_context: nosql_query
+    execution_context: server
+    confidence: '0.55'
+    category: nosql_query_sink
+
+- id: red-pill-python-pymongo-query-sink
+  message: NoSQL query sink (PyMongo).
+  severity: WARNING
+  languages: [python]
+  pattern-either:
+    - pattern: $COL.find($Q, ...)
+    - pattern: $COL.find_one($Q, ...)
+    - pattern: $COL.update_one($Q, $U, ...)
+    - pattern: $COL.update_many($Q, $U, ...)
+    - pattern: $COL.delete_one($Q, ...)
+    - pattern: $COL.delete_many($Q, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: nosql_query_object
+    render_context: nosql_query
+    execution_context: server
+    confidence: '0.55'
+    category: nosql_query_sink
+
+- id: red-pill-java-mongo-query-sink
+  message: NoSQL query sink (Java MongoDB driver).
+  severity: WARNING
+  languages: [java]
+  pattern-either:
+    - pattern: $COL.find($Q, ...)
+    - pattern: $COL.updateOne($Q, $U, ...)
+    - pattern: $COL.updateMany($Q, $U, ...)
+    - pattern: $COL.deleteOne($Q, ...)
+    - pattern: $COL.deleteMany($Q, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: nosql_query_object
+    render_context: nosql_query
+    execution_context: server
+    confidence: '0.55'
+    category: nosql_query_sink
+
+- id: red-pill-python-xml-parse-sink
+  message: XML parse sink (XXE-sensitive by default in many parsers).
+  severity: WARNING
+  languages: [python]
+  pattern-either:
+    - pattern: xml.etree.ElementTree.fromstring($XML, ...)
+    - pattern: xml.etree.ElementTree.parse($PATH, ...)
+    - pattern: lxml.etree.fromstring($XML, ...)
+    - pattern: lxml.etree.parse($PATH, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: xml_parse
+    render_context: xml_parse
+    execution_context: server
+    confidence: '0.60'
+    category: xml_parse_sink
+
+- id: red-pill-java-xml-parse-sink
+  message: XML parse sink (Java DocumentBuilder/SAX).
+  severity: WARNING
+  languages: [java]
+  pattern-either:
+    - pattern: $DB.parse($IN, ...)
+    - pattern: $DB.parse($PATH, ...)
+    - pattern: $SAX.parse($IN, ...)
+    - pattern: $SAX.parse($PATH, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: xml_parse
+    render_context: xml_parse
+    execution_context: server
+    confidence: '0.55'
+    category: xml_parse_sink
+
+- id: red-pill-js-response-header-sink
+  message: HTTP response header sink (possible header injection / response splitting).
+  severity: WARNING
+  languages: [javascript, typescript]
+  pattern-either:
+    - pattern: $RES.setHeader($NAME, $VALUE)
+    - pattern: $RES.header($NAME, $VALUE)
+    - pattern: $RES.set($NAME, $VALUE)
+    - pattern: $RES.append($NAME, $VALUE)
+    - pattern: $RES.cookie($NAME, $VALUE, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: response_header_set
+    render_context: http_header
+    execution_context: server
+    confidence: '0.60'
+    category: response_header_sink
+
+- id: red-pill-crosslang-xml-dtd-disable-protection
+  message: XML parser configuration disables DTD / external entity resolution.
+  severity: INFO
+  languages:
+    - java
+    - python
+  pattern-either:
+    - pattern: $DBF.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true)
+    - pattern: $DBF.setFeature("http://xml.org/sax/features/external-general-entities", false)
+    - pattern: $DBF.setFeature("http://xml.org/sax/features/external-parameter-entities", false)
+    - pattern: defusedxml.ElementTree.fromstring($XML, ...)
+    - pattern: defusedxml.ElementTree.parse($PATH, ...)
+  metadata:
+    red_pill_kind: protection
+    protection_kind: xml_dtd_disabled
+    control_family: parser_hardening
+    control_scope: xml_parse
+    control_strength: strong
+    confidence: '0.70'
+    category: xml_secure_parser
+
+- id: red-pill-js-argv-safe-spawn-protection
+  message: argv-safe spawn usage (child_process.spawn with array args and no shell).
+  severity: INFO
+  languages:
+    - javascript
+    - typescript
+  patterns:
+    - pattern: $CP.spawn($BIN, $ARGS, $OPTS)
+    - metavariable-pattern:
+        metavariable: $ARGS
+        pattern: [...]
+  metadata:
+    red_pill_kind: protection
+    protection_kind: argv_safe_spawn
+    control_family: cmd_exec_hardening
+    control_scope: cmd_exec
+    control_strength: strong
+    confidence: '0.55'
+    category: argv_safe_spawn
+
+- id: red-pill-php-header-sink
+  message: HTTP header sink (PHP header()/setcookie()).
+  severity: WARNING
+  languages: [php]
+  pattern-either:
+    - pattern: header($HDR, ...)
+    - pattern: setcookie($NAME, $VALUE, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: response_header_set
+    render_context: http_header
+    execution_context: server
+    confidence: '0.55'
+    category: response_header_sink
+
+- id: red-pill-java-response-header-sink
+  message: HTTP response header sink (Java servlet response).
+  severity: WARNING
+  languages: [java]
+  pattern-either:
+    - pattern: $RESP.setHeader($NAME, $VALUE)
+    - pattern: $RESP.addHeader($NAME, $VALUE)
+    - pattern: $RESP.setContentType($TYPE)
+    - pattern: $RESP.addCookie($COOKIE)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: response_header_set
+    render_context: http_header
+    execution_context: server
+    confidence: '0.55'
+    category: response_header_sink
+
+- id: red-pill-csharp-response-header-sink
+  message: HTTP response header sink (ASP.NET response headers/cookies).
+  severity: WARNING
+  languages: [csharp]
+  pattern-either:
+    - pattern: $RESP.Headers[$NAME] = $VALUE
+    - pattern: $RESP.Headers.Add($NAME, $VALUE)
+    - pattern: $RESP.Cookies.Append($NAME, $VALUE, ...)
+  metadata:
+    red_pill_kind: sink
+    sink_kind: response_header_set
+    render_context: http_header
+    execution_context: server
+    confidence: '0.55'
+    category: response_header_sink

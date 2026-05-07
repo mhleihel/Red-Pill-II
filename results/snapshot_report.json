@@ -1,0 +1,376 @@
+{
+  "generated_at": "2026-05-07T13:00:00Z",
+  "run_id": "baseline_20260507_gap_closure",
+  "crawled_scope": [
+    "catalog",
+    "cms",
+    "review",
+    "search"
+  ],
+  "scoped_coverage": {
+    "coverage_pct": "99.0%",
+    "confirmed": 104,
+    "suspected": 1,
+    "total_runtime_observable": 105,
+    "out_of_scope": 1,
+    "out_of_scope_files": [
+      "cms/Data/CreateDefaultPages.php"
+    ]
+  },
+  "by_module": {
+    "adminnotification": {
+      "confirmed": 3,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 4
+    },
+    "advancedpricingimportexport": {
+      "confirmed": 1,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 1
+    },
+    "advancedsearch": {
+      "confirmed": 1,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 1
+    },
+    "asynchronousoperations": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "backend": {
+      "confirmed": 5,
+      "suspected": 8,
+      "static_only": 0,
+      "total": 13
+    },
+    "bundle": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 2,
+      "total": 4
+    },
+    "captcha": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "catalog": {
+      "confirmed": 71,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 71
+    },
+    "catalogimportexport": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "cataloginventory": {
+      "confirmed": 1,
+      "suspected": 1,
+      "static_only": 1,
+      "total": 3
+    },
+    "catalogrule": {
+      "confirmed": 1,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 2
+    },
+    "catalogurlrewrite": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 1,
+      "total": 2
+    },
+    "checkout": {
+      "confirmed": 0,
+      "suspected": 8,
+      "static_only": 0,
+      "total": 8
+    },
+    "checkoutagreements": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "cms": {
+      "confirmed": 24,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 25
+    },
+    "config": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "configurableproduct": {
+      "confirmed": 1,
+      "suspected": 6,
+      "static_only": 1,
+      "total": 8
+    },
+    "csp": {
+      "confirmed": 0,
+      "suspected": 0,
+      "static_only": 1,
+      "total": 1
+    },
+    "customer": {
+      "confirmed": 12,
+      "suspected": 34,
+      "static_only": 1,
+      "total": 47
+    },
+    "dhl": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "directory": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "downloadable": {
+      "confirmed": 4,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 6
+    },
+    "eav": {
+      "confirmed": 0,
+      "suspected": 13,
+      "static_only": 0,
+      "total": 13
+    },
+    "email": {
+      "confirmed": 2,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 2
+    },
+    "googleoptimizer": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "groupedproduct": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "importexport": {
+      "confirmed": 1,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 2
+    },
+    "indexer": {
+      "confirmed": 1,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 1
+    },
+    "integration": {
+      "confirmed": 2,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 3
+    },
+    "mediagallerycmsui": {
+      "confirmed": 6,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 6
+    },
+    "mediagalleryui": {
+      "confirmed": 13,
+      "suspected": 5,
+      "static_only": 0,
+      "total": 18
+    },
+    "mediastorage": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "newrelicreporting": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "newsletter": {
+      "confirmed": 6,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 7
+    },
+    "offlineshipping": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "pagecache": {
+      "confirmed": 0,
+      "suspected": 3,
+      "static_only": 1,
+      "total": 4
+    },
+    "payment": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "paypal": {
+      "confirmed": 0,
+      "suspected": 17,
+      "static_only": 2,
+      "total": 19
+    },
+    "paypalgraphql": {
+      "confirmed": 0,
+      "suspected": 0,
+      "static_only": 1,
+      "total": 1
+    },
+    "quote": {
+      "confirmed": 0,
+      "suspected": 9,
+      "static_only": 0,
+      "total": 9
+    },
+    "releasenotification": {
+      "confirmed": 2,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 2
+    },
+    "reports": {
+      "confirmed": 1,
+      "suspected": 3,
+      "static_only": 0,
+      "total": 4
+    },
+    "review": {
+      "confirmed": 6,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 6
+    },
+    "rule": {
+      "confirmed": 0,
+      "suspected": 2,
+      "static_only": 0,
+      "total": 2
+    },
+    "sales": {
+      "confirmed": 13,
+      "suspected": 14,
+      "static_only": 0,
+      "total": 27
+    },
+    "salesrule": {
+      "confirmed": 0,
+      "suspected": 10,
+      "static_only": 0,
+      "total": 10
+    },
+    "search": {
+      "confirmed": 3,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 3
+    },
+    "shipping": {
+      "confirmed": 1,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 1
+    },
+    "store": {
+      "confirmed": 0,
+      "suspected": 3,
+      "static_only": 0,
+      "total": 3
+    },
+    "swatches": {
+      "confirmed": 0,
+      "suspected": 7,
+      "static_only": 2,
+      "total": 9
+    },
+    "tax": {
+      "confirmed": 8,
+      "suspected": 4,
+      "static_only": 0,
+      "total": 12
+    },
+    "theme": {
+      "confirmed": 2,
+      "suspected": 3,
+      "static_only": 0,
+      "total": 5
+    },
+    "ui": {
+      "confirmed": 3,
+      "suspected": 3,
+      "static_only": 24,
+      "total": 30
+    },
+    "unknown": {
+      "confirmed": 0,
+      "suspected": 0,
+      "static_only": 0,
+      "total": 17
+    },
+    "urlrewrite": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "user": {
+      "confirmed": 2,
+      "suspected": 1,
+      "static_only": 1,
+      "total": 4
+    },
+    "weee": {
+      "confirmed": 0,
+      "suspected": 1,
+      "static_only": 0,
+      "total": 1
+    },
+    "widget": {
+      "confirmed": 0,
+      "suspected": 4,
+      "static_only": 0,
+      "total": 4
+    },
+    "wishlist": {
+      "confirmed": 0,
+      "suspected": 4,
+      "static_only": 0,
+      "total": 4
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "config/framework_patterns.schema.json",
+  "title": "Red-Pill Framework Patterns Configuration",
+  "description": "Schema for the versioned framework auto-escape, detection, and pattern configuration used by red_pill_mapper.py.",
+  "type": "object",
+  "required": ["schema_version", "frameworks", "framework_specific_patterns", "_template_render_patterns", "_route_patterns"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic version of this config file's structure. The mapper rejects versions it does not recognise."
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO-8601 timestamp of when this config was exported."
+    },
+    "generated_by": {
+      "type": "string",
+      "description": "Command that produced this config file."
+    },
+    "frameworks": {
+      "type": "object",
+      "description": "Per-framework auto-escape behaviour and detection signals.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["last_reviewed_version", "autoescape", "detection"],
+        "properties": {
+          "last_reviewed_version": {
+            "type": "string",
+            "description": "Last framework version the operator reviewed for security-relevant changes. Compared against the drift-check milestone knowledge base."
+          },
+          "autoescape": {
+            "type": "object",
+            "required": ["default_safe_contexts", "bypass_markers", "context_notes"],
+            "properties": {
+              "default_safe_contexts": {
+                "type": "array",
+                "description": "Render contexts (e.g. html_body, html_attribute, js_body, url) in which this framework auto-escapes by default.",
+                "items": { "type": "string" }
+              },
+              "bypass_markers": {
+                "type": "array",
+                "description": "Substrings / regex fragments that indicate auto-escape is being bypassed (e.g. dangerouslySetInnerHTML, |safe, v-html).",
+                "items": { "type": "string" }
+              },
+              "context_notes": {
+                "type": "string",
+                "description": "Human-readable explanation of the framework's auto-escape model."
+              }
+            }
+          },
+          "detection": {
+            "type": "object",
+            "required": ["signals", "default_escape_contexts", "trusted_bypass_apis", "notes"],
+            "properties": {
+              "signals": {
+                "type": "array",
+                "description": "Regex fragments used to detect this framework in source code.",
+                "items": { "type": "string" }
+              },
+              "default_escape_contexts": {
+                "type": "array",
+                "description": "Escape contexts the framework protects by default (used for confidence scoring).",
+                "items": { "type": "string" }
+              },
+              "trusted_bypass_apis": {
+                "type": "array",
+                "description": "Named APIs / syntax that bypass the framework's auto-escape (informational — detection uses signals).",
+                "items": { "type": "string" }
+              },
+              "notes": {
+                "type": "string",
+                "description": "Human-readable summary of detection behaviour."
+              }
+            }
+          }
+        }
+      }
+    },
+    "framework_specific_patterns": {
+      "type": "array",
+      "description": "Source, sink, and dangerous-transform patterns that are framework-specific (as opposed to language-generic patterns hardcoded in the mapper).",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "category", "regex", "confidence", "frameworks"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique pattern identifier."
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["source", "sink", "dangerous"]
+          },
+          "category": {
+            "type": "string",
+            "description": "Semantic category (e.g. request_input, framework_raw_html_sink, trust_marking)."
+          },
+          "regex": {
+            "type": "string",
+            "description": "Regex pattern (uncompiled — the mapper compiles it at load time)."
+          },
+          "source_kind": {
+            "type": "string",
+            "description": "For source patterns: the kind of input source (body, url_route_param, etc.)."
+          },
+          "sink_kind": {
+            "type": "string",
+            "description": "For sink patterns: the kind of sink (client_framework, server_template, etc.)."
+          },
+          "render_context": {
+            "type": "string",
+            "description": "For sink patterns: the DOM / template context where content is rendered."
+          },
+          "execution_context": {
+            "type": "string",
+            "description": "For sink patterns: where the injected content executes (user_browser usually)."
+          },
+          "dangerous_kind": {
+            "type": "string",
+            "description": "For dangerous patterns: the kind of dangerous transform (trust_marking, etc.)."
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Base confidence for this pattern (0.0–1.0)."
+          },
+          "frameworks": {
+            "type": "array",
+            "description": "Framework keys this pattern applies to.",
+            "items": { "type": "string" },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "_template_render_patterns": {
+      "type": "array",
+      "description": "Regex patterns for extracting template variable mappings from render calls.",
+      "items": {
+        "type": "object",
+        "required": ["framework", "regex"],
+        "properties": {
+          "framework": { "type": "string" },
+          "regex": {
+            "type": "string",
+            "description": "Regex with capture groups: group-1 = template name, group-2 = context expression."
+          }
+        }
+      }
+    },
+    "_route_patterns": {
+      "type": "array",
+      "description": "Regex patterns for extracting route definitions from framework routing files.",
+      "items": {
+        "type": "object",
+        "required": ["framework", "regex"],
+        "properties": {
+          "framework": { "type": "string" },
+          "regex": {
+            "type": "string",
+            "description": "Regex with capture group-1 = route path."
+          }
+        }
+      }
+    }
+  }
+}

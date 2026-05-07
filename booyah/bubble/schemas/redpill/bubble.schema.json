@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/bubble.schema.json",
+  "title": "Red-Pill Bubble Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "bubble_id",
+    "direction",
+    "anchor_id",
+    "family",
+    "node_ids",
+    "lineage_ids",
+    "emitted_flags",
+    "required_flags",
+    "invalidated_flags",
+    "state_confidence"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string"
+    },
+    "bubble_id": {
+      "type": "string",
+      "pattern": "^rpb-[A-Za-z0-9._:-]+$"
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["forward", "backward"]
+    },
+    "anchor_id": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "node_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "lineage_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rpl-[A-Za-z0-9._:-]+$"
+      },
+      "uniqueItems": true
+    },
+    "function_scope_sequence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "call_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "emitted_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "required_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "invalidated_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "state_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    }
+  },
+  "$defs": {
+    "flagName": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}_[A-Z0-9_]+$"
+    },
+    "flagArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/flagName"
+      },
+      "uniqueItems": true
+    }
+  }
+}

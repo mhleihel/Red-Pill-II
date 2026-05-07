@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/nospoon/gap_record.schema.json",
+  "title": "NoSpoon Gap Record",
+  "description": "An authorization coverage gap detected by policy diffing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "gap_id",
+    "gap_type",
+    "severity",
+    "route_id",
+    "route_method",
+    "route_url",
+    "description"
+  ],
+  "properties": {
+    "gap_id": {
+      "type": "string",
+      "pattern": "^nsgap-[a-f0-9]{12}$"
+    },
+    "gap_type": {
+      "type": "string",
+      "enum": ["no_guard", "role_escalation", "missing_ownership"]
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "route_id": {
+      "type": "string",
+      "pattern": "^nsr-[a-f0-9]{12}$"
+    },
+    "route_method": {
+      "type": "string"
+    },
+    "route_url": {
+      "type": "string"
+    },
+    "route_type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "affected_roles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Roles affected by or exploiting this gap."
+    },
+    "expected_guard": {
+      "type": "string",
+      "description": "What guard should exist but doesn't."
+    },
+    "guard_id": {
+      "type": "string",
+      "pattern": "^nsg-[a-f0-9]{12}$",
+      "description": "Guard that would close this gap (if known)."
+    },
+    "ownership_field": {
+      "type": "string",
+      "description": "For missing_ownership gaps: the field that should be checked (e.g., customer_id)."
+    },
+    "source_file": {
+      "type": "string"
+    },
+    "source_line": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "module": {
+      "type": "string"
+    }
+  }
+}

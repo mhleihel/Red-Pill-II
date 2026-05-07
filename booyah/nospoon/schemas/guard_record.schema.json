@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/nospoon/guard_record.schema.json",
+  "title": "NoSpoon Guard Record",
+  "description": "A single auth guard extracted from framework configuration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "guard_id",
+    "guard_type",
+    "guard_name",
+    "source_file",
+    "applies_to_routes",
+    "applies_to_resources",
+    "roles",
+    "guard_mechanism",
+    "is_ownership_check"
+  ],
+  "properties": {
+    "guard_id": {
+      "type": "string",
+      "pattern": "^nsg-[a-f0-9]{12}$"
+    },
+    "guard_type": {
+      "type": "string",
+      "enum": ["plugin", "preference", "acl_resource", "acl_requirement", "middleware", "annotation", "webapi_auth"]
+    },
+    "guard_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_line": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "applies_to_routes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^nsr-[a-f0-9]{12}$" },
+      "uniqueItems": true,
+      "description": "Route IDs this guard protects."
+    },
+    "applies_to_resources": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "ACL resource IDs this guard checks."
+    },
+    "roles": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Role names this guard applies to."
+    },
+    "guard_mechanism": {
+      "type": "string",
+      "enum": ["before_plugin", "around_plugin", "after_plugin", "di_preference", "acl_deny", "acl_allow", "auth_header", "session_check", "ownership_check", "scope_check", "unknown"]
+    },
+    "is_ownership_check": {
+      "type": "boolean",
+      "description": "Does this guard verify resource ownership (customer_id match, etc.)?"
+    },
+    "target_class": {
+      "type": "string",
+      "description": "The class this guard intercepts (for plugins/preferences)."
+    },
+    "plugin_method": {
+      "type": "string",
+      "enum": ["before", "around", "after"]
+    },
+    "sort_order": {
+      "type": "integer"
+    },
+    "parent_resource_id": {
+      "type": "string",
+      "description": "Parent ACL resource for inheritance resolution."
+    },
+    "linkage_confidence": {
+      "type": "string",
+      "enum": ["proven", "heuristic"],
+      "description": "proven = ACL resource match or webapi ref; heuristic = class-name match."
+    },
+    "linkage_method": {
+      "type": "string",
+      "description": "How the guard was linked to its routes (acl_resource_match, webapi_acl_requirement, exact_class_match, interface_suffix_match)."
+    }
+  }
+}

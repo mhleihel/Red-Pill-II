@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/policy_pack.schema.json",
+  "title": "Red-Pill Policy Pack Schema",
+  "description": "A policy pack is a versioned, reviewable collection of policy patches scoped to a specific language, framework, version range, or execution environment.",
+  "type": "object",
+  "required": ["schema_version", "pack_id", "scope", "patches"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0"]},
+    "pack_id": {
+      "type": "string",
+      "description": "Unique stable identifier for this pack, e.g. 'react-19-autoescape-fix'",
+      "pattern": "^[a-z0-9][a-z0-9_.-]*$"
+    },
+    "pack_type": {
+      "type": "string",
+      "enum": [
+        "framework_templating",
+        "sink_source_protection",
+        "scoring_calibration",
+        "dedup_correlation",
+        "target_profile"
+      ],
+      "description": "Which subdirectory this pack belongs in."
+    },
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generated_by": {"type": "string"},
+    "description": {"type": "string", "maxLength": 500},
+    "scope": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "language": {
+          "type": "string",
+          "description": "Target programming language, or '*' for all."
+        },
+        "framework": {
+          "type": "string",
+          "description": "Target framework key (e.g. 'react', 'django_jinja'), or '*' for all."
+        },
+        "framework_version_range": {
+          "type": "string",
+          "description": "Semver range like '>=18.0.0 <19.0.0' or '*' for all versions."
+        },
+        "execution_contexts": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Relevant execution contexts (user_browser, admin_browser, headless_browser_job, report_renderer) or ['*'] for all."
+        },
+        "render_contexts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "html_body", "html_attribute", "url_attribute",
+              "javascript_string", "inline_script", "css",
+              "dom_html", "file_publication", "template", "*"
+            ]
+          },
+          "description": "Relevant render contexts, or ['*'] for all."
+        },
+        "sink_categories": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Target sink categories, or ['*'] for all."
+        }
+      },
+      "additionalProperties": false
+    },
+    "priority": {
+      "type": "integer",
+      "default": 0,
+      "description": "Resolution priority within same specificity tier. Higher wins.",
+      "minimum": -100,
+      "maximum": 100
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "How confident we are this pack is correct and portable.",
+      "default": 0.8
+    },
+    "introduced_by": {
+      "type": "object",
+      "required": ["run_id", "timestamp"],
+      "properties": {
+        "run_id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "operator_id": {"type": "string"},
+        "audit_references": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Job IDs, intersection IDs, or run artifact paths that justify this pack."
+        }
+      },
+      "additionalProperties": false
+    },
+    "regression_fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {"type": "string"},
+          "expected_delta": {"type": "string"},
+          "fixture_ref": {"type": "string"}
+        }
+      },
+      "description": "Minimal test references for regression checks."
+    },
+    "patches": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "policy_patch.schema.json"}
+    }
+  },
+  "additionalProperties": false
+}

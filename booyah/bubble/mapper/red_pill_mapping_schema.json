@@ -1,0 +1,112 @@
+{
+  "schema_id": "red_pill_mapper_output",
+  "schema_version": "v0.2",
+  "purpose": "XSS-centric active-content injection mapping jobs for model triage",
+  "top_level": {
+    "required": [
+      "schema_id",
+      "schema_version",
+      "target",
+      "tool_status",
+      "observations",
+      "mapping_jobs",
+      "lineage_records",
+      "lineage_gaps"
+    ]
+  },
+  "mapping_job": {
+    "required": [
+      "job_id",
+      "job_type",
+      "source",
+      "flow",
+      "sink",
+      "protection_evidence",
+      "dangerous_evidence",
+      "model_questions"
+    ],
+    "fields": {
+      "job_type": "active_content_injection",
+      "source": {
+        "kind": "query|path|header|cookie|body|file_upload|barcode_reader|message_queue|database|cache|third_party_api|local_storage|post_message|uploaded_file_content|uploaded_file_metadata|unknown",
+        "attacker_control": "external_user|external_system|physical_or_supply_chain|authenticated_user|admin_user|unknown",
+        "data_kind": "string|html|url|json|markdown|file|token|object|unknown",
+        "trust_boundary": "external_to_app|device_to_app|service_to_service|stored_state_to_renderer|unknown"
+      },
+      "flow": {
+        "masked_summary": "string",
+        "persistence": "none|database|filesystem|cache|queue|log|session|generated_report|unknown",
+        "transport": "direct|async|cross_request|file_served|email|headless_renderer|unknown",
+        "tool_path_evidence": "array (optional; compact tool-provided path evidence such as CodeQL flow endpoints and a small step sample)",
+        "xss_relevant_steps": "array"
+      },
+      "sink": {
+        "kind": "server_template|client_dom|client_framework|static_file_serving|file_preview|email_render|report_render|headless_browser|webview|log_viewer|markdown_render|json_embedded_in_html|unknown",
+        "render_context": "html_body|html_attribute|url_attribute|javascript_string|inline_script|css|dom_html|markdown_html|svg_html|plain_text|unknown",
+        "execution_context": "user_browser|admin_browser|kiosk_browser|embedded_webview|headless_browser_job|email_client|report_renderer|document_previewer|barcode_scan_workflow|file_import_preview|unknown",
+        "active_content_capability": "none|html_only|script_capable|url_navigation|document_active_content|unknown",
+        "executor_authority": "anonymous|authenticated_user|privileged_user|admin|service_identity|unknown"
+      },
+      "protection_evidence": "array",
+      "protection_assessment": {
+        "observed": "boolean",
+        "context_match": "yes|no|unknown",
+        "placement": "immediately_before_sink|upstream_only|unknown",
+        "ordering_risk": "none|protection_then_decode|protection_before_transform|unknown"
+      },
+      "dangerous_evidence": "array",
+      "negative_evidence": "array",
+      "barrier_or_reset_nodes": "array",
+      "last_trust_transition": {
+        "kind": "trust_marking|sanitization_or_encoding|none",
+        "locator": "string|null"
+      },
+      "path_provenance": {
+        "grade": "proven_static|intrafile_structural|crossfile_heuristic|semantic_similarity|sink_only",
+        "meaning": "string"
+      },
+      "victim_reachability": "object",
+      "runtime_test_scaffolds": "string[]",
+      "lineage_group_id": "string|null",
+      "lineage_role_primary": "standalone|ingress_edge|carrier_edge|reentry_edge|terminal_edge",
+      "carrier_also": "boolean",
+      "lineage_candidate_status": "ineligible|eligible|linked|ambiguous|unjoinable",
+      "lineage_joinability": "static_joinable|heuristic_joinable|dynamic_gap_prone",
+      "lineage_stage_hint": "1|2|3|null",
+      "lineage_keys": {
+        "store_kind": "string|null",
+        "store_identifier": "string|null",
+        "field_or_key": "string|null",
+        "publication_target": "string|null",
+        "queue_or_topic": "string|null",
+        "template_or_render_target": "string|null"
+      },
+      "upstream_related_job_ids": "string[]",
+      "downstream_related_job_ids": "string[]",
+      "lineage_status": "none|partial|assembled|ambiguous",
+      "lineage_confidence": "number|null",
+      "uncertainty": "array",
+      "model_questions": "array"
+    }
+  },
+  "lineage_record": {
+    "required": [
+      "lineage_id",
+      "lineage_group_id",
+      "status",
+      "stage_count",
+      "terminal_job_id",
+      "stage_job_ids",
+      "stage_briefs",
+      "lineage_signal"
+    ]
+  },
+  "lineage_gap": {
+    "required": [
+      "gap_id",
+      "gap_kind",
+      "effect_on_lineage",
+      "explanation"
+    ]
+  }
+}

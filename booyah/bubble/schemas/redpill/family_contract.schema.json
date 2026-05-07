@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/family_contract.schema.json",
+  "title": "Red-Pill Family Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "family",
+    "version",
+    "sink_kinds",
+    "required_flag_rules",
+    "boundary_escalations",
+    "contradiction_rules"
+  ],
+  "properties": {
+    "family": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "sink_kinds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "required_flag_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/requiredRule"
+      }
+    },
+    "boundary_escalations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/boundaryEscalation"
+      }
+    },
+    "contradiction_rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contradictionRule"
+      }
+    }
+  },
+  "$defs": {
+    "flagName": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}_[A-Z0-9_]+$"
+    },
+    "flagArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/flagName"
+      },
+      "uniqueItems": true
+    },
+    "requiredRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when_context", "requires_any"],
+      "properties": {
+        "when_context": {
+          "$ref": "#/$defs/flagName"
+        },
+        "requires_any": {
+          "$ref": "#/$defs/flagArray"
+        },
+        "requires_all": {
+          "$ref": "#/$defs/flagArray"
+        }
+      }
+    },
+    "boundaryEscalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when_boundary", "adds_required"],
+      "properties": {
+        "when_boundary": {
+          "$ref": "#/$defs/flagName"
+        },
+        "adds_required": {
+          "$ref": "#/$defs/flagArray"
+        }
+      }
+    },
+    "contradictionRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "contradicted_by"],
+      "properties": {
+        "required": {
+          "$ref": "#/$defs/flagName"
+        },
+        "contradicted_by": {
+          "$ref": "#/$defs/flagArray"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+rules:
+
+  # ── Stored XSS: HTTP input → DB write ──────────────────────────────────────
+  - id: magento-stored-xss-write-path
+    mode: taint
+    languages: [php]
+    severity: WARNING
+    message: >
+      Tainted value from HTTP request parameter '$SOURCE' flows to DB write at '$SINK'
+      without sanitization. Stored XSS candidate.
+    metadata:
+      category: security
+      cwe: "CWE-79"
+      flow: stored-write
+    pattern-sources:
+      - pattern: $REQUEST->getParam(...)
+      - pattern: $REQUEST->getParams(...)
+      - pattern: $REQUEST->getPost(...)
+      - pattern: $REQUEST->getQuery(...)
+      - pattern: $REQUEST->getContent(...)
+      - pattern: $_POST[...]
+      - pattern: $_GET[...]
+      - pattern: $_REQUEST[...]
+    pattern-sinks:
+      # Review model setters
+      - patterns:
+          - pattern: $MODEL->setData($KEY, $VALUE)
+          - metavariable-regex:
+              metavariable: $KEY
+              regex: "'(nickname|title|detail|name|description|content)'"
+      - patterns:
+          - pattern: $MODEL->setData([..., $KEY => $VALUE, ...])
+      # Generic save-to-DB calls
+      - pattern: $MODEL->save()
+      - pattern: $RESOURCE->save($MODEL, ...)
+      # Direct DB writes
+      - pattern: $CONN->insert($TABLE, $DATA)
+      - pattern: $CONN->insertOnDuplicate($TABLE, $DATA, ...)
+      - pattern: $CONN->query(...)
+    pattern-sanitizers:
+      - pattern: $ESC->escapeHtml(...)
+      - pattern: $ESC->escapeHtmlAttr(...)
+      - pattern: $ESC->escapeUrl(...)
+      - pattern: $ESC->escapeJs(...)
+      - pattern: htmlspecialchars(...)
+      - pattern: htmlentities(...)
+      - pattern: intval(...)
+      - pattern: (int) $X
+      - pattern: (float) $X
+
+  # ── Reflected XSS: HTTP input → HTML output in same request ────────────────
+  - id: magento-reflected-xss
+    mode: taint
+    languages: [php]
+    severity: ERROR
+    message: >
+      Tainted value from HTTP request flows directly to HTML output at '$SINK'
+      without sanitization. Reflected XSS.
+    metadata:
+      category: security
+      cwe: "CWE-79"
+      flow: reflected
+    pattern-sources:
+      - pattern: $REQUEST->getParam(...)
+      - pattern: $REQUEST->getParams(...)
+      - pattern: $REQUEST->getPost(...)
+      - pattern: $REQUEST->getQuery(...)
+      - pattern: $_POST[...]
+      - pattern: $_GET[...]
+      - pattern: $_REQUEST[...]
+    pattern-sinks:
+      # Direct PHP output
+      - pattern: print($X)
+      - pattern: printf($FMT, ..., $X, ...)
+      # Block render output
+      - pattern: $BLOCK->_toHtml()
+      # Magento JSON result (may be reflected into DOM)
+      - pattern: $RESULT->setData(...)
+      # Template variable assignment that reaches output
+      - pattern: $BLOCK->setData($KEY, $TAINTED)
+    pattern-sanitizers:
+      - pattern: $ESC->escapeHtml(...)
+      - pattern: $ESC->escapeHtmlAttr(...)
+      - pattern: $ESC->escapeUrl(...)
+      - pattern: $ESC->escapeJs(...)
+      - pattern: htmlspecialchars(...)
+      - pattern: htmlentities(...)
+      - pattern: intval(...)
+      - pattern: (int) $X
+      - pattern: (float) $X
+
+  # ── Stored XSS: DB read → HTML output (read path) ──────────────────────────
+  - id: magento-stored-xss-read-path
+    mode: taint
+    languages: [php]
+    severity: ERROR
+    message: >
+      Value loaded from DB at '$SOURCE' reaches HTML output '$SINK' without
+      sanitization. Stored XSS read path.
+    metadata:
+      category: security
+      cwe: "CWE-79"
+      flow: stored-read
+    pattern-sources:
+      # DataObject magic getters — covers any model loaded from DB
+      - pattern: $MODEL->getData(...)
+      - pattern: $MODEL->getNickname()
+      - pattern: $MODEL->getTitle()
+      - pattern: $MODEL->getDetail()
+      - pattern: $MODEL->getName()
+      - pattern: $MODEL->getContent()
+      - pattern: $MODEL->getDescription()
+      - pattern: $MODEL->getBody()
+      - pattern: $MODEL->getComment()
+      - pattern: $MODEL->getMessage()
+      - pattern: $MODEL->getSubject()
+      - pattern: $MODEL->getLabel()
+      - pattern: $MODEL->getValue()
+      # Generic collection item access
+      - pattern: $ITEM->getData(...)
+      # Raw DB fetch
+      - pattern: $CONN->fetchAll(...)
+      - pattern: $CONN->fetchRow(...)
+      - pattern: $CONN->fetchOne(...)
+      - pattern: $CONN->fetchCol(...)
+    pattern-sinks:
+      # Block rendering — primary output path
+      - pattern: $BLOCK->toHtml()
+      - pattern: $BLOCK->_toHtml()
+      - pattern: $BLOCK->getChildHtml(...)
+      - pattern: $BLOCK->getChildChildHtml(...)
+      # Direct output
+      - pattern: print($X)
+      - pattern: printf($FMT, ..., $X, ...)
+      # JSON result (may be reflected into DOM)
+      - pattern: $RESULT->setData(...)
+    pattern-sanitizers:
+      - pattern: $ESC->escapeHtml(...)
+      - pattern: $ESC->escapeHtmlAttr(...)
+      - pattern: $ESC->escapeUrl(...)
+      - pattern: $ESC->escapeJs(...)
+      - pattern: htmlspecialchars(...)
+      - pattern: htmlentities(...)
+      - pattern: intval(...)
+      - pattern: (int) $X
+      - pattern: (float) $X
+      - pattern: strip_tags(...)

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/nospoon/route_record.schema.json",
+  "title": "NoSpoon Route Record",
+  "description": "A single extracted endpoint from framework route definitions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "route_id",
+    "method",
+    "url_pattern",
+    "controller_class",
+    "controller_method",
+    "source_file",
+    "route_type",
+    "acl_resources",
+    "is_authenticated",
+    "auth_type"
+  ],
+  "properties": {
+    "route_id": {
+      "type": "string",
+      "pattern": "^nsr-[a-f0-9]{12}$",
+      "description": "Deterministic route ID (prefix nsr- + 12 hex chars)."
+    },
+    "method": {
+      "type": "string",
+      "enum": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "GRAPHQL", "ANY"]
+    },
+    "url_pattern": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Normalized URL pattern (e.g., /V1/products/{sku})."
+    },
+    "controller_class": {
+      "type": "string",
+      "minLength": 1
+    },
+    "controller_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_file": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path to the file defining this route, relative to target root."
+    },
+    "source_line": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "route_type": {
+      "type": "string",
+      "enum": ["webapi", "adminhtml", "frontend", "graphql", "controller"]
+    },
+    "acl_resources": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "ACL resource IDs required for this route."
+    },
+    "is_authenticated": {
+      "type": "boolean",
+      "description": "Does this route require authentication?"
+    },
+    "auth_type": {
+      "type": "string",
+      "enum": ["none", "admin_token", "customer_token", "guest", "session", "oauth", "api_key", "unknown"]
+    },
+    "area": {
+      "type": "string",
+      "enum": ["adminhtml", "frontend", "webapi_rest", "webapi_soap", "graphql", "cron", "global", "unknown"]
+    },
+    "module": {
+      "type": "string",
+      "description": "Magento module name (e.g., Magento_Catalog)."
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

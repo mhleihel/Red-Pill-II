@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/hop_classification.schema.json",
+  "title": "Red-Pill Hop Classification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hop_id",
+    "classification_version",
+    "flags_emitted",
+    "flags_required",
+    "flags_invalidated",
+    "flags_observed",
+    "role_flags",
+    "boundary_flags",
+    "stage_flags",
+    "classification_confidence",
+    "uncertainties",
+    "notes"
+  ],
+  "properties": {
+    "hop_id": {
+      "type": "string",
+      "pattern": "^rph-[A-Za-z0-9._:-]+$"
+    },
+    "classification_version": {
+      "type": "string"
+    },
+    "flags_emitted": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "flags_required": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "flags_invalidated": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "flags_observed": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "role_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "boundary_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "stage_flags": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "flag_confidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      }
+    },
+    "classification_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "flagName": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}_[A-Z0-9_]+$"
+    },
+    "flagArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/flagName"
+      },
+      "uniqueItems": true
+    }
+  }
+}

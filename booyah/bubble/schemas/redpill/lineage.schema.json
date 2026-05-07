@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/redpill/lineage.schema.json",
+  "title": "Red-Pill Lineage Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lineage_id",
+    "group_key",
+    "family",
+    "stage_hop_ids",
+    "stage_roles",
+    "join_kind",
+    "join_confidence",
+    "upstream_lineage_ids",
+    "downstream_lineage_ids",
+    "analysis_gaps"
+  ],
+  "properties": {
+    "lineage_id": {
+      "type": "string",
+      "pattern": "^rpl-[A-Za-z0-9._:-]+$"
+    },
+    "group_key": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "stage_hop_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rph-[A-Za-z0-9._:-]+$"
+      },
+      "minItems": 1
+    },
+    "stage_roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ST_[A-Z0-9_]+$"
+      },
+      "minItems": 1
+    },
+    "join_kind": {
+      "type": "string",
+      "enum": ["exact", "lineage", "structural", "heuristic", "ambiguous"]
+    },
+    "join_confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "lineage_flags_emitted": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "lineage_flags_required": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "lineage_flags_invalidated": {
+      "$ref": "#/$defs/flagArray"
+    },
+    "upstream_lineage_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rpl-[A-Za-z0-9._:-]+$"
+      },
+      "uniqueItems": true
+    },
+    "downstream_lineage_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^rpl-[A-Za-z0-9._:-]+$"
+      },
+      "uniqueItems": true
+    },
+    "analysis_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gap_id", "gap_kind", "explanation"],
+        "properties": {
+          "gap_id": {
+            "type": "string"
+          },
+          "gap_kind": {
+            "type": "string"
+          },
+          "effect_on_lineage": {
+            "type": "string"
+          },
+          "locator": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "fault_line_hop_id": {
+      "type": ["string", "null"],
+      "pattern": "^rph-[A-Za-z0-9._:-]+$"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "flagName": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}_[A-Z0-9_]+$"
+    },
+    "flagArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/flagName"
+      },
+      "uniqueItems": true
+    }
+  }
+}

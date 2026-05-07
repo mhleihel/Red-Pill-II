@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "pack_id": "react-19-ssr-signals",
+  "pack_type": "framework_templating",
+  "generated_at": "2026-05-01T00:00:00Z",
+  "generated_by": "seed-pack-initialization",
+  "description": "React 19: Add React.createElement detection signal and update Server Components notes. No autoescape behavior change — JSX {} still escaped.",
+  "scope": {
+    "language": "javascript",
+    "framework": "react",
+    "framework_version_range": ">=19.0.0",
+    "execution_contexts": ["*"],
+    "render_contexts": ["html_body"]
+  },
+  "priority": 10,
+  "confidence": 0.85,
+  "introduced_by": {
+    "run_id": "seed-001",
+    "timestamp": "2026-05-01T00:00:00Z",
+    "operator_id": "system",
+    "audit_references": [
+      "React 19 release notes: Server Components stable",
+      "React 19 upgrade guide: createElement still used in compiled JSX"
+    ]
+  },
+  "patches": [
+    {
+      "patch_id": "add-react-createelement-signal",
+      "reason": "MISSING_PATTERN",
+      "change_type": "update_detection_signals",
+      "target": {
+        "config_section": "frameworks",
+        "framework_key": "react"
+      },
+      "changes": {
+        "add": [
+          {"field": "detection.signals", "value": "React\\.createElement"}
+        ]
+      },
+      "justification": "React.createElement is the compiled output of JSX and appears in all React codebases. Adding it as a detection signal improves framework detection confidence for projects using compiled JSX rather than the JSX transform."
+    },
+    {
+      "patch_id": "update-react-19-ssr-notes",
+      "reason": "UPDATE_DETECTION",
+      "change_type": "update_detection_signals",
+      "target": {
+        "config_section": "frameworks",
+        "framework_key": "react"
+      },
+      "changes": {
+        "update": {
+          "detection.notes": "React 19. JSX auto-escapes; Server Components and Server Actions create new data→HTML paths to audit. createElement compiled output still present."
+        }
+      },
+      "justification": "Server Components and Server Actions are new SSR surfaces in React 19 that bypass traditional client-side sanitation assumptions. Operators should be aware when auditing React 19 codebases."
+    }
+  ],
+  "regression_fixtures": [
+    {
+      "description": "React framework detection signals must include React.createElement after pack application",
+      "expected_delta": "adds createElement to detection.signals",
+      "fixture_ref": "react_framework_config.detection.signals"
+    },
+    {
+      "description": "React detection notes must mention Server Components after pack application",
+      "expected_delta": "updates detection.notes with Server Components reference",
+      "fixture_ref": "react_framework_config.detection.notes"
+    }
+  ]
+}

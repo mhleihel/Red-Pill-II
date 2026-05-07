@@ -1,0 +1,55 @@
+{
+  "schema_id": "red_pill_refinement_loop",
+  "schema_version": "v0.1",
+  "purpose": "Bounded Model-1 map refinement protocol for Red-Pill mapper uncertainty",
+  "max_model_iterations": 2,
+  "allowed_followup_request_types": [
+    "extract_file_slice",
+    "extract_function_definition",
+    "find_symbol_references",
+    "find_callers",
+    "find_template_engine_config",
+    "find_sanitizer_config",
+    "extract_upload_policy",
+    "extract_file_serving_config",
+    "extract_content_type_headers",
+    "run_semgrep_rule_pack"
+  ],
+  "model1_input_record": {
+    "required": [
+      "loop_id",
+      "iteration",
+      "job_id",
+      "mapper_job",
+      "allowed_followup_request_types",
+      "model1_response_schema"
+    ]
+  },
+  "model1_response_record": {
+    "required": [
+      "job_id",
+      "iteration",
+      "predictions",
+      "followup_requests"
+    ],
+    "fields": {
+      "predictions": {
+        "framework_classification": "string|null",
+        "custom_helper_classification": "string|null",
+        "path_provenance_adjustment": "string|null",
+        "protection_interpretation": "string|null",
+        "confidence": "number",
+        "notes": "string"
+      },
+      "followup_requests": [
+        {
+          "request_type": "one allowed_followup_request_types value",
+          "symbol": "string|null",
+          "file": "string|null",
+          "line": "number|null",
+          "reason": "string"
+        }
+      ]
+    }
+  }
+}

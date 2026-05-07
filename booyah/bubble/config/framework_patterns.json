@@ -1,0 +1,479 @@
+{
+  "$schema": "config/framework_patterns.schema.json",
+  "schema_version": "1.0",
+  "generated_at": "2026-04-28T00:00:00Z",
+  "generated_by": "scripts/red_pill_mapper.py --export-framework-config",
+
+  "frameworks": {
+    "react": {
+      "last_reviewed_version": "18.3.1",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute"],
+        "bypass_markers": ["dangerouslySetInnerHTML"],
+        "context_notes": "JSX {} expressions are auto-escaped; only dangerouslySetInnerHTML is raw."
+      },
+      "detection": {
+        "signals": ["\\bReact\\b", "from ['\"]react['\"]", "dangerouslySetInnerHTML"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["dangerouslySetInnerHTML"],
+        "notes": "React escapes text children by default; dangerouslySetInnerHTML is raw HTML."
+      }
+    },
+    "django_jinja": {
+      "last_reviewed_version": "5.1",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute"],
+        "bypass_markers": ["|safe", "mark_safe", "{% autoescape off %}"],
+        "context_notes": "Django/Jinja2 auto-escapes {{ var }}; safe filter and mark_safe bypass it."
+      },
+      "detection": {
+        "signals": ["\\{\\{.*\\}\\}", "{%\\s*autoescape", "\\|\\s*safe\\b", "mark_safe"],
+        "default_escape_contexts": ["html_body", "html_attribute"],
+        "trusted_bypass_apis": ["safe filter", "mark_safe"],
+        "notes": "Autoescape may protect template interpolation unless disabled or bypassed."
+      }
+    },
+    "rails_erb": {
+      "last_reviewed_version": "7.2",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["html_safe", "raw(", "<%=="],
+        "context_notes": "ERB <%= %> escapes by default; <%== %> and .html_safe bypass."
+      },
+      "detection": {
+        "signals": ["<%=", "\\.html_safe\\b", "\\braw\\s*\\("],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["html_safe", "raw"],
+        "notes": "Escaped ERB output is safer; raw/html_safe bypasses escaping."
+      }
+    },
+    "aspnet_razor": {
+      "last_reviewed_version": "9.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["Html.Raw("],
+        "context_notes": "Razor @Model expressions are encoded; Html.Raw bypasses."
+      },
+      "detection": {
+        "signals": ["\\bHtml\\.Raw\\s*\\(", "\\.cshtml\\b", "@Model"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["Html.Raw"],
+        "notes": "Razor encodes normal output; Html.Raw bypasses encoding."
+      }
+    },
+    "vue": {
+      "last_reviewed_version": "3.5",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["v-html"],
+        "context_notes": "Vue {{ }} text interpolation is escaped; v-html interprets HTML."
+      },
+      "detection": {
+        "signals": ["\\bv-html\\b", "\\{\\{.*\\}\\}"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["v-html"],
+        "notes": "Mustache text is escaped; v-html interprets HTML."
+      }
+    },
+    "angular": {
+      "last_reviewed_version": "19.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["bypassSecurityTrustHtml", "bypassSecurityTrustUrl", "[innerHTML]"],
+        "context_notes": "Angular sanitizes bindings; bypassSecurityTrust* APIs bypass it."
+      },
+      "detection": {
+        "signals": ["bypassSecurityTrust", "\\[innerHTML\\]", "ng-bind-html"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["bypassSecurityTrustHtml", "bypassSecurityTrustUrl"],
+        "notes": "Angular sanitizes some bindings; bypass APIs explicitly trust content."
+      }
+    },
+    "express": {
+      "last_reviewed_version": "5.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["<%-", "!=", "{{{", "res.send("],
+        "context_notes": "Express delegates escaping to the template engine. EJS <%= %> auto-escapes; <%- %> is raw. Pug = auto-escapes; != is raw. Handlebars {{ }} auto-escapes; {{{ }}} is raw. res.send() sends raw bytes."
+      },
+      "detection": {
+        "signals": ["require\\(['\"]express['\"]", "res\\.render\\s*\\(", "res\\.send\\s*\\(", "<%-"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["<%- (EJS raw)", "!= (Pug raw)", "{{{ (Handlebars raw)"],
+        "notes": "Express template engines (EJS, Pug, Handlebars) auto-escape by default; raw-output syntax bypasses escaping."
+      }
+    },
+    "fastapi": {
+      "last_reviewed_version": "0.115.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute"],
+        "bypass_markers": ["|safe", "Markup(", "mark_safe"],
+        "context_notes": "FastAPI uses Jinja2 via Starlette's Jinja2Templates. Jinja2 auto-escapes {{ var }}; |safe filter and Markup() bypass it."
+      },
+      "detection": {
+        "signals": ["FastAPI\\b", "from\\s+fastapi", "Jinja2Templates", "TemplateResponse", "@app\\.(?:get|post|put|delete|patch)"],
+        "default_escape_contexts": ["html_body", "html_attribute"],
+        "trusted_bypass_apis": ["|safe filter", "Markup()"],
+        "notes": "Jinja2 auto-escapes template interpolation; safe filter and Markup() bypass."
+      }
+    },
+    "flask": {
+      "last_reviewed_version": "3.1.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute"],
+        "bypass_markers": ["|safe", "Markup(", "mark_safe", "{% autoescape off %}"],
+        "context_notes": "Flask uses Jinja2, which auto-escapes {{ var }} by default. |safe, Markup(), mark_safe, and {% autoescape off %} bypass it."
+      },
+      "detection": {
+        "signals": ["render_template\\s*\\(", "render_template_string\\s*\\(", "from\\s+flask\\s+import", "@app\\.route\\s*\\(", "Flask\\(__name__\\)"],
+        "default_escape_contexts": ["html_body", "html_attribute"],
+        "trusted_bypass_apis": ["|safe filter", "Markup()", "mark_safe"],
+        "notes": "Jinja2 auto-escapes by default; render_template_string with user input is SSTI."
+      }
+    },
+    "go_nethttp": {
+      "last_reviewed_version": "1.23.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute", "js_body", "url"],
+        "bypass_markers": ["template.HTML(", "template.JS(", "template.URL(", "template.CSS(", "text/template"],
+        "context_notes": "Go html/template auto-escapes contextually (HTML, JS, CSS, URLs). template.HTML() etc. bypass. text/template does NOT auto-escape."
+      },
+      "detection": {
+        "signals": ["html/template", "template\\.HTML\\s*\\(", "template\\.JS\\s*\\(", "text/template", "\\.HandleFunc\\s*\\(", "template\\.Must\\s*\\("],
+        "default_escape_contexts": ["html_body", "html_attribute", "js_body", "url"],
+        "trusted_bypass_apis": ["template.HTML", "template.JS", "template.URL", "template.CSS"],
+        "notes": "html/template contextually auto-escapes; text/template does not. Bypass types exist for each context."
+      }
+    },
+    "handlebars": {
+      "last_reviewed_version": "4.7.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["{{{"],
+        "context_notes": "Handlebars {{ }} auto-escapes HTML; {{{ }}} triple-stash outputs raw HTML."
+      },
+      "detection": {
+        "signals": ["\\{\\{\\{", "Handlebars\\.compile", "require\\(['\"]handlebars['\"]", "\\.hbs\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["{{{ triple-stash"],
+        "notes": "Double-stash escapes; triple-stash bypasses. Also used server-side in Express apps."
+      }
+    },
+    "htmx": {
+      "last_reviewed_version": "2.0.0",
+      "autoescape": {
+        "default_safe_contexts": [],
+        "bypass_markers": [],
+        "context_notes": "HTMX is an HTML extension library, not a template engine. It swaps server-rendered HTML fragments via hx-swap. No built-in auto-escape — the server MUST sanitise responses. hx-swap=innerHTML interprets responses as raw HTML."
+      },
+      "detection": {
+        "signals": ["hx-swap\\s*=", "hx-target\\s*=", "hx-get\\s*=", "hx-post\\s*=", "htmx\\.org", "\\bhtmx\\b"],
+        "default_escape_contexts": [],
+        "trusted_bypass_apis": [],
+        "notes": "HTMX provides zero output encoding. Every hx-swap=innerHTML is a potential XSS sink if the server response is not sanitised."
+      }
+    },
+    "laravel_blade": {
+      "last_reviewed_version": "12.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["{!!", "!!}"],
+        "context_notes": "Blade {{ }} auto-escapes by default; {!! !!} outputs raw HTML. Blade::withoutDoubleEncoding() disables double-encoding."
+      },
+      "detection": {
+        "signals": ["\\{\\!\\!", "\\bBlade::", "@extends\\b", "@section\\b", "@yield\\b", "View::make\\s*\\("],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["{!! raw echo"],
+        "notes": "Blade auto-escapes {{ }}; {!! !!} bypasses. Custom Blade directives should be audited."
+      }
+    },
+    "nextjs": {
+      "last_reviewed_version": "15.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["dangerouslySetInnerHTML"],
+        "context_notes": "Next.js uses React JSX which auto-escapes { } expressions. dangerouslySetInnerHTML bypasses. Server Components and Server Actions are new XSS surfaces."
+      },
+      "detection": {
+        "signals": ["next/", "\\bnextjs\\b", "use\\s+server", "use\\s+client", "getServerSideProps", "getStaticProps", "NextApiHandler"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["dangerouslySetInnerHTML"],
+        "notes": "React-based; JSX auto-escapes. Server Components and Server Actions create new data->HTML paths."
+      }
+    },
+    "slim": {
+      "last_reviewed_version": "4.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["|raw", "{% autoescape false %}", "mark_safe"],
+        "context_notes": "Slim is a PHP micro-framework with no built-in template engine. When used with Twig, auto-escape is on by default. |raw filter bypasses it."
+      },
+      "detection": {
+        "signals": ["Slim\\\\App", "Slim\\\\\\\\", "\\$app->(?:get|post|put|delete|patch)\\s*\\(", "use\\s+Slim\\\\"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["|raw (Twig)", "mark_safe (Django)"],
+        "notes": "Template-agnostic; auto-escape depends on the chosen engine (often Twig, which auto-escapes by default)."
+      }
+    },
+    "spring_boot": {
+      "last_reviewed_version": "3.4.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["th:utext", "th:utext="],
+        "context_notes": "Thymeleaf th:text auto-escapes HTML; th:utext outputs raw HTML. JSP ${ } does NOT auto-escape (use <c:out> or fn:escapeXml())."
+      },
+      "detection": {
+        "signals": ["th:utext\\s*=", "@Controller\\b", "@RequestMapping\\b", "@GetMapping\\b", "@PostMapping\\b", "ModelAndView\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["th:utext"],
+        "notes": "Thymeleaf auto-escapes th:text; th:utext bypasses. JSP ${ } does NOT auto-escape — prefer <c:out>."
+      }
+    },
+    "svelte": {
+      "last_reviewed_version": "5.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["{@html"],
+        "context_notes": "Svelte { } expressions auto-escape HTML; {@html } outputs raw HTML. Svelte 5 runes ($state, $derived) do not change escaping behaviour."
+      },
+      "detection": {
+        "signals": ["\\{@html\\s+", "<script\\s+lang\\s*=\\s*['\"]ts['\"]", "\\$state\\s*\\(", "\\$derived\\s*\\(", "\\$effect\\s*\\(", "\\bsvelte\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["{@html"],
+        "notes": "Svelte auto-escapes { } expressions; {@html } is the sole raw-HTML bypass."
+      }
+    },
+    "twig": {
+      "last_reviewed_version": "3.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["|raw", "{% autoescape false %}"],
+        "context_notes": "Twig auto-escapes by default (configurable per environment). |raw filter and {% autoescape false %} block bypass it."
+      },
+      "detection": {
+        "signals": ["\\|raw\\b", "\\{%\\s*autoescape", "Twig\\\\", "\\\\Twig", "\\btwig\\b", "\\.twig\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["|raw filter", "{% autoescape false %}"],
+        "notes": "Twig auto-escapes by default when enabled; |raw bypasses. Used standalone or with Symfony/Slim."
+      }
+    },
+    "phoenix": {
+      "last_reviewed_version": "1.7.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["raw(", "Phoenix.HTML.raw(", "{:safe"],
+        "context_notes": "Phoenix HEEx templates auto-escape <%= %> by default. raw() and Phoenix.HTML.raw() bypass. The {:safe} tuple marks content as trusted."
+      },
+      "detection": {
+        "signals": ["\\bPhoenix\\b", "use\\s+Phoenix", "~H\"\"\"", "def\\s+mount\\b", "def\\s+handle_event\\b", "\\.heex\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["raw()", "Phoenix.HTML.raw()", "{:safe}"],
+        "notes": "HEEx (HTML+EEx) auto-escapes by default; LiveView mount/handle_event are request-input surfaces."
+      }
+    },
+    "symfony": {
+      "last_reviewed_version": "7.2.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["|raw", "{% autoescape false %}"],
+        "context_notes": "Symfony uses Twig by default, which auto-escapes. |raw filter and {% autoescape false %} bypass. HtmlSanitizer component provides context-aware sanitisation."
+      },
+      "detection": {
+        "signals": ["Symfony\\\\", "use\\s+Symfony", "#\\[Route\\b", "AbstractController", "\\bResponse\\b", "@Template\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["|raw filter", "{% autoescape false %}"],
+        "notes": "Twig-based; auto-escapes by default. #[Route] attributes and @Template annotations mark request handlers."
+      }
+    },
+    "alpinejs": {
+      "last_reviewed_version": "3.14.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["x-html"],
+        "context_notes": "Alpine.js x-text escapes text content; x-html sets innerHTML (raw HTML). x-bind binds attributes safely."
+      },
+      "detection": {
+        "signals": ["x-data\\b", "x-html\\b", "x-text\\b", "x-bind\\b", "@click\\b", "Alpine\\.", "\\balpinejs\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["x-html"],
+        "notes": "x-text escapes; x-html bypasses and sets innerHTML directly. Typically embedded in HTML attributes."
+      }
+    },
+    "nestjs": {
+      "last_reviewed_version": "11.0.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body"],
+        "bypass_markers": ["<%-", "!=", "{{{", "res.send("],
+        "context_notes": "NestJS uses Express or Fastify under the hood. Template auto-escape depends on the configured engine (EJS, Pug, Handlebars)."
+      },
+      "detection": {
+        "signals": ["@Controller\\b", "@Get\\b", "@Post\\b", "@Module\\b", "@Injectable\\b", "\\bNestJS\\b", "\\bnestjs\\b"],
+        "default_escape_contexts": ["html_body"],
+        "trusted_bypass_apis": ["<%- (EJS raw)", "!= (Pug raw)", "{{{ (Handlebars raw)"],
+        "notes": "Decorator-based; delegates rendering to the underlying HTTP adapter. Same template bypass markers as Express."
+      }
+    },
+    "gin": {
+      "last_reviewed_version": "1.10.0",
+      "autoescape": {
+        "default_safe_contexts": ["html_body", "html_attribute", "js_body", "url"],
+        "bypass_markers": ["template.HTML(", "c.HTML(", "c.String("],
+        "context_notes": "Gin uses Go html/template under the hood, which contextually auto-escapes. c.HTML() renders templates safely; c.String() sends raw text (not HTML-escaped)."
+      },
+      "detection": {
+        "signals": ["gin\\.", "gin\\.H\\{", "c\\.HTML\\s*\\(", "c\\.String\\s*\\(", "r\\.GET\\s*\\(", "r\\.POST\\s*\\("],
+        "default_escape_contexts": ["html_body", "html_attribute", "js_body", "url"],
+        "trusted_bypass_apis": ["template.HTML", "c.HTML (safe)", "c.String (raw — no escaping)"],
+        "notes": "Uses html/template for contextual auto-escaping. c.String() bypasses HTML escaping — prefer c.HTML() for safe template rendering."
+      }
+    }
+  },
+
+  "framework_specific_patterns": [
+    {
+      "id": "fastapi_laravel_source",
+      "kind": "source",
+      "category": "request_input",
+      "regex": "\\brequest\\.(query_params|path_params|query_string)\\b|\\$request->(input|get|post|query|header|cookie|file)\\s*\\(?|\\brequest\\(\\)->(all|input|get|post)\\s*\\(",
+      "source_kind": "body",
+      "confidence": 0.45,
+      "frameworks": ["fastapi", "laravel"]
+    },
+    {
+      "id": "spring_aspnet_go_django_source",
+      "kind": "source",
+      "category": "request_input",
+      "regex": "@(RequestParam|PathVariable|RequestBody|RequestHeader)\\b|\\[(FromQuery|FromBody|FromRoute|FromHeader)\\b|\\br\\.(URL\\.Query\\(\\)\\.Get|FormValue|PostFormValue|Header\\.Get)\\s*\\(?|\\bself\\.request\\.(GET|POST|FILES|META)\\b|\\bself\\.(kwargs|args)\\b",
+      "source_kind": "body",
+      "confidence": 0.45,
+      "frameworks": ["spring_boot", "aspnet", "go_nethttp", "django"]
+    },
+    {
+      "id": "react_vue_svelte_router_source",
+      "kind": "source",
+      "category": "request_input",
+      "regex": "\\buseParams\\s*\\(\\s*\\)|\\buseSearchParams\\s*\\(\\s*\\)|\\buseLocation\\s*\\(\\s*\\)|\\buseRoute\\s*\\(\\s*\\)|\\bparams\\s*=\\s*await\\s+request\\.(json|formData|text)\\s*\\(\\s*\\)",
+      "source_kind": "url_route_param",
+      "confidence": 0.40,
+      "frameworks": ["react", "vue", "svelte"]
+    },
+    {
+      "id": "framework_raw_html_sink",
+      "kind": "sink",
+      "category": "framework_raw_html_sink",
+      "regex": "dangerouslySetInnerHTML|v-html\\s*=|\\{@html\\s+|ng-bind-html|bypassSecurityTrustHtml|bypassSecurityTrustUrl|\\[innerHTML\\]\\s*=",
+      "sink_kind": "client_framework",
+      "render_context": "dom_html",
+      "execution_context": "user_browser",
+      "confidence": 0.92,
+      "frameworks": ["react", "vue", "svelte", "angular"]
+    },
+    {
+      "id": "server_raw_template_sink",
+      "kind": "sink",
+      "category": "server_raw_template_sink",
+      "regex": "\\{\\{\\{\\s*[^}]+\\s*\\}\\}\\}|<%-\\s*[^%]+%>|{%\\s*raw\\s*%}|!\\{[^}]+\\}|Html\\.Raw\\s*\\(|raw\\s*\\(|mark_safe\\s*\\(|html_safe\\b|safe\\s*}}|\\{\\!\\![^!]+\\!\\!\\}",
+      "sink_kind": "server_template",
+      "render_context": "html_body",
+      "execution_context": "user_browser",
+      "confidence": 0.55,
+      "frameworks": ["handlebars", "rails_erb", "twig", "slim", "aspnet_razor", "django_jinja", "laravel_blade"]
+    },
+    {
+      "id": "template_interpolation_sink",
+      "kind": "sink",
+      "category": "template_interpolation_sink",
+      "regex": "\\{\\{\\s*[\\w.\\[\\]|]+\\s*\\}\\}|<%=\\s*[\\w.@]+\\s*%>|@Model\\.\\w+|\\$\\{[\\w.]+\\}|#\\{[\\w.]+\\}",
+      "sink_kind": "template_interpolation",
+      "render_context": "html_body",
+      "execution_context": "user_browser",
+      "confidence": 0.18,
+      "frameworks": ["jinja2", "vue", "rails_erb", "aspnet_razor"]
+    },
+    {
+      "id": "ssti_sink",
+      "kind": "sink",
+      "category": "ssti_sink",
+      "regex": "\\brender_template_string\\s*\\(|render_template\\s*\\(\\s*['\"]|\\bERB\\.new\\s*\\(|Erubis|\\bTemplate\\s*\\(\\s*|new\\s+Template\\s*\\(|\\bBlade::render\\s*\\(|View::make\\s*\\(",
+      "sink_kind": "server_template_injection",
+      "render_context": "html_body",
+      "execution_context": "user_browser",
+      "confidence": 0.68,
+      "frameworks": ["flask", "rails", "laravel"]
+    },
+    {
+      "id": "htmx_sink",
+      "kind": "sink",
+      "category": "htmx_sink",
+      "regex": "hx-swap\\s*=\\s*['\"]innerHTML|hx-swap\\s*=\\s*['\"]outerHTML|hx-target\\s*=|hx-get\\s*=|hx-post\\s*=|hx-put\\s*=|hx-delete\\s*=|hx-patch\\s*=",
+      "sink_kind": "htmx_swap",
+      "render_context": "dom_html",
+      "execution_context": "user_browser",
+      "confidence": 0.50,
+      "frameworks": ["htmx"]
+    },
+    {
+      "id": "framework_trust_marking",
+      "kind": "dangerous",
+      "category": "trust_marking",
+      "regex": "\\b(mark_safe|html_safe|SafeString|Html\\.Raw|bypassSecurityTrustHtml|bypassSecurityTrustUrl|raw\\s*\\(|safe\\s*\\||safeHtml\\s*\\()\\b",
+      "dangerous_kind": "trust_marking",
+      "confidence": 0.88,
+      "frameworks": ["django_jinja", "rails_erb", "aspnet_razor", "angular"]
+    }
+  ],
+
+  "_template_render_patterns": [
+    {
+      "framework": "flask",
+      "regex": "render_template\\s*\\(\\s*['\"]([^'\"]+)['\"]\\s*,\\s*(.+?)\\)(?:[\\s,;]|$)"
+    },
+    {
+      "framework": "express",
+      "regex": "res\\.render\\s*\\(\\s*['\"]([^'\"]+)['\"]\\s*,\\s*(\\{.+?\\})\\)"
+    },
+    {
+      "framework": "django",
+      "regex": "render\\s*\\(\\s*request\\s*,\\s*['\"]([^'\"]+)['\"]\\s*,\\s*(\\{.+?\\})\\)"
+    },
+    {
+      "framework": "generic",
+      "regex": "(?:_template|_render)\\s*\\(\\s*(.+?)\\)\\s*$"
+    }
+  ],
+
+  "_route_patterns": [
+    {
+      "framework": "express",
+      "regex": "(?:app|router)\\.(?:get|post|put|delete|patch|all|use)\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "flask",
+      "regex": "@(?:[\\w_]+)\\.route\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "fastapi",
+      "regex": "@(?:app|router)\\.(?:get|post|put|delete|patch|options|head)\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "rails",
+      "regex": "(?:get|post|put|patch|delete|match|resources|resource)\\s+['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "django_urls",
+      "regex": "(?:path|re_path|url)\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "laravel",
+      "regex": "Route::(?:get|post|put|delete|patch|any|match)\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "aspnet",
+      "regex": "\\[(?:HttpGet|HttpPost|HttpPut|HttpDelete|HttpPatch|Route)\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    },
+    {
+      "framework": "go_nethttp",
+      "regex": "\\.HandleFunc\\s*\\(\\s*['\"]([^'\"]+)['\"]"
+    }
+  ]
+}

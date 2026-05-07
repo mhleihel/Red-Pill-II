@@ -1,0 +1,302 @@
+{
+  "$schema": "config/library_security.schema.json",
+  "schema_version": "1.0",
+  "generated_at": "2026-05-01T00:00:00Z",
+  "generated_by": "scripts/red_pill_mapper.py",
+
+  "libraries": {
+    "DOMPurify": {
+      "ecosystems": ["npm"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "DOMPurify\\.sanitize\\s*\\(",
+        "DOMPurify\\.sanitize\\(",
+        "createDOMPurify\\s*\\(",
+        "window\\.DOMPurify",
+        "import\\s+.*\\bDOMPurify\\b"
+      ],
+      "known_issues": [
+        {
+          "version_range": "<2.0.0",
+          "cve": null,
+          "severity": "MEDIUM",
+          "description": "DOMPurify <2.0.0 had multiple mXSS bypass vectors via namespace confusion and mutation-XSS."
+        },
+        {
+          "version_range": "<2.3.0",
+          "cve": null,
+          "severity": "MEDIUM",
+          "description": "DOMPurify <2.3.0 had bypass via SVG/MathML namespace confusion."
+        },
+        {
+          "version_range": "<3.0.0",
+          "cve": null,
+          "severity": "LOW",
+          "description": "DOMPurify <3.0.0 had bypass via prototype pollution edge cases."
+        }
+      ],
+      "notes": "Widely used client-side HTML sanitizer. Keep updated to latest version. Supports hooks and custom ALLOWED_TAGS configuration."
+    },
+    "bleach": {
+      "ecosystems": ["pypi"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "bleach\\.clean\\s*\\(",
+        "bleach\\.linkify\\s*\\(",
+        "import\\s+bleach\\b",
+        "from\\s+bleach\\s+import"
+      ],
+      "known_issues": [
+        {
+          "version_range": "*",
+          "cve": null,
+          "severity": "HIGH",
+          "description": "bleach is officially deprecated and unmaintained as of 2023-01-31. Use nh3 or an alternative sanitizer."
+        }
+      ],
+      "notes": "DEPRECATED. Do not use in new projects. Migrate to nh3."
+    },
+    "helmet": {
+      "ecosystems": ["npm"],
+      "purpose": "http_security_headers",
+      "protection_category": "active_content_block",
+      "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]helmet['\"]\\s*\\)",
+        "app\\.use\\s*\\(\\s*helmet\\s*\\(\\s*\\)\\s*\\)",
+        "helmet\\.contentSecurityPolicy\\s*\\(",
+        "helmet\\.hsts\\s*\\(",
+        "helmet\\.frameguard\\s*\\(",
+        "from\\s+['\"]helmet['\"]"
+      ],
+      "known_issues": [],
+      "notes": "Sets various HTTP security headers. Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Strict-Transport-Security, X-DNS-Prefetch-Control, etc."
+    },
+    "csurf": {
+      "ecosystems": ["npm"],
+      "purpose": "csrf_protection",
+      "protection_category": "authorization_check",
+      "emits_flags": ["PR_AUTHZ_OBJECT"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]csurf['\"]\\s*\\)",
+        "csurf\\s*\\(",
+        "csrfProtection\\s*\\(",
+        "csrf\\s*\\("
+      ],
+      "known_issues": [
+        {
+          "version_range": "*",
+          "cve": null,
+          "severity": "HIGH",
+          "description": "csurf is deprecated and unmaintained. Use @csrf or framework-built-in CSRF protection instead."
+        }
+      ],
+      "notes": "DEPRECATED. Use framework-built-in CSRF middleware."
+    },
+    "ammonia": {
+      "ecosystems": ["cargo"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "ammonia::clean\\s*\\(",
+        "ammonia::Builder::new\\s*\\(",
+        "use\\s+ammonia\\b",
+        "ammonia::"
+      ],
+      "known_issues": [],
+      "notes": "Rust HTML sanitizer. Well-maintained, uses comprehensive allowlist approach. Prefer over raw string interpolation."
+    },
+    "nh3": {
+      "ecosystems": ["pypi"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "nh3\\.clean\\s*\\(",
+        "import\\s+nh3\\b",
+        "from\\s+nh3\\s+import"
+      ],
+      "known_issues": [],
+      "notes": "Python HTML sanitizer. Recommended replacement for bleach. Actively maintained, Rust-backed."
+    },
+    "sanitize-html": {
+      "ecosystems": ["npm"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "sanitizeHtml\\s*\\(",
+        "sanitize-html",
+        "sanitize_html\\s*\\(",
+        "require\\s*\\(\\s*['\"]sanitize-html['\"]\\s*\\)"
+      ],
+      "known_issues": [],
+      "notes": "Node.js HTML sanitizer. Popular but less battle-tested than DOMPurify for client-side use."
+    },
+    "xss": {
+      "ecosystems": ["npm"],
+      "purpose": "html_encoder",
+      "protection_category": "html_escape_or_encode",
+      "emits_flags": ["PR_ENC_HTML"],
+      "detection_signals": [
+        "xss\\s*\\(",
+        "require\\s*\\(\\s*['\"]xss['\"]\\s*\\)",
+        "xss\\.escapeHTML\\s*\\("
+      ],
+      "known_issues": [],
+      "notes": "Node.js XSS filter library. Provides HTML entity encoding."
+    },
+    "lusca": {
+      "ecosystems": ["npm"],
+      "purpose": "express_security_middleware",
+      "protection_category": "active_content_block",
+      "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]lusca['\"]\\s*\\)",
+        "app\\.use\\s*\\(\\s*lusca\\s*\\(",
+        "lusca\\.csrf\\s*\\(",
+        "lusca\\.xframe\\s*\\("
+      ],
+      "known_issues": [
+        {
+          "version_range": "*",
+          "cve": null,
+          "severity": "LOW",
+          "description": "lusca has not been updated since 2019. Consider helmet + built-in CSRF middleware as alternatives."
+        }
+      ],
+      "notes": "Express security middleware (successor to csurf). Sets CSP, X-Frame-Options, CSRF tokens, etc. Infrequently maintained."
+    },
+    "express-rate-limit": {
+      "ecosystems": ["npm"],
+      "purpose": "rate_limiting",
+      "protection_category": "active_content_block",
+      "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+      "detection_signals": [
+        "express-rate-limit",
+        "rateLimit\\s*\\(",
+        "rateLimiter\\s*\\(",
+        "rate_limit\\s*\\("
+      ],
+      "known_issues": [],
+      "notes": "Rate limiting for Express. Mitigates brute-force and DoS but not direct XSS."
+    },
+    "hpp": {
+      "ecosystems": ["npm"],
+      "purpose": "parameter_pollution_protection",
+      "protection_category": "input_validation",
+      "emits_flags": ["PR_VALIDATE_TYPE"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]hpp['\"]\\s*\\)",
+        "app\\.use\\s*\\(\\s*hpp\\s*\\(",
+        "hpp\\s*\\("
+      ],
+      "known_issues": [],
+      "notes": "Express middleware to protect against HTTP Parameter Pollution attacks."
+    },
+    "cors": {
+      "ecosystems": ["npm"],
+      "purpose": "cors_middleware",
+      "protection_category": "authorization_check",
+      "emits_flags": ["PR_AUTHZ_OBJECT"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]cors['\"]\\s*\\)",
+        "app\\.use\\s*\\(\\s*cors\\s*\\(",
+        "cors\\s*\\("
+      ],
+      "known_issues": [
+        {
+          "version_range": "*",
+          "cve": null,
+          "severity": "LOW",
+          "description": "cors() with default settings allows all origins. Ensure CORS is configured restrictively."
+        }
+      ],
+      "notes": "CORS middleware for Express. Must be configured with specific origins in production."
+    },
+    "html-entities": {
+      "ecosystems": ["npm"],
+      "purpose": "html_encoder",
+      "protection_category": "html_escape_or_encode",
+      "emits_flags": ["PR_ENC_HTML"],
+      "detection_signals": [
+        "html-entities",
+        "entities\\.encode\\s*\\(",
+        "entities\\.encodeXML\\s*\\(",
+        "entities\\.encodeHTML\\s*\\("
+      ],
+      "known_issues": [],
+      "notes": "Node.js library for encoding/decoding HTML entities."
+    },
+    "escape-html": {
+      "ecosystems": ["npm"],
+      "purpose": "html_encoder",
+      "protection_category": "html_escape_or_encode",
+      "emits_flags": ["PR_ENC_HTML"],
+      "detection_signals": [
+        "require\\s*\\(\\s*['\"]escape-html['\"]\\s*\\)",
+        "escapeHtml\\s*\\(",
+        "escape_html\\s*\\("
+      ],
+      "known_issues": [],
+      "notes": "Simple HTML entity escaping for Node.js."
+    },
+    "secure-headers": {
+      "ecosystems": ["npm", "pypi"],
+      "purpose": "security_headers",
+      "protection_category": "active_content_block",
+      "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+      "detection_signals": [
+        "secure-headers",
+        "secure_headers",
+        "SecureHeaders"
+      ],
+      "known_issues": [],
+      "notes": "Library for setting security-related HTTP headers."
+    },
+    "defusedxml": {
+      "ecosystems": ["pypi"],
+      "purpose": "xml_security",
+      "protection_category": "input_validation",
+      "emits_flags": ["PR_VALIDATE_TYPE"],
+      "detection_signals": [
+        "defusedxml",
+        "from\\s+defusedxml\\s+import",
+        "defusedxml\\.(?:ElementTree|lxml|xmlrpc|sax|expatreader|minidom|pulldom)"
+      ],
+      "known_issues": [],
+      "notes": "Python library for safe XML parsing. Prevents XML External Entity (XXE) and billion laughs attacks."
+    },
+    "html-sanitizer": {
+      "ecosystems": ["composer"],
+      "purpose": "html_sanitizer",
+      "protection_category": "sanitizer",
+      "emits_flags": ["PR_SAN_HTML"],
+      "detection_signals": [
+        "HtmlSanitizer\\b",
+        "html-sanitizer",
+        "HtmlSanitizer\\\\"
+      ],
+      "known_issues": [],
+      "notes": "PHP HTML sanitizer (Symfony HtmlSanitizer component). Context-aware sanitization."
+    },
+    "rack-protection": {
+      "ecosystems": ["rubygems"],
+      "purpose": "rack_security_middleware",
+      "protection_category": "active_content_block",
+      "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+      "detection_signals": [
+        "rack-protection",
+        "Rack::Protection",
+        "rack_protection"
+      ],
+      "known_issues": [],
+      "notes": "Rack middleware for Ruby web apps. Provides XSS, CSRF, clickjacking, and other attack protections."
+    }
+  }
+}

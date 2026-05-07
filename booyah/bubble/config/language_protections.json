@@ -1,0 +1,261 @@
+{
+  "$schema": "config/language_protections.schema.json",
+  "schema_version": "1.0",
+  "generated_at": "2026-05-01T00:00:00Z",
+  "generated_by": "scripts/red_pill_mapper.py --export-framework-config",
+
+  "languages": {
+    "rust": {
+      "properties": {
+        "memory_safety": {
+          "description": "Rust's ownership system prevents use-after-free, double-free, and buffer overflows at compile time.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Memory safety prevents memory corruption but does not prevent logic-level XSS; output encoding is still required."
+        },
+        "type_safety": {
+          "description": "Strong static type system prevents type-confusion attacks and enforces safe data handling.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Type safety alone does not prevent XSS; template engines still need context-aware escaping."
+        },
+        "borrow_checking": {
+          "description": "The borrow checker prevents data races and aliasing bugs at compile time.",
+          "emits_flags": [],
+          "requires_flags": [],
+          "notes": "Primarily a concurrency safety property with secondary security benefits."
+        }
+      }
+    },
+    "go": {
+      "properties": {
+        "memory_safety": {
+          "description": "Garbage-collected runtime with no manual memory management; prevents most memory corruption.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Memory safety reduces certain exploit classes but XSS remains a logic-level concern."
+        },
+        "type_safety": {
+          "description": "Static type system prevents type-confusion attacks; interfaces provide safe dynamic dispatch.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Go html/template provides contextual auto-escaping (detected separately as framework evidence)."
+        }
+      }
+    },
+    "typescript": {
+      "properties": {
+        "type_safety": {
+          "description": "Static type checking catches type errors at compile time; types are erased at runtime.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "TypeScript types are erased at runtime; XSS protection comes from framework encoding, not types."
+        },
+        "strict_null_checks": {
+          "description": "strictNullChecks prevents null/undefined reference errors at compile time.",
+          "emits_flags": [],
+          "requires_flags": [],
+          "notes": "Prevents 'undefined is not a function' class bugs but does not directly prevent XSS."
+        }
+      }
+    },
+    "javascript": {
+      "properties": {
+        "dynamic_typing": {
+          "description": "Dynamic typing allows flexible code but requires explicit input validation.",
+          "emits_flags": [],
+          "requires_flags": ["PR_VALIDATE_TYPE"],
+          "notes": "Dynamic typing means type and shape validation must be explicit at runtime."
+        }
+      }
+    },
+    "python": {
+      "properties": {
+        "memory_safety": {
+          "description": "Garbage-collected runtime with no manual memory management.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Memory safety reduces certain exploit classes but XSS remains a logic-level concern."
+        },
+        "dynamic_typing": {
+          "description": "Dynamic typing allows flexible code but requires explicit input validation.",
+          "emits_flags": [],
+          "requires_flags": ["PR_VALIDATE_TYPE"],
+          "notes": "Dynamic typing means type validation must be explicit; use type hints and runtime validators."
+        }
+      }
+    },
+    "php": {
+      "properties": {
+        "memory_safety": {
+          "description": "Garbage-collected runtime with no manual memory management.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Memory safety reduces certain exploit classes but XSS remains a logic-level concern."
+        },
+        "dynamic_typing": {
+          "description": "Dynamic typing with coercive type juggling; requires explicit input validation.",
+          "emits_flags": [],
+          "requires_flags": ["PR_VALIDATE_TYPE"],
+          "notes": "PHP type juggling can produce unexpected behavior; always validate input types explicitly."
+        }
+      }
+    },
+    "ruby": {
+      "properties": {
+        "memory_safety": {
+          "description": "Garbage-collected runtime with no manual memory management.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Memory safety reduces certain exploit classes but XSS remains a logic-level concern."
+        },
+        "dynamic_typing": {
+          "description": "Dynamic typing with duck typing; requires explicit input validation.",
+          "emits_flags": [],
+          "requires_flags": ["PR_VALIDATE_TYPE"],
+          "notes": "Ruby's flexibility means validation must be explicit; Rails provides helpers (detected separately)."
+        }
+      }
+    },
+    "java": {
+      "properties": {
+        "memory_safety": {
+          "description": "JVM-managed memory with no manual memory management; type-safe bytecode.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "JVM memory safety prevents memory corruption but XSS/SSRF/etc. remain logic concerns."
+        },
+        "type_safety": {
+          "description": "Strong static type system prevents type-confusion attacks.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Type safety prevents many injection classes but application-level encoding is still required."
+        }
+      }
+    },
+    "csharp": {
+      "properties": {
+        "memory_safety": {
+          "description": ".NET managed runtime with garbage collection; prevents most memory corruption.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Managed memory prevents buffer overflows but application-level XSS still possible."
+        },
+        "type_safety": {
+          "description": "Strong static type system with generics prevents type-confusion attacks.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "System.Web.HttpUtility.HtmlEncode and Razor auto-escaping provide additional protection."
+        }
+      }
+    },
+    "kotlin": {
+      "properties": {
+        "memory_safety": {
+          "description": "JVM-managed memory with null safety guarantees.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "JVM-level safety plus Kotlin null safety prevents many bug classes."
+        },
+        "type_safety": {
+          "description": "Strong static type system with null safety prevents type and null-pointer errors.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Null safety eliminates NPE attacks but application-level encoding is still required."
+        }
+      }
+    },
+    "swift": {
+      "properties": {
+        "memory_safety": {
+          "description": "Automatic Reference Counting (ARC) with bounds checking; no manual memory management.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Swift is memory-safe by default; XSS is primarily a web-layer concern."
+        },
+        "type_safety": {
+          "description": "Strong static type system with optionals for null safety.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Swift's strict typing eliminates many injection vectors at the language level."
+        }
+      }
+    },
+    "elixir": {
+      "properties": {
+        "memory_safety": {
+          "description": "BEAM VM with immutable data and process isolation; no shared memory between processes.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "BEAM process isolation provides strong memory safety guarantees."
+        },
+        "functional_guards": {
+          "description": "Immutable data and pattern matching reduce state-based vulnerabilities.",
+          "emits_flags": [],
+          "requires_flags": [],
+          "notes": "Immutability helps but does not prevent XSS; Phoenix HEEx auto-escapes (detected separately)."
+        }
+      }
+    },
+    "scala": {
+      "properties": {
+        "memory_safety": {
+          "description": "JVM-managed memory with strong functional programming guarantees.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "JVM-level safety plus functional patterns reduce state-based vulnerabilities."
+        },
+        "type_safety": {
+          "description": "Rich static type system with pattern matching and exhaustive checking.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Scala's expressive type system can encode invariants but XSS still requires encoding."
+        }
+      }
+    },
+    "dart": {
+      "properties": {
+        "memory_safety": {
+          "description": "Garbage-collected runtime with sound null safety.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Null safety prevents NPE-based attacks but XSS is a web-layer concern."
+        },
+        "type_safety": {
+          "description": "Sound static type system with null safety.",
+          "emits_flags": ["PR_VALIDATE_TYPE"],
+          "requires_flags": [],
+          "notes": "Dart's sound type system eliminates many type-based injection vectors."
+        }
+      }
+    },
+    "clojure": {
+      "properties": {
+        "memory_safety": {
+          "description": "JVM-managed memory with immutable persistent data structures.",
+          "emits_flags": ["PR_ACTIVE_CONTENT_BLOCK"],
+          "requires_flags": [],
+          "notes": "Immutability reduces state-based vulnerabilities but XSS still requires encoding."
+        },
+        "dynamic_typing": {
+          "description": "Dynamic typing with gradual typing support via clojure.spec.",
+          "emits_flags": [],
+          "requires_flags": ["PR_VALIDATE_TYPE"],
+          "notes": "Clojure's dynamic nature means input validation should be explicit."
+        }
+      }
+    },
+    "template": {
+      "properties": {},
+      "notes": "Template files (HTML, HBS, etc.) have no language-level security properties. All protection comes from the template engine."
+    },
+    "graphql": {
+      "properties": {},
+      "notes": "GraphQL schema files have no runtime security properties. Protection comes from the server framework."
+    },
+    "markdown": {
+      "properties": {},
+      "notes": "Markdown files have no language-level security properties. Protection comes from the renderer."
+    }
+  }
+}
