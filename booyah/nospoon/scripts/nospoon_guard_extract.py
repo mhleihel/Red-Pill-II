@@ -12,6 +12,7 @@ Supported parsers:
   xml_webapi_acl    — webapi.xml <resource> refs on endpoints
   php_middleware     — controller middleware / auth annotations
   php_annotation    — plugin class auth annotations
+  php_acl_body      — controller _isAllowed() body + inline isAllowed() calls
 """
 
 from __future__ import annotations
@@ -460,6 +461,88 @@ def _parse_php_annotation(file_path: Path, source_cfg: dict[str, Any]) -> list[d
 
 
 # ---------------------------------------------------------------------------
+# Parser: PHP controller _isAllowed() body (adminhtml ACL requirement)
+# ---------------------------------------------------------------------------
+
+def _parse_php_acl_body(file_path: Path, _source_cfg: dict[str, Any]) -> list[dict[str, Any]]:
+    """Parse adminhtml controller files for ACL resource requirements.
+
+    Magento admin controllers declare their required ACL resource in one of two ways:
+      1. A class constant:  const ADMIN_RESOURCE = 'Magento_Catalog::products';
+      2. Inline return:     protected function _isAllowed() { return $this->_authorization->isAllowed('...'); }
+
+    Both patterns are extracted and emitted as acl_requirement guards, allowing
+    map_guards_to_routes to back-populate acl_resources on the matching route record.
+    """
+    guards: list[dict[str, Any]] = []
+    try:
+        text = file_path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return guards
+
+    # Only process admin controller files — others don't use _isAllowed()
+    path_lower = str(file_path).lower()
+    if "adminhtml" not in path_lower and "admin" not in path_lower:
+        # Heuristic: check if class body contains _isAllowed at all
+        if "_isAllowed" not in text and "ADMIN_RESOURCE" not in text:
+            return guards
+
+    # Extract namespace + class
+    ns_match = re.search(r'namespace\s+([\w\\]+)\s*;', text)
+    namespace = ns_match.group(1) if ns_match else ""
+    class_match = re.search(r'class\s+(\w+)', text)
+    class_name = class_match.group(1) if class_match else file_path.stem
+    fqcn = f"{namespace}\\{class_name}" if namespace else class_name
+
+    acl_resources: list[str] = []
+
+    # Pattern 1: const ADMIN_RESOURCE = 'Vendor_Module::resource_id';
+    const_match = re.search(r'const\s+ADMIN_RESOURCE\s*=\s*[\'"]([^\'"]+)[\'"]', text)
+    if const_match:
+        acl_resources.append(const_match.group(1))
+
+    # Pattern 2: _isAllowed() body — direct isAllowed() call with literal string
+    #   return $this->_authorization->isAllowed('Vendor_Module::resource_id');
+    #   return $this->_isAllowedAction('Vendor_Module::resource_id');
+    #   return $this->isAllowed('...');
+    for pattern in (
+        r'->isAllowed\(\s*[\'"]([^\'"]+)[\'"]\s*\)',
+        r'->_isAllowedAction\(\s*[\'"]([^\'"]+)[\'"]\s*\)',
+        r'->checkAcl\(\s*[\'"]([^\'"]+)[\'"]\s*\)',
+    ):
+        for m in re.finditer(pattern, text):
+            resource = m.group(1)
+            if resource and resource not in acl_resources:
+                acl_resources.append(resource)
+
+    # Pattern 3: isAllowed(self::ADMIN_RESOURCE) — resolve via const found above
+    if re.search(r'->isAllowed\(\s*self\s*::\s*ADMIN_RESOURCE\s*\)', text):
+        if const_match and const_match.group(1) not in acl_resources:
+            acl_resources.append(const_match.group(1))
+
+    if not acl_resources:
+        return guards
+
+    for resource in acl_resources:
+        guard = {
+            "guard_type": "acl_requirement",
+            "guard_name": f"{class_name} ACL: {resource}",
+            "source_file": str(file_path),
+            "applies_to_routes": [],
+            "applies_to_resources": [resource],
+            "roles": [],
+            "guard_mechanism": "acl_allow",
+            "is_ownership_check": any(kw in resource.lower() for kw in ("self", "own")),
+            "target_class": fqcn,
+            "linkage_confidence": "proven",
+        }
+        guard["guard_id"] = stable_id("nsg", "acl_body", fqcn, resource)
+        guards.append(guard)
+
+    return guards
+
+
+# ---------------------------------------------------------------------------
 # Parser dispatch
 # ---------------------------------------------------------------------------
 
@@ -470,6 +553,7 @@ PARSER_MAP = {
     "xml_webapi_acl": _parse_xml_webapi_acl,
     "php_middleware": _parse_php_middleware,
     "php_annotation": _parse_php_annotation,
+    "php_acl_body": _parse_php_acl_body,
 }
 
 
@@ -522,15 +606,43 @@ def map_guards_to_routes(guards: list[dict[str, Any]],
     """Populate applies_to_routes on each guard with linkage confidence.
 
     Linkage confidence levels:
-      proven    — ACL resource exact match, or explicit webapi resource ref.
-                  This is config-provably correct.
+      proven    — ACL resource exact match, explicit webapi resource ref, or
+                  php_acl_body guard whose target_class matches route controller.
       heuristic — Class-name match (full FQCN or interface suffix match).
-                  Reasonable but may link guard to wrong implementation.
+
+    Back-population: when a php_acl_body guard matches a route by target_class,
+    the guard's applies_to_resources are also written onto route["acl_resources"]
+    so that policy_diff can detect role_escalation gaps on adminhtml routes.
     """
+    # Build route lookup by class (case-insensitive) for O(1) back-population.
+    class_to_routes: dict[str, list[dict[str, Any]]] = {}
+    for route in routes:
+        rc = route.get("controller_class", "").lower()
+        if rc:
+            class_to_routes.setdefault(rc, []).append(route)
+
     for guard in guards:
         target_class = guard.get("target_class", "")
         guard_resources = set(guard.get("applies_to_resources", []))
         guard_mechanism = guard.get("guard_mechanism", "")
+        guard_type = guard.get("guard_type", "")
+
+        # --- php_acl_body: match by target_class, back-populate route acl_resources ---
+        if guard_type == "acl_requirement" and guard.get("linkage_confidence") == "proven" and target_class:
+            matched = class_to_routes.get(target_class.lower(), [])
+            for route in matched:
+                route_id = route.get("route_id", "")
+                if route_id not in guard["applies_to_routes"]:
+                    guard["applies_to_routes"].append(route_id)
+                    guard.setdefault("linkage_confidence", "proven")
+                    guard.setdefault("linkage_method", "acl_body_class_match")
+                # Back-populate acl_resources onto the route record so policy_diff
+                # can detect role_escalation gaps that require this resource.
+                existing = set(route.get("acl_resources", []))
+                new_resources = guard_resources - existing
+                if new_resources:
+                    route.setdefault("acl_resources", [])
+                    route["acl_resources"].extend(sorted(new_resources))
 
         for route in routes:
             route_id = route.get("route_id", "")
@@ -579,6 +691,12 @@ def main() -> None:
     parser.add_argument("--target", type=str, required=True, help="Path to the target codebase")
     parser.add_argument("--output", type=str, required=True, help="Path for output JSON file")
     parser.add_argument("--routes", type=str, default=None, help="Stage 1 routes JSON (for route mapping)")
+    parser.add_argument(
+        "--routes-out", type=str, default=None,
+        help="If provided, write the back-populated routes JSON to this path. "
+             "Route records are enriched with acl_resources discovered by php_acl_body "
+             "guards. Pass this file to Stage 3 instead of the original routes.",
+    )
     parser.add_argument("--framework", type=str, default="magento", help="Framework to use (config/<framework>_guard_sources.yaml)")
     args = parser.parse_args()
 
@@ -599,6 +717,7 @@ def main() -> None:
 
     guards = extract_guards(target, config)
 
+    routes: list[dict[str, Any]] = []
     # If routes JSON provided, perform guard-to-route mapping
     if args.routes:
         routes_path = Path(args.routes)
@@ -606,6 +725,12 @@ def main() -> None:
             routes = load_json(routes_path)
             print(f"[stage_02] Mapping {len(guards)} guards to {len(routes)} routes")
             map_guards_to_routes(guards, routes, {})
+            # Write back-populated routes if requested
+            if args.routes_out:
+                routes_out_path = Path(args.routes_out)
+                write_json(routes_out_path, routes)
+                enriched_count = sum(1 for r in routes if r.get("acl_resources"))
+                print(f"[stage_02] Wrote {len(routes)} routes ({enriched_count} with acl_resources) to {routes_out_path}")
 
     output_path = Path(args.output)
     write_json(output_path, guards)

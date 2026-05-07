@@ -136,12 +136,20 @@ def detect_no_guard_gaps(routes: list[dict[str, Any]],
 def detect_role_escalation_gaps(routes: list[dict[str, Any]],
                                 guards: list[dict[str, Any]],
                                 role_groups: dict[str, dict[str, Any]],
-                                expected_auth: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+                                expected_auth: dict[str, dict[str, Any]],
+                                concrete_policy: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """Find routes a role can access that it shouldn't.
 
     For each role group (customer, restricted_admin), compute which routes
     are reachable based on ACL resource grants. Flag routes where a role
     has access but the expected auth type is higher privilege.
+
+    concrete_policy: optional dict exported from the live DB via
+      nospoon_export_magento_policy.py. Format:
+        {"roles": {"role_name": {"granted_resources": ["Vendor::resource", ...]}}}
+      When present, actual DB grants are used instead of the static role_groups
+      resource lists. This enables detection of restricted_admin leaks on
+      adminhtml routes that the static config cannot enumerate.
     """
     gaps: list[dict[str, Any]] = []
 
@@ -158,8 +166,20 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
     # Build route_id → route lookup
     route_map: dict[str, dict[str, Any]] = {r["route_id"]: r for r in routes}
 
+    # Build effective role resource sets: merge static role_groups + concrete_policy.
+    # concrete_policy takes precedence for any role it defines.
+    effective_role_resources: dict[str, set[str]] = {}
     for role_name, role_cfg in role_groups.items():
-        role_resources = set(role_cfg.get("resources", []))
+        effective_role_resources[role_name] = set(role_cfg.get("resources", []))
+
+    if concrete_policy:
+        for role_name, role_data in concrete_policy.get("roles", {}).items():
+            granted = set(role_data.get("granted_resources", []))
+            if granted:
+                effective_role_resources[role_name] = granted
+
+    for role_name, role_cfg in role_groups.items():
+        role_resources = effective_role_resources.get(role_name, set())
         role_desc = role_cfg.get("description", "")
 
         # Skip super_admin — they have all access by design
@@ -176,7 +196,7 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
             expected = expected_auth.get(area, {})
             expected_type = expected.get("default", "")
 
-            # Determine what this role's actual access level is
+            # Determine what this route actually requires
             route_acl = set(route.get("acl_resources", []))
 
             # For customer role: they should only access self-service routes
@@ -197,10 +217,21 @@ def detect_role_escalation_gaps(routes: list[dict[str, Any]],
                                                         expected_type, "customer_token")
                         gaps.append(gap)
 
-            # For restricted_admin: they should only access their granted resources
+            # For restricted_admin: a leak occurs when the route requires an ACL
+            # resource that the restricted role does NOT hold, yet no guard blocks
+            # them.  With concrete_policy, role_resources is the actual DB grant set.
             elif role_name == "restricted_admin":
                 if expected_type == "session" and route_acl:
-                    # Check if route ACL resources overlap with common restricted scopes
+                    # The route declares required resources (back-populated by
+                    # map_guards_to_routes from php_acl_body guards or webapi.xml).
+                    # If the restricted role does not hold all required resources,
+                    # Magento should deny — but only if the _isAllowed check is
+                    # implemented. If route_acl was empty before back-population,
+                    # the check was absent → flag as no_guard instead (handled
+                    # by detect_no_guard_gaps).
+                    # Flag: restricted role has none of the required resources
+                    # (i.e. no intersection), meaning if they reach this route
+                    # there is no resource-level gate we can confirm.
                     if not (route_acl & role_resources):
                         gap = _make_role_escalation_gap(route, role_name, role_desc,
                                                         expected_type, "restricted_admin_token")
@@ -410,7 +441,8 @@ def run_diff(routes: list[dict[str, Any]],
              role_groups: dict[str, dict[str, Any]] | None = None,
              expected_auth: dict[str, dict[str, Any]] | None = None,
              ownership_module_hints: dict[str, dict[str, Any]] | None = None,
-             resource_id_patterns: list[str] | None = None) -> list[dict[str, Any]]:
+             resource_id_patterns: list[str] | None = None,
+             concrete_policy: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """Run all three gap detection algorithms and return combined results."""
     if role_groups is None:
         role_groups = {}
@@ -425,8 +457,12 @@ def run_diff(routes: list[dict[str, Any]],
     all_gaps.extend(no_guard_gaps)
 
     if role_groups and expected_auth:
-        print(f"[stage_03] Detecting role_escalation gaps across {len(role_groups)} role groups...")
-        role_gaps = detect_role_escalation_gaps(routes, guards, role_groups, expected_auth)
+        policy_note = " (concrete policy loaded)" if concrete_policy else ""
+        print(f"[stage_03] Detecting role_escalation gaps across {len(role_groups)} role groups{policy_note}...")
+        role_gaps = detect_role_escalation_gaps(
+            routes, guards, role_groups, expected_auth,
+            concrete_policy=concrete_policy,
+        )
         print(f"[stage_03]   Found {len(role_gaps)} role_escalation gaps")
         all_gaps.extend(role_gaps)
 
@@ -448,6 +484,13 @@ def main() -> None:
     parser.add_argument("--guards", type=str, required=True, help="Stage 2 guards JSON file")
     parser.add_argument("--output", type=str, required=True, help="Path for output JSON file")
     parser.add_argument("--framework", type=str, default="magento", help="Framework config for role groups / expected auth")
+    parser.add_argument(
+        "--policy", type=str, default=None,
+        help="Concrete role-to-resource grant JSON exported from the live DB "
+             "(see nospoon_export_magento_policy.py). When provided, actual DB "
+             "grants replace the static role_groups resource lists for "
+             "role_escalation detection.",
+    )
     args = parser.parse_args()
 
     routes_path = Path(args.routes).expanduser().resolve()
@@ -478,10 +521,22 @@ def main() -> None:
         ownership_module_hints = guard_config.get("ownership_module_hints", {})
         resource_id_patterns = guard_config.get("resource_id_patterns")
 
+    # Load optional concrete policy from DB export.
+    concrete_policy: dict[str, Any] | None = None
+    if args.policy:
+        policy_path = Path(args.policy).expanduser().resolve()
+        if policy_path.is_file():
+            concrete_policy = load_json(policy_path)
+            role_count = len(concrete_policy.get("roles", {}))
+            print(f"[stage_03] Loaded concrete policy: {role_count} roles from {policy_path}")
+        else:
+            print(f"[warn] --policy file not found: {policy_path}", file=sys.stderr)
+
     gaps = run_diff(
         routes, guards, role_groups, expected_auth,
         ownership_module_hints=ownership_module_hints,
         resource_id_patterns=resource_id_patterns,
+        concrete_policy=concrete_policy,
     )
 
     output_path = Path(args.output)

@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "pattern": "**/etc/adminhtml/routes.xml",
+      "parser": "xml_routes",
+      "area": "adminhtml",
+      "module_from": "path",
+      "description": "Admin controller route definitions"
+    },
+    {
+      "pattern": "**/etc/frontend/routes.xml",
+      "parser": "xml_routes",
+      "area": "frontend",
+      "module_from": "path",
+      "description": "Frontend controller route definitions"
+    },
+    {
+      "pattern": "**/etc/webapi.xml",
+      "parser": "xml_webapi",
+      "area": "webapi_rest",
+      "module_from": "path",
+      "description": "REST / SOAP web API endpoint definitions"
+    },
+    {
+      "pattern": "**/etc/graphql/schema.graphqls",
+      "parser": "graphql_schema",
+      "area": "graphql",
+      "module_from": "path",
+      "description": "GraphQL schema definitions (queries / mutations)"
+    },
+    {
+      "pattern": "**/etc/**/schema.graphqls",
+      "parser": "graphql_schema",
+      "area": "graphql",
+      "module_from": "path",
+      "description": "GraphQL schema in subdirectories"
+    },
+    {
+      "pattern": "**/Controller/**/*.php",
+      "parser": "php_controller",
+      "area": "controller",
+      "module_from": "namespace",
+      "description": "Controller class files (annotation-based route discovery)"
+    }
+  ],
+  "normalisation": {
+    "strip_prefixes": ["/V1/", "/V2/", "/V3/", "/graphql", "/rest/", "/soap/"],
+    "param_style": "{param}",
+    "merge_slashes": true,
+    "trim_trailing_slash": true
+  },
+  "module_mapping": {
+    "path_pattern": "**/module-{name}/**",
+    "vendor_prefix": {
+      "magento": "Magento"
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "sources": [
+    {
+      "pattern": "**/etc/di.xml",
+      "parser": "xml_di_plugin",
+      "guard_type": "plugin",
+      "description": "Plugin interceptors declared in di.xml"
+    },
+    {
+      "pattern": "**/etc/**/di.xml",
+      "parser": "xml_di_plugin",
+      "guard_type": "plugin",
+      "description": "Plugin interceptors in subdirectory di.xml"
+    },
+    {
+      "pattern": "**/etc/di.xml",
+      "parser": "xml_di_preference",
+      "guard_type": "preference",
+      "description": "Preference overrides declared in di.xml"
+    },
+    {
+      "pattern": "**/etc/**/di.xml",
+      "parser": "xml_di_preference",
+      "guard_type": "preference",
+      "description": "Preference overrides in subdirectory di.xml"
+    },
+    {
+      "pattern": "**/etc/acl.xml",
+      "parser": "xml_acl",
+      "guard_type": "acl_resource",
+      "description": "ACL resource tree definitions"
+    },
+    {
+      "pattern": "**/etc/**/acl.xml",
+      "parser": "xml_acl",
+      "guard_type": "acl_resource",
+      "description": "ACL resource tree in subdirectories"
+    },
+    {
+      "pattern": "**/etc/webapi.xml",
+      "parser": "xml_webapi_acl",
+      "guard_type": "acl_requirement",
+      "description": "Web API ACL resource requirements"
+    },
+    {
+      "pattern": "**/etc/**/webapi.xml",
+      "parser": "xml_webapi_acl",
+      "guard_type": "acl_requirement",
+      "description": "Web API ACL resource requirements in subdirectories"
+    },
+    {
+      "pattern": "**/Controller/**/*.php",
+      "parser": "php_middleware",
+      "guard_type": "middleware",
+      "description": "Controller middleware / auth annotations"
+    },
+    {
+      "pattern": "**/Plugin/**/*.php",
+      "parser": "php_annotation",
+      "guard_type": "annotation",
+      "description": "Plugin class auth annotations"
+    },
+    {
+      "pattern": "**/Controller/**/*.php",
+      "parser": "php_acl_body",
+      "guard_type": "acl_requirement",
+      "description": "Controller _isAllowed() body and ADMIN_RESOURCE const — proven ACL resource requirement for adminhtml routes"
+    },
+    {
+      "pattern": "**/Controller/Adminhtml/**/*.php",
+      "parser": "php_acl_body",
+      "guard_type": "acl_requirement",
+      "description": "Adminhtml controller _isAllowed() body (targeted pass for admin controllers)"
+    }
+  ],
+  "mechanisms": {
+    "before_plugin": {"description": "Intercepts before the target method executes", "di_tag": "before"},
+    "around_plugin": {"description": "Wraps the target method execution", "di_tag": "around"},
+    "after_plugin": {"description": "Intercepts after the target method executes", "di_tag": "after"},
+    "di_preference": {"description": "Replaces a class entirely via di.xml preference", "di_tag": null},
+    "acl_deny": {"description": "ACL resource that denies access by default", "acl_default": "deny"},
+    "acl_allow": {"description": "ACL resource that allows access when granted", "acl_default": "allow"},
+    "auth_header": {"description": "Checks presence and validity of an auth header"},
+    "session_check": {"description": "Validates session state (logged in, not expired)"},
+    "ownership_check": {"description": "Verifies the principal owns the target resource"},
+    "scope_check": {"description": "Verifies the principal's scope matches the resource"}
+  },
+  "ownership_plugins": [
+    "Magento\\Catalog\\Plugin\\ProductAuthorization",
+    "Magento\\Sales\\Plugin\\OrderAuthorization",
+    "Magento\\Customer\\Plugin\\CustomerAuthorization",
+    "Magento\\Quote\\Plugin\\QuoteAuthorization",
+    "Magento\\Company\\Plugin\\CompanyAuthorization",
+    "Magento\\Rma\\Plugin\\RmaAuthorization"
+  ],
+  "auth_plugins": [
+    "*\\*Authorization*",
+    "*\\*Acl*",
+    "*\\*Permission*",
+    "*\\*Access*",
+    "*\\*Session*Validate*",
+    "*\\*Auth*",
+    "*\\*Login*",
+    "*\\*Authentication*",
+    "*\\*Csrf*",
+    "Magento\\Backend\\*",
+    "Magento\\Security\\*",
+    "Magento\\TwoFactorAuth\\*"
+  ],
+  "non_auth_plugins": [
+    "*\\*Cache*",
+    "*\\*Logger*",
+    "*\\*Profiler*"
+  ],
+  "ownership_module_hints": {
+    "Magento_Catalog":    {"field": "entity_id",  "indirect_via": "Magento\\Catalog\\Plugin\\ProductAuthorization"},
+    "Magento_Sales":      {"field": "customer_id", "indirect_via": "Magento\\Sales\\Plugin\\OrderAuthorization"},
+    "Magento_Customer":   {"field": "customer_id", "indirect_via": "Magento\\Customer\\Plugin\\CustomerAuthorization"},
+    "Magento_Quote":      {"field": "customer_id", "indirect_via": "Magento\\Quote\\Plugin\\QuoteAuthorization"},
+    "Magento_Company":    {"field": "company_id",  "indirect_via": "Magento\\Company\\Plugin\\CompanyAuthorization"},
+    "Magento_Rma":        {"field": "customer_id", "indirect_via": "Magento\\Rma\\Plugin\\RmaAuthorization"},
+    "Magento_Review":     {"field": "customer_id", "indirect_via": null},
+    "Magento_Wishlist":   {"field": "customer_id", "indirect_via": null},
+    "Magento_Checkout":   {"field": "customer_id", "indirect_via": null},
+    "Magento_Newsletter": {"field": "customer_id", "indirect_via": null}
+  },
+  "resource_id_patterns": [
+    "{id}", "{sku}", "{order_id}", "{product_id}", "{customer_id}",
+    "{entity_id}", "{quote_id}", "{rma_id}", "{review_id}", "{wishlist_id}",
+    "{address_id}", "{cart_id}", "{company_id}", "{creditmemo_id}",
+    "{invoice_id}", "{shipment_id}"
+  ],
+  "role_groups": {
+    "super_admin": {
+      "resources": ["Magento_Backend::all"],
+      "description": "Full access to all resources"
+    },
+    "restricted_admin": {
+      "description": "Scoped admin with per-resource ACL grants",
+      "common_scopes": ["sales","catalog","customer","marketing","content","reports","stores","system","partners"]
+    },
+    "customer": {
+      "resources": ["Magento_Customer::self"],
+      "description": "Self-service customer account access"
+    }
+  },
+  "expected_auth": {
+    "adminhtml":  {"default": "session",        "description": "Admin routes must require an admin session"},
+    "frontend":   {"default": "guest",          "description": "Frontend routes default to guest access"},
+    "webapi_rest":{"default": "admin_token",    "description": "REST APIs default to admin token auth"},
+    "webapi_soap":{"default": "admin_token",    "description": "SOAP APIs default to admin token auth"},
+    "graphql":    {"default": "customer_token", "description": "GraphQL endpoints default to customer token auth"}
+  }
+}
