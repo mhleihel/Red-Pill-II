@@ -1,0 +1,18 @@
+{
+  "app_id": "magento_248",
+  "verified_at": "2026-05-08T16:43:15.807989+00:00",
+  "trace_mode": "offline",
+  "trace_source": "/Users/mhleihel/Desktop/Booyah/results/appmap.db",
+  "verification_confidence": "degraded",
+  "preflight_pass": true,
+  "source_event_count": 88,
+  "sink_event_count": 88,
+  "boundary_event_count": 179,
+  "taint_count": 88,
+  "critical_joins_total": 87,
+  "critical_joins_confirmed": 87,
+  "critical_joins_downgraded": 0,
+  "critical_joins_confirmed_pct": 100.0,
+  "critical_joins_threshold_pct": 80,
+  "failure_reasons": []
+}
