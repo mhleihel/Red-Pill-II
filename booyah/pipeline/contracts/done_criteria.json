@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Authoritative numeric stop rules and gates for all pipeline phases. All phase completion checks reference this file. Thresholds may be overridden per-app in scope.yaml coverage_targets.",
+    "override_precedence": "scope.yaml coverage_targets override these defaults where specified"
+  },
+
+  "phase_gates": {
+
+    "phase_01a": {
+      "description": "Component Certification",
+      "gates": {
+        "function_instrumentation_pct": { "operator": ">=", "value": 98, "unit": "percent", "source": "scope.yaml coverage_targets.function_instrumentation_pct" },
+        "critical_chokepoints_pct": { "operator": "==", "value": 100, "unit": "percent" },
+        "false_positive_rate_pct": { "operator": "<=", "value": 2, "unit": "percent" },
+        "run_variance_pct": { "operator": "<", "value": 1, "unit": "percent", "description": "Count variance across 3 deterministic runs" },
+        "runs_required": { "operator": "==", "value": 3 }
+      },
+      "failure_action": "status = Failed; block Phase 2 for this component; trigger instrumentation_recovery playbook"
+    },
+
+    "phase_05": {
+      "description": "Targeted Runtime Verification — Preflight",
+      "gates": {
+        "source_event_count": { "operator": ">=", "value": 1, "description": "At least one SOURCE event per replay session" },
+        "sink_event_count": { "operator": ">=", "value": 1, "description": "At least one SINK event per replay session" },
+        "boundary_event_count": { "operator": ">=", "value": 1, "description": "At least one BOUNDARY_READ or BOUNDARY_WRITE event per replay session" },
+        "critical_joins_confirmed_pct": { "operator": ">=", "value": 80, "unit": "percent", "source": "scope.yaml coverage_targets.composed_joins_confirmed_pct" }
+      },
+      "failure_action": "preflight_pass = false; do not proceed to Phase 7 or Phase 9; trigger instrumentation_recovery playbook"
+    },
+
+    "phase_07": {
+      "description": "Replay at Scale",
+      "gates": {
+        "replay_success_rate_pct": { "operator": ">=", "value": 95, "unit": "percent", "source": "scope.yaml coverage_targets.replay_success_rate_pct" },
+        "critical_flow_error_rate_pct": { "operator": "<=", "value": 1, "unit": "percent" },
+        "coverage_delta_pct": { "operator": ">", "value": 0, "description": "Must add new nodes or edges vs Phase 5 baseline" },
+        "non_idempotent_cohort_sandboxed": { "operator": "==", "value": true, "description": "Must be verified before replay starts, not after" }
+      },
+      "failure_action": "do not merge replay trace into main DB; root-cause auth/session failures before retrying"
+    },
+
+    "phase_08": {
+      "description": "Cross-Service Flow Mapping",
+      "gates": {
+        "max_unresolved_service_hops": { "operator": "<=", "value": 10, "description": "More than this requires manual trace propagation audit; override per app" }
+      },
+      "failure_action": "list all unresolved hops in output; flag for manual trace propagation header audit"
+    },
+
+    "phase_09": {
+      "description": "Correlation & Contradiction Resolution",
+      "gates": {
+        "unresolved_critical_contradictions": { "operator": "==", "value": 0 },
+        "static_only_promoted_to_confirmed": { "operator": "==", "value": 0, "description": "Zero STATIC_ONLY findings may be promoted to CONFIRMED without runtime evidence" },
+        "critical_lineages_with_final_status_pct": { "operator": "==", "value": 100, "unit": "percent" }
+      },
+      "failure_action": "do not advance to Phase 12; route to contradiction_resolution playbook; assign owner per unresolved contradiction"
+    },
+
+    "phase_10": {
+      "description": "AI Adjudication",
+      "gates": {
+        "fixes_without_evidence_citation": { "operator": "==", "value": 0, "description": "Every fix must have at least one evidence_row_id or evidence_file_path" },
+        "assertions_without_provenance": { "operator": "==", "value": 0 }
+      },
+      "failure_action": "reject entire output batch; re-run with stricter evidence-link constraints; log to tool_bug_candidates.json"
+    },
+
+    "phase_11": {
+      "description": "Gap Closure Iterations — Stop Rule",
+      "stop_rule": {
+        "condition": "ANY",
+        "rules": [
+          {
+            "id": "convergence",
+            "description": "Coverage delta below threshold for 2 consecutive iterations",
+            "coverage_delta_pct": { "operator": "<", "value": 2, "unit": "percent" },
+            "consecutive_iterations_required": 2
+          },
+          {
+            "id": "target_reached",
+            "description": "Overall coverage reached target from scope.yaml",
+            "coverage_pct": { "operator": ">=", "value": null, "source": "scope.yaml coverage_targets.route_coverage_pct", "description": "Null = use scope.yaml value" }
+          },
+          {
+            "id": "max_iterations",
+            "description": "Hard ceiling",
+            "max_iterations": 10
+          }
+        ]
+      },
+      "escalation_rule": {
+        "condition": "coverage_delta_pct <= 0 after iteration 1",
+        "action": "escalate to program owner with iteration log; do not continue iterating; a negative delta indicates regression"
+      }
+    },
+
+    "phase_12": {
+      "description": "Golden Snapshot",
+      "gates": {
+        "fk_check_pass": { "operator": "==", "value": true },
+        "vocabulary_alignment_pass": { "operator": "==", "value": true },
+        "orphan_node_count": { "operator": "==", "value": 0 },
+        "artifact_hashes_verified": { "operator": "==", "value": true },
+        "lineage_count_match": { "operator": "==", "value": true, "description": "Count in integrity_report matches count in appmap_composed.db" }
+      },
+      "failure_action": "do not publish snapshot; trigger snapshot_repair playbook; identify which phase introduced the inconsistency"
+    }
+  },
+
+  "lite_path": {
+    "description": "Minimum required phases when production traffic is unavailable",
+    "phases": ["phase_00", "phase_01", "phase_01a", "phase_02", "phase_03", "phase_04", "phase_05", "phase_09", "phase_10", "phase_11", "phase_12", "phase_13"],
+    "skip": ["phase_06", "phase_07", "phase_08"]
+  },
+
+  "full_path": {
+    "description": "All phases including production traffic capture and replay",
+    "phases": ["phase_00", "phase_01", "phase_01a", "phase_02", "phase_03", "phase_04", "phase_05", "phase_06", "phase_07", "phase_08", "phase_09", "phase_10", "phase_11", "phase_12", "phase_13"]
+  }
+}

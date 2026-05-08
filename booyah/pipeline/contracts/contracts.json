@@ -1,0 +1,292 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Machine-readable artifact contracts for every pipeline phase. Each phase must produce outputs conforming to its contract before the next phase may begin.",
+    "vocabulary_ref": "taxonomy.md",
+    "done_criteria_ref": "done_criteria.json"
+  },
+
+  "phases": {
+    "phase_00": {
+      "name": "Program Scope & Standards",
+      "type": "required",
+      "outputs": {
+        "scope.yaml": {
+          "description": "App registration and analysis configuration",
+          "required_fields": ["app_id", "app_version", "language", "framework", "repo_path", "entrypoints", "actors", "production_traffic", "coverage_targets", "security_requirements"]
+        },
+        "taxonomy.md": {
+          "description": "Authoritative vocabulary for all artifact fields and enums",
+          "required_sections": ["Event Vocabulary", "Taint Marks", "Lineage Semantics", "Auth Boundary Model", "Confidence Classes", "Risk Tiers", "Component Pack Model", "Forbidden Synonyms"]
+        },
+        "contracts.json": {
+          "description": "This file"
+        },
+        "done_criteria.json": {
+          "description": "Numeric stop rules for all phases"
+        }
+      },
+      "gate": "all required_fields present in scope.yaml; no forbidden synonyms in any artifact"
+    },
+
+    "phase_01": {
+      "name": "Component Pack Build",
+      "type": "required_async",
+      "depends_on": ["phase_00"],
+      "outputs": {
+        "component_pack_{pack_id}.db": {
+          "description": "SQLite database containing taint map for one component",
+          "required_tables": ["cp_functions", "cp_edges", "cp_chokepoints", "cp_manifest"],
+          "required_columns": {
+            "cp_functions": ["fqn", "file_path", "line_start", "line_end", "language", "confidence_class"],
+            "cp_edges": ["from_fqn", "to_fqn", "edge_type", "taint_marks", "confidence_class"],
+            "cp_chokepoints": ["fqn", "chokepoint_type", "source_mark", "sink_mark", "san_mark", "confidence_class"],
+            "cp_manifest": ["pack_id", "pack_version", "language", "framework", "framework_version", "built_at", "scope_hash"]
+          }
+        },
+        "component_manifest.json": {
+          "description": "Summary manifest for the component pack",
+          "required_fields": ["pack_id", "pack_version", "language", "framework", "function_count", "edge_count", "chokepoint_count", "scope_hash", "built_at"]
+        }
+      },
+      "gate": "component_manifest.json present; function_count > 0; chokepoint_count >= critical_chokepoints_pct from scope.yaml"
+    },
+
+    "phase_01a": {
+      "name": "Component Certification",
+      "type": "required",
+      "depends_on": ["phase_01"],
+      "outputs": {
+        "cert_report.json": {
+          "description": "Certification result for one component pack",
+          "required_fields": ["pack_id", "pack_version", "status", "function_coverage_pct", "chokepoint_coverage_pct", "false_positive_rate_pct", "run_variance_pct", "runs_compared", "failures", "certified_at"],
+          "status_enum": ["Certified", "Conditional", "Failed"]
+        }
+      },
+      "gate": "status != Failed; function_coverage_pct >= coverage_targets.function_instrumentation_pct; chokepoint_coverage_pct == 100"
+    },
+
+    "phase_02": {
+      "name": "Component Registry & Versioning",
+      "type": "required",
+      "depends_on": ["phase_01a"],
+      "outputs": {
+        "pack_registry.json": {
+          "description": "Index of all published component packs",
+          "required_fields": ["registry_version", "published_at", "packs"],
+          "pack_entry_fields": ["pack_id", "pack_version", "language", "framework", "framework_version", "status", "cert_report_path", "artifact_path", "sha256", "rollback_version", "compat_matrix"]
+        }
+      },
+      "gate": "all required_component_packs from scope.yaml present in registry at Certified or Conditional status; sha256 hashes verified"
+    },
+
+    "phase_03": {
+      "name": "App Surface Inventory",
+      "type": "required_async",
+      "depends_on": ["phase_00"],
+      "outputs": {
+        "routes.json": {
+          "description": "All HTTP routes extracted from app source",
+          "entry_fields": ["url_pattern", "http_methods", "module", "controller_fqn", "action_fqn", "area", "auth_required", "actor_context", "auth_guard_fqns", "risk_tier"]
+        },
+        "api_endpoints.json": {
+          "description": "REST/GraphQL/RPC endpoints if present per scope.yaml",
+          "entry_fields": ["endpoint_id", "protocol", "path", "method", "auth_required", "actor_context", "request_schema", "risk_tier"]
+        },
+        "entrypoint_catalog.json": {
+          "description": "Complete catalog of all entrypoint types including non-HTTP",
+          "required_fields": ["app_id", "extracted_at", "http_routes_count", "api_endpoints_count", "cli_count", "queue_consumers_count", "cron_count", "auth_boundary_map"],
+          "auth_boundary_map_fields": ["entrypoint_id", "guards", "actor_contexts", "gap_types_detected"]
+        }
+      },
+      "gate": "entrypoint_catalog.json present; no unknown_route_families; auth_boundary_map covers all CRITICAL tier routes"
+    },
+
+    "phase_04": {
+      "name": "Graph Composition",
+      "type": "required",
+      "depends_on": ["phase_02", "phase_03"],
+      "outputs": {
+        "appmap_composed.db": {
+          "description": "Composed taint graph merging component packs with app glue",
+          "required_tables": ["nodes", "edges", "lineages", "auth_gaps", "composition_manifest"],
+          "required_columns": {
+            "nodes": ["node_id", "fqn", "node_type", "file_path", "line_no", "confidence_class", "provenance"],
+            "edges": ["edge_id", "from_node_id", "to_node_id", "edge_type", "taint_marks", "confidence_class", "provenance"],
+            "lineages": ["lineage_id", "source_node_id", "sink_node_id", "hop_ids", "classification", "confidence_class", "risk_tier", "sanitized", "provenance"],
+            "auth_gaps": ["gap_id", "entrypoint_id", "gap_type", "actor_context", "risk_tier", "confidence_class"],
+            "composition_manifest": ["app_id", "composed_at", "pack_ids_used", "node_count", "edge_count", "lineage_count", "auth_gap_count"]
+          },
+          "provenance_enum": ["pack", "app_glue", "static_inferred", "runtime_observed"]
+        },
+        "composed_graph.json": {
+          "description": "Human-readable summary of composed graph",
+          "required_fields": ["app_id", "composed_at", "node_count", "edge_count", "lineage_count", "auth_gap_count", "orphan_node_count", "coverage_by_risk_tier"]
+        }
+      },
+      "gate": "orphan_node_count == 0 for CRITICAL and HIGH tier nodes; all edges have provenance tag; all sinks have sink_context_mark"
+    },
+
+    "phase_05": {
+      "name": "Targeted Runtime Verification",
+      "type": "required",
+      "depends_on": ["phase_04"],
+      "outputs": {
+        "runtime_trace_min.db": {
+          "description": "Minimal runtime trace from targeted verification replay",
+          "required_tables": ["events", "taints", "requests"],
+          "preflight_required_events": ["SOURCE", "SINK", "BOUNDARY_READ"]
+        },
+        "verification_delta.json": {
+          "description": "Delta between composed graph and runtime-confirmed paths",
+          "required_fields": ["app_id", "verified_at", "critical_joins_total", "critical_joins_confirmed", "critical_joins_downgraded", "preflight_pass", "source_event_count", "sink_event_count", "boundary_event_count"]
+        }
+      },
+      "gate": "preflight_pass == true; source_event_count >= 1; sink_event_count >= 1; boundary_event_count >= 1; critical_joins_confirmed / critical_joins_total >= coverage_targets.composed_joins_confirmed_pct / 100"
+    },
+
+    "phase_06": {
+      "name": "Production Traffic Capture",
+      "type": "optional",
+      "condition": "scope.yaml production_traffic.available == true",
+      "depends_on": ["phase_05"],
+      "outputs": {
+        "traffic_capture_bundle/": {
+          "description": "Directory containing captured traffic artifacts"
+        },
+        "capture_manifest.json": {
+          "required_fields": ["app_id", "captured_at", "capture_tool", "request_count", "route_coverage_pct", "sensitive_fields_masked", "replay_ready", "completeness_score"]
+        }
+      },
+      "gate": "completeness_score >= 0.8; sensitive_fields_masked == true; replay_ready == true"
+    },
+
+    "phase_07": {
+      "name": "Replay at Scale",
+      "type": "optional",
+      "condition": "phase_06 complete",
+      "depends_on": ["phase_06"],
+      "outputs": {
+        "runtime_trace_replay.db": {
+          "required_tables": ["events", "taints", "requests"]
+        },
+        "replay_report.json": {
+          "required_fields": ["app_id", "replayed_at", "requests_replayed", "requests_captured", "success_rate_pct", "critical_flow_error_rate_pct", "new_nodes_discovered", "new_edges_discovered", "coverage_delta_pct"]
+        }
+      },
+      "gate": "success_rate_pct >= coverage_targets.replay_success_rate_pct; critical_flow_error_rate_pct <= 1.0; non_idempotent_cohort_sandboxed == true"
+    },
+
+    "phase_08": {
+      "name": "Cross-Service Flow Mapping",
+      "type": "optional",
+      "condition": "APM/OTel deployed in target environment",
+      "depends_on": ["phase_05"],
+      "outputs": {
+        "service_flow_map.json": {
+          "required_fields": ["app_id", "mapped_at", "service_edges", "unresolved_hops", "trace_id_coverage_pct"]
+        },
+        "cross_service_edges.db": {
+          "required_tables": ["service_edges", "unresolved_hops"]
+        }
+      },
+      "gate": "unresolved_hops count <= done_criteria.max_unresolved_service_hops"
+    },
+
+    "phase_09": {
+      "name": "Correlation & Contradiction Resolution",
+      "type": "required_reentrant",
+      "depends_on": ["phase_04", "phase_05"],
+      "optional_inputs": ["phase_07_output", "phase_08_output"],
+      "outputs": {
+        "correlation.json": {
+          "required_fields": ["app_id", "correlated_at", "iteration", "lineage_count_by_classification", "auth_gap_count_by_type", "unresolved_critical_contradictions", "stop_rule_met"]
+        },
+        "contradiction_log.json": {
+          "required_fields": ["app_id", "contradictions", "each_contradiction_fields"],
+          "each_contradiction_fields": ["lineage_id", "tool_a", "tool_b", "conflict_description", "resolution_status", "owner"]
+        },
+        "gap_backlog.csv": {
+          "required_columns": ["gap_id", "type", "lineage_or_auth_gap_id", "risk_tier", "classification", "priority_rank", "recommended_action"]
+        }
+      },
+      "gate": "unresolved_critical_contradictions == 0; all CRITICAL lineages have final classification; no STATIC_ONLY promoted to CONFIRMED"
+    },
+
+    "phase_10": {
+      "name": "AI Adjudication & Tool QA",
+      "type": "required_reentrant",
+      "depends_on": ["phase_09"],
+      "outputs": {
+        "machine_actionable_fixes.json": {
+          "description": "Agent-consumable. Each fix references a specific phase, artifact, field, and change.",
+          "required_fields": ["app_id", "generated_at", "iteration", "fixes"],
+          "fix_fields": ["fix_id", "target_phase", "target_artifact", "target_field", "change_description", "evidence_row_ids", "evidence_file_paths", "confidence_class"]
+        },
+        "human_review_queue.csv": {
+          "description": "Analyst-consumable. One row per lineage or gap requiring human judgment.",
+          "required_columns": ["item_id", "item_type", "lineage_or_gap_id", "evidence_summary", "recommended_action", "confidence_class", "risk_tier", "assigned_to"]
+        },
+        "tool_bug_candidates.json": {
+          "required_fields": ["app_id", "generated_at", "candidates"],
+          "candidate_fields": ["candidate_id", "tool", "phase", "symptom", "evidence_row_ids", "proposed_fix"]
+        }
+      },
+      "gate": "every fix in machine_actionable_fixes.json has at least one evidence_row_id or evidence_file_path; no fix without citation"
+    },
+
+    "phase_11": {
+      "name": "Gap Closure Iterations",
+      "type": "required_reentrant",
+      "depends_on": ["phase_10"],
+      "outputs": {
+        "iteration_{n}_delta.json": {
+          "required_fields": ["app_id", "iteration", "variable_changed", "coverage_delta_pct", "new_confirmed_lineages", "new_confirmed_auth_gaps", "regression_count", "stop_rule_met"]
+        }
+      },
+      "gate": "coverage_delta_pct >= 0 (negative = regression, escalate); stop_rule_met evaluated against done_criteria.json"
+    },
+
+    "phase_12": {
+      "name": "Golden Snapshot & Merge Readiness",
+      "type": "required",
+      "depends_on": ["phase_09", "phase_11"],
+      "outputs": {
+        "golden_gift_{date}/": {
+          "description": "Immutable snapshot directory",
+          "required_contents": [
+            "appmap_composed.db",
+            "runtime_trace_min.db",
+            "correlation.json",
+            "pack_registry.json",
+            "snapshot_manifest.json",
+            "integrity_report.json"
+          ]
+        },
+        "snapshot_manifest.json": {
+          "required_fields": ["app_id", "snapshot_date", "pipeline_version", "phase_versions", "artifact_hashes", "vocabulary_version", "provenance_chain"]
+        },
+        "integrity_report.json": {
+          "required_fields": ["fk_check_pass", "vocabulary_alignment_pass", "lineage_count_match", "auth_gap_count_match", "orphan_node_count"]
+        }
+      },
+      "gate": "fk_check_pass == true; vocabulary_alignment_pass == true; orphan_node_count == 0; artifact_hashes verified"
+    },
+
+    "phase_13": {
+      "name": "Operations for Multi-App Expansion",
+      "type": "required",
+      "depends_on": ["phase_12"],
+      "outputs": {
+        "app_onboarding_{app_id}.yaml": {
+          "description": "Per-app config covering only app-specific overrides",
+          "required_fields": ["app_id", "route_extractor_adapter", "auth_extractor_adapter", "replay_adapter", "pack_compat_overrides"]
+        },
+        "runbook.md": {
+          "description": "Operational runbook for running the pipeline on this app"
+        }
+      },
+      "gate": "new app can complete phase_03 through phase_09 using only app_onboarding_{app_id}.yaml without schema changes"
+    }
+  }
+}

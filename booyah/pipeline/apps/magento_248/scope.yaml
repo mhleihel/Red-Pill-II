@@ -1,0 +1,75 @@
+app_id: magento_248
+app_name: "Magento 2.4.8-p4"
+app_version: "2.4.8-p4"
+language: php
+framework: magento
+repo_path: "/Users/mhleihel/Desktop/magento2-2.4.8-p4"
+
+include_paths:
+  - "app/code/"
+  - "vendor/magento/"
+
+exclude_paths:
+  - "vendor/magento/framework/Test/"
+  - "generated/"
+  - "dev/tests/"
+
+required_component_packs:
+  - magento_framework_php
+  - magento_cms_php
+  - magento_catalog_php
+  - magento_review_php
+  - magento_checkout_php
+
+entrypoints:
+  http_routes: true
+  rest_api: true
+  graphql: true
+  cli_commands: true
+  queue_consumers: true
+  cron_jobs: true
+  webhooks: false
+  rpc_grpc: false
+
+actors:
+  - id: anonymous
+    description: "Unauthenticated frontend request"
+  - id: authenticated
+    description: "Logged-in customer"
+  - id: "role:admin"
+    description: "Full-access Magento admin"
+  - id: "role:restricted_admin"
+    description: "Scoped admin (sales/catalog/customers/marketing/content/reports/stores/system)"
+
+risk_tier_overrides:
+  - pattern: "/admin/**"
+    tier: CRITICAL
+    reason: "Admin routes handle privileged operations; any auth gap is critical"
+  - pattern: "/rest/V1/**"
+    tier: HIGH
+    reason: "REST API is publicly reachable and carries structured payloads"
+  - pattern: "/graphql"
+    tier: HIGH
+    reason: "GraphQL endpoint accepts arbitrary queries"
+
+production_traffic:
+  available: false
+  capture_tool: ""
+  sensitive_fields_policy: ""
+
+coverage_targets:
+  function_instrumentation_pct: 98
+  critical_chokepoints_pct: 100
+  route_coverage_pct: 80
+  composed_joins_confirmed_pct: 80
+  replay_success_rate_pct: 95
+
+security_requirements:
+  red_pill: true
+  nospoon: true
+  custom: []
+
+adapters:
+  route_extractor: "booyah.routes.magento_extractor"
+  auth_extractor: "booyah.nospoon.scripts.nospoon_guard_extract"
+  replay_adapter: ""

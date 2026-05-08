@@ -1,0 +1,112 @@
+# Booyah Treeing Pipeline — Scope Definition Template
+#
+# Copy this file to:
+#   booyah/pipeline/apps/<app_id>/scope.yaml
+#
+# Fill in every required field before Phase 0 is considered complete.
+# Optional fields are marked [OPTIONAL].
+#
+# This file is the authoritative input for all downstream phases.
+# Changing it after Phase 1 starts requires re-running affected phases.
+
+# ── Identity ──────────────────────────────────────────────────────────────
+
+app_id: ""                     # Unique slug. Used in all artifact filenames. e.g. "magento_2_4"
+app_name: ""                   # Human name. e.g. "Magento 2.4.8-p4"
+app_version: ""                # App version being analyzed
+language: ""                   # Primary language: php | python | java | javascript | ruby | go
+framework: ""                  # Primary framework: magento | django | spring | rails | express | none
+repo_path: ""                  # Absolute path to source root on analysis machine
+
+# ── Analysis scope ────────────────────────────────────────────────────────
+
+# Paths within repo_path to include. Supports glob patterns.
+include_paths:
+  - "app/"
+  - "src/"
+
+# Paths to exclude (generated code, vendor, tests unless explicitly included)
+exclude_paths:
+  - "vendor/"
+  - "node_modules/"
+  - "generated/"
+  - "test/"
+  - "spec/"
+
+# Component packs required for this app (must be in registry before Phase 4)
+# Each entry is a pack_id from pack_registry.json
+required_component_packs: []
+
+# ── Entrypoint types present in this app ─────────────────────────────────
+# Set true for each entrypoint type that exists. Drives Phase 3 extractors.
+
+entrypoints:
+  http_routes: true
+  rest_api: false
+  graphql: false
+  cli_commands: false
+  queue_consumers: false        # Kafka, SQS, RabbitMQ, etc.
+  cron_jobs: false
+  webhooks: false
+  rpc_grpc: false
+
+# ── Actor model ───────────────────────────────────────────────────────────
+# Define all actor types that can reach entrypoints. Used in Phase 3 and Phase 9.
+
+actors:
+  - id: anonymous
+    description: "Unauthenticated request"
+  - id: authenticated
+    description: "Any logged-in user regardless of role"
+  # Add role-specific actors as needed:
+  # - id: "role:admin"
+  #   description: "User with full admin privileges"
+  # - id: "role:sales"
+  #   description: "User with sales-scope admin privileges"
+
+# ── Risk tier overrides ───────────────────────────────────────────────────
+# Default tier assignment is automatic per taxonomy.md section 6.
+# Override specific entrypoints or modules here if needed.
+# [OPTIONAL]
+
+risk_tier_overrides: []
+# Example:
+# - pattern: "/admin/**"
+#   tier: CRITICAL
+#   reason: "Admin routes are highest priority regardless of auth status"
+
+# ── Production traffic availability ──────────────────────────────────────
+# Must be decided at Phase 0. Drives whether Phases 6-8 are on the critical path.
+
+production_traffic:
+  available: false             # true = Phases 6-8 are in scope
+  capture_tool: ""             # [OPTIONAL] nginx | envoy | otel | newrelic | alb
+  sensitive_fields_policy: ""  # [OPTIONAL] path to policy file listing masked fields
+
+# ── Coverage targets ──────────────────────────────────────────────────────
+# These feed into done_criteria.json stop rules.
+
+coverage_targets:
+  function_instrumentation_pct: 98     # Phase 1A gate
+  critical_chokepoints_pct: 100        # Phase 1A gate
+  route_coverage_pct: 80               # Phase 3 gate
+  composed_joins_confirmed_pct: 80     # Phase 5 gate
+  replay_success_rate_pct: 95          # Phase 7 gate (if applicable)
+
+# ── Security requirement sources ─────────────────────────────────────────
+# Which Booyah subpackages provide security requirements for this app.
+# Drives what Phase 9 looks for during correlation.
+
+security_requirements:
+  red_pill: true       # XSS taint flow requirements (bubble/)
+  nospoon: true        # Auth boundary gap requirements (nospoon/)
+  custom: []           # [OPTIONAL] paths to additional requirement JSON files
+
+# ── App-specific adapters ─────────────────────────────────────────────────
+# Override default adapters when the app uses non-standard patterns.
+# [OPTIONAL]
+
+adapters:
+  route_extractor: ""          # module path; default inferred from framework
+  auth_extractor: ""           # module path; default inferred from framework
+  replay_adapter: ""           # module path; default: generic HTTP replayer
