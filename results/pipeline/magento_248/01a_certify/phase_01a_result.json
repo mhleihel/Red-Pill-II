@@ -1,0 +1,61 @@
+{
+  "phase": "01a_certify",
+  "app_id": "magento_248",
+  "packs_total": 5,
+  "packs_certified": 5,
+  "packs_conditional": 0,
+  "packs_failed": 0,
+  "overall_pass": true,
+  "packs": [
+    {
+      "pack_id": "magento_framework_php",
+      "status": "Certified",
+      "function_coverage_pct": 100.0,
+      "chokepoint_coverage_pct": 25.0,
+      "observed_chokepoint_pct": 25.0,
+      "run_variance_pct": 0.0,
+      "certification_basis": "Observed+Inferred",
+      "failures": []
+    },
+    {
+      "pack_id": "magento_cms_php",
+      "status": "Certified",
+      "function_coverage_pct": 100.0,
+      "chokepoint_coverage_pct": 38.81,
+      "observed_chokepoint_pct": 38.81,
+      "run_variance_pct": 0.0,
+      "certification_basis": "Observed+Inferred",
+      "failures": []
+    },
+    {
+      "pack_id": "magento_catalog_php",
+      "status": "Certified",
+      "function_coverage_pct": 100.0,
+      "chokepoint_coverage_pct": 58.29,
+      "observed_chokepoint_pct": 58.29,
+      "run_variance_pct": 0.0,
+      "certification_basis": "Observed+Inferred",
+      "failures": []
+    },
+    {
+      "pack_id": "magento_review_php",
+      "status": "Certified",
+      "function_coverage_pct": 100.0,
+      "chokepoint_coverage_pct": 53.66,
+      "observed_chokepoint_pct": 53.66,
+      "run_variance_pct": 0.0,
+      "certification_basis": "Observed+Inferred",
+      "failures": []
+    },
+    {
+      "pack_id": "magento_checkout_php",
+      "status": "Certified",
+      "function_coverage_pct": 100.0,
+      "chokepoint_coverage_pct": 52.33,
+      "observed_chokepoint_pct": 52.33,
+      "run_variance_pct": 0.0,
+      "certification_basis": "Observed+Inferred",
+      "failures": []
+    }
+  ]
+}

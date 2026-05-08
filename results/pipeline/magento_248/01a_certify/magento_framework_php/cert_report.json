@@ -1,0 +1,39 @@
+{
+  "pack_id": "magento_framework_php",
+  "pack_version": "1.0.0+add3e409",
+  "status": "Certified",
+  "function_coverage_pct": 100.0,
+  "chokepoint_coverage_pct": 25.0,
+  "observed_chokepoint_pct": 25.0,
+  "false_positive_rate_pct": 0.0,
+  "run_variance_pct": 0.0,
+  "runs_compared": 3,
+  "certification_basis": "Observed+Inferred",
+  "failures": [],
+  "certified_at": "2026-05-08T14:36:30.220503+00:00",
+  "_metrics": {
+    "total_functions": 16994,
+    "total_chokepoints": 4,
+    "observed_chokepoints": 1,
+    "correlated_chokepoints": 0,
+    "critical_chokepoints": 3,
+    "critical_observed": 1,
+    "fn_counts_across_runs": [
+      16994,
+      16994,
+      16994
+    ],
+    "cp_counts_across_runs": [
+      11,
+      11,
+      11
+    ]
+  },
+  "_thresholds_applied": {
+    "function_instrumentation_pct": 98,
+    "observed_chokepoint_min_pct": 10,
+    "run_variance_pct": 1,
+    "false_positive_rate_pct": 2,
+    "source": "done_criteria.json phase_01a"
+  }
+}
