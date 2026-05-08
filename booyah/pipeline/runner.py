@@ -68,11 +68,13 @@ def check_gate(phase_key: str, output_dir: Path, scope: dict) -> tuple[bool, lis
     """
     Check done_criteria gates for a phase.
     Returns (passed, list_of_failures).
+
+    If the phase module defines check_gate(), it is always called (criteria may be {}).
+    done_criteria.json phase_gates entries provide threshold parameters to that function;
+    phases without an entry still run their structural gates.
     """
     gate_key = phase_key.replace("_", "")
-    criteria = DONE_CRITERIA.get("phase_gates", {}).get(gate_key)
-    if not criteria:
-        return True, []
+    criteria = DONE_CRITERIA.get("phase_gates", {}).get(gate_key) or {}
 
     mod = phase_module(phase_key)
     if mod and hasattr(mod, "check_gate"):
