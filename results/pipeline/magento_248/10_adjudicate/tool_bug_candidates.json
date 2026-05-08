@@ -1,0 +1,19 @@
+{
+  "app_id": "magento_248",
+  "generated_at": "2026-05-08T16:55:31.848328+00:00",
+  "candidate_count": 1,
+  "candidates": [
+    {
+      "candidate_id": "cand-b14fea84f525",
+      "tool": "05_verify",
+      "phase": "05_verify",
+      "symptom": "Phase 5 confirms 100% of critical joins (100.0%) using an offline trace sourced from the same appmap.db that produced Phase 4's CONFIRMED lineages. This is circular \u2014 Phase 5 is not providing independent evidence.",
+      "evidence_row_ids": [],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json",
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "proposed_fix": "Run Phase 5 in live mode (set adapters.replay_adapter in scope.yaml) to obtain an independent runtime trace. Until then, treat all Phase 5 confirmation as advisory."
+    }
+  ]
+}

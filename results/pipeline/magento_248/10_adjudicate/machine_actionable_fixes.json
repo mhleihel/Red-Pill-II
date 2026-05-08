@@ -1,0 +1,2990 @@
+{
+  "app_id": "magento_248",
+  "generated_at": "2026-05-08T16:55:31.848328+00:00",
+  "iteration": 1,
+  "fix_count": 213,
+  "fixes": [
+    {
+      "fix_id": "fix-a87c667d0b61",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b56893283457 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b56893283457"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-d91579c2ecdc",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-ec1c852e6bc4 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-ec1c852e6bc4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-aaeae703f728",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-08d15001f2a9 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-08d15001f2a9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-cdd1ccde2575",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-cff285ca8372 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-cff285ca8372"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ecfce9141c15",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-85a9df3b83a5 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-85a9df3b83a5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-419b17674184",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-352720633981 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-352720633981"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b28e204f3dd1",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b36b7ef69276 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b36b7ef69276"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-1669412300fd",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-217df9ca67ea has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-217df9ca67ea"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-d258e8ca09bc",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-6718f2421f14 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-6718f2421f14"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-fb6e335bd927",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b52afdc96c9e has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b52afdc96c9e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-64a434fbb7ea",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-8016bffca746 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-8016bffca746"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-c492cbce6167",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b6c1b3d0c29b has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b6c1b3d0c29b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-32502ec3c57a",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-096abc362eed has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-096abc362eed"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-4e8f055f9682",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b677cdf12827 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b677cdf12827"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-35d5362f9096",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-6d97165746e8 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-6d97165746e8"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-1241cb7c7059",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-18bfdb168203 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-18bfdb168203"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-945be9abdcc2",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-2306c5540162 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-2306c5540162"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-3a1a76264eeb",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-720ea1a470e6 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-720ea1a470e6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-27a181a27576",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-165dbb013e9e has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-165dbb013e9e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-c9e7039ca78c",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-2cccb3f158c9 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-2cccb3f158c9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-d76a4f2cd8cd",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-d664b4f5dc18 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-d664b4f5dc18"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-db66d2286f58",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-88f05a5114b4 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-88f05a5114b4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-860d9a98755b",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-d4ad10a90c8c has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-d4ad10a90c8c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-0da3e83f2891",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b32edac8d995 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b32edac8d995"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-baef84113ffa",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b9df9858de03 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b9df9858de03"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-21f5133d8bc3",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-819fece45a51 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-819fece45a51"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b2f1554387bf",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-adb164d77089 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-adb164d77089"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-18fcb52f315b",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-fe8e49b30b22 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-fe8e49b30b22"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-5bbb998ad9d9",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-2ade508d29ba has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-2ade508d29ba"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-5ecc641721ab",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-afc13edac62c has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-afc13edac62c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ea2a015d7ba3",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-93790007fdfd has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-93790007fdfd"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-580edb6f9af1",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-481d065141ab has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-481d065141ab"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-1d45e15b540e",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-bb38f61300f2 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-bb38f61300f2"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-dbfe0e438da0",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-b549fbb6e56e has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-b549fbb6e56e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-07acb9743251",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-56723ef8e3fb has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-56723ef8e3fb"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-039225e6f336",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-15f21742d993 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-15f21742d993"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-51e1e054d309",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-6884f99231a9 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-6884f99231a9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-a19a481da6ea",
+      "target_phase": "05_verify",
+      "target_artifact": "runtime_trace_min.db",
+      "target_field": "taints",
+      "change_description": "CRITICAL CORRELATED lineage cl-8d221cbcc169 has no independent runtime confirmation. Add this lineage's source route to the live replay scope in Phase 5.",
+      "evidence_row_ids": [
+        "cl-8d221cbcc169"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/05_verify/verification_delta.json"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-14cc3ee8b012",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-26596881d3ed"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-d2ada1dcb6fe",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-b7eba1218d3b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-2df5e95c3b62",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-19d5cdc0f24b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-06062617d046",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-4ad9c90d1b98"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-03c1fe5f1274",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-ae0054ec97d2"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ebfa4b8435c9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-08a9e2c7de67"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-bfec07826194",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-e7e52a798c32"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-2cd6c7b8a14a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-41a8b16dc469"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-fcb9ca6d75a1",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-d2c47d7149e1"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b9e430a1bbfc",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-d77ac4d9c416"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-267c0e93f23f",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/save/execute'",
+      "evidence_row_ids": [
+        "nsgap-0b19fcf899f1"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-2e92a899f2e5",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/product/execute'",
+      "evidence_row_ids": [
+        "nsgap-083edbf6a972"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-9245c77c2179",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/login/execute'",
+      "evidence_row_ids": [
+        "nsgap-ab4adb8fc724"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-02327c77ac76",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customerGroups/:id'",
+      "evidence_row_ids": [
+        "nsgap-34ab4debce0c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-c1aa8f26f379",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customerGroups/search'",
+      "evidence_row_ids": [
+        "nsgap-11bce52b3c24"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-4ab37670c2e0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customerGroups'",
+      "evidence_row_ids": [
+        "nsgap-498fed37e6bc"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-98d5a721eb86",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customerGroups/:id'",
+      "evidence_row_ids": [
+        "nsgap-25cf7ad01a8e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-cdf6c7da3363",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customerGroups/:id'",
+      "evidence_row_ids": [
+        "nsgap-8c73d094779d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-99c5a0f7b059",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/store/storeGroups'",
+      "evidence_row_ids": [
+        "nsgap-880c8bdbe2fe"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-aa4f174d61ea",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/products'",
+      "evidence_row_ids": [
+        "nsgap-e8bf6a012aad"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b744157fa9ed",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/products/:sku'",
+      "evidence_row_ids": [
+        "nsgap-81d08805f8d8"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-e2b0e89ead38",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/products/:sku'",
+      "evidence_row_ids": [
+        "nsgap-c9c70c001857"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-bfa41ee3fe8e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/products'",
+      "evidence_row_ids": [
+        "nsgap-7afc594faaf5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-c73a53d801df",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/products/:sku'",
+      "evidence_row_ids": [
+        "nsgap-781e783c2af5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-74ca51fc1196",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-953b1029055d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-6c2ab32811ba",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-c4e16d07362e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-174091d81bea",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-15e6d3765603"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-203c62d3dd2a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-43d7e9caf90a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-de497fc7b7cb",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-0bd5d988ccf1"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-f86d6956e897",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-5d69db312d36"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-c02f1b6a2434",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/view/execute'",
+      "evidence_row_ids": [
+        "nsgap-b8467f07cae6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-49dc26bc5c00",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/attribute/dispatch'",
+      "evidence_row_ids": [
+        "nsgap-6efce4ceab0e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-8b8884d3e8b8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/carts/mine/payment-information'",
+      "evidence_row_ids": [
+        "nsgap-d99dbd16a181"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b45b282add47",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/carts/mine/payment-information'",
+      "evidence_row_ids": [
+        "nsgap-a53037cb7e56"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-38f39ab5fbb3",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/carts/mine/set-payment-information'",
+      "evidence_row_ids": [
+        "nsgap-dfc744c4cbb9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ba6e9396a76b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/guest-carts/:cartId/payment-information'",
+      "evidence_row_ids": [
+        "nsgap-33aaae7464b3"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-df005a40fd13",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/guest-carts/:cartId/payment-information'",
+      "evidence_row_ids": [
+        "nsgap-0d050708a876"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-f1f486014b76",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/guest-carts/:cartId/set-payment-information'",
+      "evidence_row_ids": [
+        "nsgap-b98b3416d6b0"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-9225d1e37b5f",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/:customerId'",
+      "evidence_row_ids": [
+        "nsgap-0beedb46ef35"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-301e1dbd483b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/:customerId'",
+      "evidence_row_ids": [
+        "nsgap-cee490387d1b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ab404f6176c5",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/me'",
+      "evidence_row_ids": [
+        "nsgap-2b83e43207cf"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-5c7ac6e9170a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/me'",
+      "evidence_row_ids": [
+        "nsgap-b44573e2c35e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-2ef76f4a5a73",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/search'",
+      "evidence_row_ids": [
+        "nsgap-054f5372b51c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-251c8d9e41c9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/customers/:customerId'",
+      "evidence_row_ids": [
+        "nsgap-27b65e857c77"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-350ff2afad9a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/popup/execute'",
+      "evidence_row_ids": [
+        "nsgap-bf1b8db68242"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-3140a6db5228",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/popup/execute'",
+      "evidence_row_ids": [
+        "nsgap-7aa41fb09795"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-388667683026",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/orders/:id'",
+      "evidence_row_ids": [
+        "nsgap-a049cd2a53e9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-26846a0d5615",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/orders'",
+      "evidence_row_ids": [
+        "nsgap-803afb8583cd"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-ff1810a74e5c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/orders/create'",
+      "evidence_row_ids": [
+        "nsgap-6885923479c4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-e75a09a9c053",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authorization check to prevent privilege escalation on '/V1/orders'",
+      "evidence_row_ids": [
+        "nsgap-22fbb9cce74a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Observed"
+    },
+    {
+      "fix_id": "fix-b48d829de948",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/bundle-products/:sku/links/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-d4ad0c53be9b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-005cce596931",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/bundle-products/:sku/links/:id'",
+      "evidence_row_ids": [
+        "nsgap-a0f1ab409e91"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-81c1f94a60c3",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/bundle-products/:sku/options/:optionId/children/:childSku'",
+      "evidence_row_ids": [
+        "nsgap-d0877447eff2"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-66d6632f390c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/bundle-products/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-4fbb08b6f701"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-b506b15e44c5",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/bundle-products/:sku/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-a0653c36d301"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-deacf2fc7fa4",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode'",
+      "evidence_row_ids": [
+        "nsgap-af6c9d71e779"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a01ba4d168b7",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode/is-filterable/:isFilterable'",
+      "evidence_row_ids": [
+        "nsgap-6a0d3afe9477"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-33c5bccfbfe3",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode'",
+      "evidence_row_ids": [
+        "nsgap-4d9f90cdab57"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-be8d98d3d000",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attribute-sets/:attributeSetId'",
+      "evidence_row_ids": [
+        "nsgap-004218202edd"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-e61ce8e47332",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attribute-sets/:attributeSetId'",
+      "evidence_row_ids": [
+        "nsgap-02264cad6d4d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-46a2b7a7db92",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attribute-sets/:attributeSetId/attributes/:attributeCode'",
+      "evidence_row_ids": [
+        "nsgap-9937dbf5574e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-963f1de4ac92",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attribute-sets/:attributeSetId/groups'",
+      "evidence_row_ids": [
+        "nsgap-24998143e5f6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-2a8662d4d961",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attribute-sets/groups/:groupId'",
+      "evidence_row_ids": [
+        "nsgap-d1d30ad9ff0e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-e467740ea475",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode/options'",
+      "evidence_row_ids": [
+        "nsgap-8d637916d57e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-2d21f7add1e7",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-55e5ef73d0db"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-440c00d71e07",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/attributes/:attributeCode/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-222b90c26f7a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3d6a82016e4d",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/media'",
+      "evidence_row_ids": [
+        "nsgap-3927d5dc703c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c2acce366096",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/media/:entryId'",
+      "evidence_row_ids": [
+        "nsgap-35d75ea01963"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-5009c305a808",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/media/:entryId'",
+      "evidence_row_ids": [
+        "nsgap-bcae32dc9336"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-4b663c9a874c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/group-prices/:customerGroupId/tiers/:qty/price/:price'",
+      "evidence_row_ids": [
+        "nsgap-7c57de98db6d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-f0bc7473c328",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/group-prices/:customerGroupId/tiers/:qty'",
+      "evidence_row_ids": [
+        "nsgap-e7c9330b2780"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-5d782c2bdeae",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/categories/:categoryId/move'",
+      "evidence_row_ids": [
+        "nsgap-512d8c8fe0ca"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-68b7d036c4d1",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-ff0e5e295d6c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-97584c869575",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/options/:optionId'",
+      "evidence_row_ids": [
+        "nsgap-32176fd44d5f"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d06f562ee238",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/links'",
+      "evidence_row_ids": [
+        "nsgap-197505d816d4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3e6167309a7b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/links/:type/:linkedProductSku'",
+      "evidence_row_ids": [
+        "nsgap-07c3c58de70d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-0dead57688c2",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/links'",
+      "evidence_row_ids": [
+        "nsgap-0db36125e351"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-baa4f3bab667",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/categories/:categoryId/products'",
+      "evidence_row_ids": [
+        "nsgap-4d9d4e111ace"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-7f21e0653887",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/categories/:categoryId/products'",
+      "evidence_row_ids": [
+        "nsgap-8b7f6c4041ab"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-8514c0544b88",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/categories/:categoryId/products/:sku'",
+      "evidence_row_ids": [
+        "nsgap-813e1f4ec5e4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-4d90498b224c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/websites'",
+      "evidence_row_ids": [
+        "nsgap-c858d8fa4a7e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-0f1f6384a4d0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/websites'",
+      "evidence_row_ids": [
+        "nsgap-18e2923d2338"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-99a1524e336a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:sku/websites/:websiteId'",
+      "evidence_row_ids": [
+        "nsgap-f75bde1c35d4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-84386579b60b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/products/:productSku/stockItems/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-59d90beeac3a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-30209cafe22b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/shipping-information'",
+      "evidence_row_ids": [
+        "nsgap-4f89ee5d8573"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-1f3aa2a7080c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/shipping-information'",
+      "evidence_row_ids": [
+        "nsgap-d1182db6a34d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-6d29d2cfe7ff",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/totals-information'",
+      "evidence_row_ids": [
+        "nsgap-8ef3d00b9a30"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-78a87c621597",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/totals-information'",
+      "evidence_row_ids": [
+        "nsgap-1ff3eb0edc90"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-6e55ec30a5a8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/payment-information'",
+      "evidence_row_ids": [
+        "nsgap-e28538227796"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-5fbced81be05",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/set-payment-information'",
+      "evidence_row_ids": [
+        "nsgap-3ef971efbe29"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3667c3fa92ca",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/cmsPage/:id'",
+      "evidence_row_ids": [
+        "nsgap-1204b4c98952"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-f311d17d9b0d",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/cmsPage/:pageId'",
+      "evidence_row_ids": [
+        "nsgap-d345eafc9d8e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-7d811a0393a2",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/cmsBlock/:id'",
+      "evidence_row_ids": [
+        "nsgap-1a975030073b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d62316603f69",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/cmsBlock/:blockId'",
+      "evidence_row_ids": [
+        "nsgap-e3e8548a5a58"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-eb22e92a1785",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/configurable-products/:sku/children/:childSku'",
+      "evidence_row_ids": [
+        "nsgap-6b38891c0189"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-070400f526f9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/configurable-products/:sku/child'",
+      "evidence_row_ids": [
+        "nsgap-1866ccdb6a82"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d94b9843a8d9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/configurable-products/:sku/options'",
+      "evidence_row_ids": [
+        "nsgap-eafb600d8c76"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-f7aa4c01f213",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/configurable-products/:sku/options/:id'",
+      "evidence_row_ids": [
+        "nsgap-92234058f799"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a9fbcbd60b47",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/configurable-products/:sku/options/:id'",
+      "evidence_row_ids": [
+        "nsgap-fc0db37fd69d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-5852031ee98c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customerGroups/default/:id'",
+      "evidence_row_ids": [
+        "nsgap-4b4a0a31c3f5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-587061ff1db2",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customerGroups/:id'",
+      "evidence_row_ids": [
+        "nsgap-37800c80a4e6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d652f9997ad0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customerGroups/:id'",
+      "evidence_row_ids": [
+        "nsgap-37d664928c2b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c276aabe22ad",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customers/:customerId'",
+      "evidence_row_ids": [
+        "nsgap-bd2e22dbfe5a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-b3bc314c058e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customers/:email/activate'",
+      "evidence_row_ids": [
+        "nsgap-e97b6b8c041b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-6c9f0bb3b162",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customers/:customerId'",
+      "evidence_row_ids": [
+        "nsgap-f3d98ee7ad50"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-375f67aeed50",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/addresses/:addressId'",
+      "evidence_row_ids": [
+        "nsgap-19deb0f1405d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-9b3fe9f274b8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/eav/attribute-sets/:attributeSetId'",
+      "evidence_row_ids": [
+        "nsgap-e81dba7427bc"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-85af1c66c87c",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/eav/attribute-sets/:attributeSetId'",
+      "evidence_row_ids": [
+        "nsgap-ae6ebf1fb65b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-0321c81c7164",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/gift-message'",
+      "evidence_row_ids": [
+        "nsgap-57d89d9bbc46"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d99d3d21cdfb",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/gift-message/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-bb547c257521"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c502c42e9d85",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/gift-message'",
+      "evidence_row_ids": [
+        "nsgap-7a60b81d89f3"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-49643018b5d4",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/gift-message/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-3fdaf2e8a5a3"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d868200406c8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/customers/:customerId/carts'",
+      "evidence_row_ids": [
+        "nsgap-480a2de693da"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-11d44dd8fdc9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId'",
+      "evidence_row_ids": [
+        "nsgap-2c1556e6f29e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-168064e3ab96",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/order'",
+      "evidence_row_ids": [
+        "nsgap-91b2c35edc40"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-43ca26c44777",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/estimate-shipping-methods'",
+      "evidence_row_ids": [
+        "nsgap-de533dedb7ea"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d8e2a29387e9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/estimate-shipping-methods-by-address-id'",
+      "evidence_row_ids": [
+        "nsgap-e4437c1fc6bb"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-eac7183304e9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/estimate-shipping-methods'",
+      "evidence_row_ids": [
+        "nsgap-f6fc0b36b39c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a5803b4b4616",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:quoteId/items'",
+      "evidence_row_ids": [
+        "nsgap-a5b5e64eb0b4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-e62f7877788d",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/items/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-2e15e78c4a42"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3a2126ac639d",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/items/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-63f5bf05530c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d4109509a4f5",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/items'",
+      "evidence_row_ids": [
+        "nsgap-e7bd84aca008"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-fdc8365c7f10",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/items/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-5bf06bb9b016"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-82666dee2b6e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/items/:itemId'",
+      "evidence_row_ids": [
+        "nsgap-e073b24b5bc9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-9fdb026e2126",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/selected-payment-method'",
+      "evidence_row_ids": [
+        "nsgap-f9d915a46713"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c2b50b107b3e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/selected-payment-method'",
+      "evidence_row_ids": [
+        "nsgap-021cbfcf15d6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-702a0b8e376b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/billing-address'",
+      "evidence_row_ids": [
+        "nsgap-ee33c32ba794"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3f9407f82bd9",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/billing-address'",
+      "evidence_row_ids": [
+        "nsgap-b3b3e7a7cb9f"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-2e4d4c19d1d3",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/coupons/:couponCode'",
+      "evidence_row_ids": [
+        "nsgap-da04a2eff821"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-56e649109f80",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/coupons'",
+      "evidence_row_ids": [
+        "nsgap-c0728524b641"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a6c7a207edfe",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/coupons/:couponCode'",
+      "evidence_row_ids": [
+        "nsgap-f21a92643047"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-521fa1f973b4",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/coupons'",
+      "evidence_row_ids": [
+        "nsgap-3879c9b31c3e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d72e41b14b26",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/carts/:cartId/order'",
+      "evidence_row_ids": [
+        "nsgap-4e484846fa86"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a6ed2a2c32a7",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/guest-carts/:cartId/collect-totals'",
+      "evidence_row_ids": [
+        "nsgap-f7bd0cfb57d6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-f34e5a59a0bc",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:id/cancel'",
+      "evidence_row_ids": [
+        "nsgap-17c7741c96af"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a9e755e9b5a6",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:id/emails'",
+      "evidence_row_ids": [
+        "nsgap-729b5b1d0569"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-006085f939b8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:id/hold'",
+      "evidence_row_ids": [
+        "nsgap-3f78287432fa"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-8b5e6cee9bdd",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:id/unhold'",
+      "evidence_row_ids": [
+        "nsgap-2605dd59035c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a58b2093a267",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:id/comments'",
+      "evidence_row_ids": [
+        "nsgap-41060c33a792"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-9b5fd6406c7a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/orders/:parent_id'",
+      "evidence_row_ids": [
+        "nsgap-561bc42e2194"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-39347f20d9fe",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/invoices/:id/emails'",
+      "evidence_row_ids": [
+        "nsgap-126ab4150364"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-37ba79ac3fef",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/invoices/:id/void'",
+      "evidence_row_ids": [
+        "nsgap-34867b64fe0e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-e239d6964a28",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/invoices/:id/capture'",
+      "evidence_row_ids": [
+        "nsgap-79278ad4b8e5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-8ff8bf7c12aa",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/invoice/:invoiceId/refund'",
+      "evidence_row_ids": [
+        "nsgap-4d5c3a31d98d"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-dcd80a172c17",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/creditmemo/:id'",
+      "evidence_row_ids": [
+        "nsgap-fbc7febd53a1"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c59b814aa94e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/creditmemo/:id/emails'",
+      "evidence_row_ids": [
+        "nsgap-754c8a3cbadc"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-ccbc2c83f292",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/creditmemo/:id/comments'",
+      "evidence_row_ids": [
+        "nsgap-3778fef22f0b"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-d4c965e0f7a0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/order/:orderId/refund'",
+      "evidence_row_ids": [
+        "nsgap-4cb66ef3f1eb"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-7c561312ec4d",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/shipment/:id/comments'",
+      "evidence_row_ids": [
+        "nsgap-fbd810137852"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-36801b28cd12",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/shipment/:id/emails'",
+      "evidence_row_ids": [
+        "nsgap-76b695562fc3"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-876a86f6ec86",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/shipment/track/:id'",
+      "evidence_row_ids": [
+        "nsgap-e8b35ab68926"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c1cba85b3a78",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/order/:orderId/ship'",
+      "evidence_row_ids": [
+        "nsgap-864456d4d7b6"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-66520134202e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/order/:orderId/invoice'",
+      "evidence_row_ids": [
+        "nsgap-8aceeeef850e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-efdbb37cd069",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/salesRules/:ruleId'",
+      "evidence_row_ids": [
+        "nsgap-37a9b636660c"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-00dc8e954707",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/salesRules/:ruleId'",
+      "evidence_row_ids": [
+        "nsgap-dea05be96364"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-774d963f9c34",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/coupons/:couponId'",
+      "evidence_row_ids": [
+        "nsgap-d7128040fe12"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-6c3695432ff8",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/coupons/:couponId'",
+      "evidence_row_ids": [
+        "nsgap-1b5a99ace7d3"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a3480b05c17e",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/taxRates/:rateId'",
+      "evidence_row_ids": [
+        "nsgap-c019deac756a"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-b097679e24fc",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/taxRules/:ruleId'",
+      "evidence_row_ids": [
+        "nsgap-320f88ced876"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-f1a1ef100576",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/taxClasses/:classId'",
+      "evidence_row_ids": [
+        "nsgap-3499599af6f2"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-a5b51dfcbb35",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Implement ownership/scoping filter on route '/V1/taxClasses/:taxClassId'",
+      "evidence_row_ids": [
+        "nsgap-b7aa8fde9c08"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-30bc845212d3",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/input'",
+      "evidence_row_ids": [
+        "nsgap-2d3b4f733c77"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-8334a5d07393",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/description'",
+      "evidence_row_ids": [
+        "nsgap-bc7c008dd851"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-b4d7c0f7b471",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/class'",
+      "evidence_row_ids": [
+        "nsgap-044498d041a4"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-28925b0989d4",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/createCompareList'",
+      "evidence_row_ids": [
+        "nsgap-15de52cb03e8"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-4f6b69a8ea0f",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/email'",
+      "evidence_row_ids": [
+        "nsgap-05374a641642"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-1cd07435c62a",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/password'",
+      "evidence_row_ids": [
+        "nsgap-47b0ab173379"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3f72194b9a32",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/cancelOrder'",
+      "evidence_row_ids": [
+        "nsgap-b72ef4217f76"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-02d152f6ef30",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/confirmCancelOrder'",
+      "evidence_row_ids": [
+        "nsgap-aec9eb66e0b5"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-c427274cbb7b",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/createGuestCart'",
+      "evidence_row_ids": [
+        "nsgap-739a5c05abd9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-3b41f9acea28",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/reorderItems'",
+      "evidence_row_ids": [
+        "nsgap-18a8ec7ba8e7"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-6632f7e883a0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/public_hash'",
+      "evidence_row_ids": [
+        "nsgap-a16448d0544e"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-b7e0b341cfa5",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/wishlistId'",
+      "evidence_row_ids": [
+        "nsgap-70deeaeb27f9"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-345f129e29b0",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/graphql/wishlistItems'",
+      "evidence_row_ids": [
+        "nsgap-df4056abdec0"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    },
+    {
+      "fix_id": "fix-048df7e96cd1",
+      "target_phase": "03_surface",
+      "target_artifact": "entrypoint_catalog.json",
+      "target_field": "auth_boundary_map",
+      "change_description": "Add authentication guard to route '/handler-factory/create'",
+      "evidence_row_ids": [
+        "nsgap-425885532ade"
+      ],
+      "evidence_file_paths": [
+        "results/pipeline/magento_248/04_compose/appmap_composed.db"
+      ],
+      "confidence_class": "Correlated"
+    }
+  ]
+}
