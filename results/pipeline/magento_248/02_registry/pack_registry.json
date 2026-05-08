@@ -1,0 +1,128 @@
+{
+  "registry_version": "1.0",
+  "app_id": "magento_248",
+  "published_at": "2026-05-08T14:46:41.897109+00:00",
+  "pack_count": 5,
+  "packs": [
+    {
+      "pack_id": "magento_framework_php",
+      "pack_version": "1.0.0+add3e409",
+      "language": "php",
+      "framework": "magento",
+      "framework_version": "2.4.8-p4",
+      "status": "Certified",
+      "cert_report_path": "results/pipeline/magento_248/01a_certify/magento_framework_php/cert_report.json",
+      "artifact_path": "results/pipeline/magento_248/01_component_pack/magento_framework_php/component_pack_magento_framework_php.db",
+      "sha256": "617b693dcd0ee4452d570d0b3b23db28ee06871465225de4eadae2dba8de4c63",
+      "rollback_version": null,
+      "compat_matrix": {
+        "language": "php",
+        "framework": "magento",
+        "framework_version_min": "2.4.8-p4",
+        "framework_version_max": "2.4.8-p4"
+      },
+      "_cert_summary": {
+        "function_coverage_pct": 100.0,
+        "observed_chokepoint_pct": 25.0,
+        "certification_basis": "Observed+Inferred",
+        "certified_at": "2026-05-08T14:44:13.223622+00:00"
+      }
+    },
+    {
+      "pack_id": "magento_cms_php",
+      "pack_version": "1.0.0+add3e409",
+      "language": "php",
+      "framework": "magento",
+      "framework_version": "2.4.8-p4",
+      "status": "Certified",
+      "cert_report_path": "results/pipeline/magento_248/01a_certify/magento_cms_php/cert_report.json",
+      "artifact_path": "results/pipeline/magento_248/01_component_pack/magento_cms_php/component_pack_magento_cms_php.db",
+      "sha256": "4a3ea04a28ba20a735f9bd8e8763836e71db53fd887595f6707a4f98bbee2289",
+      "rollback_version": null,
+      "compat_matrix": {
+        "language": "php",
+        "framework": "magento",
+        "framework_version_min": "2.4.8-p4",
+        "framework_version_max": "2.4.8-p4"
+      },
+      "_cert_summary": {
+        "function_coverage_pct": 100.0,
+        "observed_chokepoint_pct": 38.81,
+        "certification_basis": "Observed+Inferred",
+        "certified_at": "2026-05-08T14:44:13.356712+00:00"
+      }
+    },
+    {
+      "pack_id": "magento_catalog_php",
+      "pack_version": "1.0.0+add3e409",
+      "language": "php",
+      "framework": "magento",
+      "framework_version": "2.4.8-p4",
+      "status": "Certified",
+      "cert_report_path": "results/pipeline/magento_248/01a_certify/magento_catalog_php/cert_report.json",
+      "artifact_path": "results/pipeline/magento_248/01_component_pack/magento_catalog_php/component_pack_magento_catalog_php.db",
+      "sha256": "b09bb27ad45ac0da8f012d6b24dc65d86428c5700b33aabf036cf131982f2c25",
+      "rollback_version": null,
+      "compat_matrix": {
+        "language": "php",
+        "framework": "magento",
+        "framework_version_min": "2.4.8-p4",
+        "framework_version_max": "2.4.8-p4"
+      },
+      "_cert_summary": {
+        "function_coverage_pct": 100.0,
+        "observed_chokepoint_pct": 58.29,
+        "certification_basis": "Observed+Inferred",
+        "certified_at": "2026-05-08T14:44:14.097525+00:00"
+      }
+    },
+    {
+      "pack_id": "magento_review_php",
+      "pack_version": "1.0.0+add3e409",
+      "language": "php",
+      "framework": "magento",
+      "framework_version": "2.4.8-p4",
+      "status": "Certified",
+      "cert_report_path": "results/pipeline/magento_248/01a_certify/magento_review_php/cert_report.json",
+      "artifact_path": "results/pipeline/magento_248/01_component_pack/magento_review_php/component_pack_magento_review_php.db",
+      "sha256": "40db35310e65f4fc19b83f36efaee064e690d5408f3b95e52b828601cd43922b",
+      "rollback_version": null,
+      "compat_matrix": {
+        "language": "php",
+        "framework": "magento",
+        "framework_version_min": "2.4.8-p4",
+        "framework_version_max": "2.4.8-p4"
+      },
+      "_cert_summary": {
+        "function_coverage_pct": 100.0,
+        "observed_chokepoint_pct": 53.66,
+        "certification_basis": "Observed+Inferred",
+        "certified_at": "2026-05-08T14:44:14.197979+00:00"
+      }
+    },
+    {
+      "pack_id": "magento_checkout_php",
+      "pack_version": "1.0.0+add3e409",
+      "language": "php",
+      "framework": "magento",
+      "framework_version": "2.4.8-p4",
+      "status": "Certified",
+      "cert_report_path": "results/pipeline/magento_248/01a_certify/magento_checkout_php/cert_report.json",
+      "artifact_path": "results/pipeline/magento_248/01_component_pack/magento_checkout_php/component_pack_magento_checkout_php.db",
+      "sha256": "7b0a5f3e9a9db5d42871ccad426458d89d0c28337f5317bebb8cc2f8fe71c766",
+      "rollback_version": null,
+      "compat_matrix": {
+        "language": "php",
+        "framework": "magento",
+        "framework_version_min": "2.4.8-p4",
+        "framework_version_max": "2.4.8-p4"
+      },
+      "_cert_summary": {
+        "function_coverage_pct": 100.0,
+        "observed_chokepoint_pct": 52.33,
+        "certification_basis": "Observed+Inferred",
+        "certified_at": "2026-05-08T14:44:14.328937+00:00"
+      }
+    }
+  ]
+}
