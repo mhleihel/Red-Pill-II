@@ -1,0 +1,858 @@
+/Users/mhleihel/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+============================================================
+  BOOYAH TRACE JOB — job_id=bb0abbf3
+  target : http://localhost:8082
+  phases : 1,2,3,4,5,6
+============================================================
+
+############################################################
+  PHASE: P1: Store1 Guest
+  run_id: tj-bb0abbf3-p1-guest-store1
+############################################################
+
+============================================================
+  GUEST PLAYBOOK — http://localhost:8082
+============================================================
+
+--- J1-Search ---
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ GET  /catalogsearch/advanced/index                           200 
+  ✓ POST /catalogsearch/advanced/result                          200 
+  ✓ GET  /catalogsearch/searchtermslog/save                      200 
+  ✓ GET  /catalog/product/view/id/1                              404 [REFLECT]
+  ✓ GET  /catalog/product/view/id/2                              200 [REFLECT]
+  ✓ GET  /catalog/product/view/id/3                              200 [REFLECT]
+  ✓ GET  /catalog/product/gallery                                404 [REFLECT]
+
+--- J2-Compare ---
+  ✓ GET  /catalog/product/compare/index                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /catalog/product/compare                                404 
+  ✓ POST /catalog/product/compare/remove                         404 
+
+--- J3-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ POST /checkout/cart/add#2                                    200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/updatepost                               200 
+  ✓ POST /checkout/cart/updateitemqty                            200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ POST /checkout/cart/estimateupdatepost                       200 
+  ✓ GET  /checkout/cart/configure                                200 
+
+--- J4-Checkout ---
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/guest-carts                                    200 
+    [+] guest cart_id: htzjBliRGORZ...
+  ✓ POST /rest/V1/guest-carts/{id}/items                         400 
+  ✓ POST /rest/V1/guest-carts/{id}/estimate-shipping-methods     200 
+  ✓ POST /rest/V1/guest-carts/{id}/shipping-information          400 
+  ✓ GET  /rest/V1/guest-carts/{id}/totals                        200 
+  ✓ POST /rest/V1/guest-carts/{id}/payment-information           400 [REFLECT]
+  ✓ GET  /checkout/onepage/success                               200 
+  ✓ GET  /checkout/shippingrates/index                           200 
+  ✓ GET  /checkout/onepage/failure                               200 
+
+--- J5-Contact ---
+  ✓ GET  /contact/index/index                                    200 
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /newsletter/subscriber/newaction                        200 
+  ✓ GET  /newsletter/manage/index                                200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/product/listaction                              404 
+  ✓ GET  /review/product/listajax                                404 
+  ✓ GET  /review/product/view/id/1                               404 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/index                                  200 
+
+--- J7-Account ---
+  ✓ GET  /customer/account/login                                 200 
+  ✓ GET  /customer/account/create                                200 
+  ✓ POST /customer/account/loginPost                             200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ POST /sales/guest/view                                       200 
+
+--- J8-Misc ---
+  ✓ POST /checkout/sidebar/updateitemqty                         200 
+  ✓ POST /checkout/sidebar/removeitem                            200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ GET  /checkout/noroute/index                                 404 
+
+  Guest summary: 50/50 proven  6 reflected  0 in DB
+
+  ✓ P1: Store1 Guest: 50/50 proven  6 reflected  0 in DB  (13s)
+
+############################################################
+  PHASE: P2: Store1 Customer alice
+  run_id: tj-bb0abbf3-p2-alice-store1
+############################################################
+
+============================================================
+  CUSTOMER PLAYBOOK — alice (alice@booyah.local)
+============================================================
+
+--- J1-Account ---
+  ✓ GET  /customer/account/index                                 200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /downloadable/customer/products                         200 
+
+--- J2-Profile ---
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ POST /customer/account/editPost                              200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /customer/account/confirmation                          200 
+  ✓ GET  /customer/account/forgotpassword                        200 
+
+--- J3-Address ---
+  ✓ GET  /customer/address/index                                 200 
+  ✓ GET  /customer/address/new                                   200 
+  ✓ POST /customer/address/formPost                              200 
+  ✓ GET  /customer/address/edit/id/{id}                          200 
+  ✓ GET  /customer/address/form                                  200 
+  ✓ POST /customer/address/delete                                200 
+
+--- J4-Orders ---
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /sales/order/view/order_id/{id}                         200 
+  ✓ GET  /sales/order/print/order_id/{id}                        200 
+  ✓ POST /sales/order/reorder                                    200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ GET  /rss/order/status                                       404 
+
+--- J5-Wishlist ---
+  ✓ GET  /wishlist/index/index                                   200 
+  ✓ POST /wishlist/index/add                                     200 
+  ✓ GET  /wishlist/index/share                                   200 
+  ✓ POST /wishlist/index/send                                    200 
+  ✓ POST /wishlist/index/updateItemOptions                       200 
+  ✓ POST /wishlist/index/remove                                  200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/customer/index                                  200 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/view/id/{id}                           200 
+  ✓ GET  /review/product/listaction                              200 
+  ✓ GET  /review/product/listajax                                200 
+
+--- J7-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/carts/mine                                     401 
+  ✓ POST /rest/V1/carts/mine/shipping-information                401 
+  ✓ GET  /rest/V1/carts/mine/totals                              401 
+  ✓ POST /checkout/cart/delete                                   200 
+  ✓ POST /wishlist/index/cart                                    200 
+
+--- J8-Misc ---
+  ✓ GET  /newsletter/manage/index                                200 
+  ✓ POST /newsletter/manage/save                                 200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /downloadable/customer/products                         200 
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /customer/account/logout                                200 
+
+  Customer (alice) summary: 50/50 proven  1 reflected  0 in DB
+
+  ✓ P2: Store1 Customer alice: 50/50 proven  1 reflected  0 in DB  (13s)
+
+############################################################
+  PHASE: P2: Store1 Customer bob
+  run_id: tj-bb0abbf3-p2-bob-store1
+############################################################
+
+============================================================
+  CUSTOMER PLAYBOOK — bob (bob@booyah.local)
+============================================================
+
+--- J1-Account ---
+  ✓ GET  /customer/account/index                                 200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /downloadable/customer/products                         200 
+
+--- J2-Profile ---
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ POST /customer/account/editPost                              200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /customer/account/confirmation                          200 
+  ✓ GET  /customer/account/forgotpassword                        200 
+
+--- J3-Address ---
+  ✓ GET  /customer/address/index                                 200 
+  ✓ GET  /customer/address/new                                   200 
+  ✓ POST /customer/address/formPost                              200 
+  ✓ GET  /customer/address/edit/id/{id}                          200 
+  ✓ GET  /customer/address/form                                  200 
+  ✓ POST /customer/address/delete                                200 
+
+--- J4-Orders ---
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /sales/order/view/order_id/{id}                         200 
+  ✓ GET  /sales/order/print/order_id/{id}                        200 
+  ✓ POST /sales/order/reorder                                    200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ GET  /rss/order/status                                       404 
+
+--- J5-Wishlist ---
+  ✓ GET  /wishlist/index/index                                   200 
+  ✓ POST /wishlist/index/add                                     200 
+  ✓ GET  /wishlist/index/share                                   200 
+  ✓ POST /wishlist/index/send                                    200 
+  ✓ POST /wishlist/index/updateItemOptions                       200 
+  ✓ POST /wishlist/index/remove                                  200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/customer/index                                  200 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/view/id/{id}                           200 
+  ✓ GET  /review/product/listaction                              200 
+  ✓ GET  /review/product/listajax                                200 
+
+--- J7-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/carts/mine                                     401 
+  ✓ POST /rest/V1/carts/mine/shipping-information                401 
+  ✓ GET  /rest/V1/carts/mine/totals                              401 
+  ✓ POST /checkout/cart/delete                                   200 
+  ✓ POST /wishlist/index/cart                                    200 
+
+--- J8-Misc ---
+  ✓ GET  /newsletter/manage/index                                200 
+  ✓ POST /newsletter/manage/save                                 200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /downloadable/customer/products                         200 
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /customer/account/logout                                200 
+
+  Customer (bob) summary: 50/50 proven  1 reflected  0 in DB
+
+  ✓ P2: Store1 Customer bob: 50/50 proven  1 reflected  0 in DB  (12s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_sales
+  run_id: tj-bb0abbf3-p3-admin_sales-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_sales (scope=sales, store=default)
+============================================================
+
+--- Sales ---
+  ✓ GET  /admin/sales/order/index/                               200 
+  ✓ GET  /admin/sales/order/view/order_id/1/                     200 
+  ✓ GET  /admin/sales/invoice/index/                             200 
+  ✓ GET  /admin/sales/creditmemo/index/                          200 
+  ✓ GET  /admin/sales/shipment/index/                            200 
+  ✓ GET  /admin/sales/transactions/index/                        200 
+  ✓ POST /admin/sales/order/index/search                         200 
+
+  Admin (admin_sales) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_sales: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_catalog
+  run_id: tj-bb0abbf3-p3-admin_catalog-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_catalog (scope=catalog, store=default)
+============================================================
+
+--- Catalog ---
+  ✓ GET  /admin/catalog/product/index/                           200 
+  ✓ GET  /admin/catalog/product/edit/id/1/                       200 
+  ✓ GET  /admin/catalog/category/index/                          200 
+  ✓ GET  /admin/catalog/product/attribute/index/                 200 
+  ✓ GET  /admin/catalog/product/set/index/                       200 
+  ✓ POST /admin/catalog/product/index/search                     200 
+
+  Admin (admin_catalog) summary: 6/6 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_catalog: 6/6 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_customers
+  run_id: tj-bb0abbf3-p3-admin_customers-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_customers (scope=customers, store=default)
+============================================================
+
+--- Customers ---
+  ✓ GET  /admin/customer/index/                                  200 
+  ✓ GET  /admin/customer/index/edit/id/1/                        200 
+  ✓ GET  /admin/customer/group/index/                            200 
+  ✓ POST /admin/customer/index/search                            200 
+
+  Admin (admin_customers) summary: 4/4 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_customers: 4/4 proven  0 reflected  0 in DB  (0s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_marketing
+  run_id: tj-bb0abbf3-p3-admin_marketing-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_marketing (scope=marketing, store=default)
+============================================================
+
+--- Marketing ---
+  ✓ GET  /admin/sales_rule/promo_quote/index/                    200 
+  ✓ GET  /admin/catalog_rule/promo_catalog/index/                200 
+  ✓ GET  /admin/email_template/index/                            200 
+  ✓ GET  /admin/newsletter/template/index/                       200 
+
+  Admin (admin_marketing) summary: 4/4 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_marketing: 4/4 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_content
+  run_id: tj-bb0abbf3-p3-admin_content-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_content (scope=content, store=default)
+============================================================
+
+--- Content ---
+  ✓ GET  /admin/cms/page/index/                                  200 
+  ✓ GET  /admin/cms/block/index/                                 200 
+  ✓ GET  /admin/cms/wysiwyg/directive/                           200 
+  ✓ GET  /admin/design/config/index/                             200 
+  ✓ POST /admin/cms/page/index/search                            200 
+
+  Admin (admin_content) summary: 5/5 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_content: 5/5 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_reports
+  run_id: tj-bb0abbf3-p3-admin_reports-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_reports (scope=reports, store=default)
+============================================================
+
+--- Reports ---
+  ✓ GET  /admin/reports/report_product/sold/                     200 
+  ✓ GET  /admin/reports/report_sales/sales/                      200 
+  ✓ GET  /admin/reports/report_sales/coupons/                    200 
+  ✓ GET  /admin/reports/report_customers/accounts/               200 
+  ✓ GET  /admin/reports/report_review/customer/                  200 
+  ✓ GET  /admin/reports/report_search/index/                     200 
+  ✓ GET  /admin/reports/report_search/index/filter               200 
+
+  Admin (admin_reports) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_reports: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_stores
+  run_id: tj-bb0abbf3-p3-admin_stores-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_stores (scope=stores, store=default)
+============================================================
+
+--- Stores ---
+  ✓ GET  /admin/admin/system_config/index/                       200 
+  ✓ GET  /admin/tax/rule/index/                                  200 
+  ✓ GET  /admin/tax/rate/index/                                  200 
+  ✓ GET  /admin/catalog/product/attribute/index/                 200 
+  ✓ GET  /admin/catalog/product/set/index/                       200 
+  ✓ GET  /admin/store/group/index/                               200 
+  ✓ POST /admin/admin/system_config/save/general                 200 
+
+  Admin (admin_stores) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_stores: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P3: Store1 RestrictedAdmin admin_system
+  run_id: tj-bb0abbf3-p3-admin_system-store1
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — admin_system (scope=system, store=default)
+============================================================
+
+--- System ---
+  ✓ GET  /admin/admin/cache/index/                               200 
+  ✓ GET  /admin/admin/cron/index/                                200 
+  ✓ GET  /admin/logging/bulk/index/                              200 
+  ✓ GET  /admin/admin/system_import/index/                       200 
+  ✓ GET  /admin/admin/system_backup/index/                       200 
+  ✓ GET  /admin/admin/notification/index/                        200 
+  ✓ GET  /admin/logging/bulk/index/filter                        200 
+
+  Admin (admin_system) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P3: Store1 RestrictedAdmin admin_system: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P4: Store2 Guest
+  run_id: tj-bb0abbf3-p4-guest-store2
+############################################################
+
+============================================================
+  GUEST PLAYBOOK — http://localhost:8082
+============================================================
+
+--- J1-Search ---
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ GET  /catalogsearch/advanced/index                           200 
+  ✓ POST /catalogsearch/advanced/result                          200 
+  ✓ GET  /catalogsearch/searchtermslog/save                      200 
+  ✓ GET  /catalog/product/view/id/1                              404 [REFLECT]
+  ✓ GET  /catalog/product/view/id/2                              404 [REFLECT]
+  ✓ GET  /catalog/product/view/id/3                              404 [REFLECT]
+  ✓ GET  /catalog/product/gallery                                404 [REFLECT]
+
+--- J2-Compare ---
+  ✓ GET  /catalog/product/compare/index                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /catalog/product/compare                                404 
+  ✓ POST /catalog/product/compare/remove                         404 
+
+--- J3-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ POST /checkout/cart/add#2                                    200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/updatepost                               200 
+  ✓ POST /checkout/cart/updateitemqty                            200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ POST /checkout/cart/estimateupdatepost                       200 
+  ✓ GET  /checkout/cart/configure                                200 
+
+--- J4-Checkout ---
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/guest-carts                                    200 
+    [+] guest cart_id: pWHxMdDe88t0...
+  ✓ POST /rest/V1/guest-carts/{id}/items                         400 
+  ✓ POST /rest/V1/guest-carts/{id}/estimate-shipping-methods     200 
+  ✓ POST /rest/V1/guest-carts/{id}/shipping-information          400 
+  ✓ GET  /rest/V1/guest-carts/{id}/totals                        200 
+  ✓ POST /rest/V1/guest-carts/{id}/payment-information           400 [REFLECT]
+  ✓ GET  /checkout/onepage/success                               200 
+  ✓ GET  /checkout/shippingrates/index                           200 
+  ✓ GET  /checkout/onepage/failure                               200 
+
+--- J5-Contact ---
+  ✓ GET  /contact/index/index                                    200 
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /newsletter/subscriber/newaction                        200 
+  ✓ GET  /newsletter/manage/index                                200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/product/listaction                              404 
+  ✓ GET  /review/product/listajax                                404 
+  ✓ GET  /review/product/view/id/1                               404 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/index                                  200 
+
+--- J7-Account ---
+  ✓ GET  /customer/account/login                                 200 
+  ✓ GET  /customer/account/create                                200 
+  ✓ POST /customer/account/loginPost                             200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ POST /sales/guest/view                                       200 
+
+--- J8-Misc ---
+  ✓ POST /checkout/sidebar/updateitemqty                         200 
+  ✓ POST /checkout/sidebar/removeitem                            200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ GET  /checkout/noroute/index                                 404 
+
+  Guest summary: 50/50 proven  6 reflected  0 in DB
+
+  ✓ P4: Store2 Guest: 50/50 proven  6 reflected  0 in DB  (12s)
+
+############################################################
+  PHASE: P5: Store2 Customer carol
+  run_id: tj-bb0abbf3-p5-carol-store2
+############################################################
+
+============================================================
+  CUSTOMER PLAYBOOK — carol (carol@booyah.local)
+============================================================
+
+--- J1-Account ---
+  ✓ GET  /customer/account/index                                 200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /downloadable/customer/products                         200 
+
+--- J2-Profile ---
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ POST /customer/account/editPost                              200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /customer/account/confirmation                          200 
+  ✓ GET  /customer/account/forgotpassword                        200 
+
+--- J3-Address ---
+  ✓ GET  /customer/address/index                                 200 
+  ✓ GET  /customer/address/new                                   200 
+  ✓ POST /customer/address/formPost                              200 
+  ✓ GET  /customer/address/edit/id/{id}                          200 
+  ✓ GET  /customer/address/form                                  200 
+  ✓ POST /customer/address/delete                                200 
+
+--- J4-Orders ---
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /sales/order/view/order_id/{id}                         200 
+  ✓ GET  /sales/order/print/order_id/{id}                        200 
+  ✓ POST /sales/order/reorder                                    200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ GET  /rss/order/status                                       404 
+
+--- J5-Wishlist ---
+  ✓ GET  /wishlist/index/index                                   200 
+  ✓ POST /wishlist/index/add                                     200 
+  ✓ GET  /wishlist/index/share                                   200 
+  ✓ POST /wishlist/index/send                                    200 
+  ✓ POST /wishlist/index/updateItemOptions                       200 
+  ✓ POST /wishlist/index/remove                                  200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/customer/index                                  200 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/view/id/{id}                           200 
+  ✓ GET  /review/product/listaction                              404 
+  ✓ GET  /review/product/listajax                                404 
+
+--- J7-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/carts/mine                                     401 
+  ✓ POST /rest/V1/carts/mine/shipping-information                401 
+  ✓ GET  /rest/V1/carts/mine/totals                              401 
+  ✓ POST /checkout/cart/delete                                   200 
+  ✓ POST /wishlist/index/cart                                    200 
+
+--- J8-Misc ---
+  ✓ GET  /newsletter/manage/index                                200 
+  ✓ POST /newsletter/manage/save                                 200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /downloadable/customer/products                         200 
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /customer/account/logout                                200 
+
+  Customer (carol) summary: 50/50 proven  1 reflected  0 in DB
+
+  ✓ P5: Store2 Customer carol: 50/50 proven  1 reflected  0 in DB  (12s)
+
+############################################################
+  PHASE: P5: Store2 Customer dave
+  run_id: tj-bb0abbf3-p5-dave-store2
+############################################################
+
+============================================================
+  CUSTOMER PLAYBOOK — dave (dave@booyah.local)
+============================================================
+
+--- J1-Account ---
+  ✓ GET  /customer/account/index                                 200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /downloadable/customer/products                         200 
+
+--- J2-Profile ---
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ POST /customer/account/editPost                              200 
+  ✓ GET  /customer/account/edit                                  200 
+  ✓ GET  /customer/account/confirmation                          200 
+  ✓ GET  /customer/account/forgotpassword                        200 
+
+--- J3-Address ---
+  ✓ GET  /customer/address/index                                 200 
+  ✓ GET  /customer/address/new                                   200 
+  ✓ POST /customer/address/formPost                              200 
+  ✓ GET  /customer/address/edit/id/{id}                          200 
+  ✓ GET  /customer/address/form                                  200 
+  ✓ POST /customer/address/delete                                200 
+
+--- J4-Orders ---
+  ✓ GET  /sales/order/history                                    200 
+  ✓ GET  /sales/order/view/order_id/{id}                         200 
+  ✓ GET  /sales/order/print/order_id/{id}                        200 
+  ✓ POST /sales/order/reorder                                    200 
+  ✓ GET  /sales/guest/form                                       200 
+  ✓ GET  /rss/order/status                                       404 
+
+--- J5-Wishlist ---
+  ✓ GET  /wishlist/index/index                                   200 
+  ✓ POST /wishlist/index/add                                     200 
+  ✓ GET  /wishlist/index/share                                   200 
+  ✓ POST /wishlist/index/send                                    200 
+  ✓ POST /wishlist/index/updateItemOptions                       200 
+  ✓ POST /wishlist/index/remove                                  200 
+
+--- J6-Reviews ---
+  ✓ GET  /review/customer/index                                  200 
+  ✓ POST /review/product/post                                    200 
+  ✓ GET  /review/customer/view/id/{id}                           200 
+  ✓ GET  /review/product/listaction                              404 
+  ✓ GET  /review/product/listajax                                404 
+
+--- J7-Cart ---
+  ✓ POST /checkout/cart/add                                      200 
+  ✓ GET  /checkout/cart/index                                    200 
+  ✓ POST /checkout/cart/couponpost                               200 
+  ✓ POST /checkout/cart/estimatepost                             200 
+  ✓ GET  /checkout/index/index                                   200 
+  ✓ POST /rest/V1/carts/mine                                     401 
+  ✓ POST /rest/V1/carts/mine/shipping-information                401 
+  ✓ GET  /rest/V1/carts/mine/totals                              401 
+  ✓ POST /checkout/cart/delete                                   200 
+  ✓ POST /wishlist/index/cart                                    200 
+
+--- J8-Misc ---
+  ✓ GET  /newsletter/manage/index                                200 
+  ✓ POST /newsletter/manage/save                                 200 
+  ✓ GET  /catalog/product/compare/clear                          404 
+  ✓ POST /catalog/product/compare/add                            404 
+  ✓ GET  /downloadable/customer/products                         200 
+  ✓ GET  /catalogsearch/result/index                             200 [REFLECT]
+  ✓ POST /contact/index/post                                     200 
+  ✓ POST /customer/account/logout                                200 
+
+  Customer (dave) summary: 50/50 proven  1 reflected  0 in DB
+
+  ✓ P5: Store2 Customer dave: 50/50 proven  1 reflected  0 in DB  (12s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_sales
+  run_id: tj-bb0abbf3-p6-store2_sales-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_sales (scope=sales, store=store2)
+============================================================
+
+--- Sales ---
+  ✓ GET  /admin/sales/order/index/                               200 
+  ✓ GET  /admin/sales/order/view/order_id/1/                     200 
+  ✓ GET  /admin/sales/invoice/index/                             200 
+  ✓ GET  /admin/sales/creditmemo/index/                          200 
+  ✓ GET  /admin/sales/shipment/index/                            200 
+  ✓ GET  /admin/sales/transactions/index/                        200 
+  ✓ POST /admin/sales/order/index/search                         200 
+
+  Admin (store2_sales) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_sales: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_catalog
+  run_id: tj-bb0abbf3-p6-store2_catalog-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_catalog (scope=catalog, store=store2)
+============================================================
+
+--- Catalog ---
+  ✓ GET  /admin/catalog/product/index/                           200 
+  ✓ GET  /admin/catalog/product/edit/id/1/                       200 
+  ✓ GET  /admin/catalog/category/index/                          200 
+  ✓ GET  /admin/catalog/product/attribute/index/                 200 
+  ✓ GET  /admin/catalog/product/set/index/                       200 
+  ✓ POST /admin/catalog/product/index/search                     200 
+
+  Admin (store2_catalog) summary: 6/6 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_catalog: 6/6 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_customers
+  run_id: tj-bb0abbf3-p6-store2_customers-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_customers (scope=customers, store=store2)
+============================================================
+
+--- Customers ---
+  ✓ GET  /admin/customer/index/                                  200 
+  ✓ GET  /admin/customer/index/edit/id/1/                        200 
+  ✓ GET  /admin/customer/group/index/                            200 
+  ✓ POST /admin/customer/index/search                            200 
+
+  Admin (store2_customers) summary: 4/4 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_customers: 4/4 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_marketing
+  run_id: tj-bb0abbf3-p6-store2_marketing-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_marketing (scope=marketing, store=store2)
+============================================================
+
+--- Marketing ---
+  ✓ GET  /admin/sales_rule/promo_quote/index/                    200 
+  ✓ GET  /admin/catalog_rule/promo_catalog/index/                200 
+  ✓ GET  /admin/email_template/index/                            200 
+  ✓ GET  /admin/newsletter/template/index/                       200 
+
+  Admin (store2_marketing) summary: 4/4 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_marketing: 4/4 proven  0 reflected  0 in DB  (0s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_content
+  run_id: tj-bb0abbf3-p6-store2_content-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_content (scope=content, store=store2)
+============================================================
+
+--- Content ---
+  ✓ GET  /admin/cms/page/index/                                  200 
+  ✓ GET  /admin/cms/block/index/                                 200 
+  ✓ GET  /admin/cms/wysiwyg/directive/                           200 
+  ✓ GET  /admin/design/config/index/                             200 
+  ✓ POST /admin/cms/page/index/search                            200 
+
+  Admin (store2_content) summary: 5/5 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_content: 5/5 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_reports
+  run_id: tj-bb0abbf3-p6-store2_reports-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_reports (scope=reports, store=store2)
+============================================================
+
+--- Reports ---
+  ✓ GET  /admin/reports/report_product/sold/                     200 
+  ✓ GET  /admin/reports/report_sales/sales/                      200 
+  ✓ GET  /admin/reports/report_sales/coupons/                    200 
+  ✓ GET  /admin/reports/report_customers/accounts/               200 
+  ✓ GET  /admin/reports/report_review/customer/                  200 
+  ✓ GET  /admin/reports/report_search/index/                     200 
+  ✓ GET  /admin/reports/report_search/index/filter               200 
+
+  Admin (store2_reports) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_reports: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_stores
+  run_id: tj-bb0abbf3-p6-store2_stores-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_stores (scope=stores, store=store2)
+============================================================
+
+--- Stores ---
+  ✓ GET  /admin/admin/system_config/index/                       200 
+  ✓ GET  /admin/tax/rule/index/                                  200 
+  ✓ GET  /admin/tax/rate/index/                                  200 
+  ✓ GET  /admin/catalog/product/attribute/index/                 200 
+  ✓ GET  /admin/catalog/product/set/index/                       200 
+  ✓ GET  /admin/store/group/index/                               200 
+  ✓ POST /admin/admin/system_config/save/general                 200 
+
+  Admin (store2_stores) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_stores: 7/7 proven  0 reflected  0 in DB  (1s)
+
+############################################################
+  PHASE: P6: Store2 RestrictedAdmin store2_system
+  run_id: tj-bb0abbf3-p6-store2_system-store2
+############################################################
+
+============================================================
+  RESTRICTED ADMIN — store2_system (scope=system, store=store2)
+============================================================
+
+--- System ---
+  ✓ GET  /admin/admin/cache/index/                               200 
+  ✓ GET  /admin/admin/cron/index/                                200 
+  ✓ GET  /admin/logging/bulk/index/                              200 
+  ✓ GET  /admin/admin/system_import/index/                       200 
+  ✓ GET  /admin/admin/system_backup/index/                       200 
+  ✓ GET  /admin/admin/notification/index/                        200 
+  ✓ GET  /admin/logging/bulk/index/filter                        200 
+
+  Admin (store2_system) summary: 7/7 proven  0 reflected  0 in DB
+
+  ✓ P6: Store2 RestrictedAdmin store2_system: 7/7 proven  0 reflected  0 in DB  (1s)
+
+============================================================
+  POST-RUN: Extracting runtime lineages ...
+============================================================
+  Lineages: inserted=0  updated=55  total_flows=55
+
+============================================================
+  TRACE JOB COMPLETE — job_id=bb0abbf3
+============================================================
+  Phases run   : 22
+  Total routes : 394
+  Proven       : 394
+  Reflected    : 16  ← 1st-order XSS candidates
+  Stored in DB : 0   ← 2nd-order XSS candidates
+
+  Per-phase breakdown:
+    [default ] P1: Store1 Guest                               50/ 50 +6reflected
+    [default ] P2: Store1 Customer alice                      50/ 50 +1reflected
+    [default ] P2: Store1 Customer bob                        50/ 50 +1reflected
+    [default ] P3: Store1 RestrictedAdmin admin_sales          7/  7
+    [default ] P3: Store1 RestrictedAdmin admin_catalog        6/  6
+    [default ] P3: Store1 RestrictedAdmin admin_customers      4/  4
+    [default ] P3: Store1 RestrictedAdmin admin_marketing      4/  4
+    [default ] P3: Store1 RestrictedAdmin admin_content        5/  5
+    [default ] P3: Store1 RestrictedAdmin admin_reports        7/  7
+    [default ] P3: Store1 RestrictedAdmin admin_stores         7/  7
+    [default ] P3: Store1 RestrictedAdmin admin_system         7/  7
+    [store2  ] P4: Store2 Guest                               50/ 50 +6reflected
+    [store2  ] P5: Store2 Customer carol                      50/ 50 +1reflected
+    [store2  ] P5: Store2 Customer dave                       50/ 50 +1reflected
+    [store2  ] P6: Store2 RestrictedAdmin store2_sales         7/  7
+    [store2  ] P6: Store2 RestrictedAdmin store2_catalog       6/  6
+    [store2  ] P6: Store2 RestrictedAdmin store2_customers     4/  4
+    [store2  ] P6: Store2 RestrictedAdmin store2_marketing     4/  4
+    [store2  ] P6: Store2 RestrictedAdmin store2_content       5/  5
+    [store2  ] P6: Store2 RestrictedAdmin store2_reports       7/  7
+    [store2  ] P6: Store2 RestrictedAdmin store2_stores        7/  7
+    [store2  ] P6: Store2 RestrictedAdmin store2_system        7/  7
+
+  ✓ No cross-store contamination detected in reflected responses

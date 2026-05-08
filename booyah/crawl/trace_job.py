@@ -79,13 +79,39 @@ CREATE INDEX IF NOT EXISTS idx_pr_reflected ON playbook_results(taint_reflected)
 
 def init_db(path: str) -> sqlite3.Connection:
     conn = sqlite3.connect(path)
-    conn.executescript(SCHEMA)
-    # Add store_code column to existing tables that lack it
-    try:
-        conn.execute("ALTER TABLE playbook_results ADD COLUMN store_code TEXT DEFAULT 'default'")
-        conn.commit()
-    except sqlite3.OperationalError:
-        pass  # column already exists
+    # Create table without store_code first (for idempotency on existing DBs)
+    conn.executescript("""
+CREATE TABLE IF NOT EXISTS playbook_results (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    run_id          TEXT    NOT NULL,
+    role            TEXT    NOT NULL,
+    journey         TEXT    NOT NULL,
+    route_url       TEXT    NOT NULL,
+    method          TEXT    NOT NULL,
+    status_code     INTEGER,
+    taint_id        TEXT,
+    taint_reflected INTEGER DEFAULT 0,
+    taint_in_db     INTEGER DEFAULT 0,
+    elapsed_ms      INTEGER,
+    notes           TEXT,
+    proven          INTEGER DEFAULT 0,
+    attempted_at    INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_pr_run       ON playbook_results(run_id);
+CREATE INDEX IF NOT EXISTS idx_pr_role      ON playbook_results(role);
+""")
+    # Migrate: add store_code if absent
+    for col_def, idx_sql in [
+        ("ALTER TABLE playbook_results ADD COLUMN store_code TEXT DEFAULT 'default'",
+         "CREATE INDEX IF NOT EXISTS idx_pr_store ON playbook_results(store_code)"),
+        ("ALTER TABLE playbook_results ADD COLUMN taint_reflected INTEGER DEFAULT 0", None),
+    ]:
+        try:
+            conn.execute(col_def)
+            if idx_sql:
+                conn.execute(idx_sql)
+        except sqlite3.OperationalError:
+            pass
     conn.commit()
     return conn
 
