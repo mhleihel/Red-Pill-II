@@ -190,9 +190,17 @@ def _compose_packs(conn: sqlite3.Connection, registry: dict, phase1_base: Path) 
             )
 
         # Edges → composed edges
+        # Ensure both endpoint FUNCTION nodes exist (stubs for out-of-pack FQNs)
         for row in pconn.execute("SELECT * FROM cp_edges").fetchall():
             from_nid = _node_id(row["from_fqn"], "FUNCTION")
             to_nid = _node_id(row["to_fqn"], "FUNCTION")
+            for nid, fqn in ((from_nid, row["from_fqn"]), (to_nid, row["to_fqn"])):
+                if nid not in seen_nodes:
+                    seen_nodes.add(nid)
+                    conn.execute(
+                        "INSERT OR IGNORE INTO nodes VALUES (?,?,?,?,?,?,?,?)",
+                        (nid, fqn, "FUNCTION", "", 0, "Inferred", "static_inferred", ""),
+                    )
             eid = _edge_id(from_nid, to_nid, row["edge_type"])
             if eid in seen_edges:
                 continue
@@ -374,6 +382,13 @@ def _compose_app_glue(conn: sqlite3.Connection, routes_path: Path,
             )
 
         ctrl_nid = _node_id(ctrl_fqn, "FUNCTION")
+        # Ensure the controller FUNCTION node exists even if not in any registered pack
+        if ctrl_nid not in seen_nodes:
+            seen_nodes.add(ctrl_nid)
+            conn.execute(
+                "INSERT OR IGNORE INTO nodes VALUES (?,?,?,?,?,?,?,?)",
+                (ctrl_nid, ctrl_fqn, "FUNCTION", "", 0, "Inferred", "static_inferred", ""),
+            )
         eid = _edge_id(route_nid, ctrl_nid, "DISPATCHES")
         if eid not in seen_edges:
             seen_edges.add(eid)

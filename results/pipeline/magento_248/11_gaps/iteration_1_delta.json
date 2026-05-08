@@ -1,0 +1,18 @@
+{
+  "app_id": "magento_248",
+  "iteration": 1,
+  "iterated_at": "2026-05-08T16:59:47.284091+00:00",
+  "trace_mode": "offline",
+  "variable_changed": "none",
+  "coverage_delta_pct": 0.0,
+  "new_confirmed_lineages": 0,
+  "new_confirmed_auth_gaps": 0,
+  "regression_count": 0,
+  "stop_rule_met": true,
+  "fixes_available": 213,
+  "fixes_applied": 0,
+  "confirmed_lineages_total": 37,
+  "total_lineages": 87,
+  "total_auth_gaps": 2876,
+  "note": "Offline mode: gap closure deferred until Phase 5 live replay is configured. Apply machine_actionable_fixes.json in Phase 10 and re-run Phase 5 in live mode."
+}

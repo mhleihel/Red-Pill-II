@@ -1,0 +1,17 @@
+{
+  "app_id": "magento_248",
+  "checked_at": "2026-05-08T16:59:47.313419+00:00",
+  "fk_check_pass": true,
+  "fk_broken_refs": 0,
+  "vocabulary_alignment_pass": true,
+  "vocabulary_violations": [],
+  "orphan_node_count": 0,
+  "lineage_count_match": true,
+  "lineage_count_db": 87,
+  "lineage_count_correlation": 87,
+  "auth_gap_count_match": true,
+  "auth_gap_count_db": 2876,
+  "auth_gap_count_correlation": 2876,
+  "artifact_hashes_verified": true,
+  "snapshot_dir": "results/pipeline/magento_248/12_snapshot/golden_gift_20260508"
+}

@@ -1,17 +1,17 @@
 {
   "app_id": "magento_248",
-  "composed_at": "2026-05-08T15:35:33.184412+00:00",
-  "node_count": 28282,
-  "edge_count": 4525,
+  "composed_at": "2026-05-08T16:59:43.141168+00:00",
+  "node_count": 30516,
+  "edge_count": 4564,
   "lineage_count": 87,
   "auth_gap_count": 2876,
-  "orphan_node_count": 26748,
+  "orphan_node_count": 26746,
   "orphan_by_type": {
     "BOUNDARY_READ": 15,
     "FUNCTION": 26726,
     "SANITIZER": 1,
     "SINK": 3,
-    "SOURCE": 3
+    "SOURCE": 1
   },
   "sinks_missing_context_mark": 0,
   "coverage_by_risk_tier": {

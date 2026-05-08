@@ -1,0 +1,36 @@
+{
+  "app_id": "magento_248",
+  "snapshot_date": "20260508",
+  "pipeline_version": "0.1.0-banana",
+  "phase_versions": {
+    "00_scope": "a49fffdc6a5ae945",
+    "01_component_pack": "9642e64233dc1539",
+    "01a_certify": "4bebf467251d118c",
+    "02_registry": "9fe3ec2380dcbdee",
+    "03_surface": "dccd08cbbfd09bd3",
+    "04_compose": "206d448f22557960",
+    "05_verify": "7c39650886f40e20",
+    "09_correlate": "dbd61276e8934874",
+    "10_adjudicate": "e66d0ebd6a3b4d73"
+  },
+  "artifact_hashes": {
+    "appmap_composed.db": "83003dc824806bc9a96b7aea62348d21a5df040e4ff4f3a109da2e7625a7dddb",
+    "runtime_trace_min.db": "4cc40311993fa73a85c910028c1a2eadd9078b3a901a1a37b6a06bb7a3fa4b64",
+    "correlation.json": "94b40529518121bf24b109f6a057d68366e98b8fcc9a4bcacf182bc66fe1563a",
+    "pack_registry.json": "3c1a708060eb13d4206d1c2e5ac0f611bcdb3432bb0f55660d017666d1517fc9"
+  },
+  "vocabulary_version": "1.0",
+  "provenance_chain": [
+    "00_scope",
+    "01_component_pack",
+    "01a_certify",
+    "02_registry",
+    "03_surface",
+    "04_compose",
+    "05_verify",
+    "09_correlate",
+    "10_adjudicate",
+    "11_gap_closure"
+  ],
+  "created_at": "2026-05-08T16:59:47.313419+00:00"
+}
