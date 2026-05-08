@@ -48,9 +48,9 @@ risk_tier_overrides:
   - pattern: "/rest/V1/**"
     tier: HIGH
     reason: "REST API is publicly reachable and carries structured payloads"
-  - pattern: "/graphql"
+  - pattern: "/graphql*"
     tier: HIGH
-    reason: "GraphQL endpoint accepts arbitrary queries"
+    reason: "GraphQL endpoint accepts arbitrary queries; pattern covers all /graphql/* operations"
 
 production_traffic:
   available: false
