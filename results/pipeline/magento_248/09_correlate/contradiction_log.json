@@ -1,0 +1,689 @@
+{
+  "app_id": "magento_248",
+  "correlated_at": "2026-05-08T16:53:45.473314+00:00",
+  "contradictions": [
+    {
+      "lineage_id": "cl-ec9489958d53",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-03a3bdc1ee18",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-41f64c936d1d",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-5613b3741af0",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b7f861f63b15",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-89bc10ad3bed",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-98727cebf74d",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-1cdbaf3ce32b",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b56893283457",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-ec1c852e6bc4",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-bfe618b50bc3",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-44bdcf942a2a",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-2848cfe8d97f",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-a54af390133a",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-aeea51c79a7e",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-f03c7684c8eb",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-b044f19ee730",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-a0e8fd0d1ec2",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-8a90efbea2a2",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-12e6d9a5a86d",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-117842316d20",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-e5819ce3bfa4",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-ee9a9e6af80c",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-671f221ed8d6",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-6a24010c9fc9",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b0b21de671fa",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-dc3d7b89d1e4",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-08d15001f2a9",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-cff285ca8372",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-85a9df3b83a5",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-352720633981",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b36b7ef69276",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-1877dc50a00c",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-217df9ca67ea",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-6718f2421f14",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b52afdc96c9e",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-513c01f6c20d",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-db5f707622cc",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-486d640fe6ba",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-8016bffca746",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b6c1b3d0c29b",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-2bc3ab354b38",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-71fbdeba94a2",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-096abc362eed",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-9f97e0c8bcc3",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-b677cdf12827",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-6d97165746e8",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-18bfdb168203",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-2306c5540162",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-720ea1a470e6",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-165dbb013e9e",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-2cccb3f158c9",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-d664b4f5dc18",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-88f05a5114b4",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-d4ad10a90c8c",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b32edac8d995",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b9df9858de03",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-819fece45a51",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-adb164d77089",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-fe8e49b30b22",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-2ade508d29ba",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-afc13edac62c",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-93790007fdfd",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-481d065141ab",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-bb38f61300f2",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-b549fbb6e56e",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-532d8e3b4670",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-62911a00a56a",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-c71bba51d82e",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-54e0783202e5",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-699a0a7eb897",
+      "tool_a": "composed_graph",
+      "tool_b": "runtime_trace",
+      "conflict_description": "Phase 4 CONFIRMED; Phase 5 verification is degraded (offline trace uses same data source \u2014 not independent runtime confirmation)",
+      "resolution_status": "resolved_degraded",
+      "owner": "automated",
+      "risk_tier": "HIGH"
+    },
+    {
+      "lineage_id": "cl-56723ef8e3fb",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-15f21742d993",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-6884f99231a9",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    },
+    {
+      "lineage_id": "cl-8d221cbcc169",
+      "tool_a": "static_analysis",
+      "tool_b": "runtime_trace",
+      "conflict_description": "CRITICAL lineage is CORRELATED (static only); no independent runtime confirmation available",
+      "resolution_status": "unresolved_needs_live_replay",
+      "owner": "",
+      "risk_tier": "CRITICAL"
+    }
+  ],
+  "each_contradiction_fields": [
+    "lineage_id",
+    "tool_a",
+    "tool_b",
+    "conflict_description",
+    "resolution_status",
+    "owner"
+  ]
+}
