@@ -1,0 +1,21 @@
+{
+  "app_id": "magento_248",
+  "composed_at": "2026-05-08T15:11:57.691473+00:00",
+  "node_count": 28577,
+  "edge_count": 3329,
+  "lineage_count": 87,
+  "auth_gap_count": 2876,
+  "orphan_node_count": 27903,
+  "sinks_missing_context_mark": 0,
+  "coverage_by_risk_tier": {
+    "CRITICAL": 60,
+    "HIGH": 27
+  },
+  "pack_ids_used": [
+    "magento_framework_php",
+    "magento_cms_php",
+    "magento_catalog_php",
+    "magento_review_php",
+    "magento_checkout_php"
+  ]
+}
