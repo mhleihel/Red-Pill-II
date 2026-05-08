@@ -132,7 +132,7 @@ results/pipeline/{app_id}/
   05_verify/                runtime_trace_min.db, verification_delta.json
   09_correlate/             correlation.json, contradiction_log.json, gap_backlog.csv
   10_adjudicate/            machine_actionable_fixes.json, human_review_queue.csv
-  11_gap_closure/           iteration_1_delta.json
+  11_gaps/                  iteration_1_delta.json
   12_snapshot/              {snap_name}/
   13_ops/                   app_onboarding_{app_id}.yaml, runbook.md
 ```

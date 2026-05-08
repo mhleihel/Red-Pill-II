@@ -365,6 +365,15 @@ def run(output_dir: Path, scope: dict) -> None:
     unresolved_critical = sum(
         1 for c in contradictions if c["resolution_status"] == "unresolved" and c["is_critical"]
     )
+    # Coverage debt: CRITICAL lineages with no independent runtime confirmation.
+    # These are NOT tool contradictions (both tools agree or one is simply absent),
+    # so they do not count toward unresolved_critical_contradictions.
+    # They are real CRITICAL work items that require live replay to resolve.
+    critical_coverage_debt = sum(
+        1 for c in contradictions
+        if c["resolution_status"] == "unresolved_needs_live_replay"
+        and c.get("risk_tier") == "CRITICAL"
+    )
 
     # Stop rule
     stop_rule_met = (
@@ -391,7 +400,12 @@ def run(output_dir: Path, scope: dict) -> None:
         "verification_confidence": verification_confidence,
         "lineage_count_by_classification": final_class_counts,
         "auth_gap_count_by_type": auth_gap_by_type,
+        # Gate metric: tool-vs-tool contradictions with no resolution path.
+        # Does NOT include coverage gaps that require live replay.
         "unresolved_critical_contradictions": unresolved_critical,
+        # Coverage debt: CRITICAL lineages with no independent runtime confirmation.
+        # Gate passes when this is non-zero; live replay is required to clear it.
+        "critical_coverage_debt": critical_coverage_debt,
         "stop_rule_met": stop_rule_met,
         "final_classifications": final_class_counts,
         "critical_lineages_with_final_status_pct": round(critical_final_pct, 2),

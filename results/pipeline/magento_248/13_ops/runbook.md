@@ -52,7 +52,7 @@ results/pipeline/magento_248/
   05_verify/                runtime_trace_min.db, verification_delta.json
   09_correlate/             correlation.json, contradiction_log.json, gap_backlog.csv
   10_adjudicate/            machine_actionable_fixes.json, human_review_queue.csv
-  11_gap_closure/           iteration_1_delta.json
+  11_gaps/                  iteration_1_delta.json
   12_snapshot/              golden_gift_20260508/
   13_ops/                   app_onboarding_magento_248.yaml, runbook.md
 ```

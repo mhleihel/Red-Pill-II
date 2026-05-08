@@ -1,7 +1,7 @@
 {
   "app_id": "magento_248",
-  "correlated_at": "2026-05-08T16:53:45.473314+00:00",
-  "iteration": 1,
+  "correlated_at": "2026-05-08T17:09:59.847872+00:00",
+  "iteration": 2,
   "verification_confidence": "degraded",
   "lineage_count_by_classification": {
     "CONFIRMED": 37,
@@ -13,6 +13,7 @@
     "missing_ownership": 194
   },
   "unresolved_critical_contradictions": 0,
+  "critical_coverage_debt": 38,
   "stop_rule_met": true,
   "final_classifications": {
     "CONFIRMED": 37,
