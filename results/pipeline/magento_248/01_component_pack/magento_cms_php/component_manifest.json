@@ -1,0 +1,16 @@
+{
+  "pack_id": "magento_cms_php",
+  "pack_version": "1.0.0+add3e409",
+  "language": "php",
+  "framework": "magento",
+  "framework_version": "2.4.8-p4",
+  "function_count": 919,
+  "edge_count": 12,
+  "chokepoint_count": 67,
+  "scope_hash": "add3e409d0530e55",
+  "built_at": "2026-05-08T14:21:22.580974+00:00",
+  "source_dirs": [
+    "/Users/mhleihel/Desktop/magento2-2.4.8-p4/app/code/Magento/Cms"
+  ],
+  "warnings": []
+}

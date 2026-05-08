@@ -1,0 +1,16 @@
+{
+  "pack_id": "magento_catalog_php",
+  "pack_version": "1.0.0+add3e409",
+  "language": "php",
+  "framework": "magento",
+  "framework_version": "2.4.8-p4",
+  "function_count": 7721,
+  "edge_count": 93,
+  "chokepoint_count": 199,
+  "scope_hash": "add3e409d0530e55",
+  "built_at": "2026-05-08T14:21:22.845446+00:00",
+  "source_dirs": [
+    "/Users/mhleihel/Desktop/magento2-2.4.8-p4/app/code/Magento/Catalog"
+  ],
+  "warnings": []
+}

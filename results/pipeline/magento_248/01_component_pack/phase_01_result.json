@@ -1,0 +1,49 @@
+{
+  "phase": "01_component_pack",
+  "app_id": "magento_248",
+  "language": "php",
+  "framework": "magento",
+  "packs_built": 5,
+  "packs": [
+    {
+      "pack_id": "magento_framework_php",
+      "db": "magento_248/01_component_pack/magento_framework_php/component_pack_magento_framework_php.db",
+      "function_count": 16994,
+      "chokepoint_count": 4,
+      "edge_count": 11,
+      "warnings": []
+    },
+    {
+      "pack_id": "magento_cms_php",
+      "db": "magento_248/01_component_pack/magento_cms_php/component_pack_magento_cms_php.db",
+      "function_count": 919,
+      "chokepoint_count": 67,
+      "edge_count": 12,
+      "warnings": []
+    },
+    {
+      "pack_id": "magento_catalog_php",
+      "db": "magento_248/01_component_pack/magento_catalog_php/component_pack_magento_catalog_php.db",
+      "function_count": 7721,
+      "chokepoint_count": 199,
+      "edge_count": 93,
+      "warnings": []
+    },
+    {
+      "pack_id": "magento_review_php",
+      "db": "magento_248/01_component_pack/magento_review_php/component_pack_magento_review_php.db",
+      "function_count": 534,
+      "chokepoint_count": 82,
+      "edge_count": 29,
+      "warnings": []
+    },
+    {
+      "pack_id": "magento_checkout_php",
+      "db": "magento_248/01_component_pack/magento_checkout_php/component_pack_magento_checkout_php.db",
+      "function_count": 911,
+      "chokepoint_count": 86,
+      "edge_count": 17,
+      "warnings": []
+    }
+  ]
+}
