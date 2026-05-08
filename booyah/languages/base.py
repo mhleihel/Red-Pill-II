@@ -70,6 +70,17 @@ class LanguageAdapter(ABC):
         """
         Extract functions, edges, and chokepoints from source_dirs.
 
+        Contract for implementors:
+        - ExtractionResult.chokepoints MUST be deduplicated by (fqn, chokepoint_type)
+          before returning. The same FQN may appear many times in source data (e.g.
+          one appmap.db node per file that references the function). Return one record
+          per unique (fqn, type) pair. When duplicates differ in confidence_class,
+          prefer Observed > Correlated > Inferred.
+        - ExtractionResult.functions MUST be deduplicated by (fqn, file_path, line_start).
+        - ExtractionResult.edges MUST be deduplicated by (from_fqn, to_fqn, edge_type).
+        These guarantees ensure extraction_raw_chokepoint_count == pack_db_chokepoint_count
+        in Phase 1A certification, making the parity gate a genuine defect detector.
+
         existing_data may contain:
           - "appmap_db": path to appmap.db (runtime + static nodes/edges)
           - "joern_flows": list of dicts from joern_xss.json

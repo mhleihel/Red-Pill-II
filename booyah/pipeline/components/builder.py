@@ -78,6 +78,10 @@ def build_pack(
     output_dir.mkdir(parents=True, exist_ok=True)
     db_path = output_dir / f"component_pack_{result.pack_id}.db"
 
+    # Always start from a clean file — never append to a prior run's rows
+    if db_path.exists():
+        db_path.unlink()
+
     conn = sqlite3.connect(str(db_path))
     conn.executescript(_DDL)
 

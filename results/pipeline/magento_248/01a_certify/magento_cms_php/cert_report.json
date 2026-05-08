@@ -8,12 +8,17 @@
   "false_positive_rate_pct": 0.0,
   "run_variance_pct": 0.0,
   "runs_compared": 3,
+  "extraction_raw_chokepoint_count": 67,
+  "pack_db_chokepoint_count": 67,
+  "extraction_pack_delta_pct": 0.0,
   "certification_basis": "Observed+Inferred",
   "failures": [],
-  "certified_at": "2026-05-08T14:36:30.352374+00:00",
+  "certified_at": "2026-05-08T14:44:13.356712+00:00",
   "_metrics": {
     "total_functions": 919,
-    "total_chokepoints": 67,
+    "pack_db_chokepoint_count": 67,
+    "extraction_raw_chokepoint_count": 67,
+    "extraction_pack_delta_pct": 0.0,
     "observed_chokepoints": 26,
     "correlated_chokepoints": 0,
     "critical_chokepoints": 65,
@@ -27,13 +32,15 @@
       67,
       67,
       67
-    ]
+    ],
+    "note_variance_uses": "extraction_raw (pre-dedup); coverage metrics use pack_db (post-dedup)"
   },
   "_thresholds_applied": {
     "function_instrumentation_pct": 98,
     "observed_chokepoint_min_pct": 10,
     "run_variance_pct": 1,
     "false_positive_rate_pct": 2,
+    "extraction_pack_delta_max_pct": 5,
     "source": "done_criteria.json phase_01a"
   }
 }

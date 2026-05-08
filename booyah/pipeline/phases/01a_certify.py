@@ -180,11 +180,28 @@ def _certify_pack(
     obs_threshold = criteria["gates"]["observed_chokepoint_min_pct"]["value"]
 
     # critical_observed_chokepoint_pct — HARD gate
-    crit_obs_pct = (critical_observed / critical_total * 100) if critical_total > 0 else 0.0
     if critical_total > 0 and critical_observed == 0:
         failures.append(
             f"critical_observed_chokepoint_pct=0% — zero Observed chokepoints among "
             f"{critical_total} CRITICAL-tier SOURCE/SINK entries"
+        )
+
+    # --- Extraction-pack parity check (HARD gate) ---
+    # extraction_raw = pre-dedup count from extractor runs
+    # pack_db_count  = post-dedup count stored in component_pack_*.db
+    # A small delta is expected (builder deduplicates by fqn+chokepoint_type).
+    # A large delta indicates a builder or extractor defect.
+    extraction_raw_cp = mean(cp_counts) if cp_counts else 0
+    delta_pct = (
+        abs(extraction_raw_cp - total_cps) / extraction_raw_cp * 100
+        if extraction_raw_cp > 0 else 0.0
+    )
+    delta_threshold = criteria["gates"]["extraction_pack_delta_max_pct"]["value"]
+    if delta_pct > delta_threshold:
+        failures.append(
+            f"extraction_pack_delta_pct={delta_pct:.2f}% > threshold {delta_threshold}% "
+            f"(raw={extraction_raw_cp:.0f}, pack_db={total_cps}) — "
+            f"unexpected data loss during builder deduplication"
         )
 
     # --- Determine status (rules from done_criteria.json certification_status_rules) ---
@@ -217,24 +234,32 @@ def _certify_pack(
         "false_positive_rate_pct": round(fp_rate, 2),
         "run_variance_pct": round(run_variance, 4),
         "runs_compared": runs_required,
+        # Parity fields — both required by contracts.json
+        "extraction_raw_chokepoint_count": round(extraction_raw_cp, 1),
+        "pack_db_chokepoint_count": total_cps,
+        "extraction_pack_delta_pct": round(delta_pct, 2),
         "certification_basis": certification_basis,
         "failures": failures,
         "certified_at": datetime.now(timezone.utc).isoformat(),
         "_metrics": {
             "total_functions": total_fns,
-            "total_chokepoints": total_cps,
+            "pack_db_chokepoint_count": total_cps,
+            "extraction_raw_chokepoint_count": round(extraction_raw_cp, 1),
+            "extraction_pack_delta_pct": round(delta_pct, 2),
             "observed_chokepoints": observed_cps,
             "correlated_chokepoints": metrics["correlated_chokepoints"],
             "critical_chokepoints": critical_total,
             "critical_observed": critical_observed,
             "fn_counts_across_runs": fn_counts,
             "cp_counts_across_runs": cp_counts,
+            "note_variance_uses": "extraction_raw (pre-dedup); coverage metrics use pack_db (post-dedup)",
         },
         "_thresholds_applied": {
             "function_instrumentation_pct": fn_threshold,
             "observed_chokepoint_min_pct": obs_threshold,
             "run_variance_pct": variance_threshold,
             "false_positive_rate_pct": fp_threshold,
+            "extraction_pack_delta_max_pct": delta_threshold,
             "source": "done_criteria.json phase_01a",
         },
     }

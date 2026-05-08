@@ -148,6 +148,13 @@ def _extract_appmap_data(
         (module_name,),
     ).fetchall()
 
+    # Deduplicate by (fqn, chokepoint_type) here so extraction_raw_count
+    # matches pack_db_count. Multiple appmap.db nodes may share the same FQN
+    # (e.g. Escaper::escapeHtml appearing in many template files). The canonical
+    # record is one chokepoint per unique (fqn, type) pair. When the same FQN
+    # appears with different confidence classes, prefer Observed over Inferred.
+    seen_cps: dict[str, ChokepointRecord] = {}  # key = "fqn|type"
+
     node_id_to_fqn: dict[str, str] = {}
     for row in rows:
         node_id_to_fqn[row["node_id"]] = row["fqn"] or ""
@@ -155,20 +162,22 @@ def _extract_appmap_data(
         source_mark = _SOURCE_MARKS.get(row["node_type"], "")
         sink_mark = _SINK_MARKS.get(row["node_type"], "")
         san_mark = "SAN_HTML" if row["node_type"] == "SANITIZER" else ""
-        # provenance on nodes: PV_HTTP_BODY | PV_HTTP_QUERY | PV_DB_REENTRY etc.
-        # treat any PV_* provenance as runtime-observed, absence as inferred
         prov = row["provenance"] or ""
         confidence = "Observed" if prov.startswith("PV_") else "Inferred"
-        chokepoints.append(
-            ChokepointRecord(
-                fqn=row["fqn"] or f"unknown:{row['file']}:{row['line']}",
-                chokepoint_type=chokepoint_type,
-                source_mark=source_mark,
-                sink_mark=sink_mark,
-                san_mark=san_mark,
-                confidence_class=confidence,
-            )
+        fqn = row["fqn"] or f"unknown:{row['file']}:{row['line']}"
+        key = f"{fqn}|{chokepoint_type}"
+        record = ChokepointRecord(
+            fqn=fqn,
+            chokepoint_type=chokepoint_type,
+            source_mark=source_mark,
+            sink_mark=sink_mark,
+            san_mark=san_mark,
+            confidence_class=confidence,
         )
+        if key not in seen_cps or confidence == "Observed":
+            seen_cps[key] = record
+
+    chokepoints = list(seen_cps.values())
 
     # Edges: only edges where both endpoints belong to this module's nodes
     if node_id_to_fqn:

@@ -25,6 +25,12 @@
           "operator": ">", "value": 0, "unit": "percent",
           "hard": true,
           "description": "At least one Observed chokepoint must exist among CRITICAL-tier entries. Zero Observed on any CRITICAL chokepoint = Failed regardless of other gates."
+        },
+        "extraction_pack_delta_max_pct": {
+          "operator": "<=", "value": 5, "unit": "percent",
+          "hard": true,
+          "description": "Maximum allowed delta between raw extractor chokepoint count (pre-dedup, mean of N runs) and stored pack DB chokepoint count (post-dedup). Delta > threshold means unexpected data loss during deduplication. Formula: abs(raw_mean - pack_db_count) / raw_mean * 100. Applies to all languages and builders.",
+          "expected_source_of_delta": "Builder deduplicates by (fqn, chokepoint_type). A delta up to this threshold is normal. A delta above it indicates a builder bug or extractor producing structurally different records across invocations."
         }
       },
       "certification_status_rules": {

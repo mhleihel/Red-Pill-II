@@ -70,17 +70,22 @@
             "false_positive_rate_pct",
             "run_variance_pct",
             "runs_compared",
+            "extraction_raw_chokepoint_count",
+            "pack_db_chokepoint_count",
+            "extraction_pack_delta_pct",
             "certification_basis",
             "failures",
             "certified_at"
           ],
           "status_enum": ["Certified", "Conditional", "Failed"],
-          "certification_basis_enum": ["Certified", "Conditional", "Failed"],
           "field_notes": {
-            "observed_chokepoint_pct": "Percent of cp_chokepoints rows with confidence_class=Observed. Determines Certified vs Conditional path per done_criteria.json.",
+            "observed_chokepoint_pct": "Percent of cp_chokepoints rows with confidence_class=Observed. Denominator is pack_db_chokepoint_count (post-dedup). Determines Certified vs Conditional path per done_criteria.json.",
             "certification_basis": "Which confidence_class levels contributed: e.g. 'Observed+Correlated+Inferred' or 'Correlated+Inferred'. Informational.",
             "function_coverage_pct": "Functions found by extractor vs estimated total (rg count / rg count, always 100 for static-only; meaningful when compared across runs for variance).",
-            "chokepoint_coverage_pct": "Chokepoints found vs expected critical chokepoints from scope. 100 required (hard gate)."
+            "chokepoint_coverage_pct": "Confirmed chokepoints (Observed+Correlated) / pack_db_chokepoint_count. Denominator is always post-dedup pack DB count.",
+            "extraction_raw_chokepoint_count": "Mean chokepoint count across N deterministic extraction runs, before builder deduplication. Used for variance check only.",
+            "pack_db_chokepoint_count": "Chokepoint count in the stored component_pack_{pack_id}.db cp_chokepoints table after builder deduplication. Authoritative count for all other metrics.",
+            "extraction_pack_delta_pct": "abs(extraction_raw_chokepoint_count - pack_db_chokepoint_count) / extraction_raw_chokepoint_count * 100. Must be <= done_criteria.json extraction_pack_delta_max_pct. A non-zero delta is expected (builder deduplicates by fqn+chokepoint_type). A delta above threshold indicates a builder or extractor defect."
           }
         }
       },

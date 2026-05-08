@@ -127,6 +127,19 @@ Promotion rules:
 - `Correlated` → `Observed`: requires runtime trace event
 - `Observed` → `Certified`: requires Phase 1A certification pass or Phase 12 golden snapshot
 
+### Extraction count vs pack DB count
+
+Phase 1A certification tracks two distinct chokepoint counts. They are not interchangeable:
+
+| Term | Definition | Used for |
+|---|---|---|
+| `extraction_raw_chokepoint_count` | Mean count returned by the language adapter across N runs, **before** the builder deduplicates | Variance check only — measures extractor determinism |
+| `pack_db_chokepoint_count` | Row count in `cp_chokepoints` after the builder deduplicates by `(fqn, chokepoint_type)` | Authoritative count for all coverage metrics: `observed_chokepoint_pct`, `chokepoint_coverage_pct` |
+
+A non-zero delta between these counts is expected and normal — the builder removes duplicate fqn+type pairs that the extractor may produce from multiple data sources. The `extraction_pack_delta_pct` field in `cert_report.json` quantifies this. A delta above the threshold in `done_criteria.json` indicates a defect in the builder or extractor, not normal deduplication.
+
+Any downstream phase that uses chokepoint counts must reference `pack_db_chokepoint_count`, never `extraction_raw_chokepoint_count`.
+
 ### Phase 1 extraction confidence assignment
 
 When a component pack is built in Phase 1, `confidence_class` is assigned per row as follows:
