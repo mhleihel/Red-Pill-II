@@ -255,14 +255,19 @@ def trace_confirms_path(
     hash_index: dict,
     transform_chains: dict,
     line_tolerance: int = 3,
+    sink_fn: str = "",
 ) -> bool:
     """
     Return True if runtime traces show a tainted value reaching the sink.
 
-    Strategy 1 (full path): source file+line match → value hash → sink file+line match.
-    Strategy 2 (sink-only): any SOURCE event's hash reaches sink file+line, unsanitized.
-    Source events recorded at the HTTP boundary often have no file/line, so strategy 2
-    handles the common case where the tracer marks taint at the request entry point.
+    Strategy 1 (full path): source file+line → hash → sink file+line.
+    Strategy 2 (sink-only): any SOURCE hash reaches sink file+line.
+      Used when source events have no file/line (HTTP boundary taints).
+    Strategy 3 (function-name): sink_fn matches SINK event function_fqn.
+      Used for RUNTIME_ONLY lineages whose sink_file may be the generic
+      AbstractBlock.php:694 rather than a controller-specific location.
+      Also used when static analysis sinks point to class call-sites that
+      differ from the runtime render location.
     """
     # Strategy 1: source location match → sink location match
     source_hashes = set()
@@ -282,7 +287,7 @@ def trace_confirms_path(
             ):
                 return True
 
-    # Strategy 2: any SOURCE hash reaches sink location (source has no file/line info)
+    # Strategy 2: any SOURCE hash reaches sink location (source has no file/line)
     all_source_hashes = {
         h for h, records in hash_index.items()
         if any(r["type"].lower() == "source" for r in records)
@@ -296,6 +301,19 @@ def trace_confirms_path(
                 t["out_hash"], hash_index, sink_file, sink_line, line_tolerance
             ):
                 return True
+
+    # Strategy 3: function-name match — sink_fn is a known rendering function.
+    # Any SOURCE hash that reaches a SINK with a matching function name confirms.
+    if sink_fn:
+        for sh in all_source_hashes:
+            if _hash_at_sink_fn(sh, hash_index, sink_fn):
+                if not _was_sanitized(sh, transform_chains):
+                    return True
+            for t in transform_chains.get(sh, []):
+                if not t["sanitized"] and _hash_at_sink_fn(
+                    t["out_hash"], hash_index, sink_fn
+                ):
+                    return True
 
     return False
 
@@ -314,6 +332,17 @@ def _loc_match(file_a: str, line_a: int, file_b: str, line_b: int, tol: int) -> 
 def _hash_at_sink(h: str, hash_index: dict, sink_file: str, sink_line: int, tol: int) -> bool:
     for rec in hash_index.get(h, []):
         if rec["type"].lower() == "sink" and _loc_match(rec["file"], rec["line"], sink_file, sink_line, tol):
+            return True
+    return False
+
+
+def _hash_at_sink_fn(h: str, hash_index: dict, sink_fn: str) -> bool:
+    """Return True if hash h appears at a SINK whose function name contains sink_fn."""
+    for rec in hash_index.get(h, []):
+        fn = rec.get("function_name", "")
+        if rec["type"].lower() == "sink" and fn and (
+            fn == sink_fn or fn.endswith("::" + sink_fn) or sink_fn in fn
+        ):
             return True
     return False
 
