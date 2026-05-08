@@ -56,14 +56,35 @@
       "name": "Component Certification",
       "type": "required",
       "depends_on": ["phase_01"],
+      "applies_to": "all languages, all apps",
       "outputs": {
         "cert_report.json": {
-          "description": "Certification result for one component pack",
-          "required_fields": ["pack_id", "pack_version", "status", "function_coverage_pct", "chokepoint_coverage_pct", "false_positive_rate_pct", "run_variance_pct", "runs_compared", "failures", "certified_at"],
-          "status_enum": ["Certified", "Conditional", "Failed"]
+          "description": "Certification result for one component pack. Rules applied are language- and app-agnostic; thresholds sourced from done_criteria.json phase_01a.",
+          "required_fields": [
+            "pack_id",
+            "pack_version",
+            "status",
+            "function_coverage_pct",
+            "chokepoint_coverage_pct",
+            "observed_chokepoint_pct",
+            "false_positive_rate_pct",
+            "run_variance_pct",
+            "runs_compared",
+            "certification_basis",
+            "failures",
+            "certified_at"
+          ],
+          "status_enum": ["Certified", "Conditional", "Failed"],
+          "certification_basis_enum": ["Certified", "Conditional", "Failed"],
+          "field_notes": {
+            "observed_chokepoint_pct": "Percent of cp_chokepoints rows with confidence_class=Observed. Determines Certified vs Conditional path per done_criteria.json.",
+            "certification_basis": "Which confidence_class levels contributed: e.g. 'Observed+Correlated+Inferred' or 'Correlated+Inferred'. Informational.",
+            "function_coverage_pct": "Functions found by extractor vs estimated total (rg count / rg count, always 100 for static-only; meaningful when compared across runs for variance).",
+            "chokepoint_coverage_pct": "Chokepoints found vs expected critical chokepoints from scope. 100 required (hard gate)."
+          }
         }
       },
-      "gate": "status != Failed; function_coverage_pct >= coverage_targets.function_instrumentation_pct; chokepoint_coverage_pct == 100"
+      "gate": "status != Failed; function_coverage_pct >= coverage_targets.function_instrumentation_pct; chokepoint_coverage_pct == 100; see done_criteria.json phase_01a for full Certified vs Conditional rules"
     },
 
     "phase_02": {

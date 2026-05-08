@@ -113,7 +113,7 @@ Drawn from the NoSpoon security requirements.
 
 ## 5. Confidence Classes
 
-Used on every phase output artifact. Downstream tools must not promote confidence without new evidence.
+Used on every phase output artifact. The column name in all schemas is `confidence_class`. Downstream tools must not promote confidence without new evidence.
 
 | Class | Meaning |
 |---|---|
@@ -126,6 +126,35 @@ Promotion rules:
 - `Inferred` → `Correlated`: requires a second independent tool or source
 - `Correlated` → `Observed`: requires runtime trace event
 - `Observed` → `Certified`: requires Phase 1A certification pass or Phase 12 golden snapshot
+
+### Phase 1 extraction confidence assignment
+
+When a component pack is built in Phase 1, `confidence_class` is assigned per row as follows:
+
+| Data source | confidence_class assigned |
+|---|---|
+| appmap.db node with `provenance` starting `PV_*` | `Observed` |
+| appmap.db node with no provenance | `Inferred` |
+| joern flow path step | `Correlated` |
+| rg source scan (function signature only) | `Inferred` |
+
+The pack DB tables (`cp_functions`, `cp_edges`, `cp_chokepoints`) each carry a `confidence_class` column. Output is stored in `component_pack_{pack_id}.db` — not in `appmap.db`, which is input-only.
+
+---
+
+## 5a. Component Certification Status
+
+Phase 1A produces a `cert_report.json` with a `status` field drawn from this enum. Rules apply to any language, any app.
+
+| Status | Meaning | Condition |
+|---|---|---|
+| `Certified` | Pack meets all hard gates AND observed coverage threshold | All gates pass; `observed_chokepoint_pct >= observed_chokepoint_min_pct` from `done_criteria.json` |
+| `Conditional` | Pack meets hard gates but runtime confirmation is low | All gates pass; `observed_chokepoint_pct < observed_chokepoint_min_pct`; no CRITICAL-tier chokepoints with zero Observed coverage |
+| `Failed` | One or more hard gates failed | Any hard gate violation OR any CRITICAL-tier chokepoint has `observed_chokepoint_pct == 0` |
+
+`Conditional` is not a failure. It is the expected outcome when runtime instrumentation data is absent or partial — Phase 5 is where runtime confirmation fills the gap. A `Conditional` pack may proceed to Phase 2.
+
+A `Failed` pack blocks Phase 2 for that component until the failing gate is resolved.
 
 ---
 

@@ -10,13 +10,31 @@
     "phase_01a": {
       "description": "Component Certification",
       "gates": {
-        "function_instrumentation_pct": { "operator": ">=", "value": 98, "unit": "percent", "source": "scope.yaml coverage_targets.function_instrumentation_pct" },
-        "critical_chokepoints_pct": { "operator": "==", "value": 100, "unit": "percent" },
-        "false_positive_rate_pct": { "operator": "<=", "value": 2, "unit": "percent" },
-        "run_variance_pct": { "operator": "<", "value": 1, "unit": "percent", "description": "Count variance across 3 deterministic runs" },
-        "runs_required": { "operator": "==", "value": 3 }
+        "function_instrumentation_pct": { "operator": ">=", "value": 98, "unit": "percent", "source": "scope.yaml coverage_targets.function_instrumentation_pct", "hard": true },
+        "critical_chokepoints_pct": { "operator": "==", "value": 100, "unit": "percent", "hard": true },
+        "false_positive_rate_pct": { "operator": "<=", "value": 2, "unit": "percent", "hard": true },
+        "run_variance_pct": { "operator": "<", "value": 1, "unit": "percent", "description": "Count variance across 3 deterministic runs", "hard": true },
+        "runs_required": { "operator": "==", "value": 3, "hard": true },
+        "observed_chokepoint_min_pct": {
+          "operator": ">=", "value": 10, "unit": "percent",
+          "hard": false,
+          "description": "Minimum percent of chokepoints with confidence_class=Observed. Below this threshold status=Conditional, not Failed. Runtime confirmation deferred to Phase 5.",
+          "on_miss": "Conditional"
+        },
+        "critical_observed_chokepoint_pct": {
+          "operator": ">", "value": 0, "unit": "percent",
+          "hard": true,
+          "description": "At least one Observed chokepoint must exist among CRITICAL-tier entries. Zero Observed on any CRITICAL chokepoint = Failed regardless of other gates."
+        }
       },
-      "failure_action": "status = Failed; block Phase 2 for this component; trigger instrumentation_recovery playbook"
+      "certification_status_rules": {
+        "Certified": "All hard gates pass AND observed_chokepoint_pct >= observed_chokepoint_min_pct",
+        "Conditional": "All hard gates pass AND observed_chokepoint_pct < observed_chokepoint_min_pct AND critical_observed_chokepoint_pct > 0",
+        "Failed": "Any hard gate fails OR critical_observed_chokepoint_pct == 0"
+      },
+      "applies_to": "all languages, all apps",
+      "failure_action": "status = Failed; block Phase 2 for this component; trigger instrumentation_recovery playbook",
+      "conditional_action": "status = Conditional; Phase 2 proceeds; flag for Phase 5 runtime confirmation; record in cert_report.json"
     },
 
     "phase_05": {
