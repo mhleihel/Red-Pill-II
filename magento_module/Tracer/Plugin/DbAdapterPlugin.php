@@ -37,23 +37,96 @@ class DbAdapterPlugin
         if (self::$inPlugin || !$this->isEnabled() || in_array($table, self::SKIP_TABLES, true)) {
             return [$table, $data];
         }
-        // Only check if there are active taint IDs — skips all overhead on unprobed requests
         if (empty(TaintRegistry::allTaintIds())) {
             return [$table, $data];
         }
         self::$inPlugin = true;
         try {
-            foreach ($data as $column => $value) {
-                if (!is_string($value) || $value === '') continue;
-                $taintId = TaintRegistry::lookup($this->hash($value));
-                if ($taintId !== null) {
-                    $this->logger->logWrite($taintId, 'db', $table, (string)$column, '', '', 0);
-                }
-            }
+            $this->scanRow($data, $table);
         } finally {
             self::$inPlugin = false;
         }
         return [$table, $data];
+    }
+
+    /**
+     * insertOnDuplicate($table, $data, $fields) — used by Sales, EAV flat tables, order addresses.
+     * Same column→value scan as beforeInsert.
+     */
+    public function beforeInsertOnDuplicate(
+        Mysql $subject,
+        string $table,
+        array $data,
+        array $fields = []
+    ): array {
+        if (self::$inPlugin || !$this->isEnabled() || in_array($table, self::SKIP_TABLES, true)) {
+            return [$table, $data, $fields];
+        }
+        if (empty(TaintRegistry::allTaintIds())) {
+            return [$table, $data, $fields];
+        }
+        self::$inPlugin = true;
+        try {
+            // $data may be a single row (assoc) or an array of rows
+            if (isset($data[0]) && is_array($data[0])) {
+                foreach ($data as $row) {
+                    $this->scanRow($row, $table);
+                }
+            } else {
+                $this->scanRow($data, $table);
+            }
+        } finally {
+            self::$inPlugin = false;
+        }
+        return [$table, $data, $fields];
+    }
+
+    /**
+     * insertForce($table, $data) — REPLACE INTO variant, same structure as insert.
+     */
+    public function beforeInsertForce(Mysql $subject, string $table, array $data): array
+    {
+        if (self::$inPlugin || !$this->isEnabled() || in_array($table, self::SKIP_TABLES, true)) {
+            return [$table, $data];
+        }
+        if (empty(TaintRegistry::allTaintIds())) {
+            return [$table, $data];
+        }
+        self::$inPlugin = true;
+        try {
+            $this->scanRow($data, $table);
+        } finally {
+            self::$inPlugin = false;
+        }
+        return [$table, $data];
+    }
+
+    /**
+     * insertArray($table, $columns, $data) — bulk insert, rows are positional arrays.
+     */
+    public function beforeInsertArray(
+        Mysql $subject,
+        string $table,
+        array $columns,
+        array $data
+    ): array {
+        if (self::$inPlugin || !$this->isEnabled() || in_array($table, self::SKIP_TABLES, true)) {
+            return [$table, $columns, $data];
+        }
+        if (empty(TaintRegistry::allTaintIds())) {
+            return [$table, $columns, $data];
+        }
+        self::$inPlugin = true;
+        try {
+            foreach ($data as $row) {
+                if (!is_array($row)) continue;
+                $assoc = array_combine($columns, $row);
+                if ($assoc) $this->scanRow($assoc, $table);
+            }
+        } finally {
+            self::$inPlugin = false;
+        }
+        return [$table, $columns, $data];
     }
 
     public function beforeUpdate(Mysql $subject, string $table, array $bind, $where = ''): array
@@ -66,14 +139,7 @@ class DbAdapterPlugin
         }
         self::$inPlugin = true;
         try {
-            foreach ($bind as $column => $value) {
-                if (!is_string($value) || $value === '') continue;
-                $taintId = TaintRegistry::lookup($this->hash($value));
-                if ($taintId !== null) {
-                    $rowKey = is_string($where) ? substr($where, 0, 128) : '';
-                    $this->logger->logWrite($taintId, 'db', $table, (string)$column, $rowKey, '', 0);
-                }
-            }
+            $this->scanRow($bind, $table);
         } finally {
             self::$inPlugin = false;
         }
@@ -140,6 +206,21 @@ class DbAdapterPlugin
     }
 
     // ---- Helpers ----
+
+    /**
+     * Scan a column→value row for tainted values and log each hit.
+     * Called by all write-side interceptors (insert, insertOnDuplicate, insertForce, insertArray, update).
+     */
+    private function scanRow(array $row, string $table): void
+    {
+        foreach ($row as $column => $value) {
+            if (!is_string($value) || $value === '') continue;
+            $taintId = TaintRegistry::lookup($this->hash($value));
+            if ($taintId !== null) {
+                $this->logger->logWrite($taintId, 'db', $table, (string)$column, '', '', 0);
+            }
+        }
+    }
 
     private function checkReadResult(array $rows): void
     {
