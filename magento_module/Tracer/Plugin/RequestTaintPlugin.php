@@ -19,7 +19,7 @@ use Magento\Framework\App\RequestInterface;
  */
 class RequestTaintPlugin
 {
-    private const PROBE_PREFIX = 'bSRC';
+    private const PROBE_PREFIXES = ['bSRC', 'BSYH'];
 
     public function beforeDispatch(FrontController $subject, RequestInterface $request): array
     {
@@ -29,7 +29,11 @@ class RequestTaintPlugin
 
         foreach ($request->getParams() as $name => $value) {
             if (!is_string($value)) continue;
-            if (!str_starts_with($value, self::PROBE_PREFIX)) continue;
+            $matched = false;
+            foreach (self::PROBE_PREFIXES as $prefix) {
+                if (str_starts_with($value, $prefix)) { $matched = true; break; }
+            }
+            if (!$matched) continue;
             TaintRegistry::register(
                 $value,
                 hash('sha256', $value),
@@ -38,9 +42,11 @@ class RequestTaintPlugin
                 '',
                 0
             );
+            \Booyah\Tracer\Probe::source('http_param::' . $name, $name, $value, '', 0);
         }
 
-        TaintRegistry::setRole(getenv('BOOYAH_ROLE') ?: 'anonymous');
+        // Role is set by SetRoleObserver on controller_action_predispatch — do not set it here.
+        // Setting it here would stamp every request as 'anonymous' before the observer fires.
 
         return [$request];
     }

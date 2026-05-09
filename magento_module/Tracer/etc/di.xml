@@ -2,22 +2,26 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <!-- Intercept all DB adapter reads and writes -->
-    <!-- disabled: intercepting Pdo\Mysql directly creates a circular DI dependency:
-         DbAdapterPlugin -> TaintLogger -> ResourceConnection -> Pdo\Mysql -> DbAdapterPlugin.
-         DB taint tracking is handled by booyah_model_taint observers instead. -->
+    <!-- Intercept all DB adapter reads and writes.
+         TaintLogger uses ResourceConnection\Proxy (lazy) so the circular DI chain is broken:
+         DbAdapterPlugin -> TaintLogger -> ResourceConnection\Proxy (lazy) -> Pdo\Mysql -->
     <type name="Magento\Framework\DB\Adapter\Pdo\Mysql">
         <plugin name="booyah_db_taint"
                 type="Booyah\Tracer\Plugin\DbAdapterPlugin"
                 sortOrder="1"
-                disabled="true"/>
+                disabled="false"/>
     </type>
 
     <!-- Register HTTP probe values (bSRC_*) as taint sources at request entry point -->
     <type name="Magento\Framework\App\FrontController">
+        <!-- Bootstrap must fire first to set Probe::$requestId before source emission -->
+        <plugin name="booyah_probe_bootstrap"
+                type="Booyah\Tracer\Plugin\ProbeBootstrapPlugin"
+                sortOrder="1"
+                disabled="false"/>
         <plugin name="booyah_request_taint"
                 type="Booyah\Tracer\Plugin\RequestTaintPlugin"
-                sortOrder="1"
+                sortOrder="2"
                 disabled="false"/>
     </type>
 
@@ -26,6 +30,116 @@
         <plugin name="booyah_session_taint"
                 type="Booyah\Tracer\Plugin\SessionPlugin"
                 sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Log HTTP source for review submission (L1 source) -->
+    <type name="Magento\Review\Controller\Product\Post">
+        <plugin name="booyah_review_post"
+                type="Booyah\Tracer\Plugin\ReviewPostPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Gap closure: class-level probes for Catalog Block/Helper/UI paths -->
+    <type name="Magento\Catalog\Block\Navigation">
+        <plugin name="booyah_catalog_navigation"
+                type="Booyah\Tracer\Plugin\CatalogNavigationPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Helper\Category">
+        <plugin name="booyah_catalog_category_helper"
+                type="Booyah\Tracer\Plugin\CatalogCategoryHelperPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions">
+        <plugin name="booyah_catalog_custom_options"
+                type="Booyah\Tracer\Plugin\CatalogCustomOptionsPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- CMS source: record tainted POST params entering Page/Block save controllers -->
+    <type name="Magento\Cms\Controller\Adminhtml\Page\Save">
+        <plugin name="booyah_cms_page_source"
+                type="Booyah\Tracer\Plugin\CmsPagePlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- CMS sink: confirm tainted content reached HTML render layer -->
+    <type name="Magento\Cms\Block\Page">
+        <plugin name="booyah_cms_render"
+                type="Booyah\Tracer\Plugin\CmsRenderPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Sink: confirm tainted review text reached HTML render layer -->
+    <type name="Magento\Review\Block\Product\View\ListView">
+        <plugin name="booyah_review_render"
+                type="Booyah\Tracer\Plugin\ReviewRenderPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Trace Review model data-flow: setter→save→load→getter lineage -->
+    <type name="Magento\Review\Model\Review">
+        <plugin name="booyah_review_flow"
+                type="Booyah\Tracer\Plugin\ReviewFlowPlugin"
+                sortOrder="1"
+                disabled="false"/>
+    </type>
+
+    <!-- Customer block-level sinks -->
+    <type name="Magento\Customer\Block\Address\Edit">
+        <plugin name="booyah_customer_address_edit"
+                type="Booyah\Tracer\Plugin\CustomerAddressEditPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Form\Element\Newsletter\Subscriptions">
+        <plugin name="booyah_customer_newsletter_subscriptions"
+                type="Booyah\Tracer\Plugin\CustomerNewsletterSubscriptionsPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+    <type name="Magento\Customer\Block\Widget\Dob">
+        <plugin name="booyah_customer_dob"
+                type="Booyah\Tracer\Plugin\CustomerDobPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- Sales order info sink -->
+    <type name="Magento\Sales\Block\Order\Info">
+        <plugin name="booyah_sales_order_info"
+                type="Booyah\Tracer\Plugin\SalesOrderInfoPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- Sales order items sink -->
+    <type name="Magento\Sales\Block\Items\AbstractItems">
+        <plugin name="booyah_sales_items"
+                type="Booyah\Tracer\Plugin\SalesItemsPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- Checkout order success sink -->
+    <type name="Magento\Checkout\Block\Onepage\Success">
+        <plugin name="booyah_checkout_success"
+                type="Booyah\Tracer\Plugin\CheckoutSuccessPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- Cart discount label sink (SalesRule confirmation) -->
+    <type name="Magento\Tax\Block\Checkout\Discount">
+        <plugin name="booyah_tax_checkout_discount"
+                type="Booyah\Tracer\Plugin\TaxCheckoutDiscountPlugin"
+                sortOrder="1" disabled="false"/>
+    </type>
+
+    <!-- Generic taint tracer for all AbstractModel subclasses (Catalog, CMS, Customer, ...) -->
+    <type name="Magento\Framework\Model\AbstractModel">
+        <plugin name="booyah_generic_model"
+                type="Booyah\Tracer\Plugin\GenericModelPlugin"
+                sortOrder="10"
                 disabled="false"/>
     </type>
 
