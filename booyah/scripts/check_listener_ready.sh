@@ -113,26 +113,57 @@ if docker inspect "$DB_CONTAINER" > /dev/null 2>&1; then
     PASS=0
   fi
 
-  # ── 4. Role distribution ────────────────────────────────────────────────────
+  # ── 4. Role distribution with per-role hard gates ──────────────────────────
   echo ""
-  echo "  Current taint event distribution (run_id=$RUN_ID):"
+  echo "  Taint event distribution (run_id=$RUN_ID):"
   docker exec "$DB_CONTAINER" mysql \
     -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N \
-    -e "SELECT CONCAT('    role=', COALESCE(role,'(null)'), '  events=', COUNT(*), '  requests=', COUNT(DISTINCT request_id)) FROM booyah_taint_map WHERE run_id='${RUN_ID}' GROUP BY role ORDER BY COUNT(*) DESC;" \
+    -e "SELECT CONCAT('    role=', COALESCE(role,'(null)'), '  events=', COUNT(*), '  requests=', COUNT(DISTINCT request_id), '  tables=', COUNT(DISTINCT db_table)) FROM booyah_taint_map WHERE run_id='${RUN_ID}' GROUP BY role ORDER BY COUNT(*) DESC;" \
     2>/dev/null || echo "    (could not query role distribution)"
 
-  # Warn if admin role events are missing (only matters if admin testing is planned)
-  ADMIN_EVENTS=$(docker exec "$DB_CONTAINER" mysql \
+  # Hard gates: each expected role must have events before prod traffic is safe to run.
+  # A zero-event role means a crawl script failed silently — tracing that role is blind.
+  ANON_EVENTS=$(docker exec "$DB_CONTAINER" mysql \
     -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N \
-    -e "SELECT COUNT(*) FROM booyah_taint_map WHERE run_id='${RUN_ID}' AND role IN ('admin','role:admin');" \
+    -e "SELECT COUNT(*) FROM booyah_taint_map WHERE run_id='${RUN_ID}' AND role='anonymous';" \
     2>/dev/null || echo "0")
   AUTH_EVENTS=$(docker exec "$DB_CONTAINER" mysql \
     -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N \
     -e "SELECT COUNT(*) FROM booyah_taint_map WHERE run_id='${RUN_ID}' AND role='authenticated';" \
     2>/dev/null || echo "0")
+  ADMIN_EVENTS=$(docker exec "$DB_CONTAINER" mysql \
+    -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N \
+    -e "SELECT COUNT(*) FROM booyah_taint_map WHERE run_id='${RUN_ID}' AND role='admin';" \
+    2>/dev/null || echo "0")
+  NULL_EVENTS=$(docker exec "$DB_CONTAINER" mysql \
+    -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" -N \
+    -e "SELECT COUNT(*) FROM booyah_taint_map WHERE run_id='${RUN_ID}' AND role IS NULL;" \
+    2>/dev/null || echo "0")
 
-  [ "${ADMIN_EVENTS:-0}" = "0" ] && WARNS+=("No admin-role events yet — admin session not captured")
-  [ "${AUTH_EVENTS:-0}" = "0" ] && WARNS+=("No authenticated-role events yet — customer session not captured")
+  echo ""
+  echo "  Per-role gate check:"
+  [ "${ANON_EVENTS:-0}"  -gt 0 ] 2>/dev/null && echo "  [OK]   anonymous: $ANON_EVENTS events" \
+    || { echo "  [FAIL] anonymous: 0 events — run crawl_anon.php first"; PASS=0; }
+  [ "${AUTH_EVENTS:-0}"  -gt 0 ] 2>/dev/null && echo "  [OK]   authenticated: $AUTH_EVENTS events" \
+    || { echo "  [FAIL] authenticated: 0 events — run crawl_customer.php first"; PASS=0; }
+  [ "${ADMIN_EVENTS:-0}" -gt 0 ] 2>/dev/null && echo "  [OK]   admin: $ADMIN_EVENTS events" \
+    || { echo "  [FAIL] admin: 0 events — run crawl_admin.php first"; PASS=0; }
+  if [ "${NULL_EVENTS:-0}" -gt 0 ] 2>/dev/null; then
+    echo "  [WARN] null-role: $NULL_EVENTS events — SetRoleObserver not firing for some requests"
+    WARNS+=("$NULL_EVENTS events have null role — check SetRoleObserver wiring for all request areas")
+  fi
+
+  # ── 5. Coverage matrix (if crawl_coverage.py available) ────────────────────
+  echo ""
+  COVERAGE_PY="$(dirname "$0")/../crawl/crawl_coverage.py"
+  APP_ID="${8:-magento_248}"
+  if python3 "$COVERAGE_PY" --app "$APP_ID" --run-id "$RUN_ID" \
+       --db-host "$DB_CONTAINER" 2>/dev/null | grep -q "SILENT_FAIL"; then
+    echo "  [FAIL] Coverage matrix shows SILENT_FAIL — a declared crawl produced no events"
+    PASS=0
+  else
+    echo "  [OK]   No SILENT_FAIL in coverage matrix (debt is declared, not silent)"
+  fi
 
   echo ""
   echo "  Confirmed paths:"

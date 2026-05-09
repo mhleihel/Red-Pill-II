@@ -41,6 +41,52 @@ actors:
   - id: "role:restricted_admin"
     description: "Scoped admin (sales/catalog/customers/marketing/content/reports/stores/system)"
 
+crawl_scope:
+  required: true
+  authorization_scopes:
+    - anonymous
+    - authenticated
+    - "role:admin"
+    - "role:restricted_admin"
+  channels:
+    - frontend_web
+    - adminhtml
+    - webapi_rest
+    - graphql
+    - background_queue
+    - cron
+  coverage_rule: "every_in_scope_row_must_be_classified"
+  out_of_scope_policy: "record_as_coverage_debt"
+
+  # Explicitly declares which scope×channel pairs have been executed by a crawl script.
+  # The coverage tool does NOT infer coverage from shared role labels (multiple channels
+  # share the same role label; without a channel column in the trace store, coverage
+  # must be asserted here, not inferred). Update this list after each crawl run.
+  executed_pairs:
+    - {scope: anonymous,           channel: frontend_web,   script: crawl_anon.php,     run_id: run-full-20260507}
+    - {scope: anonymous,           channel: webapi_rest,    script: crawl_anon.php,     run_id: run-full-20260507}
+    - {scope: authenticated,       channel: frontend_web,   script: crawl_customer.php, run_id: run-full-20260507}
+    - {scope: authenticated,       channel: webapi_rest,    script: crawl_customer.php, run_id: run-full-20260507}
+    - {scope: "role:admin",        channel: adminhtml,      script: crawl_admin.php,    run_id: run-full-20260507}
+    - {scope: "role:admin",        channel: webapi_rest,    script: crawl_admin.php,    run_id: run-full-20260507}
+    - {scope: "role:restricted_admin", channel: adminhtml,  script: crawl_admin.php,    run_id: run-full-20260507}
+    - {scope: "role:restricted_admin", channel: webapi_rest, script: crawl_admin.php,   run_id: run-full-20260507}
+
+  # Pairs declared as coverage debt — not executed, reason required.
+  debt_pairs:
+    - {scope: anonymous,           channel: graphql,           reason: "no GraphQL crawl script — endpoint reachable but untested"}
+    - {scope: anonymous,           channel: background_queue,  reason: "queue consumers out-of-process; no channel instrumentation yet"}
+    - {scope: anonymous,           channel: cron,              reason: "cron jobs out-of-process; no channel instrumentation yet"}
+    - {scope: authenticated,       channel: graphql,           reason: "no authenticated GraphQL crawl script"}
+    - {scope: authenticated,       channel: background_queue,  reason: "queue consumers out-of-process"}
+    - {scope: authenticated,       channel: cron,              reason: "cron out-of-process"}
+    - {scope: "role:admin",        channel: graphql,           reason: "admin GraphQL mutations not crawled"}
+    - {scope: "role:admin",        channel: background_queue,  reason: "queue consumers out-of-process"}
+    - {scope: "role:admin",        channel: cron,              reason: "cron out-of-process"}
+    - {scope: "role:restricted_admin", channel: graphql,       reason: "not crawled"}
+    - {scope: "role:restricted_admin", channel: background_queue, reason: "queue consumers out-of-process"}
+    - {scope: "role:restricted_admin", channel: cron,          reason: "cron out-of-process"}
+
 risk_tier_overrides:
   - pattern: "/admin/**"
     tier: CRITICAL
