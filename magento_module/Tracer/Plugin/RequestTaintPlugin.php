@@ -43,8 +43,12 @@ class RequestTaintPlugin
             $this->scanBodyForTaints($body);
         }
 
-        // Role is set by SetRoleObserver on controller_action_predispatch — do not set it here.
-        // Setting it here would stamp every request as 'anonymous' before the observer fires.
+        // ── 3. REST API role detection from JWT Bearer token ──────────────────
+        // SetRoleObserver fires on controller_action_predispatch which does NOT fire in
+        // webapi_rest area. For REST calls, detect role from the JWT payload (utypid field):
+        //   utypid=2 → admin, utypid=3 → customer/authenticated
+        // This runs first; SetRoleObserver will override for frontend HTML requests.
+        $this->detectRoleFromToken($request);
 
         return [$request];
     }
@@ -88,6 +92,26 @@ class RequestTaintPlugin
                 }
             }
         }
+    }
+
+    /**
+     * Detect admin vs authenticated role from a JWT Bearer token in the Authorization header.
+     * Decodes the payload without signature verification (safe — not used for auth, only labeling).
+     * utypid=2 → admin, utypid=3 → authenticated (customer).
+     */
+    private function detectRoleFromToken(RequestInterface $request): void
+    {
+        if (!method_exists($request, 'getHeader')) return;
+        $auth = (string)$request->getHeader('Authorization');
+        if (!str_starts_with($auth, 'Bearer ')) return;
+        $parts = explode('.', substr($auth, 7));
+        if (count($parts) !== 3) return;
+        $payload = json_decode(
+            base64_decode(str_pad(strtr($parts[1], '-_', '+/'), strlen($parts[1]) + (4 - strlen($parts[1]) % 4) % 4, '=')),
+            true
+        );
+        if (!is_array($payload) || !isset($payload['utypid'])) return;
+        TaintRegistry::setRole((int)$payload['utypid'] === 2 ? 'admin' : 'authenticated');
     }
 
     /**
