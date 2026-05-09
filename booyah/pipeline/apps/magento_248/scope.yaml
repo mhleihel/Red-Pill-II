@@ -53,9 +53,11 @@ risk_tier_overrides:
     reason: "GraphQL endpoint accepts arbitrary queries; pattern covers all /graphql/* operations"
 
 production_traffic:
-  available: false
-  capture_tool: ""
-  sensitive_fields_policy: ""
+  available: true
+  capture_tool: "booyah_tracer"
+  sensitive_fields_policy: "fields_policy.yaml"
+  # booyah_taint_map is written by Booyah_Tracer Magento module (instrumented-magento-php-1)
+  # All values are stored as hashes; no raw PII in the trace DB.
 
 coverage_targets:
   function_instrumentation_pct: 98
@@ -72,4 +74,11 @@ security_requirements:
 adapters:
   route_extractor: "booyah.routes.magento_extractor"
   auth_extractor: "booyah.nospoon.scripts.nospoon_guard_extract"
-  replay_adapter: ""
+  replay_adapter: "booyah.pipeline.adapters.magento_taint_replay"
+
+database:
+  host: "127.0.0.1"
+  port: 3307
+  user: "magento"
+  password: "magento"
+  name: "magento"
