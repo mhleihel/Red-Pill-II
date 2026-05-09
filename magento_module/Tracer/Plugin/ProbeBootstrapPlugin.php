@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Booyah\Tracer\Plugin;
 
 use Booyah\Tracer\Probe;
-use Magento\Framework\App\FrontController;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 
@@ -22,7 +21,7 @@ class ProbeBootstrapPlugin
     private static bool $started      = false;
     private static bool $shutdownHooked = false;
 
-    public function beforeDispatch(FrontController $subject, RequestInterface $request): array
+    public function beforeDispatch(object $subject, RequestInterface $request): array
     {
         if (getenv('BOOYAH_TAINT_ENABLED') !== '1') {
             return [$request];
@@ -51,7 +50,7 @@ class ProbeBootstrapPlugin
         return [$request];
     }
 
-    public function afterDispatch(FrontController $subject, $response)
+    public function afterDispatch(object $subject, $response)
     {
         return $response;
     }

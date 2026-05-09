@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Register HTTP probe values (bSRC_*) as taint sources for REST API requests.
+         REST routes bypass FrontController and dispatch through Webapi\Controller\Rest instead.
+         RequestTaintPlugin::beforeDispatch() reads getParams() and getContent() (JSON body). -->
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="booyah_rest_probe_bootstrap"
+                type="Booyah\Tracer\Plugin\ProbeBootstrapPlugin"
+                sortOrder="1"
+                disabled="false"/>
+        <plugin name="booyah_rest_request_taint"
+                type="Booyah\Tracer\Plugin\RequestTaintPlugin"
+                sortOrder="2"
+                disabled="false"/>
+    </type>
+
+    <!-- DB adapter is global — no need to re-register for webapi_rest area -->
+
+</config>
